@@ -6,17 +6,19 @@
 
 
 // Bootstrap style extensions from @ribajs/bs4
-@import '../../node_modules/@ribajs/bs4/src/index';
+@import './vendors/@ribajs/bs4/index';
 
-@import '../../node_modules/@ribajs/pdf/src/index';
+@import './vendors/@ribajs/pdf/index';
 
 // vendors
 
-// bootstrap overwrites
+// bootstrap overwrites and customs
+@import 'animations';
 @import 'forms';
 @import 'images';
 @import 'typo';
 @import 'nav';
+@import 'buttons';
 
 // binder style overwrites
 @import './binders/index';

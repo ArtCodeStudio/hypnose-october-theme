@@ -5,45 +5,45 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-@import "../../node_modules/bootstrap/scss/functions";
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/mixins";
+@import "./vendors/bootstrap/functions";
+@import "./vendors/bootstrap/variables";
+@import "./vendors/bootstrap/mixins";
 
 
 // Custom mixins and variables
 @import 'mixins/index';
 
-@import "../../node_modules/bootstrap/scss/root";
-@import "../../node_modules/bootstrap/scss/reboot";
-@import "../../node_modules/bootstrap/scss/type";
-@import "../../node_modules/bootstrap/scss/images";
-@import "../../node_modules/bootstrap/scss/code";
-@import "../../node_modules/bootstrap/scss/grid";
-@import "../../node_modules/bootstrap/scss/tables";
-@import "../../node_modules/bootstrap/scss/forms";
-@import "../../node_modules/bootstrap/scss/buttons";
-@import "../../node_modules/bootstrap/scss/transitions";
-@import "../../node_modules/bootstrap/scss/dropdown";
-@import "../../node_modules/bootstrap/scss/button-group";
-@import "../../node_modules/bootstrap/scss/input-group";
-@import "../../node_modules/bootstrap/scss/custom-forms";
-@import "../../node_modules/bootstrap/scss/nav";
-@import "../../node_modules/bootstrap/scss/navbar";
-@import "../../node_modules/bootstrap/scss/card";
-@import "../../node_modules/bootstrap/scss/breadcrumb";
-@import "../../node_modules/bootstrap/scss/pagination";
-@import "../../node_modules/bootstrap/scss/badge";
-@import "../../node_modules/bootstrap/scss/jumbotron";
-@import "../../node_modules/bootstrap/scss/alert";
-@import "../../node_modules/bootstrap/scss/progress";
-@import "../../node_modules/bootstrap/scss/media";
-@import "../../node_modules/bootstrap/scss/list-group";
-@import "../../node_modules/bootstrap/scss/close";
-@import "../../node_modules/bootstrap/scss/toasts";
-@import "../../node_modules/bootstrap/scss/modal";
-@import "../../node_modules/bootstrap/scss/tooltip";
-@import "../../node_modules/bootstrap/scss/popover";
-@import "../../node_modules/bootstrap/scss/carousel";
-@import "../../node_modules/bootstrap/scss/spinners";
-@import "../../node_modules/bootstrap/scss/utilities";
-@import "../../node_modules/bootstrap/scss/print";
+@import "./vendors/bootstrap/root";
+@import "./vendors/bootstrap/reboot";
+@import "./vendors/bootstrap/type";
+@import "./vendors/bootstrap/images";
+@import "./vendors/bootstrap/code";
+@import "./vendors/bootstrap/grid";
+@import "./vendors/bootstrap/tables";
+@import "./vendors/bootstrap/forms";
+@import "./vendors/bootstrap/buttons";
+@import "./vendors/bootstrap/transitions";
+@import "./vendors/bootstrap/dropdown";
+@import "./vendors/bootstrap/button-group";
+@import "./vendors/bootstrap/input-group";
+@import "./vendors/bootstrap/custom-forms";
+@import "./vendors/bootstrap/nav";
+@import "./vendors/bootstrap/navbar";
+@import "./vendors/bootstrap/card";
+@import "./vendors/bootstrap/breadcrumb";
+@import "./vendors/bootstrap/pagination";
+@import "./vendors/bootstrap/badge";
+@import "./vendors/bootstrap/jumbotron";
+@import "./vendors/bootstrap/alert";
+@import "./vendors/bootstrap/progress";
+@import "./vendors/bootstrap/media";
+@import "./vendors/bootstrap/list-group";
+@import "./vendors/bootstrap/close";
+@import "./vendors/bootstrap/toasts";
+@import "./vendors/bootstrap/modal";
+@import "./vendors/bootstrap/tooltip";
+@import "./vendors/bootstrap/popover";
+@import "./vendors/bootstrap/carousel";
+@import "./vendors/bootstrap/spinners";
+@import "./vendors/bootstrap/utilities";
+@import "./vendors/bootstrap/print";

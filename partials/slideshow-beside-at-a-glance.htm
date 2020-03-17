@@ -31,8 +31,8 @@ snippetProperties[filename][options][] = ""
             {% if slide.image is not empty %}
             {% set image = slide.image | media %}
             {% endif%}
-            <div class="slide col-12 p-0 embed-responsive embed-responsive-1by1">
-              <img lazyload="lazy" class="embed-responsive-item lazy" src="{{ image }}" alt="{{ slide.alt }}">
+            <div class="slide col-12 p-0 embed-responsive embed-responsive-1by1 lazy">
+              <img lazyload="lazy" class="embed-responsive-item" src="{{ image }}" alt="{{ slide.alt }}">
             </div>
           {% endfor %}
         </div>

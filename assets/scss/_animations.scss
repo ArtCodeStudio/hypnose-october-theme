@@ -1,0 +1,29 @@
+@keyframes heartbeat {
+    0% {
+        transform: scale( .75 );
+    }
+    10% {
+        transform: scale( 1 );
+    }
+    20% {
+        transform: scale( .75 );
+    }
+    30% {
+        transform: scale( 1 );
+    }
+    40% {
+        transform: scale( .75 );
+    }
+    50% {
+        transform: scale( .75 );
+    }
+    60% {
+        transform: scale(  .75 );
+    }
+    100% {
+        transform: scale(  .75 );
+    }
+}
+.heartbeat {
+    animation: heartbeat 3s infinite;
+}

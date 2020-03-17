@@ -59,3 +59,10 @@ typings/
 
 # next.js build output
 .next
+
+# Yarn
+yarn.lock
+.pnp.js
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml

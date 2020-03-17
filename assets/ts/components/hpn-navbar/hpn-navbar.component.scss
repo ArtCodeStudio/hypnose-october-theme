@@ -69,10 +69,10 @@ hpn-navbar.navbar {
   // }
   &:not(.collapsed) {
     .nav {
-      background-color: rgba($white, $hpn-navbar-bg-opacity);
-      // background-color: rgba($body-bg, $hpn-navbar-bg-opacity);
+      // background-color: rgba($white, $hpn-navbar-bg-opacity);
+      background-color: rgba($body-bg, $hpn-navbar-bg-opacity);
       // backdrop-filter: blur(8px);
-      border-bottom: $border-width solid rgba($secondary, $hpn-navbar-expanded-border-bottom-opacity);;
+      border-bottom: $border-width solid rgba($primary, $hpn-navbar-expanded-border-bottom-opacity);;
     }
   }
 }
@@ -90,6 +90,7 @@ hpn-navbar.navbar {
     padding-left: 26px;
     line-height: 1.2;
     font-weight: $font-weight-bold;
+    color: $title-color;
 
     // For mouse hover event
     position: absolute;

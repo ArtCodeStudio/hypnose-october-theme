@@ -27,14 +27,10 @@ items:
             cssClass: ''
             isExternal: '0'
     -
-        title: 'E-Mail: kontakt@hypnose-cuxhaven.de'
-        nesting: ''
+        title: 'E-Mail: kontakt@hypnosezentrum-cux.de'
         type: url
-        url: 'mailto:kontakt@hypnose-cuxhaven.de'
+        url: 'mailto:kontakt@hypnosezentrum-cux.de'
         code: ''
-        reference: ''
-        cmsPage: ''
-        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''

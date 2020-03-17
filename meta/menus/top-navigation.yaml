@@ -27,7 +27,7 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: 'Sabine Berndt-Bartel'
+                title: Therapeuten
                 nesting: '0'
                 type: static-page
                 url: ''
@@ -96,8 +96,10 @@ items:
                 title: Hypnosetherapie
                 nesting: '0'
                 type: static-page
+                url: ''
                 code: ''
                 reference: hypnose
+                cmsPage: ''
                 replace: '0'
                 viewBag:
                     isHidden: '0'
@@ -156,25 +158,12 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: 'Häufige Frage'
+                title: 'Häufige Fragen'
                 nesting: '0'
                 type: static-page
                 url: ''
                 code: ''
                 reference: hypnose-faq
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: Honorar
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: zentrum-honorar
                 cmsPage: ''
                 replace: '0'
                 viewBag:
@@ -222,7 +211,7 @@ items:
             isExternal: '0'
         items:
             -
-                title: Angst
+                title: 'Angst / Phoebie'
                 nesting: '0'
                 type: static-page
                 url: ''
@@ -365,7 +354,7 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Phobie
+                title: 'Phobie / Angst'
                 nesting: '0'
                 type: static-page
                 url: ''
@@ -516,6 +505,15 @@ items:
                 reference: anwendungsgebiete-zwange
                 cmsPage: ''
                 replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: Geburtstrauma
+                type: url
+                url: 'https://hypnose.jumplink.eu/anwendungsgebiete/geburtstrauma'
+                code: ''
                 viewBag:
                     isHidden: '0'
                     cssClass: ''

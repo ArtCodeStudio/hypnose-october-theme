@@ -2,9 +2,23 @@ img.rounded {
   border-radius: $thumbnail-border-radius !important;
 }
 
-.lazy {
-  background-image: url(../images/loading.svg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100px;
+&.embed-responsive {
+  &.lazy {
+    &:before {
+      background-image: url(../images/loading.svg);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 100px;
+      @extend .heartbeat;
+    }
+  }
+}
+
+:not(.embed-responsive) {
+  &.lazy {
+    background-image: url(../images/loading.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100px;
+  }  
 }

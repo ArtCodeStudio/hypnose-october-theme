@@ -1,0 +1,3 @@
+.btn-secondary {
+    @include button-variant($secondary, $title-color, darken($secondary, 7.5%), transparent, darken($secondary, 10%), transparent);
+}
