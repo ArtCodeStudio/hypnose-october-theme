@@ -211,6 +211,17 @@ items:
             isExternal: '0'
         items:
             -
+                title: 'Alle anzeigen'
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: anwendungsgebiete
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
                 title: 'Angst / Phoebie'
                 nesting: '0'
                 type: static-page
@@ -511,9 +522,13 @@ items:
                     isExternal: '0'
             -
                 title: Geburtstrauma
+                nesting: ''
                 type: url
                 url: 'https://hypnose.jumplink.eu/anwendungsgebiete/geburtstrauma'
                 code: ''
+                reference: ''
+                cmsPage: ''
+                replace: ''
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -532,6 +547,17 @@ items:
             cssClass: ''
             isExternal: '0'
         items:
+            -
+                title: Übersicht
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: weitere-leistungen
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
             -
                 title: 'Psychosomatische Energetik (PSE)'
                 nesting: '0'
@@ -572,6 +598,17 @@ items:
             cssClass: ''
             isExternal: '0'
         items:
+            -
+                title: Kontaktformular
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: kontakt
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
             -
                 title: Fragebögen
                 nesting: '0'

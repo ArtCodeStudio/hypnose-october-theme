@@ -44,58 +44,63 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
       const parent = target.parentNode as HTMLElement;
       if (target && this.pjax) {
         event.preventDefault();
-        let url = target.href || "/";
-        if (isAbsoluteUrl(url) && isInternalUrl(url)) {
-          url = target.pathname + target.search;
-        }
-        // And go to page
-        if (parent.classList.contains("active")) {
-          this.toggle();
-          return;
-        }
 
         // If this element has childs toggle the menu
-        // if (parent.classList.contains('nav-item-level-1-with-childs')) {
-        //   this.show();
-        // } else {
-        //   this.hide();
-        // }
-        this.hide();
+        if (parent.classList.contains('nav-item-level-1-with-childs')) {
+          this.show();
+        } else {
+          this.hide();
+        }
+        
+        let url = target.href;
 
-        this.pjax.goTo(url);
+        if (url) {
+          if (isAbsoluteUrl(url) && isInternalUrl(url)) {
+            url = target.pathname + target.search;
+          }
+  
+          if (parent.classList.contains("active")) {
+            this.toggle();
+            return;
+          }
+
+  
+          this.pjax.goTo(url);
+        }
+
       }
     }
   }
 
-  public onItemHover(event?: Event) {
-    if (event) {
-      const target = event.target as HTMLAnchorElement | null;
-      if (!target) {
-        return console.warn("Target not found!");
-      }
-      const parent = target.parentNode as HTMLElement;
-      if (target && this.pjax && !this.scope.isCollapsed) {
-        this.hideAllOnHover();
-        const collapseElement = parent.querySelector(
-          this.scope.collapseSelector
-        ) as HTMLElement;
-        // If this element has childs show the menu
-        if (parent.classList.contains("nav-item-level-1-with-childs")) {
-          if (collapseElement) {
-            this.showElementOnHover(collapseElement);
-          }
-        }
-        this.setMenuHeight();
-      }
-    }
+  public onItemHover(/*event?: Event*/) {
+    // if (event) {
+    //   const target = event.target as HTMLAnchorElement | null;
+    //   if (!target) {
+    //     return console.warn("Target not found!");
+    //   }
+    //   const parent = target.parentNode as HTMLElement;
+    //   if (target && this.pjax && !this.scope.isCollapsed) {
+    //     this.hideAll();
+    //     const collapseElement = parent.querySelector(
+    //       this.scope.collapseSelector
+    //     ) as HTMLElement;
+    //     // If this element has childs show the menu
+    //     if (parent.classList.contains("nav-item-level-1-with-childs")) {
+    //       if (collapseElement) {
+    //         this.showElement(collapseElement);
+    //       }
+    //     }
+    //     this.setMenuHeight();
+    //   }
+    // }
   }
 
   public onNavbarHover(event?: Event) {
-    this.show(event);
+    // this.show(event);
   }
 
   public onNavbarLeave(event?: Event) {
-    this.hide(event);
+    // this.hide(event);
   }
 
   public toggle(event?: Event) {
@@ -110,27 +115,27 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     super.hide(event);
   }
 
-  protected hideElementOnHover(element: HTMLElement) {
+  protected hideElement(element: HTMLElement) {
     element.classList.remove(this.scope.showOnHoverClass);
     element.classList.add(this.scope.hideOnHoverClass);
   }
 
-  protected showElementOnHover(element: HTMLElement) {
+  protected showElement(element: HTMLElement) {
     element.classList.add(this.scope.showOnHoverClass);
     element.classList.remove(this.scope.hideOnHoverClass);
   }
 
-  protected removeElementOnHoverClasses(element: HTMLElement) {
+  protected removeElementClasses(element: HTMLElement) {
     element.classList.remove(this.scope.showOnHoverClass);
     element.classList.remove(this.scope.hideOnHoverClass);
   }
 
-  protected hideAllOnHover() {
+  protected hideAll() {
     const collapseElements = this.el.querySelectorAll<HTMLElement>(
       this.scope.collapseSelector
     );
     collapseElements.forEach((collapseElement) => {
-      this.hideElementOnHover(collapseElement);
+      this.hideElement(collapseElement);
     });
   }
 
@@ -139,7 +144,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
       this.scope.collapseSelector
     );
     collapseElements.forEach((collapseElement) => {
-      this.removeElementOnHoverClasses(collapseElement);
+      this.removeElementClasses(collapseElement);
     });
   }
 

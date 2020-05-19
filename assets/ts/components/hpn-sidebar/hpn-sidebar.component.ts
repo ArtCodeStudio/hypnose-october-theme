@@ -136,7 +136,7 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
     super(element);
   }
 
-  public toggleItem(handle: string, context: any, event: Event) {
+  public toggleItem(handle: string, event: Event) {
     event.preventDefault();
     event.stopPropagation();
     const toggleItem = this.getToggleItem(handle);
@@ -205,7 +205,7 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
     dropdownToggleElements.forEach((toggleElement) => {
       if (toggleElement.dataset.handle) {
         this.toggleItems.push({
-          collapseService: new CollapseService(toggleElement, []),
+          collapseService: new CollapseService(toggleElement, [], { toggle: false }),
           handle: toggleElement.dataset.handle,
         });
       }

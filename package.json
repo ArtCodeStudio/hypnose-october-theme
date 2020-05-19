@@ -12,7 +12,7 @@
     "build": "npm run lint && npm run webpack",
     "build:dev": "npm run lint && npm run webpack:dev",
     "watch": "concurrently \"npm:watch:*\"",
-    "watch:ts": "npm run webpack:dev -- --watch",
+    "watch:wp": "npm run webpack:dev -- --watch",
     "packages:npm:link": "npm link @ribajs/core @ribajs/bs4 @ribajs/router @ribajs/iconset @ribajs/extras @ribajs/jquery @ribajs/pdf"
   },
   "repository": {

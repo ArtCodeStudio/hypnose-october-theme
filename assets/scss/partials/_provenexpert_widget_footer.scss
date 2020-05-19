@@ -1,6 +1,7 @@
 
 .partial-provenexpert-widget-footer {
   z-index: $zindex-fixed + 1;
+  position: absolute;
   background-color: $body-bg;
   #pewl {
     border: none !important;
