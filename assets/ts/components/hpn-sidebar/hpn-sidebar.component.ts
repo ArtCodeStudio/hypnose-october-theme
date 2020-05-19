@@ -1,21 +1,19 @@
-import {
-  Utils,
-} from '@ribajs/core';
+import { isAbsoluteUrl, isInternalUrl } from "@ribajs/utils/src/url";
+import { Pjax } from "@ribajs/router";
+import { Bs4SidebarComponent } from "@ribajs/bs4/src/components/bs4-sidebar/bs4-sidebar.component";
+import { CollapseService } from "@ribajs/bs4/src/services/collapse.service";
 
-import { Pjax, Prefetch } from '@ribajs/router';
-
-import { Bs4SidebarComponent } from '@ribajs/bs4/src/components/bs4-sidebar/bs4-sidebar.component';
-
-import { CollapseService } from '@ribajs/bs4/src/services/collapse.service';
-
-type State = 'overlay-left' | 'overlay-right' | 'side-left' | 'side-right' | 'hidden';
+type State =
+  | "overlay-left"
+  | "overlay-right"
+  | "side-left"
+  | "side-right"
+  | "hidden";
 
 interface ToggleItem {
   collapseService: CollapseService;
   handle: string;
 }
-
-const ANIMATED_COLLAPSE = false;
 
 interface Scope {
   /**
@@ -39,7 +37,7 @@ interface Scope {
   /**
    * The sidebar can be positioned `right` or `left`
    */
-  position: 'left' | 'right';
+  position: "left" | "right";
   /**
    * Auto show the sidebar if the viewport width is wider than this value
    */
@@ -69,25 +67,24 @@ interface Scope {
   /**
    * Hides / closes the sidebar
    */
-  hide: HpnSidebarComponent['hide'];
+  hide: HpnSidebarComponent["hide"];
   /**
    * Shows / opens the sidebar
    */
-  show: HpnSidebarComponent['show'];
+  show: HpnSidebarComponent["show"];
   /**
    * Toggles (closes or opens) the sidebar
    */
-  toggle: HpnSidebarComponent['toggle'];
+  toggle: HpnSidebarComponent["toggle"];
 
   // Custom
-  toggleItem: HpnSidebarComponent['toggleItem'];
+  toggleItem: HpnSidebarComponent["toggleItem"];
 
-  onItemClick: HpnSidebarComponent['onItemClick'];
+  onItemClick: HpnSidebarComponent["onItemClick"];
 }
 
 export class HpnSidebarComponent extends Bs4SidebarComponent {
-
-  public static tagName: string = 'hpn-sidebar';
+  public static tagName = "hpn-sidebar";
 
   protected autobind = true;
 
@@ -96,19 +93,28 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
   protected pjax?: Pjax;
 
   static get observedAttributes() {
-    return ['id', 'container-selector', 'position', 'width', 'auto-show-on-wider-than', 'auto-hide-on-slimmer-than', 'force-hide-on-location-pathnames', 'force-show-on-location-pathnames', 'overlay-on-slimmer-than'];
+    return [
+      "id",
+      "container-selector",
+      "position",
+      "width",
+      "auto-show-on-wider-than",
+      "auto-hide-on-slimmer-than",
+      "force-hide-on-location-pathnames",
+      "force-show-on-location-pathnames",
+      "overlay-on-slimmer-than",
+    ];
   }
 
   protected scope: Scope = {
-
     // template properties
     containerSelector: undefined,
-    state: 'hidden',
+    state: "hidden",
     id: undefined,
-    width: '100vw',
+    width: "100vw",
 
     // Options
-    position: 'left',
+    position: "left",
     autoShowOnWiderThan: -1,
     autoHideOnSlimmerThan: -1,
     watchNewPageReadyEvent: false,
@@ -136,36 +142,35 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
     const toggleItem = this.getToggleItem(handle);
     if (toggleItem) {
       this.closeAllToggleItems(toggleItem);
-      toggleItem.collapseService.toggle(ANIMATED_COLLAPSE);
+      toggleItem.collapseService.toggle();
     }
 
     if (event) {
       const target = event.target as HTMLAnchorElement | null;
       if (!target) {
-        return console.warn('Target not found!');
+        return console.warn("Target not found!");
       }
       if (target && this.pjax) {
-        let url = target.href || '/';
-        if (Utils.isAbsoluteUrl(url) && Utils.isInternalUrl(url)) {
+        let url = target.href || "/";
+        if (isAbsoluteUrl(url) && isInternalUrl(url)) {
           url = target.pathname + target.search;
         }
         this.pjax.goTo(url);
       }
     }
-
   }
 
-  public onItemClick(context?: any, event?: Event) {
+  public onItemClick(event?: Event) {
     if (event) {
       const target = event.target as HTMLAnchorElement | null;
       if (!target) {
-        return console.warn('Target not found!');
+        return console.warn("Target not found!");
       }
 
       if (target && this.pjax) {
         event.preventDefault();
-        let url = target.href || '/';
-        if (Utils.isAbsoluteUrl(url) && Utils.isInternalUrl(url)) {
+        let url = target.href || "/";
+        if (isAbsoluteUrl(url) && isInternalUrl(url)) {
           url = target.pathname + target.search;
         }
 
@@ -178,7 +183,7 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
   protected closeAllToggleItems(except?: ToggleItem) {
     for (const toggleItem of this.toggleItems) {
       if (!except || toggleItem.handle !== except.handle) {
-        toggleItem.collapseService.hide(ANIMATED_COLLAPSE);
+        toggleItem.collapseService.hide();
       }
     }
   }
@@ -194,11 +199,13 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
 
   protected connectedCallback() {
     super.connectedCallback();
-    const dropdownToggleElements = this.el.querySelectorAll('.collapse') as NodeListOf<HTMLButtonElement | HTMLAnchorElement>;
+    const dropdownToggleElements = this.el.querySelectorAll(
+      ".collapse"
+    ) as NodeListOf<HTMLButtonElement | HTMLAnchorElement>;
     dropdownToggleElements.forEach((toggleElement) => {
       if (toggleElement.dataset.handle) {
-        this.toggleItems.push( {
-          collapseService: new CollapseService([toggleElement]),
+        this.toggleItems.push({
+          collapseService: new CollapseService(toggleElement, []),
           handle: toggleElement.dataset.handle,
         });
       }
@@ -211,20 +218,29 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
 
   protected async afterBind() {
     super.afterBind();
-    this.pjax = Pjax.getInstance('main');
+    this.pjax = Pjax.getInstance("main");
   }
 
   protected requiredAttributes() {
-    return ['id'];
+    return ["id"];
   }
 
-  protected parsedAttributeChangedCallback(attributeName: string, oldValue: any, newValue: any, namespace: string | null) {
-    super.parsedAttributeChangedCallback(attributeName, oldValue, newValue, namespace);
+  protected parsedAttributeChangedCallback(
+    attributeName: string,
+    oldValue: any,
+    newValue: any,
+    namespace: string | null
+  ) {
+    super.parsedAttributeChangedCallback(
+      attributeName,
+      oldValue,
+      newValue,
+      namespace
+    );
   }
 
   // deconstructor
   protected disconnectedCallback() {
     super.disconnectedCallback();
   }
-
 }

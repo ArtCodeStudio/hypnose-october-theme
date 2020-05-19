@@ -1,10 +1,7 @@
-import {
-  Component,
-} from '@ribajs/core';
+import { Component } from "@ribajs/core";
 
 export class HpnFooterComponent extends Component {
-
-  public static tagName: string = 'hpn-footer';
+  public static tagName = "hpn-footer";
 
   protected autobind = true;
 
@@ -20,8 +17,7 @@ export class HpnFooterComponent extends Component {
   }
 
   protected async init(observedAttributes: string[]) {
-    return super.init(observedAttributes)
-    .then((view) => {
+    return super.init(observedAttributes).then((view) => {
       return view;
     });
   }
@@ -30,8 +26,18 @@ export class HpnFooterComponent extends Component {
     return [];
   }
 
-  protected parsedAttributeChangedCallback(attributeName: string, oldValue: any, newValue: any, namespace: string | null) {
-    super.parsedAttributeChangedCallback(attributeName, oldValue, newValue, namespace);
+  protected parsedAttributeChangedCallback(
+    attributeName: string,
+    oldValue: any,
+    newValue: any,
+    namespace: string | null
+  ) {
+    super.parsedAttributeChangedCallback(
+      attributeName,
+      oldValue,
+      newValue,
+      namespace
+    );
   }
 
   // deconstructor

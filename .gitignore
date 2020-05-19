@@ -35,6 +35,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+assets/scss/vendors/
+assets/iconset
 
 # TypeScript v1 declaration files
 typings/

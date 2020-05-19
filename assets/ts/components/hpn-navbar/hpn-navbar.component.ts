@@ -1,22 +1,21 @@
-import { Binder, Utils } from '@ribajs/core';
+import { isAbsoluteUrl, isInternalUrl } from "@ribajs/utils/src/url";
 
-import { Pjax } from '@ribajs/router';
+import { Pjax } from "@ribajs/router";
 
-import { Bs4NavbarComponent } from '@ribajs/bs4/src/components/bs4-navbar/bs4-navbar.component';
+import { Bs4NavbarComponent } from "@ribajs/bs4/src/components/bs4-navbar/bs4-navbar.component";
 
 export class HpnNavbarComponent extends Bs4NavbarComponent {
-
-  public static tagName: string = 'hpn-navbar';
+  public static tagName = "hpn-navbar";
 
   protected autobind = true;
 
   protected pjax?: Pjax;
 
   static get observedAttributes() {
-    return ['collapse-selector'];
+    return ["collapse-selector"];
   }
 
-  protected scope: any = {
+  protected scope = {
     toggle: this.toggle,
     show: this.show,
     hide: this.hide,
@@ -26,11 +25,9 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     onNavbarHover: this.onNavbarHover,
     onNavbarLeave: this.onNavbarLeave,
     isCollapsed: true,
-    collapseSelector: '.nav-item-level-2-wrapper',
-    collapseHoverSelector: '.nav-item-level-2-wrapper',
-    showOnHoverClass: 'show-on-hover',
-    hideOnHoverClass: 'hide-on-hover',
-    animated: false,
+    collapseSelector: ".nav-item-level-2-wrapper",
+    showOnHoverClass: "show-on-hover",
+    hideOnHoverClass: "hide-on-hover",
   };
 
   constructor(element?: HTMLElement) {
@@ -38,21 +35,21 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     // console.debug('constructor', this);
   }
 
-  public onItemClick(context?: Binder<any>, event?: Event) {
+  public onItemClick(event?: Event) {
     if (event) {
       const target = event.target as HTMLAnchorElement | null;
       if (!target) {
-        return console.warn('Target not found!');
+        return console.warn("Target not found!");
       }
       const parent = target.parentNode as HTMLElement;
       if (target && this.pjax) {
         event.preventDefault();
-        let url = target.href || '/';
-        if (Utils.isAbsoluteUrl(url) && Utils.isInternalUrl(url)) {
+        let url = target.href || "/";
+        if (isAbsoluteUrl(url) && isInternalUrl(url)) {
           url = target.pathname + target.search;
         }
         // And go to page
-        if (parent.classList.contains('active')) {
+        if (parent.classList.contains("active")) {
           this.toggle();
           return;
         }
@@ -70,20 +67,22 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     }
   }
 
-  public onItemHover(context?: Binder<any>, event?: Event) {
+  public onItemHover(event?: Event) {
     if (event) {
       const target = event.target as HTMLAnchorElement | null;
       if (!target) {
-        return console.warn('Target not found!');
+        return console.warn("Target not found!");
       }
       const parent = target.parentNode as HTMLElement;
       if (target && this.pjax && !this.scope.isCollapsed) {
         this.hideAllOnHover();
-        const collapseHoverElement = parent.querySelector(this.scope.collapseHoverSelector);
+        const collapseElement = parent.querySelector(
+          this.scope.collapseSelector
+        ) as HTMLElement;
         // If this element has childs show the menu
-        if (parent.classList.contains('nav-item-level-1-with-childs')) {
-          if (collapseHoverElement) {
-            this.showElementOnHover(collapseHoverElement);
+        if (parent.classList.contains("nav-item-level-1-with-childs")) {
+          if (collapseElement) {
+            this.showElementOnHover(collapseElement);
           }
         }
         this.setMenuHeight();
@@ -91,24 +90,24 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     }
   }
 
-  public onNavbarHover(context?: Binder<any>, event?: Event) {
-    this.show(context, event);
+  public onNavbarHover(event?: Event) {
+    this.show(event);
   }
 
-  public onNavbarLeave(context?: Binder<any>, event?: Event) {
-    this.hide(context, event);
+  public onNavbarLeave(event?: Event) {
+    this.hide(event);
   }
 
-  public toggle(context?: Binder<any>, event?: Event) {
-    super.toggle(context, event);
+  public toggle(event?: Event) {
+    super.toggle(event);
   }
 
-  public show(context?: Binder<any>, event?: Event) {
-    super.show(context, event);
+  public show(event?: Event) {
+    super.show(event);
   }
 
-  public hide(context?: Binder<any>, event?: Event) {
-    super.hide(context, event);
+  public hide(event?: Event) {
+    super.hide(event);
   }
 
   protected hideElementOnHover(element: HTMLElement) {
@@ -127,53 +126,62 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
   }
 
   protected hideAllOnHover() {
-    const collapseHoverElements = this.el.querySelectorAll(this.scope.collapseHoverSelector);
-    collapseHoverElements.forEach((collapseHoverElement) => {
-      this.hideElementOnHover(collapseHoverElement);
+    const collapseElements = this.el.querySelectorAll<HTMLElement>(
+      this.scope.collapseSelector
+    );
+    collapseElements.forEach((collapseElement) => {
+      this.hideElementOnHover(collapseElement);
     });
   }
 
   protected removeAllOnHoverClasses() {
-    const collapseHoverElements = this.el.querySelectorAll(this.scope.collapseHoverSelector);
-    collapseHoverElements.forEach((collapseHoverElement) => {
-      this.removeElementOnHoverClasses(collapseHoverElement);
+    const collapseElements = this.el.querySelectorAll<HTMLElement>(
+      this.scope.collapseSelector
+    );
+    collapseElements.forEach((collapseElement) => {
+      this.removeElementOnHoverClasses(collapseElement);
     });
   }
 
   protected getHighestCollapseElementHeight() {
     let highest = 0;
-    if (this.collapse) {
-      this.collapse.forEach((collapse) => {
-        const clientHeight = (collapse as HTMLElement).clientHeight
+    const collapseElements = this.el.querySelectorAll<HTMLElement>(
+      this.scope.collapseSelector
+    );
+    if (collapseElements) {
+      collapseElements.forEach((collapseElement) => {
+        const clientHeight = collapseElement.clientHeight;
         highest = clientHeight > highest ? clientHeight : highest;
       });
     }
     // Special case for navbar brand
-    const navbarBrand = this.el.querySelector('.navbar-brand');
+    const navbarBrand = this.el.querySelector(".navbar-brand");
     if (navbarBrand) {
-      const clientHeight = (navbarBrand as HTMLElement).clientHeight - this.scope.navbarCollapsedHeight;
+      const clientHeight =
+        (navbarBrand as HTMLElement).clientHeight -
+        this.scope.navbarCollapsedHeight;
       highest = clientHeight > highest ? clientHeight : highest;
     }
     return highest;
   }
 
   protected setMenuHeight() {
-    const nav = this.el.querySelector('.nav');
+    const nav = this.el.querySelector(".nav");
     if (this.scope.isCollapsed) {
-      (nav as HTMLElement).style.height = this.scope.navbarCollapsedHeight + 'px'; // 'auto';
+      (nav as HTMLElement).style.height =
+        this.scope.navbarCollapsedHeight + "px"; // 'auto';
       return;
     }
     setTimeout(() => {
       const addHeight = this.getHighestCollapseElementHeight();
       // const height = (nav as HTMLElement).clientHeight + addHeight;
       const height = this.scope.navbarCollapsedHeight + addHeight;
-      (nav as HTMLElement).style.height = height + 'px';
+      (nav as HTMLElement).style.height = height + "px";
     }, 0);
   }
 
   protected async init(observedAttributes: string[]) {
-    return super.init(observedAttributes)
-    .then((view) => {
+    return super.init(observedAttributes).then((view) => {
       return view;
     });
   }
@@ -191,7 +199,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
 
   protected async afterBind() {
     super.afterBind();
-    this.pjax = Pjax.getInstance('main');
+    this.pjax = Pjax.getInstance("main");
     return;
   }
 
@@ -204,8 +212,18 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     return [];
   }
 
-  protected parsedAttributeChangedCallback(attributeName: string, oldValue: any, newValue: any, namespace: string | null) {
-    super.parsedAttributeChangedCallback(attributeName, oldValue, newValue, namespace);
+  protected parsedAttributeChangedCallback(
+    attributeName: string,
+    oldValue: any,
+    newValue: any,
+    namespace: string | null
+  ) {
+    super.parsedAttributeChangedCallback(
+      attributeName,
+      oldValue,
+      newValue,
+      namespace
+    );
   }
 
   protected disconnectedCallback() {
