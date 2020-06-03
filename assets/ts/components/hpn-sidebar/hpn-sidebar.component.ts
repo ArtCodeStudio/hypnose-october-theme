@@ -205,7 +205,9 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
     dropdownToggleElements.forEach((toggleElement) => {
       if (toggleElement.dataset.handle) {
         this.toggleItems.push({
-          collapseService: new CollapseService(toggleElement, [], { toggle: false }),
+          collapseService: new CollapseService(toggleElement, [], {
+            toggle: false,
+          }),
           handle: toggleElement.dataset.handle,
         });
       }

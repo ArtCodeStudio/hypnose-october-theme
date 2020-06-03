@@ -46,28 +46,26 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
         event.preventDefault();
 
         // If this element has childs toggle the menu
-        if (parent.classList.contains('nav-item-level-1-with-childs')) {
+        if (parent.classList.contains("nav-item-level-1-with-childs")) {
           this.show();
         } else {
           this.hide();
         }
-        
+
         let url = target.href;
 
         if (url) {
           if (isAbsoluteUrl(url) && isInternalUrl(url)) {
             url = target.pathname + target.search;
           }
-  
+
           if (parent.classList.contains("active")) {
             this.toggle();
             return;
           }
 
-  
           this.pjax.goTo(url);
         }
-
       }
     }
   }
