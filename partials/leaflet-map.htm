@@ -1,0 +1,33 @@
+[viewBag]
+snippetCode = "leaflet-map"
+snippetName = "leaflet-map"
+snippetProperties[latitude][title] = "latitude"
+snippetProperties[latitude][type] = "string"
+snippetProperties[latitude][default] = "53.799749"
+snippetProperties[longitude][title] = "longitude"
+snippetProperties[longitude][type] = "string"
+snippetProperties[longitude][default] = "8.620539"
+snippetProperties[initialZoom][title] = "initialZoom"
+snippetProperties[initialZoom][type] = "string"
+snippetProperties[initialZoom][default] = "17"
+snippetProperties[attribution][title] = "attribution"
+snippetProperties[attribution][type] = "string"
+snippetProperties[attribution][default] = "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>
+contributors"
+snippetProperties[tileUrl][title] = "tile_url"
+snippetProperties[tileUrl][type] = "string"
+snippetProperties[tileUrl][default] = "https://c.tile.openstreetmap.org/{z}/{x}/{y}.png"
+==
+<div class="container mt-5 pt-3">
+    <div class="row" style="height: 70vh">
+        <div class="col">
+            <leaflet-map assets-dir="{{ 'assets/images/vendors/leaflet/images/' | theme }}/"
+                attribution="{{ attribution }}" initial-lat="{{ latitude | replace({",":"."}) }}"
+                initial-lng="{{ longitude | replace({",":"."}) }}" initial-zoom="{{ initialZoom | replace({",":"."}) }}"
+                tile-url="{{ tileUrl }}">
+                <marker lat="{{ latitude | replace({",":"."}) }}" lng="{{ longitude | replace({",":"."}) }}">
+                    Hypnose Zentrum Cuxhaven</marker>
+            </leaflet-map>
+        </div>
+    </div>
+</div>

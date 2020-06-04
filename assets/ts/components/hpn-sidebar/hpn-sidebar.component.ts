@@ -139,17 +139,23 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
   public toggleItem(handle: string, event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    const toggleItem = this.getToggleItem(handle);
-    if (toggleItem) {
-      this.closeAllToggleItems(toggleItem);
-      toggleItem.collapseService.toggle();
-    }
 
     if (event) {
       const target = event.target as HTMLAnchorElement | null;
       if (!target) {
         return console.warn("Target not found!");
       }
+      const toggleItem = this.getToggleItem(handle);
+      if (toggleItem) {
+        this.closeAllToggleItems(toggleItem);
+        if (toggleItem.collapseService.isExpanded()) {
+          target.classList.remove("open");
+        } else {
+          target.classList.add("open");
+        }
+        toggleItem.collapseService.toggle();
+      }
+
       if (target && this.pjax) {
         let url = target.href || "/";
         if (isAbsoluteUrl(url) && isInternalUrl(url)) {
@@ -184,8 +190,15 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
     for (const toggleItem of this.toggleItems) {
       if (!except || toggleItem.handle !== except.handle) {
         toggleItem.collapseService.hide();
+        toggleItem.collapseService._element
       }
     }
+    const dropdownToggleElements = this.el.querySelectorAll(
+      ".dropdown-toggle"
+    ) as NodeListOf<HTMLButtonElement | HTMLAnchorElement>;
+    dropdownToggleElements.forEach((toggleElement) => {
+      toggleElement.classList.remove("open");
+    });
   }
 
   protected getToggleItem(handle: string) {

@@ -1,6 +1,7 @@
 import { Riba, coreModule } from "@ribajs/core";
 import { routerModule } from "@ribajs/router";
 import { pdfModule } from "@ribajs/pdf";
+import { leafletModule } from "@ribajs/leaflet-map";
 import { ready } from "@ribajs/utils/src/dom";
 
 // BS4 Components
@@ -25,6 +26,7 @@ export class Main {
     this.riba.module.regist(jqueryModule);
     this.riba.module.regist(routerModule);
     this.riba.module.regist(pdfModule);
+    this.riba.module.regist(leafletModule);
 
     // selected elements from modules
     this.riba.module.regist({

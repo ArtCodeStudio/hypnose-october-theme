@@ -1,16 +1,22 @@
 .personal-report {
-  margin-top: 200px;
-  margin-bottom: 200px;
-  .quote {
-    display: inline;
-    background-color: $report-bg;
-    padding: 5px;
-    line-height: 2.5;
-    // Style for background with spacing on start and end of each new text line
-    // see https://css-tricks.com/multi-line-padded-text/
-    box-shadow: 10px 0 0 $report-bg, -10px 0 0 $report-bg;
-  }
-  .col-auto {
-    max-width: 800px;
+  &.random-personal-report {
+    margin-top: 200px;
+    margin-bottom: 200px;
+    .quote {
+      background-color: $report-bg;
+      font-size: $font-size-lg;
+      line-height: 3; // line-height: 1.35;
+      display: inline;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      padding: 0.5rem 1rem;
+      // border-radius: 40px;
+      // Style for background with spacing on start and end of each new text line
+      // see https://css-tricks.com/multi-line-padded-text/
+      // box-shadow: 10px 0 0 $report-bg, -10px 0 0 $report-bg;
+    }
+    .col-auto {
+      max-width: 800px;
+    }
   }
 }

@@ -2,14 +2,45 @@
 snippetCode = "random-personal-report"
 snippetName = "Random personal report"
 ==
+{% set size = this.theme.personal_reports | length %}
+{% set size = size - 1 %}
+{% set randomIndex = random(0, size) %}
+
+{#
+  https://css-tricks.com/gooey-effect/
+  https://codepen.io/ines/pen/NXbmRO
+#}
+<svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+      <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />    
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+      </filter>
+  </defs>
+</svg>
+
+
 <div class="container random-personal-report personal-report text-center" rv-assign-show-index="{{ this.theme.personal_reports | length }} | minus 1 | random">
   <div class="row">
-    {% for report in this.theme.personal_reports  %}
-      <div class="col-12 col-md-auto mx-auto" rv-show="showIndex | eq {{ loop.index0 }}">
-        <p class="title mb-4">{{ report.title }}</p>
-        <p class="quote mb-4">„{{ report.quote }}“</p>
-      </div>
-    {% endfor %}
+    {% set report = this.theme.personal_reports[randomIndex] %}
+
+    <div class="col-12 col-md-auto mx-auto">
+      <p class="title mb-4">{{ report.title }}</p>
+      {% if report.quote | striptags | length > 500 %}
+        <p rv-assign-show-full-quote-{{ randomIndex }}="false" class="quote mb-4" style="filter: url('#goo');">
+          „
+          <span rv-hide="showFullQuote{{ loop.index0 }}">{{ report.quote | striptags | slice(0, 500) }} ...</span>
+          <span rv-show="showFullQuote{{ loop.index0 }}">{{ report.quote | raw }}</span>
+          “
+        </p>
+        <br>
+        <bs4-icon rv-hide="showFullQuote{{ loop.index0 }}" src="{{ 'assets/iconset/icon_plus.svg' | theme }}" size="32" rv-toggle-on-click="'showFullQuote{{ loop.index0 }}'"></bs4-icon>
+        <bs4-icon rv-show="showFullQuote{{ loop.index0 }}" src="{{ 'assets/iconset/icon_minus.svg' | theme }}" size="32" rv-toggle-on-click="'showFullQuote{{ loop.index0 }}'"></bs4-icon>
+      {% else %}
+        <p class="quote mb-4" style="filter: url('#goo');">„{{ report.quote | raw }}“</p>
+      {% endif %}
+    </div>
+
     <div class="col-12 mt-5">
       <bs4-button class="btn btn-animated-underline-primary" rv-route="'{{ 'erfahrungsberichte' | staticPage }}'">Weitere Erfahrungsberichte lesen</bs4-button>
     </div>

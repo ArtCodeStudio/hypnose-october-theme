@@ -70,6 +70,7 @@
     "eslint": "^7.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
+    "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "inspectpack": "^4.5.2",
     "pnp-webpack-plugin": "^1.6.4",
@@ -88,10 +89,12 @@
     "@ribajs/extras": "^1.9.0-alpha.0",
     "@ribajs/iconset": "^1.9.0-alpha.0",
     "@ribajs/jquery": "^1.9.0-alpha.0",
+    "@ribajs/leaflet-map": "^1.9.0-alpha.0",
     "@ribajs/pdf": "^1.9.0-alpha.0",
     "@ribajs/router": "^1.9.0-alpha.0",
     "@ribajs/utils": "^1.9.0-alpha.0",
-    "bootstrap": "^4.5.0"
+    "bootstrap": "^4.5.0",
+    "leaflet": "^1.6.0"
   },
   "resolutions": {
     "@ribajs/bs4": "portal:../../../riba/packages/bs4",
@@ -102,6 +105,7 @@
     "@ribajs/i18n": "portal:../../../riba/packages/i18n",
     "@ribajs/iconset": "portal:../../../riba/packages/iconset",
     "@ribajs/jquery": "portal:../../../riba/packages/jquery",
+    "@ribajs/leaflet-map": "portal:../../../riba/packages/leaflet-map",
     "@ribajs/moment": "portal:../../../riba/packages/moment",
     "@ribajs/pdf": "portal:../../../riba/packages/pdf",
     "@ribajs/router": "portal:../../../riba/packages/router",
