@@ -4,3 +4,8 @@ body {
   @include scrollbars(.6em, theme-color(primary), transparent);
   -ms-overflow-style: scrollbar;
 }
+
+
+
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
