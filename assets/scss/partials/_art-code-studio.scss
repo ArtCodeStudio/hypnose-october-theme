@@ -1,0 +1,79 @@
+@keyframes heartbeat {
+    0% {
+        transform: scale( .75 );
+    }
+    10% {
+        transform: scale( 1 );
+    }
+    20% {
+        transform: scale( .75 );
+    }
+    30% {
+        transform: scale( 1 );
+    }
+    40% {
+        transform: scale( .75 );
+    }
+    50% {
+        transform: scale( .75 );
+    }
+    60% {
+        transform: scale(  .75 );
+    }
+    100% {
+        transform: scale(  .75 );
+    }
+}
+
+.heartbeat {
+    animation: heartbeat 3s infinite;
+}
+
+bs4-dropdown {
+
+    bs4-icon {
+        svg{
+            fill: #FF0040;
+        }
+    }
+
+    &.art-code-popup {
+        .dropdown-menu {
+            width: 400px;
+            max-width: 100%;
+            background-color: #FF0040;
+            border-color: transparent;
+            border-radius: 0;
+            color: black;
+            font-size: 80%;
+            a {
+                color: white;
+            }
+
+        }
+        
+        .dropdown-toggle {
+            text-decoration: none;
+            &:hover {
+                text-decoration: none;
+            }
+            &::after {
+                content: none;
+            }
+        }
+
+        .cursor-default {
+            cursor: url(../art-code-studio/cursor_default.png), default;
+            cursor: url(../art-code-studio/cursor_default_2x.png), default;
+        }
+
+        .cursor-pointer {
+            cursor: url(../art-code-studio/cursor_pointer.png), pointer !important;
+            cursor: url(../art-code-studio/cursor_pointer_2x.png), pointer !important;
+            &:active {
+                cursor: url(../art-code-studio/cursor_grabbing.png), grabbing !important;
+                cursor: url(../art-code-studio/cursor_grabbing_2x.png), grabbing !important;
+            }
+        }
+    }
+}

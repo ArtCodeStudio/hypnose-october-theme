@@ -51,17 +51,4 @@ items:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
-    -
-        title: AGB
-        nesting: '0'
-        type: static-page
-        url: ''
-        code: ''
-        reference: agb
-        cmsPage: ''
-        replace: '0'
-        viewBag:
-            isHidden: '0'
-            cssClass: ''
-            isExternal: '0'
 name: footer

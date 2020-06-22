@@ -3,8 +3,10 @@ items:
         title: Zentrum
         nesting: '0'
         type: static-page
+        url: ''
         code: ''
         reference: zentrum
+        cmsPage: ''
         replace: '0'
         viewBag:
             isHidden: '0'
@@ -38,12 +40,12 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Standort
+                title: Honorar
                 nesting: '0'
                 type: static-page
                 url: ''
                 code: ''
-                reference: zentrum-standort
+                reference: zentrum-honorar
                 cmsPage: ''
                 replace: '0'
                 viewBag:
@@ -64,12 +66,12 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Honorar
+                title: Standort
                 nesting: '0'
                 type: static-page
                 url: ''
                 code: ''
-                reference: zentrum-honorar
+                reference: zentrum-standort
                 cmsPage: ''
                 replace: '0'
                 viewBag:
@@ -300,6 +302,17 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
+                title: Geburtstrauma
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: anwendungsgebietegeburtstraumahtm
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
                 title: Gewichtsreduktion
                 nesting: '0'
                 type: static-page
@@ -514,19 +527,6 @@ items:
                 url: ''
                 code: ''
                 reference: anwendungsgebiete-zwange
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: Geburtstrauma
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: anwendungsgebiete-geburtstrauma
                 cmsPage: ''
                 replace: '0'
                 viewBag:

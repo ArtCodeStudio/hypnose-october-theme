@@ -23,11 +23,11 @@ snippetName = "Contact form"
         </div>
 
         {# Ihr Anliegen #}
-        <div class="form-group contact_concern">
+        <div class="form-group contact_concern" >
           <label class="h2" for="contactSelectApplication">{{ this.theme.contact_concern_title }}</label>
           {{ this.theme.contact_concern_content | raw }}
 
-          <select class="custom-select custom-select-lg" name="contactSelectApplication" id="contactSelectApplication" required>
+          <select class="custom-select custom-select-lg" style="display: none;" name="contactSelectApplication" id="contactSelectApplication" {# required #}</select>>
             <option value="" selected>Anwendungsgebiet auswählen*</option>
             {% for application_area in this.theme.application_areas_nav_item  %}
               <option value="{{ application_area.title }}">{{ application_area.title }}</option>
@@ -37,8 +37,8 @@ snippetName = "Contact form"
 
         {# Message #}
         <div class="form-group">
-          <label class="sr-only" for="contactMessage">Nachricht*</label>
-          <textarea class="form-control form-control-lg" name="contactMessage" id="contactMessage" rows="6" placeholder="Nachricht*" required></textarea>
+          <label class="sr-only" for="contactMessage">Nachricht</label>
+          <textarea class="form-control form-control-lg" name="contactMessage" id="contactMessage" rows="6" placeholder="Nachricht"></textarea>
         </div>
 
         {# Kontaktdaten #}

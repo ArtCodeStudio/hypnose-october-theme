@@ -4,12 +4,13 @@
     margin-bottom: 200px;
     .quote {
       background-color: $report-bg;
-      font-size: $font-size-lg;
-      line-height: 3; // line-height: 1.35;
+      font-size: 1; // $font-size-lg;
+      line-height: 2.5; // line-height: 1.35;
       display: inline;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
       padding: 0.5rem 1rem;
+      border-radius: 20px;
       // border-radius: 40px;
       // Style for background with spacing on start and end of each new text line
       // see https://css-tricks.com/multi-line-padded-text/

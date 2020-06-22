@@ -48,6 +48,7 @@ code = "footer"
         <span class="col-12 py-3 text-warning">Ursachenorientierte Therapie</span>
       </div>
     </div>
+    
     <div class="col-12 col-md pt-5">
       <div class="row">
         <div class="col-12">
@@ -56,16 +57,23 @@ code = "footer"
         <span class="col-12 py-3 text-warning">Ständiger Austausch mit Kollegen</span>
       </div>
     </div>
+    
     <div class="col-12 col-md pt-5">
-      <div class="row">
-        <div class="col-12">
-          <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-hoher-qualitaetsstandard.svg' | theme }}" size="40"></bs4-icon>
+          <div class="row">
+            <div class="col-12">
+              <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-hoher-qualitaetsstandard.svg' | theme }}" size="40"></bs4-icon>
+            </div>
+            <span class="col-12 py-3 text-warning">Hoher Qualitätsstandard</span>
+          </div>
         </div>
-        <span class="col-12 py-3 text-warning">Hoher Qualitätsstandard</span>
-      </div>
     </div>
-  
-  </div>
+    
+    <div class="row order-4 mb-5">
+        <div class="col-12 px-0">
+          {% partial 'art-and-code' %}
+        </div>
+    </div>
+    
 </div>
 
 {% partial 'fixed-bottom-bar' %}
