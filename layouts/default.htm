@@ -9,27 +9,75 @@ default = 0
 <?php
 function onContactFormSubmit()
 {
-    $inputs = array('contactReason', 'contactSelectApplication', 'contactMessage', 'contactLastname', 'contactFirstname', 'contactMail', 'contactPhone', 'contactRecallTime', 'contactAgreement');
-    foreach ($inputs as &$inputName) {
-        $values[$inputName] = '';
-        $values[$inputName] = input($inputName);
+    $inputsToFill = array('contactReason', 'contactMessage', 'contactLastname', 'contactFirstname', 'contactMail', 'contactPhone', 'contactRecallTime', 'contactAgreement');
+    $checkboxGroupPrefixes = array('contactRecallDay', 'contactRecallTime');
+    
+    $rules = [
+        'contactMail' => 'required|email|between:6,255',
+        'contactPhone' => 'required|between:4,255'
+    ];
 
-        if(Input::has($inputName))
+    $values = post();
+
+    //validate input
+    $validation = Validator::make($values, $rules);
+    if ($validation->fails()) {
+        $this->page['result'] = "Eingaben waren fehlerhaft.";
+        throw new ValidationException($validation);
     }
 
+
+
+    //fill missing inputs with default string
+    foreach ($inputsToFill as &$inputName) {
+        if(!Input::has($inputName)) {
+            $values[$inputName] = 'Nicht angegeben.';    
+        }
+    }
+
+    //join checkbox groups
+    foreach ($checkboxGroupPrefixes as &$prefix) { //contactRecallDay
+        $tempValues = array();
+        foreach (array_keys($values) as $value) {
+            if(strpos($value, $prefix) === 0) { //
+                echo " lol " . $value;
+                $tempValues[] = $values[$value];
+                unset($values[$value]);
+            }
+        }   
+        if(len($tempValues) > 0) {
+            $values[$prefix] = join($tempValues, ", ");
+            }
+        }
+
+
+
+    //build $from from given values
+    if(Input::has('contactFirstname') && Input::has('contactLastname')) {
+        $from = $values['contactFirstname'] . ' ' . $values['contactLastname'];
+    } else if(Input::has('contactFirstname')) {
+        $from = $values['contactFirstname'];
+    } else if(Input::has('contactLastname')) {
+        $from = $values['contactLastname'];
+    }
     
     $buildOwnerMessage = function ($message) use ($values) {
         // TODO use email and name from backend or theme settings
         // $message->to('info@thp-garber.de', 'Viola Garber');
         $message->to('daniel@artandcode.studio', 'Daniel Omran');
-        // $message->from($values['contactMail'], $values['contactFirstname']. ' ' . $values['contactLastname']);
-        $message->subject("Neue Anfrage von ".$values['contactFirstname']. ' ' . $values['contactLastname']);
+        if(isset($from)) {
+            $message->subject("Neue Anfrage von " . $from . " (" . $values['contactMail'] . ")");
+        } else {
+            $message->subject("Neue Anfrage von " . $values['contactMail']);
+        }
     };
     
     $buildSenderMessage = function ($message) use ($values) {
-        if(Input::has('contactFirstname') && Input::has('')) {
-            $message->to($values['contactMail'], $values['contactFirstname']. ' ' . $values['contactLastname']);
-        } else if(Input::)
+        if(isset($from)) {
+            $message->to($values['contactMail'], $from);
+        } else {
+            $message->to($values['contactMail']);
+        }
     };
 
     // mail to site owner
@@ -53,52 +101,52 @@ function onContactFormSubmit()
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ this.page.title }}</title>
-    
+
     {% component 'seoTags' %}
     {% partial 'favicons' %}
 
     {% styles %}
     <link href="{{ ['assets/scss/theme.scss'] | theme }}" rel="stylesheet">
 
-    <body rv-data-scroll-position-y="'window'">
-        <div class="page-border"></div>
-        <div id="main-container">
-            <div id="layout-top">
-                {% partial 'layout-top' %}
-            </div>
-            <div id="main" rv-view="{'listenAllLinks': true, 'datasetToModel': true}">
-                <div {% partial 'router-dataset' %}>
-                    {% if placeholder('headerTeaser') %}
-                    <div class="page-header-teaser">
-                        {% placeholder headerTeaser title="Header Teaser" %}
-                    </div>
-                    {% endif %}
-                    {% if placeholder('header') %}
-                        <div class="page-header-container d-flex justify-content-end flex-column align-items-start">
-                            {% placeholder header title="Header Title" %}
-                        </div>
-                    {% endif %}
-                    {# {% page %} #}
-                    {% component 'staticPage' %}
+<body rv-data-scroll-position-y="'window'">
+    <div class="page-border"></div>
+    <div id="main-container">
+        <div id="layout-top">
+            {% partial 'layout-top' %}
+        </div>
+        <div id="main" rv-view="{'listenAllLinks': true, 'datasetToModel': true}">
+            <div {% partial 'router-dataset' %}>
+                {% if placeholder('headerTeaser') %}
+                <div class="page-header-teaser">
+                    {% placeholder headerTeaser title="Header Teaser" %}
                 </div>
-            </div>
-            <div id="layout-bottom">
-                {% partial 'layout-bottom' %}
+                {% endif %}
+                {% if placeholder('header') %}
+                <div class="page-header-container d-flex justify-content-end flex-column align-items-start">
+                    {% placeholder header title="Header Title" %}
+                </div>
+                {% endif %}
+                {# {% page %} #}
+                {% component 'staticPage' %}
             </div>
         </div>
-        
-        {% partial 'outdated-browser' %}
-        
-        <script type="text/javascript" src="{{ 'assets/js/vendors.bundle.js' | theme }}"></script>
-        <script type="text/javascript" src="{{ 'assets/js/main.bundle.js' | theme }}"></script>
-        {% framework %}
-        {% scripts %}
-        
-        {% partial 'provenexpert_widget_portrait' %}
-        
-    </body>
+        <div id="layout-bottom">
+            {% partial 'layout-bottom' %}
+        </div>
+    </div>
+
+    {% partial 'outdated-browser' %}
+
+    <script type="text/javascript" src="{{ 'assets/js/vendors.bundle.js' | theme }}"></script>
+    <script type="text/javascript" src="{{ 'assets/js/main.bundle.js' | theme }}"></script>
+    {% framework %}
+    {% scripts %}
+
+    {% partial 'provenexpert_widget_portrait' %}
+
+</body>
 </head>
 
 </html>

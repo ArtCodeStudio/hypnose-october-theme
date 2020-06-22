@@ -6,96 +6,125 @@ snippetName = "Contact form"
   <div class="row">
     <div class="col-12">
 
-      <form data-request="onContactFormSubmit" data-request-update="contact-submit-result: '#contactSubmitResult'">
+      <bs4-form>
+        <form data-request="onContactFormSubmit" data-request-update="contact-submit-result: '#contactSubmitResult'">
 
-        {# Ich nehme Kontakt auf, weil #}
-        <div class="form-group contact_reasons">
-          <h2>{{ this.theme.contact_reasons_title }}</h2>
-          {{ this.theme.contact_reasons_content | raw }}
-          {% for reason in this.theme.contact_reasons %}
+          {# Ich nehme Kontakt auf, weil #}
+          <div class="form-group contact_reasons">
+            <h2>{{ this.theme.contact_reasons_title }}</h2>
+            {{ this.theme.contact_reasons_content | raw }}
+            {% for reason in this.theme.contact_reasons %}
             <div class="form-check custom-control custom-radio">
-              <input class="custom-control-input" type="radio" name="contactReason" id="contactReason{{ loop.index }}" value="{{ reason.text }}" {% if loop.index == 1 %}checked{% endif %}>
+              <input class="custom-control-input" type="radio" name="contactReason" id="contactReason{{ loop.index }}"
+                value="{{ reason.text }}" {% if loop.index == 1 %}checked{% endif %}>
               <label class="custom-control-label" for="contactReason{{ loop.index }}">
                 {{ reason.text }}
               </label>
             </div>
-          {% endfor %}
-        </div>
-
-        {# Ihr Anliegen #}
-        <div class="form-group contact_concern" >
-          <label class="h2" for="contactSelectApplication">{{ this.theme.contact_concern_title }}</label>
-          {{ this.theme.contact_concern_content | raw }}
-
-          <select class="custom-select custom-select-lg" style="display: none;" name="contactSelectApplication" id="contactSelectApplication" {# required #}</select>>
-            <option value="" selected>Anwendungsgebiet auswählen*</option>
-            {% for application_area in this.theme.application_areas_nav_item  %}
-              <option value="{{ application_area.title }}">{{ application_area.title }}</option>
             {% endfor %}
-          </select>
-        </div>
-
-        {# Message #}
-        <div class="form-group">
-          <label class="sr-only" for="contactMessage">Nachricht</label>
-          <textarea class="form-control form-control-lg" name="contactMessage" id="contactMessage" rows="6" placeholder="Nachricht"></textarea>
-        </div>
-
-        {# Kontaktdaten #}
-        <div class="form-group">
-          <label class="sr-only" for="contactLastname">Nachname</label>
-          <input class="form-control form-control-lg" name="contactLastname" id="contactLastname" rows="6" placeholder="Nachname"></input>
-        </div>
-
-        <div class="form-group">
-          <label class="sr-only" for="contactFirstname">Vorname</label>
-          <input class="form-control form-control-lg" name="contactFirstname" id="contactFirstname" rows="6" placeholder="Vorname"></input>
-        </div>
-
-        <div class="form-group">
-          <label class="sr-only" for="contactMail">E-Mail*</label>
-          <input class="form-control form-control-lg" name="contactMail" id="contactMail" rows="6" placeholder="E-Mail*" required></input>
-        </div>
-
-        <div class="form-group">
-          <label class="sr-only" for="contactPhone">Telefon*</label>
-          <input class="form-control form-control-lg" name="contactPhone" id="contactPhone" rows="6" placeholder="Telefon*" required></input>
-        </div>
-
-        {# Recall #}
-        <div class="form-group contact_recall">
-          <label class="h2" for="contactSelectApplication">{{ this.theme.contact_recall_title }}</label>
-          {{ this.theme.contact_recall_content | raw }}
-
-          {% for time in this.theme.contact_recall_trimes %}
-            <div class="form-check custom-control custom-radio">
-              <input class="custom-control-input" type="radio" name="contactRecallTime" id="contactRecallTime{{ loop.index }}" value="{{ time.text }}" {% if loop.index == 1 %}checked{% endif %}>
-              <label class="custom-control-label" for="contactRecallTime{{ loop.index }}">
-                {{ time.text }}
-              </label>
-            </div>
-          {% endfor %}
-        </div>
-
-        <div class="form-group contact_legal_data_protection">
-          {{ this.theme.contact_legal_data_protection_content | raw }}
-        </div>
-
-        <div class="form-group contact_legal_agreement">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" name="contactAgreement" id="contactAgreement" required>
-            <label class="custom-control-label" for="contactAgreement">{{ this.theme.contact_legal_agreement_content | raw }}</label>
           </div>
-          
-        </div>
 
-        {# Submit result container #}
-        <div id="contactSubmitResult"></div>
+          {# Ihr Anliegen #}
+          <div class="form-group contact_concern">
+            <label class="h2" for="contactSelectApplication">{{ this.theme.contact_concern_title }}</label>
+            {{ this.theme.contact_concern_content | raw }}
 
-    
-        {# Button #}
-        <button type="submit" class="btn btn-secondary btn-lg">Absenden</button>
-      </form>
+            <select class="custom-select custom-select-lg" style="display: none;" name="contactSelectApplication"
+              id="contactSelectApplication" {# required #}</select>>
+              <option value="" selected>Anwendungsgebiet auswählen*</option>
+              {% for application_area in this.theme.application_areas_nav_item  %}
+              <option value="{{ application_area.title }}">{{ application_area.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          {# Message #}
+          <div class="form-group">
+            <label class="sr-only" for="contactMessage">Nachricht</label>
+            <textarea class="form-control form-control-lg" name="contactMessage" id="contactMessage" rows="6"
+              placeholder="Nachricht"></textarea>
+          </div>
+
+          {# Kontaktdaten #}
+          <div class="form-group">
+            <label class="sr-only" for="contactLastname">Nachname</label>
+            <input autocomplete="family-name" class="form-control form-control-lg" name="contactLastname"
+              id="contactLastname" rows="6" placeholder="Nachname"></input>
+          </div>
+
+          <div class="form-group">
+            <label class="sr-only" for="contactFirstname">Vorname</label>
+            <input autocomplete="given-name" class="form-control form-control-lg" name="contactFirstname"
+              id="contactFirstname" rows="6" placeholder="Vorname"></input>
+          </div>
+
+          <div class="form-group">
+            <label class="sr-only" for="contactMail">E-Mail*</label>
+            <input class="form-control form-control-lg" name="contactMail" id="contactMail" rows="6"
+              placeholder="E-Mail*" required></input>
+          </div>
+
+          <div class="form-group">
+            <label class="sr-only" for="contactPhone">Telefon*</label>
+            <input class="form-control form-control-lg" name="contactPhone" id="contactPhone" rows="6"
+              placeholder="Telefon*" required></input>
+          </div>
+
+          {# Recall #}
+          <div class="form-group contact_recall">
+            <label class="h2" for="contactSelectApplication">{{ this.theme.contact_recall_title }}</label>
+            {{ this.theme.contact_recall_content | raw }}
+            <section>
+              <h3 class="mt-0">Wochentag </h3>
+              {% set days = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"] %}
+              {% for day in days %}
+              <div class="form-check custom-control custom-checkbox">
+                <input class="custom-control-input" type="checkbox" name="contactRecallDay{{ loop.index }}"
+                  value="{{ day }}" id="contactRecallDay{{ loop.index }}">
+                <label class="custom-control-label" for="contactRecallDay{{ loop.index }}">
+                  {{ day }}
+                </label>
+              </div>
+              {% endfor %}
+            </section>
+            <section>
+              <h3>Uhrzeit</h3>
+
+              {% for time in this.theme.contact_recall_trimes %}
+              <div class="form-check custom-control custom-checkbox">
+                <input class="custom-control-input" type="checkbox" name="contactRecallTime{{ loop.index }}"
+                  id="contactRecallTime{{ loop.index }}" value="{{ time.text }}">
+                <label class="custom-control-label" for="contactRecallTime{{ loop.index }}">
+                  {{ time.text }}
+                </label>
+              </div>
+              {% endfor %}
+            </section>
+
+          </div>
+
+          <div class="form-group contact_legal_data_protection">
+            {{ this.theme.contact_legal_data_protection_content | raw }}
+          </div>
+
+          <div class="form-group contact_legal_agreement">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" name="contactAgreement" id="contactAgreement"
+                required>
+              <label class="custom-control-label"
+                for="contactAgreement">{{ this.theme.contact_legal_agreement_content | raw }}</label>
+            </div>
+
+          </div>
+
+          {# Submit result container #}
+          <div id="contactSubmitResult"></div>
+
+
+          {# Button #}
+          <button type="submit" class="btn btn-secondary btn-lg">Absenden</button>
+        </form>
+      </bs4-form>
     </div>
   </div>
 </div>
