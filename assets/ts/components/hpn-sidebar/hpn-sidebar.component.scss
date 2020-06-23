@@ -1,9 +1,7 @@
 hpn-sidebar {
   @extend bs4-sidebar;
   width: 100vw;
-  padding-top: 200px;
-  padding-left: 48px;
-  padding-bottom: 100px;
+  padding: 200px 25px 100px 25px;
   &#main-sidebar {
     background-color: rgba($body-bg, $hpn-navbar-bg-opacity);
     backdrop-filter: blur($hpn-navbar-bg-blur);

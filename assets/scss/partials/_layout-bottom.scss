@@ -31,4 +31,15 @@
       max-height: 100px;
     }
   }
+  .nav-item {
+    &.active {
+      a{
+        color: $title-color;
+      }
+    }
+    a:hover {
+      color: $title-color;
+    }
+  }
 }
+

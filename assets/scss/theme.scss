@@ -1,40 +1,39 @@
-@import 'charset';
-@import 'custom-variables';
-@import 'variables';
+@import "charset";
+@import "custom-variables";
+@import "variables";
 
-@import 'bootstrap';
-
+@import "bootstrap";
 
 // Bootstrap style extensions from @ribajs/bs4
-@import './vendors/@ribajs/core/index';
-@import './vendors/@ribajs/bs4/index';
-@import './vendors/@ribajs/pdf/index';
-@import './vendors/@ribajs/leaflet-map/index';
+@import "./vendors/@ribajs/core/index";
+@import "./vendors/@ribajs/bs4/index";
+@import "./vendors/@ribajs/pdf/index";
+@import "./vendors/@ribajs/leaflet-map/index";
 
 // vendors
 
 // bootstrap overwrites and customs
-@import 'animations';
-@import 'forms';
-@import 'images';
-@import 'typo';
-@import 'nav';
-@import 'buttons';
+@import "animations";
+@import "forms";
+@import "images";
+@import "typo";
+@import "nav";
+@import "buttons";
 
 // binder style overwrites
-@import './binders/index';
+@import "./binders/index";
 
 // component style overwrites
-@import './components/index';
+@import "./components/index";
 
 // Layout
-@import 'layout/index';
+@import "layout/index";
 
 // partials
-@import './partials/index';
+@import "./partials/index";
 
 // components
-@import '../ts/components/index';
+@import "../ts/components/index";
 
 // third party
-@import './third-party/pdfjs';
+@import "./third-party/pdfjs";

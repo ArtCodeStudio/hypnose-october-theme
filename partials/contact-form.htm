@@ -2,12 +2,19 @@
 snippetCode = "contact-form"
 snippetName = "Contact form"
 ==
+<script src="https://hcaptcha.com/1/api.js?hl=de" async defer></script>
+<script>
+  function onHpnContactSubmit(token) {
+    document.getElementById("submit-button").click();
+  };
+</script>
 <div class="container contact-form my-5">
   <div class="row">
     <div class="col-12">
 
       <bs4-form>
-        <form data-request="onContactFormSubmit" data-request-update="contact-submit-result: '#contactSubmitResult'">
+        <form id="contact-form" data-request="onContactFormSubmit"
+          data-request-update="contact-submit-result: '#contactSubmitResult'">
 
           {# Ich nehme Kontakt auf, weil #}
           <div class="form-group contact_reasons">
@@ -103,9 +110,6 @@ snippetName = "Contact form"
 
           </div>
 
-          <div class="form-group contact_legal_data_protection">
-            {{ this.theme.contact_legal_data_protection_content | raw }}
-          </div>
 
           <div class="form-group contact_legal_agreement">
             <div class="custom-control custom-checkbox">
@@ -120,9 +124,17 @@ snippetName = "Contact form"
           {# Submit result container #}
           <div id="contactSubmitResult"></div>
 
+          <p>
+            <small>This site is protected by hCaptcha and its
+              <a href="https://hcaptcha.com/privacy">Privacy Policy</a> and
+              <a href="https://hcaptcha.com/terms">Terms of Service</a> apply.
+            </small>
+          </p>
 
           {# Button #}
-          <button type="submit" class="btn btn-secondary btn-lg">Absenden</button>
+          <button class="btn btn-secondary btn-lg h-captcha" data-sitekey="94940564-c876-4550-971a-87eccace5967"
+            data-callback="onHpnContactSubmit">Absenden</button>
+          <button type="submit" id="submit-button" class="d-none"></button>
         </form>
       </bs4-form>
     </div>

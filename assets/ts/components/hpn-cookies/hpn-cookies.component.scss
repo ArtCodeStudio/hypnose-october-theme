@@ -1,0 +1,21 @@
+.hpn-cookies {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    padding: 2em;
+    background-color: white;
+    border: solid 1px black;
+    z-index: 99999;
+    max-width: 25em;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+@media screen and (max-width: 414px) and (orientation: portrait), screen and (max-width: 736px) and (orientation: landscape) {
+    .hpn-cookies {
+        max-width: none;
+        left: 0;
+        right: 0;
+    }
+}

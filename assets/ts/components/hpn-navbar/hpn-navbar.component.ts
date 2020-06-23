@@ -7,6 +7,8 @@ import { Bs4NavbarComponent } from "@ribajs/bs4/src/components/bs4-navbar/bs4-na
 export class HpnNavbarComponent extends Bs4NavbarComponent {
   public static tagName = "hpn-navbar";
 
+  _debug = true;
+
   protected autobind = true;
 
   protected pjax?: Pjax;
@@ -36,6 +38,8 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
   }
 
   public onItemClick(event?: Event) {
+    console.log('check')
+    
     if (event) {
       const target = event.target as HTMLAnchorElement | null;
       if (!target) {
@@ -202,7 +206,23 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
 
   protected async afterBind() {
     super.afterBind();
+
+    // hide main menau on scroll
     this.pjax = Pjax.getInstance("main");
+    window.onscroll = (event:Event)=>
+    {
+        if (!this.scope.isCollapsed) {
+          super.hide(event);
+        }
+    }
+
+    // hide menu on click outside elsewhere
+    window.onclick = (event:Event) => {
+      if (!this.scope.isCollapsed && !this.el.contains(event.target as Node) ) {
+        console.log(event)
+        super.hide(event);
+      }
+    }  
     return;
   }
 

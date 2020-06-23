@@ -10,7 +10,8 @@ import { Bs4ButtonComponent } from "@ribajs/bs4/src/components/bs4-button/bs4-bu
 import { Bs4ToggleButtonComponent } from "@ribajs/bs4/src/components/bs4-toggle-button/bs4-toggle-button.component";
 import { Bs4AccordionComponent } from "@ribajs/bs4/src/components/bs4-accordion/bs4-accordion.component";
 import { Bs4SlideshowComponent } from "@ribajs/bs4/src/components/bs4-slideshow/bs4-slideshow.component";
-import { Bs4DropdownComponent } from '@ribajs/bs4/src/components/bs4-dropdown/bs4-dropdown.component';
+import { Bs4DropdownComponent } from "@ribajs/bs4/src/components/bs4-dropdown/bs4-dropdown.component";
+import { Bs4FormComponent } from "@ribajs/bs4/src/components/bs4-form/bs4-form.component";
 
 import { dataScrollPositionYBinder } from "@ribajs/extras/src/binders/data-scroll-position-y.binder";
 
@@ -21,7 +22,7 @@ import * as CustomComponents from "./components";
 
 export class Main {
   private riba = new Riba();
- 
+
   constructor() {
     this.riba.module.regist(coreModule);
     this.riba.module.regist(jqueryModule);
@@ -38,6 +39,7 @@ export class Main {
         Bs4AccordionComponent,
         Bs4SlideshowComponent,
         Bs4DropdownComponent,
+        Bs4FormComponent,
       },
       binders: { dataScrollPositionYBinder },
     });

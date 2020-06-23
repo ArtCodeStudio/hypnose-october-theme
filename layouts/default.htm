@@ -11,14 +11,15 @@ function onContactFormSubmit()
 {
     $inputsToFill = array('contactReason', 'contactMessage', 'contactLastname', 'contactFirstname', 'contactMail', 'contactPhone', 'contactRecallTime', 'contactAgreement');
     $checkboxGroupPrefixes = array('contactRecallDay', 'contactRecallTime');
-    
+ 
     $rules = [
         'contactMail' => 'required|email|between:6,255',
-        'contactPhone' => 'required|between:4,255'
+        'contactPhone' => 'required|between:4,255',
+        'h-captcha-response' => 'required'
     ];
 
     $values = post();
-
+    
     //validate input
     $validation = Validator::make($values, $rules);
     if ($validation->fails()) {
@@ -26,7 +27,37 @@ function onContactFormSubmit()
         throw new ValidationException($validation);
     }
 
+    $data = array(
+        'secret' => "0x81e3FC7577eD7aeff2a1842f267a5cc529487AAa",
+        'response' => $values['h-captcha-response']
+    );
 
+    $verify = curl_init();
+    curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
+    curl_setopt($verify, CURLOPT_POST, true);
+    curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($verify);
+    $responseData = json_decode($response);
+    
+    if(!$responseData->success) {
+        $this->page['result'] = "Fehler beim Captcha";
+        return;
+    } 
+
+    //join checkbox groups
+    foreach ($checkboxGroupPrefixes as &$prefix) { //contactRecallDay
+        $tempValues = array();
+        foreach (array_keys($values) as $value) {
+            if(strpos($value, $prefix) === 0) { //
+                $tempValues[] = $values[$value];
+                unset($values[$value]);
+            }
+        }   
+        if(count($tempValues) > 0) {
+            $values[$prefix] = join($tempValues, ", ");
+        }
+    }
 
     //fill missing inputs with default string
     foreach ($inputsToFill as &$inputName) {
@@ -34,23 +65,6 @@ function onContactFormSubmit()
             $values[$inputName] = 'Nicht angegeben.';    
         }
     }
-
-    //join checkbox groups
-    foreach ($checkboxGroupPrefixes as &$prefix) { //contactRecallDay
-        $tempValues = array();
-        foreach (array_keys($values) as $value) {
-            if(strpos($value, $prefix) === 0) { //
-                echo " lol " . $value;
-                $tempValues[] = $values[$value];
-                unset($values[$value]);
-            }
-        }   
-        if(len($tempValues) > 0) {
-            $values[$prefix] = join($tempValues, ", ");
-            }
-        }
-
-
 
     //build $from from given values
     if(Input::has('contactFirstname') && Input::has('contactLastname')) {
@@ -135,6 +149,8 @@ function onContactFormSubmit()
         <div id="layout-bottom">
             {% partial 'layout-bottom' %}
         </div>
+        <hpn-cookies>
+        </hpn-cookies>
     </div>
 
     {% partial 'outdated-browser' %}

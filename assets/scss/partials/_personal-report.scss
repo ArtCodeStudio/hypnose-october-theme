@@ -1,4 +1,7 @@
 .personal-report {
+  .quote-container {
+    /*left: -1rem;*/
+  }
   &.random-personal-report {
     margin-top: 200px;
     margin-bottom: 200px;
@@ -11,6 +14,7 @@
       -webkit-box-decoration-break: clone;
       padding: 0.5rem 1rem;
       border-radius: 20px;
+      margin-left:-15px;
       // border-radius: 40px;
       // Style for background with spacing on start and end of each new text line
       // see https://css-tricks.com/multi-line-padded-text/

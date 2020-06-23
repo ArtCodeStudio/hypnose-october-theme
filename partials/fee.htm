@@ -6,46 +6,46 @@ snippetName = "Fee"
   <div class="container">
     <bs4-accordion collapse-icon-src="{{ 'assets/iconset/arrow_carrot.svg' | theme }}" collapse-icon-size="38">
       {% for group in this.theme.fee_groups  %}
-        <template title="{{ group.title }}">
-          {% if group.items | length > 0 %}
-            <div class="table-responsive d-none d-sm-block">
-              <table class="table table-borderless">
-                <thead>
-                  <tr>
-                    <th scope="col">{{ this.theme.fee_item_title_name }}</th>
-                    <th scope="col">{{ this.theme.fee_item_title_sessions }}</th>
-                    <th scope="col">{{ this.theme.fee_item_title_price }}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for item in group.items  %}
-                    <tr>
-                      <td scope="row">{{ item.name }}</td>
-                      <td>{{ item.sessions }}</td>
-                      <td>{{ item.price }}</td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-            <div class="d-block d-sm-none">
+      <template title="{{ group.title }}">
+        {% if group.items | length > 0 %}
+        <div class="table-responsive d-none d-sm-block">
+          <table class="table">
+            <thead class="table-borderless">
+              <tr>
+                <th scope="col">{{ this.theme.fee_item_title_name }}</th>
+                <th scope="col">{{ this.theme.fee_item_title_sessions }}</th>
+                <th scope="col">{{ this.theme.fee_item_title_price }}</th>
+              </tr>
+            </thead>
+            <tbody>
               {% for item in group.items  %}
-                <dl class="row">
-                  <dt class="col-12 col-sm-3">{{ this.theme.fee_item_title_name }}</dt>
-                  <dd class="col-12 col-sm-9">{{ item.name }}</dd>
-
-                  <dt class="col-12 col-sm-3">{{ this.theme.fee_item_title_sessions }}</dt>
-                  <dd class="col-12 col-sm-9">{{ item.sessions }}</dd>
-
-                  <dt class="col-12 col-sm-3">{{ this.theme.fee_item_title_price }}</dt>
-                  <dd class="col-12 col-sm-9">{{ item.price }}</dd>
-                </dl>
+              <tr>
+                <td scope="row">{{ item.name | raw }}</td>
+                <td>{{ item.sessions | raw }}</td>
+                <td>{{ item.price }}</td>
+              </tr>
               {% endfor %}
-            </div>
-          {% else %}
-            <p>Derzeit keine Einträge vorhanden.</p>
-          {% endif %}
-        </template>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-block d-sm-none">
+          {% for item in group.items  %}
+          <dl class="row">
+            <dt class="col-12 col-sm-3">{{ this.theme.fee_item_title_name }}</dt>
+            <dd class="col-12 col-sm-9">{{ item.name }}</dd>
+
+            <dt class="col-12 col-sm-3">{{ this.theme.fee_item_title_sessions }}</dt>
+            <dd class="col-12 col-sm-9">{{ item.sessions }}</dd>
+
+            <dt class="col-12 col-sm-3">{{ this.theme.fee_item_title_price }}</dt>
+            <dd class="col-12 col-sm-9">{{ item.price }}</dd>
+          </dl>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p>Derzeit keine Einträge vorhanden.</p>
+        {% endif %}
+      </template>
       {% endfor %}
     </bs4-accordion>
   </div>

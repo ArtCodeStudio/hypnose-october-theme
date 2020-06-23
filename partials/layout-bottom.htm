@@ -19,12 +19,12 @@ code = "footer"
       <bs4-icon class="d-block d-md-none division-image-mobile" src="{{ 'assets/images/hypnosezentrum-cuxhaven-footer-division-90.svg' | theme }}"></bs4-icon>
     </div>
     {# Footer Menu Column #}
-    <div class="col-12 col-md pt-md-5 nav-footer-in-column">
+    <div class="col-12 col-lg pt-md-5 nav-footer-in-column">
       {% partial 'staticMenu/items-footer' items=footer.menuItems %}
     </div>
   </div>
   <div class="row order-0 order-md-1 text-center footer-icons">
-     <div class="col-12 col-md pt-5">
+     <div class="col-12 col-md-4 col-lg pt-5">
       <div class="row">
         <div class="col-12">
           <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-supervision.svg' | theme }}" size="40"></bs4-icon>
@@ -32,7 +32,8 @@ code = "footer"
         <span class="col-12 py-3 text-warning">Supervision</span>
       </div>
     </div>
-     <div class="col-12 col-md pt-5">
+
+    <div class="col-12 col-md-4 col-lg pt-5">
       <div class="row">
         <div class="col-12">
           <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-regelmäßge-fortbildungen.svg' | theme }}" size="40"></bs4-icon>
@@ -40,16 +41,17 @@ code = "footer"
         <span class="col-12 py-3 text-warning">Regelmäßige Fortbildungen</span>
       </div>
     </div>
-        <div class="col-12 col-md pt-5">
+    
+    <div class="col-12 col-md-4 col-lg pt-5">
       <div class="row">
         <div class="col-12">
           <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-ursachenorientierte-therapie.svg' | theme }}" size="40"></bs4-icon>
         </div>
-        <span class="col-12 py-3 text-warning">Ursachenorientierte Therapie</span>
+        <span class="col-12 col-lg py-3 text-warning">Ursachenorientierte Therapie</span>
       </div>
     </div>
     
-    <div class="col-12 col-md pt-5">
+    <div class="col-12 col-md col-lg pt-5">
       <div class="row">
         <div class="col-12">
           <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-staendiger-austausch.svg' | theme }}" size="40"></bs4-icon>
@@ -58,7 +60,7 @@ code = "footer"
       </div>
     </div>
     
-    <div class="col-12 col-md pt-5">
+    <div class="col-12 col-md col-lg pt-5">
           <div class="row">
             <div class="col-12">
               <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-hoher-qualitaetsstandard.svg' | theme }}" size="40"></bs4-icon>
@@ -70,7 +72,7 @@ code = "footer"
     
     <div class="row order-4 mb-5">
         <div class="col-12 px-0">
-          {% partial 'art-and-code' %}
+           {% partial 'art-and-code' %} 
         </div>
     </div>
     
