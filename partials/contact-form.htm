@@ -12,7 +12,8 @@ snippetName = "Contact form"
   <div class="row">
     <div class="col-12">
 
-      <bs4-form>
+      <bs4-form disable-submit-until-change="true" show-success-toast="true"
+        success-toast-message="Erfolgreich abgeschickt!" success-toast-title="Nachricht">
         <form id="contact-form" data-request="onContactFormSubmit"
           data-request-update="contact-submit-result: '#contactSubmitResult'">
 
@@ -132,7 +133,8 @@ snippetName = "Contact form"
           </p>
 
           {# Button #}
-          <button class="btn btn-secondary btn-lg h-captcha" data-sitekey="94940564-c876-4550-971a-87eccace5967"
+          <button rv-on-click="onSubmit" rv-hcaptcha rv-disabled="submitDisabled" class="btn btn-secondary btn-lg h-captcha"
+            data-sitekey="94940564-c876-4550-971a-87eccace5967" data-size="invisible"
             data-callback="onHpnContactSubmit">Absenden</button>
           <button type="submit" id="submit-button" class="d-none"></button>
         </form>
