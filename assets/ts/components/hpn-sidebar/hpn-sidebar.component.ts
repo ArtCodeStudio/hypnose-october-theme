@@ -190,7 +190,7 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
     for (const toggleItem of this.toggleItems) {
       if (!except || toggleItem.handle !== except.handle) {
         toggleItem.collapseService.hide();
-        toggleItem.collapseService._element
+        toggleItem.collapseService._element;
       }
     }
     const dropdownToggleElements = this.el.querySelectorAll(

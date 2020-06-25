@@ -17,6 +17,8 @@ import { dataScrollPositionYBinder } from "@ribajs/extras/src/binders/data-scrol
 
 import { jqueryModule } from "@ribajs/jquery";
 
+import { octobercmsModule } from "@ribajs/octobercms";
+
 // import * as CustomBinders from './binders';
 import * as CustomComponents from "./components";
 
@@ -44,6 +46,8 @@ export class Main {
       binders: { dataScrollPositionYBinder },
     });
 
+    this.riba.module.regist(octobercmsModule);
+
     // Regist custom components
     this.riba.module.regist({
       components: CustomComponents,
@@ -57,3 +61,8 @@ export class Main {
 ready(() => {
   new Main();
 });
+
+(window as any).onHpnContactSubmit = (/*token: string*/) => {
+  console.debug("[onHpnContactSubmit]");
+  document.getElementById("submit-button")?.click();
+};

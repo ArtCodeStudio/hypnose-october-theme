@@ -23,9 +23,6 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     hide: this.hide,
     navbarCollapsedHeight: 72,
     onItemClick: this.onItemClick,
-    onItemHover: this.onItemHover,
-    onNavbarHover: this.onNavbarHover,
-    onNavbarLeave: this.onNavbarLeave,
     isCollapsed: true,
     collapseSelector: ".nav-item-level-2-wrapper",
     showOnHoverClass: "show-on-hover",
@@ -38,8 +35,8 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
   }
 
   public onItemClick(event?: Event) {
-    console.log('check')
-    
+    console.log("check");
+
     if (event) {
       const target = event.target as HTMLAnchorElement | null;
       if (!target) {
@@ -72,37 +69,6 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
         }
       }
     }
-  }
-
-  public onItemHover(/*event?: Event*/) {
-    // if (event) {
-    //   const target = event.target as HTMLAnchorElement | null;
-    //   if (!target) {
-    //     return console.warn("Target not found!");
-    //   }
-    //   const parent = target.parentNode as HTMLElement;
-    //   if (target && this.pjax && !this.scope.isCollapsed) {
-    //     this.hideAll();
-    //     const collapseElement = parent.querySelector(
-    //       this.scope.collapseSelector
-    //     ) as HTMLElement;
-    //     // If this element has childs show the menu
-    //     if (parent.classList.contains("nav-item-level-1-with-childs")) {
-    //       if (collapseElement) {
-    //         this.showElement(collapseElement);
-    //       }
-    //     }
-    //     this.setMenuHeight();
-    //   }
-    // }
-  }
-
-  public onNavbarHover(event?: Event) {
-    // this.show(event);
-  }
-
-  public onNavbarLeave(event?: Event) {
-    // this.hide(event);
   }
 
   public toggle(event?: Event) {
@@ -209,20 +175,19 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
 
     // hide main menau on scroll
     this.pjax = Pjax.getInstance("main");
-    window.onscroll = (event:Event)=>
-    {
-        if (!this.scope.isCollapsed) {
-          super.hide(event);
-        }
-    }
-
-    // hide menu on click outside elsewhere
-    window.onclick = (event:Event) => {
-      if (!this.scope.isCollapsed && !this.el.contains(event.target as Node) ) {
-        console.log(event)
+    window.onscroll = (event: Event) => {
+      if (!this.scope.isCollapsed) {
         super.hide(event);
       }
-    }  
+    };
+
+    // hide menu on click outside elsewhere
+    window.onclick = (event: Event) => {
+      if (!this.scope.isCollapsed && !this.el.contains(event.target as Node)) {
+        console.log(event);
+        super.hide(event);
+      }
+    };
     return;
   }
 

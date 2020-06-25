@@ -1,9 +1,11 @@
 import { Binder } from "@ribajs/core/src/interfaces";
 
+type EventHandlerFunction = (e: Event) => void;
+
 /**
  * Sets the element's text value.
  */
-export const hcaptchaBinder: Binder<string> = {
+export const hcaptchaBinder: Binder<EventHandlerFunction> = {
   name: "hcaptcha",
   bind() {
     if (!this.customData) {
@@ -21,7 +23,7 @@ export const hcaptchaBinder: Binder<string> = {
       el.removeEventListener(eventName, this.customData.handler);
     }
   },
-  routine(el: HTMLElement, value: eventHandlerFunction) {
+  routine(el: HTMLElement, value: EventHandlerFunction) {
     const eventName = "form-validated";
 
     if (this.customData.handler) {
@@ -36,8 +38,8 @@ export const hcaptchaBinder: Binder<string> = {
       el.addEventListener(eventName, this.customData.handler, { passive });
     } catch (error) {
       console.warn(error);
-      el.addEventListener(eventName, (event: Event) => {
-        document.hcpatcha.execute();
+      el.addEventListener(eventName, (/*event: Event*/) => {
+        (document as any).hcpatcha.execute();
       });
     }
   },
