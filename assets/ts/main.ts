@@ -1,25 +1,19 @@
 import { Riba, coreModule } from "@ribajs/core";
 import { routerModule } from "@ribajs/router";
 import { pdfModule } from "@ribajs/pdf";
+import { jqueryModule } from "@ribajs/jquery";
 import { leafletModule } from "@ribajs/leaflet-map";
+import { octobercmsModule } from "@ribajs/octobercms";
+import { bs4Module } from "@ribajs/bs4";
+
 import { ready } from "@ribajs/utils/src/dom";
 
-// BS4 Components
-import { Bs4IconComponent } from "@ribajs/bs4/src/components/bs4-icon/bs4-icon.component";
-import { Bs4ButtonComponent } from "@ribajs/bs4/src/components/bs4-button/bs4-button.component";
-import { Bs4ToggleButtonComponent } from "@ribajs/bs4/src/components/bs4-toggle-button/bs4-toggle-button.component";
-import { Bs4AccordionComponent } from "@ribajs/bs4/src/components/bs4-accordion/bs4-accordion.component";
-import { Bs4SlideshowComponent } from "@ribajs/bs4/src/components/bs4-slideshow/bs4-slideshow.component";
-import { Bs4DropdownComponent } from "@ribajs/bs4/src/components/bs4-dropdown/bs4-dropdown.component";
-import { Bs4FormComponent } from "@ribajs/bs4/src/components/bs4-form/bs4-form.component";
-
+// Extra binders
 import { dataScrollPositionYBinder } from "@ribajs/extras/src/binders/data-scroll-position-y.binder";
 
-import { jqueryModule } from "@ribajs/jquery";
-
-import { octobercmsModule } from "@ribajs/octobercms";
-
-// import * as CustomBinders from './binders';
+// Custom formatters, binders and components
+import * as CustomFormatters from "./formatters";
+import * as CustomBinders from "./binders";
 import * as CustomComponents from "./components";
 
 export class Main {
@@ -29,29 +23,21 @@ export class Main {
     this.riba.module.regist(coreModule);
     this.riba.module.regist(jqueryModule);
     this.riba.module.regist(routerModule);
+    this.riba.module.regist(bs4Module);
+    this.riba.module.regist(octobercmsModule);
     this.riba.module.regist(pdfModule);
     this.riba.module.regist(leafletModule);
 
     // selected elements from modules
     this.riba.module.regist({
-      components: {
-        Bs4ButtonComponent,
-        Bs4IconComponent,
-        Bs4ToggleButtonComponent,
-        Bs4AccordionComponent,
-        Bs4SlideshowComponent,
-        Bs4DropdownComponent,
-        Bs4FormComponent,
-      },
       binders: { dataScrollPositionYBinder },
     });
 
-    this.riba.module.regist(octobercmsModule);
-
     // Regist custom components
     this.riba.module.regist({
+      formatters: CustomFormatters,
       components: CustomComponents,
-      // binders: CustomBinders,
+      binders: CustomBinders,
     });
 
     this.riba.bind(document.body, window.model);
@@ -61,8 +47,3 @@ export class Main {
 ready(() => {
   new Main();
 });
-
-(window as any).onHpnContactSubmit = (/*token: string*/) => {
-  console.debug("[onHpnContactSubmit]");
-  document.getElementById("submit-button")?.click();
-};

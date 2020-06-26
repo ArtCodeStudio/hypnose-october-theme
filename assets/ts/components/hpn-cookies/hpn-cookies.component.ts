@@ -23,7 +23,11 @@ export class HpnCookiesComponent extends Component {
 
   constructor(element?: HTMLElement) {
     super(element);
-    console.log("awd");
+  }
+
+  protected connectedCallback() {
+    this.debug("connectedCallback");
+    super.connectedCallback();
     this.init(HpnCookiesComponent.observedAttributes);
   }
 

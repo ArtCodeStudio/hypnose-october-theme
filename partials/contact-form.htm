@@ -2,17 +2,14 @@
 snippetCode = "contact-form"
 snippetName = "Contact form"
 ==
-<load-script src="https://hcaptcha.com/1/api.js?hl=de" async="true" defer="true"></load-script>
 <div class="container contact-form my-5">
   <div class="row">
     <div class="col-12">
 
-      <oc-form
-        rv-show-toast-on-submit-success="{'message': 'Erfolgreich abgeschickt!', 'title': 'Nachricht'}"
-        rv-show-toast-on-submit-error="{'message': 'Contact form could not be sent!', 'title': 'Error'}"
-        disable-submit-until-change="true"
-        october-handler="onContactFormSubmit"
-      >
+      <hcaptcha-oc-form hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967"
+        rv-show-toast-on-submit-success="{'message': 'Nachricht erfolgreich abgeschickt!', 'title': 'Nachricht', 'delay': 200000}"
+        rv-show-toast-on-submit-error="{'message': 'Contact form could not be sent!', 'title': 'Error', 'delay': 200000}"
+        disable-submit-until-change="true" october-handler="onContactFormSubmit">
         <form id="contact-form">
 
           {# Ich nehme Kontakt auf, weil #}
@@ -123,26 +120,21 @@ snippetName = "Contact form"
           {# Submit result container #}
           <div id="contactSubmitResult"></div>
 
-          <p>
-            <small>This site is protected by hCaptcha and its
-              <a href="https://hcaptcha.com/privacy">Privacy Policy</a> and
-              <a href="https://hcaptcha.com/terms">Terms of Service</a> apply.
-            </small>
-          </p>
+          <div class="h-captcha-container">
+            <p>
+              <small>This site is protected by hCaptcha and its
+                <a href="https://hcaptcha.com/privacy">Privacy Policy</a> and
+                <a href="https://hcaptcha.com/terms">Terms of Service</a> apply.
+              </small>
+            </p>
+          </div>
 
           {# Button #}
-          <button
-            rv-on-click="onSubmit"
-            rv-disabled="submitDisabled"
-            class="btn btn-secondary btn-lg h-captcha"
-            rv-hcaptcha
-            data-sitekey="94940564-c876-4550-971a-87eccace5967"
-            data-size="invisible"
-            data-callback="onHpnContactSubmit"
-          >Absenden</button>
-          <button type="submit" id="submit-button" class="d-none"></button>
+          <button rv-on-click="onSubmit" rv-disabled="submitDisabled"
+            class="btn btn-secondary btn-lg h-captcha">Absenden</button>
+          <button type="submit" class="d-none"></button>
         </form>
-      </oc-form>
+      </hcaptcha-oc-form>
     </div>
   </div>
 </div>

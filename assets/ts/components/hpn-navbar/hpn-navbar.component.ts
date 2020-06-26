@@ -7,7 +7,7 @@ import { Bs4NavbarComponent } from "@ribajs/bs4/src/components/bs4-navbar/bs4-na
 export class HpnNavbarComponent extends Bs4NavbarComponent {
   public static tagName = "hpn-navbar";
 
-  _debug = true;
+  public _debug = false;
 
   protected autobind = true;
 
