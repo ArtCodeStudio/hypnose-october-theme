@@ -1,0 +1,69 @@
+title = "form"
+url = "/form.pdf"
+layout = "pdf_formular_template"
+is_hidden = 0
+contentType = "html"
+force_show = 0
+==
+<?php
+use Cms\Classes\MediaViewHelper;
+use Cms\Classes\CmsException;
+
+function onStart() {
+    $values = post();
+    $this['data'] = $values;
+    $this['questionairies'] = $this->theme->questionaries;
+}
+
+function onEnd() {
+    $value = post();
+    
+    $twig = $this->controller->getTwig();
+    $loader = $this->controller->getLoader();
+    
+    $renderVars = ['this' => $this, 'data' => $value, 'questionairies' => $this->theme->questionaries];
+    
+    /*
+     * Render the page
+     */
+    CmsException::mask($this->page, 400);
+    $loader->setObject($this->page);
+    $template = $twig->loadTemplate($this->page->getFilePath());
+    $pageContents = $template->render($renderVars);
+    CmsException::unmask(); 
+    
+
+    /*
+     * Render the layout
+     */
+    CmsException::mask($this->layout, 400);
+    $loader->setObject($this->layout);
+    $template = $twig->loadTemplate($this->layout->getFilePath());
+    $result = $template->render($renderVars);
+    CmsException::unmask();
+    
+     
+    
+    $renderedLayout = $twig->render($template, $renderVars);
+    $bodyPos = strpos($renderedLayout, "</body>");
+    $pageHtml = substr_replace($renderedLayout, $pageContents, $bodyPos - 1, 0);
+
+
+    
+    $pdf = SnappyPDF::loadHTML($pageHtml)
+    ->setOption('margin-top', 0)
+    ->setOption('margin-bottom', 0)
+    ->setOption('margin-left', 0)
+    ->setOption('margin-right', 0)
+    ->setPaper('a4')
+    ->output();
+    
+    return Response::make($pdf, 200, [
+      'Content-Type'        => 'application/pdf',
+      'Content-Disposition' => 'inline; filename="test.pdf"',
+    ]);
+
+}
+?>
+==
+hello from form.pdf

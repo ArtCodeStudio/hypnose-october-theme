@@ -13,7 +13,8 @@
     "build:dev": "npm run lint && npm run webpack:dev",
     "watch": "concurrently \"npm:watch:*\"",
     "watch:wp": "npm run webpack:dev -- --watch",
-    "packages:npm:link": "npm link @ribajs/core @ribajs/bs4 @ribajs/router @ribajs/iconset @ribajs/extras @ribajs/jquery @ribajs/pdf"
+    "packages:npm:link": "npm link @ribajs/core @ribajs/bs4 @ribajs/router @ribajs/iconset @ribajs/extras @ribajs/jquery @ribajs/pdf",
+    "watch:simple-grid": "concurrently \"npm:watch:*\"",
   },
   "repository": {
     "type": "git",

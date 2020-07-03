@@ -528,3 +528,126 @@ form:
               label: Pdf file
               type: mediafinder
               mode: file
+      questionaries:
+        label: Fragebögen
+        type: repeater
+        tab: Fragebögen
+        # titleFrom: questionaries
+        collapsed: true
+        prompt: Fragebogen Hinzufügen
+        form:
+          fields:
+            questionary_name:
+              label: Fragebogen Name
+              type: text
+            # REPEATABLE QUESTIONS
+            questions:
+              label: Fragebogen Elemente
+              type: repeater
+              # titleFrom: title_when_collapsed
+              prompt: Element Hinzufügen
+              form:
+                fields:
+                  # CHECKBOXES (selector for desired input)
+                  type_input:
+                    label:
+                    type: dropdown
+                    options:
+                      description: Beschreibung # BESCHREIBUNG
+                      text: Text # TEXTINPUT
+                      text_area: Textfeld # TEXTAREA INPUT
+                      checkbox: Checkbox # CHECKBOX
+                      scale_input: Skala 1-10 # SCALE INPUT
+                      radiobox: Radio Box
+
+                  #--------------------------------------------
+
+                  # BESCHREIBUNG
+                  description_input:
+                    label: Beschreibung (Formatierter Text)
+                    type: richeditor
+                    toolbarButtons: bold|italic|fontSize|underline|color|undo|redo
+                    size: small
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[description]
+
+                  # TEXTINPUT
+                  text_input:
+                    label: Text
+                    type: text
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[text]
+
+                  # TEXTAREA INPUT
+                  text_area_input:
+                    label: Textfeld
+                    type: text
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[text_area]
+
+                  # CHECKBOX
+                  checkbox_question_input:
+                    label: Checkbox (Titel)
+                    type: text
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[checkbox]
+                  checkbox_answering_options:
+                    label: Antwortmöglichkeiten
+                    type: repeater
+                    titleFrom: title_when_collapsed
+                    prompt: Antwortmöglichkeit hinzufügen
+                    form:
+                      fields:
+                        answer_input:
+                          label: Antwortmöglichkeit
+                          type: text
+                        description_if_checked:
+                          label: Beschreibung falls angekreuzt
+                          type: checkbox
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[checkbox]
+
+                  # SCALE INPUT
+                  scale_input:
+                    label: 1 - 10 Skala (Frage)
+                    type: text
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[scale_input]
+
+                  # OPTION / Ja oder Nein auswahl
+                  radiobox_question_input:
+                    label: Frage
+                    type: text
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[radiobox]
+                  radiobox_answering_options:
+                    label: Antwortmöglichkeiten
+                    type: repeater
+                    titleFrom: title_when_collapsed
+                    prompt: Antwortmöglichkeit hinzufügen
+                    form:
+                      fields:
+                        answer_input:
+                          label: Antwortmöglichkeit
+                          type: text
+                        description_if_checked:
+                          label: Beschreibung falls angekreuzt
+                          type: checkbox
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[radiobox]

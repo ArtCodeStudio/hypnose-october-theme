@@ -1,0 +1,19 @@
+title = "preview"
+url = "/preview.html"
+layout = "pdf_formular_template"
+is_hidden = 0
+contentType = "html"
+force_show = 0
+==
+<?php
+use Cms\Classes\MediaViewHelper;
+use Cms\Classes\CmsException;
+
+function onStart() {
+    $values = post();
+    $this['data'] = $values;
+    $this['questionairies'] = $this->theme->questionaries;
+}
+?>
+==
+hello from preview.html
