@@ -13,7 +13,7 @@ import { dataScrollPositionYBinder } from "@ribajs/extras/src/binders/data-scrol
 
 // Custom formatters, binders and components
 import * as CustomFormatters from "./formatters";
-import * as CustomBinders from "./binders";
+// import * as CustomBinders from "./binders";
 import * as CustomComponents from "./components";
 
 export class Main {
@@ -37,7 +37,7 @@ export class Main {
     this.riba.module.regist({
       formatters: CustomFormatters,
       components: CustomComponents,
-      binders: CustomBinders,
+      // binders: CustomBinders,
     });
 
     this.riba.bind(document.body, window.model);

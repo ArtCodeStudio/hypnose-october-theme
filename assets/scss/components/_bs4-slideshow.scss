@@ -1,12 +1,13 @@
 bs4-slideshow {
   .slideshow-indicators {
-    color: $danger;
+    color: $title-color;
   }
   .slideshow-controls {
-    &.slideshow-control-prev, &.slideshow-control-next {
-      color: $danger;
+    &.slideshow-control-prev,
+    &.slideshow-control-next {
+      color: $title-color;
       &:hover {
-        color: $danger;
+        color: $title-color;
       }
     }
   }

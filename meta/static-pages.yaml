@@ -14,6 +14,7 @@ static-pages:
         anwendungsgebiete-burn-out: {  }
         anwendungsgebiete-chronische-schmerzen: {  }
         anwendungsgebiete-depression: {  }
+        anwendungsgebiete-geburtstrauma: {  }
         anwendungsgebiete-gewichtsreduktion: {  }
         yager-therapie-hautreaktionen: {  }
         anwendungsgebiete-hypnotisches-magenband: {  }
@@ -29,7 +30,6 @@ static-pages:
         anwendungsgebiete-selbstwertproblem: {  }
         anwendungsgebiete-spannungkopfschmerz: {  }
         anwendungsgebiete-unerwunschte-verhaltensweisen: {  }
-        anwendungsgebietegeburtstraumahtm: {  }
         anwendungsgebiete-verarbeitung-belastender-traumatischer-erfahrungen: {  }
         anwendungsgebiete-zwange: {  }
     weitere-leistungen:
@@ -45,3 +45,4 @@ static-pages:
     erfahrungsberichte: {  }
     nonverbale-hypnose: {  }
     yager-terapie: {  }
+    404: {  }

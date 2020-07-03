@@ -224,7 +224,7 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: 'Angst / Phoebie'
+                title: 'Angst / Phobie'
                 nesting: '0'
                 type: static-page
                 url: ''
@@ -306,7 +306,7 @@ items:
                 nesting: '0'
                 type: static-page
                 code: ''
-                reference: anwendungsgebietegeburtstraumahtm
+                reference: anwendungsgebiete-geburtstrauma
                 replace: '0'
                 viewBag:
                     isHidden: '0'
@@ -365,7 +365,7 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Magen-Darmbeschwerden
+                title: Magen-Darm-Beschwerden
                 nesting: '0'
                 type: static-page
                 url: ''

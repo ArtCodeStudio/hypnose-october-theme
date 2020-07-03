@@ -7,6 +7,9 @@ default = 0
 [contenteditor]
 ==
 <?php
+
+
+
 function onContactFormSubmit()
 {
     $inputsToFill = array('contactReason', 'contactMessage', 'contactLastname', 'contactFirstname', 'contactMail', 'contactPhone', 'contactRecallTime', 'contactAgreement');
@@ -42,7 +45,9 @@ function onContactFormSubmit()
     
     if(!$responseData->success) {
         $this->page['result'] = "Fehler beim Captcha";
-        return;
+        throw new AjaxException([
+            'error' => 'Fehler beim Captcha'
+        ]);
     } 
 
     //join checkbox groups
@@ -74,11 +79,16 @@ function onContactFormSubmit()
     } else if(Input::has('contactLastname')) {
         $from = $values['contactLastname'];
     }
-    
+
+    //autocomplete
+    //email adresse in theme settings
+    //oc-form in strandhus samt backend?
+
+
     $buildOwnerMessage = function ($message) use ($values) {
-        // TODO use email and name from backend or theme settings
-        // $message->to('info@thp-garber.de', 'Viola Garber');
-        $message->to('daniel@artandcode.studio', 'Daniel Omran');
+        $admin_mail = $this->theme->contact_admin_mail;
+        $admin_name = $this->theme->contact_admin_name;
+        $message->to($admin_mail, $admin_name);
         if(isset($from)) {
             $message->subject("Neue Anfrage von " . $from . " (" . $values['contactMail'] . ")");
         } else {
@@ -104,8 +114,7 @@ function onContactFormSubmit()
     
 
     // TODO catch errors
-    $this->page['result'] = "Nachricht abgeschickt";
-    
+    return "Nachricht erfolgreich abgeschickt!";  
 }
 ?>
 ==
@@ -151,7 +160,7 @@ function onContactFormSubmit()
         </div>
         <hpn-cookies>
         </hpn-cookies>
-        <bs4-toast-container position-style="bottom: 50px; right: 50%; transform: translate(50%, 0);">
+        <bs4-toast-container position-class="absolute-bottom absolute-center">
         </bs4-toast-container>
     </div>
 

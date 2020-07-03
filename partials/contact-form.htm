@@ -7,8 +7,10 @@ snippetName = "Contact form"
     <div class="col-12">
 
       <hcaptcha-oc-form hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967"
-        rv-show-toast-on-submit-success="{'message': 'Nachricht erfolgreich abgeschickt!', 'title': 'Nachricht', 'delay': 200000}"
-        rv-show-toast-on-submit-error="{'message': 'Contact form could not be sent!', 'title': 'Error', 'delay': 200000}"
+        hcaptcha-size="invisible"
+        rv-show-toast-on-submit-success="{'message': '{ toast.$event.detail.message }', 'delay': 20000, 'contextualClass': 'dark'}"
+        rv-show-toast-on-submit-error="{'message': 'Nachricht konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'delay': 20000}"
+        rv-show-toast-on-validation-error="{'message': 'Bitte überprüfen Sie ihre Eingaben', 'contextualClass': 'danger', 'delay': 10000}"
         disable-submit-until-change="true" october-handler="onContactFormSubmit">
         <form id="contact-form">
 
@@ -122,9 +124,9 @@ snippetName = "Contact form"
 
           <div class="h-captcha-container">
             <p>
-              <small>This site is protected by hCaptcha and its
-                <a href="https://hcaptcha.com/privacy">Privacy Policy</a> and
-                <a href="https://hcaptcha.com/terms">Terms of Service</a> apply.
+              <small>Diese seite ist durch hCaptcha geschützt. hCaptcha's
+                <a href="https://hcaptcha.com/privacy">Datenschutzerklärung</a> und
+                <a href="https://hcaptcha.com/terms">allgemeinen Geschäftsbedingungen</a> sind anzuwenden.
               </small>
             </p>
           </div>

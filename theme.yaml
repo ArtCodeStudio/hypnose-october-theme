@@ -1,522 +1,530 @@
 name: Hypnosezentrum
-description: 'Hypnosezentrum OctoberCMS Theme'
-author: 'Art+Code Studio'
-homepage: 'https://artandcode.studio/'
+description: "Hypnosezentrum OctoberCMS Theme"
+author: "Art+Code Studio"
+homepage: "https://artandcode.studio/"
 code: hypnose
 form:
-    tabs:
-        fields:
-            bs4_grayscale_colors:
-                label: 'Grayscale Colors'
-                type: section
-                tab: Colors
-            bs4_white:
-                type: colorpicker
-                label: white
-                default: '#fff'
-                tab: Colors
-                assetVar: white
-            bs4_gray_100:
-                type: colorpicker
-                label: gray-100
-                default: '#f8f9fa'
-                tab: Colors
-                assetVar: gray-100
-            bs4_gray_200:
-                type: colorpicker
-                label: gray-200
-                default: '#e9ecef'
-                tab: Colors
-                assetVar: gray-200
-            bs4_gray_300:
-                type: colorpicker
-                label: gray-300
-                default: '#dee2e6'
-                tab: Colors
-                assetVar: gray-300
-            bs4_gray_400:
-                type: colorpicker
-                label: gray-400
-                default: '#ced4da'
-                tab: Colors
-                assetVar: gray-400
-            bs4_gray_500:
-                type: colorpicker
-                label: gray-500
-                default: '#adb5bd'
-                tab: Colors
-                assetVar: gray-500
-            bs4_gray_600:
-                type: colorpicker
-                label: gray-600
-                default: '#6c757d'
-                tab: Colors
-                assetVar: gray-600
-            bs4_gray_700:
-                type: colorpicker
-                label: gray-700
-                default: '#495057'
-                tab: Colors
-                assetVar: gray-700
-            bs4_gray_800:
-                type: colorpicker
-                label: gray-800
-                default: '#343a40'
-                tab: Colors
-                assetVar: gray-800
-            bs4_gray_900:
-                type: colorpicker
-                label: gray-900
-                default: '#212529'
-                tab: Colors
-                assetVar: gray-900
-            bs4_black:
-                type: colorpicker
-                label: black
-                default: '#000'
-                tab: Colors
-                assetVar: black
-            bs4_general_colors:
-                label: 'General Colors'
-                type: section
-                tab: Colors
-            bs4_red:
-                type: colorpicker
-                label: red
-                default: '#d9534f'
-                tab: Colors
-                assetVar: red
-            bs4_orange:
-                type: colorpicker
-                label: orange
-                default: '#f0ad4e'
-                tab: Colors
-                assetVar: orange
-            bs4_yellow:
-                type: colorpicker
-                label: yellow
-                default: '#ffd500'
-                tab: Colors
-                assetVar: yellow
-            bs4_green:
-                type: colorpicker
-                label: green
-                default: '#5cb85c'
-                tab: Colors
-                assetVar: green
-            bs4_blue:
-                type: colorpicker
-                label: blue
-                default: '#0275d8'
-                tab: Colors
-                assetVar: blue
-            bs4_teal:
-                type: colorpicker
-                label: teal
-                default: '#5bc0de'
-                tab: Colors
-                assetVar: teal
-            bs4_pink:
-                type: colorpicker
-                label: pink
-                default: '#ff5b77'
-                tab: Colors
-                assetVar: pink
-            bs4_purple:
-                type: colorpicker
-                label: purple
-                default: '#613d7c'
-                tab: Colors
-                assetVar: purple
-            bs4_brand_colors:
-                label: 'Brand Colors'
-                type: section
-                tab: Colors
-            bs4_primary:
-                type: colorpicker
-                label: primary
-                default: '#D81F59'
-                tab: Colors
-                assetVar: primary
-            bs4_secondary:
-                type: colorpicker
-                label: secondary
-                default: '#C49499'
-                tab: Colors
-                assetVar: secondary
-            tertiary:
-                type: colorpicker
-                label: tertiary
-                default: '#D5C1C3'
-                tab: Colors
-                assetVar: tertiary
-            bs4_success:
-                type: text
-                label: success
-                default: $green
-                tab: Colors
-                assetVar: success
-            bs4_info:
-                type: text
-                label: info
-                default: $cyan
-                tab: Colors
-                assetVar: info
-            bs4_warning:
-                type: text
-                label: warning
-                default: $yellow
-                tab: Colors
-                assetVar: warning
-            bs4_danger:
-                type: text
-                label: danger
-                default: $red
-                tab: Colors
-                assetVar: danger
-            bs4_light:
-                type: text
-                label: light
-                default: $gray-100
-                tab: Colors
-                assetVar: light
-            bs4_dark:
-                type: text
-                label: dark
-                default: $gray-800
-                tab: Colors
-                assetVar: dark
-            bs4_body_colors:
-                label: 'Body Colors'
-                type: section
-                tab: Colors
-            bs4_body_color:
-                type: colorpicker
-                label: body-color
-                default: '#9B666B'
-                tab: Colors
-                assetVar: body-color
-            title_color:
-                type: colorpicker
-                label: title-color
-                default: '#C79499'
-                tab: Colors
-                assetVar: title-color
-            bs4_body_bg:
-                type: colorpicker
-                label: body-bg
-                default: '#FCF6F5'
-                tab: Colors
-                assetVar: body-bg
-            # Favicons
-            site_name:
-                label: 'Name'
-                type: text
-                comment: 'The name of the web application as it is usually displayed to the user <a href="https://developer.mozilla.org/en-US/docs/Web/Manifest/name" target="_blank">(e.g., amongst a list of other applications, or as a label for an icon)</a>.'
-                commentHtml: true
-                default: 'Hypnosezentrum Cuxhaven'
-                tab: Favicons
-            background_color:
-                label: 'Background color'
-                type: colorpicker
-                comment: '<br><br><br>Background color of the <a href="https://developer.mozilla.org/en-US/docs/Web/Manifest/background_color" target="_blank">page before its stylesheet is loaded</a>.'
-                commentHtml: true
-                default: '#ffffff'
-                tab: Favicons
-            theme_color:
-                label: 'Theme color'
-                type: colorpicker
-                comment: '<br><br><br>Color of the <a href="https://developers.google.com/web/updates/2015/08/using-manifest-to-set-sitewide-theme-color" target="_blank">browser address bar on Smartpohnes</a>.'
-                commentHtml: true
-                default: '#ffffff'
-                tab: Favicons
-            tile_color:
-                label: 'Tile color'
-                type: colorpicker
-                comment: '<br><br><br>Color of the <a href="https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-helpandsupport-helpandsupport-tilecolor" target="_blank">tile on Windows Phone</a>.'
-                commentHtml: true
-                default: '#ffffff'
-                tab: Favicons
-            mask_color:
-                label: 'Mask color'
-                type: colorpicker
-                comment: '<br><br><br>Color of the <a href="https://steemit.com/deutsch/@rilc0n/icon-fuer-angepinnte-tabs-in-safari-erstellen" target="_blank">icon on Safari</a>.'
-                commentHtml: true
-                default: '#ffffff'
-                tab: Favicons
-            # Layout Top
-            partial_top_logo:
-                type: mediafinder
-                mode: image
-                label: Logo
-                tab: 'Layout Top'
-            # General
-            general_address:
-                type: richeditor
-                label: Address
-                tab: General
-            general_opening_hours:
-                type: richeditor
-                label: 'Opening hours'
-                tab: General
-            # Application Areas
-            application_areas_nav_item:
-                tab: 'Application areas'
-                titleFrom: items
-                type: repeater
-                form:
-                    fields:
-                        image:
-                            label: Image
-                            type: mediafinder
-                            mode: image
-                            span: left
-                        title:
-                            label: Title
-                            type: text
-                            span: right
-                        page:
-                            label: Page
-                            type: text
-                            span: right
-            # Additional Areas
-            additional_areas_nav_item:
-                tab: 'Additional areas'
-                titleFrom: items
-                type: repeater
-                form:
-                    fields:
-                        image:
-                            label: Image
-                            type: mediafinder
-                            mode: image
-                            span: left
-                        title:
-                            label: Title
-                            type: text
-                            span: right
-                        page:
-                            label: Page
-                            type: text
-                            span: right
-            personal_reports:
-                tab: 'Personal reports'
-                titleFrom: report
-                prompt: 'Add new report'
-                type: repeater
-                form:
-                    fields:
-                        title:
-                            label: Title
-                            type: text
-                            span: left
-                        quote:
-                            label: Quote
-                            type: textarea
-                            span: right
-            fee_item_title_name:
-                tab: Fees
-                label: 'Name title'
-                type: text
-                span: left
-                default: Behandlung
-            fee_item_title_sessions:
-                tab: Fees
-                label: 'Sessions title'
-                type: text
-                span: left
-                default: Sitzungen
-            fee_item_title_price:
-                tab: Fees
-                label: 'Price title'
-                type: text
-                span: left
-                default: 'Honorar in EUR'
-            fee_groups:
-                tab: Fees
-                prompt: 'Add new group'
-                titleFrom: groups
-                type: repeater
-                form:
-                    fields:
-                        title:
-                            label: Title
-                            type: text
-                        items:
-                            prompt: 'Add new item'
-                            titleFrom: items
-                            type: repeater
-                            form:
-                                fields:
-                                    name:
-                                        label: Name
-                                        type: text
-                                        span: left
-                                    sessions:
-                                        label: Sessions
-                                        type: text
-                                        span: left
-                                    price:
-                                        label: Price
-                                        type: text
-                                        span: left
-            faq_all_title:
-                tab: FAQ
-                label: 'All title'
-                type: text
-                default: 'Alle Fragen'
-                span: left
-            faq_general_title:
-                tab: FAQ
-                label: 'General title'
-                type: text
-                default: 'Allgemeine Fragen'
-                span: left
-            faq_fee_title:
-                tab: FAQ
-                label: 'Fee title'
-                type: text
-                default: 'Fragen zum Honorar'
-                span: left
-            faq_therapy_title:
-                tab: FAQ
-                label: 'Therapy title'
-                type: text
-                default: 'Fragen zu den Therapieformen'
-                span: left
-            faq_questions:
-                tab: FAQ
-                prompt: 'Add new question'
-                titleFrom: questions
-                type: repeater
-                form:
-                    fields:
-                        answer:
-                            label: Answer
-                            type: richeditor
-                            size: large
-                            span: right
-                        category:
-                            label: Category
-                            type: dropdown
-                            span: left
-                            options:
-                                general: General
-                                fee: Fee
-                                therapy: Therapy
-                        question:
-                            label: Question
-                            type: text
-                            span: left
-            at_a_glance_slides:
-                tab: Slideshow - At a glance
-                prompt: 'Add new slide'
-                titleFrom: slides
-                type: repeater
-                form:
-                    fields:
-                        image:
-                            label: Image
-                            type: mediafinder
-                            mode: image
-                            span: left
-                        extern_image:
-                            label: Image by Url
-                            type: text
-                            comment: 'Enter here a external image url if you want to use this instead'
-                            span: right
-                        alt:
-                            label: 'Alt text'
-                            comment: 'Image alternative text attribute for SEO and Screenreaders'
-                            type: text
-                            span: right
-            # Contact Reasons
-            contact_reasons_section:
-                label: 'Reasons'
-                type: section
-                tab: Contact
-            contact_reasons_title:
-                tab: Contact
-                label: 'Reasons title'
-                type: text
-            contact_reasons_content:
-                tab: Contact
-                label: 'Reasons content text'
-                type: richeditor
-            contact_reasons:
-                tab: Contact
-                prompt: 'Add new contact reason'
-                titleFrom: reasons
-                type: repeater
-                form:
-                    fields:
-                        text:
-                            label: 'Reason text'
-                            type: text
-            # Contact Concern
-            contact_concern_section:
-                label: 'Concern'
-                type: section
-                tab: Contact
-            contact_concern_title:
-                tab: Contact
-                label: 'Concern title'
-                type: text
-            contact_concern_content:
-                tab: Contact
-                label: 'Concern content text'
-                type: richeditor
-            # Contact Recall
-            contact_recall_section:
-                label: 'Recall'
-                type: section
-                tab: Contact
-            contact_recall_title:
-                tab: Contact
-                label: 'Recall title'
-                type: text
-            contact_recall_content:
-                tab: Contact
-                label: 'Recall content text'
-                type: richeditor
-            contact_recall_trimes:
-                tab: Contact
-                prompt: 'Add new recall time'
-                titleFrom: reasons
-                type: repeater
-                form:
-                    fields:
-                        text:
-                            label: 'Recall time text'
-                            type: text
-            # Contact Legal
-            contact_legal_data_protection_content:
-                tab: Contact
-                label: 'Data protection text'
-                type: richeditor
-            contact_legal_agreement_content:
-                tab: Contact
-                label: 'Agreement text'
-                type: richeditor
-            # Forms
-            forms:
-                tab: Forms
-                titleFrom: report
-                prompt: 'Add new pdf form'
-                type: repeater
-                form:
-                    fields:
-                        active:
-                            label: Active
-                            type: checkbox
-                            default: true
-                        title:
-                            label: Title
-                            type: text
-                        content:
-                            label: 'Introduction text'
-                            type: richeditor
-                        pdf:
-                            label: Pdf file
-                            type: mediafinder
-                            mode: file
+  tabs:
+    fields:
+      bs4_grayscale_colors:
+        label: "Grayscale Colors"
+        type: section
+        tab: Colors
+      bs4_white:
+        type: colorpicker
+        label: white
+        default: "#fff"
+        tab: Colors
+        assetVar: white
+      bs4_gray_100:
+        type: colorpicker
+        label: gray-100
+        default: "#f8f9fa"
+        tab: Colors
+        assetVar: gray-100
+      bs4_gray_200:
+        type: colorpicker
+        label: gray-200
+        default: "#e9ecef"
+        tab: Colors
+        assetVar: gray-200
+      bs4_gray_300:
+        type: colorpicker
+        label: gray-300
+        default: "#dee2e6"
+        tab: Colors
+        assetVar: gray-300
+      bs4_gray_400:
+        type: colorpicker
+        label: gray-400
+        default: "#ced4da"
+        tab: Colors
+        assetVar: gray-400
+      bs4_gray_500:
+        type: colorpicker
+        label: gray-500
+        default: "#adb5bd"
+        tab: Colors
+        assetVar: gray-500
+      bs4_gray_600:
+        type: colorpicker
+        label: gray-600
+        default: "#6c757d"
+        tab: Colors
+        assetVar: gray-600
+      bs4_gray_700:
+        type: colorpicker
+        label: gray-700
+        default: "#495057"
+        tab: Colors
+        assetVar: gray-700
+      bs4_gray_800:
+        type: colorpicker
+        label: gray-800
+        default: "#343a40"
+        tab: Colors
+        assetVar: gray-800
+      bs4_gray_900:
+        type: colorpicker
+        label: gray-900
+        default: "#212529"
+        tab: Colors
+        assetVar: gray-900
+      bs4_black:
+        type: colorpicker
+        label: black
+        default: "#000"
+        tab: Colors
+        assetVar: black
+      bs4_general_colors:
+        label: "General Colors"
+        type: section
+        tab: Colors
+      bs4_red:
+        type: colorpicker
+        label: red
+        default: "#d9534f"
+        tab: Colors
+        assetVar: red
+      bs4_orange:
+        type: colorpicker
+        label: orange
+        default: "#f0ad4e"
+        tab: Colors
+        assetVar: orange
+      bs4_yellow:
+        type: colorpicker
+        label: yellow
+        default: "#ffd500"
+        tab: Colors
+        assetVar: yellow
+      bs4_green:
+        type: colorpicker
+        label: green
+        default: "#5cb85c"
+        tab: Colors
+        assetVar: green
+      bs4_blue:
+        type: colorpicker
+        label: blue
+        default: "#0275d8"
+        tab: Colors
+        assetVar: blue
+      bs4_teal:
+        type: colorpicker
+        label: teal
+        default: "#5bc0de"
+        tab: Colors
+        assetVar: teal
+      bs4_pink:
+        type: colorpicker
+        label: pink
+        default: "#ff5b77"
+        tab: Colors
+        assetVar: pink
+      bs4_purple:
+        type: colorpicker
+        label: purple
+        default: "#613d7c"
+        tab: Colors
+        assetVar: purple
+      bs4_brand_colors:
+        label: "Brand Colors"
+        type: section
+        tab: Colors
+      bs4_primary:
+        type: colorpicker
+        label: primary
+        default: "#D81F59"
+        tab: Colors
+        assetVar: primary
+      bs4_secondary:
+        type: colorpicker
+        label: secondary
+        default: "#C49499"
+        tab: Colors
+        assetVar: secondary
+      tertiary:
+        type: colorpicker
+        label: tertiary
+        default: "#D5C1C3"
+        tab: Colors
+        assetVar: tertiary
+      bs4_success:
+        type: text
+        label: success
+        default: $green
+        tab: Colors
+        assetVar: success
+      bs4_info:
+        type: text
+        label: info
+        default: $cyan
+        tab: Colors
+        assetVar: info
+      bs4_warning:
+        type: text
+        label: warning
+        default: $yellow
+        tab: Colors
+        assetVar: warning
+      bs4_danger:
+        type: text
+        label: danger
+        default: $red
+        tab: Colors
+        assetVar: danger
+      bs4_light:
+        type: text
+        label: light
+        default: $gray-100
+        tab: Colors
+        assetVar: light
+      bs4_dark:
+        type: text
+        label: dark
+        default: $gray-800
+        tab: Colors
+        assetVar: dark
+      bs4_body_colors:
+        label: "Body Colors"
+        type: section
+        tab: Colors
+      bs4_body_color:
+        type: colorpicker
+        label: body-color
+        default: "#9B666B"
+        tab: Colors
+        assetVar: body-color
+      title_color:
+        type: colorpicker
+        label: title-color
+        default: "#C79499"
+        tab: Colors
+        assetVar: title-color
+      bs4_body_bg:
+        type: colorpicker
+        label: body-bg
+        default: "#FCF6F5"
+        tab: Colors
+        assetVar: body-bg
+      # Favicons
+      site_name:
+        label: "Name"
+        type: text
+        comment: 'The name of the web application as it is usually displayed to the user <a href="https://developer.mozilla.org/en-US/docs/Web/Manifest/name" target="_blank">(e.g., amongst a list of other applications, or as a label for an icon)</a>.'
+        commentHtml: true
+        default: "Hypnosezentrum Cuxhaven"
+        tab: Favicons
+      background_color:
+        label: "Background color"
+        type: colorpicker
+        comment: '<br><br><br>Background color of the <a href="https://developer.mozilla.org/en-US/docs/Web/Manifest/background_color" target="_blank">page before its stylesheet is loaded</a>.'
+        commentHtml: true
+        default: "#ffffff"
+        tab: Favicons
+      theme_color:
+        label: "Theme color"
+        type: colorpicker
+        comment: '<br><br><br>Color of the <a href="https://developers.google.com/web/updates/2015/08/using-manifest-to-set-sitewide-theme-color" target="_blank">browser address bar on Smartpohnes</a>.'
+        commentHtml: true
+        default: "#ffffff"
+        tab: Favicons
+      tile_color:
+        label: "Tile color"
+        type: colorpicker
+        comment: '<br><br><br>Color of the <a href="https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-helpandsupport-helpandsupport-tilecolor" target="_blank">tile on Windows Phone</a>.'
+        commentHtml: true
+        default: "#ffffff"
+        tab: Favicons
+      mask_color:
+        label: "Mask color"
+        type: colorpicker
+        comment: '<br><br><br>Color of the <a href="https://steemit.com/deutsch/@rilc0n/icon-fuer-angepinnte-tabs-in-safari-erstellen" target="_blank">icon on Safari</a>.'
+        commentHtml: true
+        default: "#ffffff"
+        tab: Favicons
+      # Layout Top
+      partial_top_logo:
+        type: mediafinder
+        mode: image
+        label: Logo
+        tab: "Layout Top"
+      # General
+      general_address:
+        type: richeditor
+        label: Address
+        tab: General
+      general_opening_hours:
+        type: richeditor
+        label: "Opening hours"
+        tab: General
+      # Application Areas
+      application_areas_nav_item:
+        tab: "Application areas"
+        titleFrom: items
+        type: repeater
+        form:
+          fields:
+            image:
+              label: Image
+              type: mediafinder
+              mode: image
+              span: left
+            title:
+              label: Title
+              type: text
+              span: right
+            page:
+              label: Page
+              type: staticpagepicker
+              span: right
+      # Additional Areas
+      additional_areas_nav_item:
+        tab: "Additional areas"
+        titleFrom: items
+        type: repeater
+        form:
+          fields:
+            image:
+              label: Image
+              type: mediafinder
+              mode: image
+              span: left
+            title:
+              label: Title
+              type: text
+              span: right
+            page:
+              label: Page
+              type: staticpagepicker
+              span: right
+      personal_reports:
+        tab: "Personal reports"
+        titleFrom: report
+        prompt: "Add new report"
+        type: repeater
+        form:
+          fields:
+            title:
+              label: Title
+              type: text
+              span: left
+            quote:
+              label: Quote
+              type: textarea
+              span: right
+      fee_item_title_name:
+        tab: Fees
+        label: "Name title"
+        type: text
+        span: left
+        default: Behandlung
+      fee_item_title_sessions:
+        tab: Fees
+        label: "Sessions title"
+        type: text
+        span: left
+        default: Sitzungen
+      fee_item_title_price:
+        tab: Fees
+        label: "Price title"
+        type: text
+        span: left
+        default: "Honorar in EUR"
+      fee_groups:
+        tab: Fees
+        prompt: "Add new group"
+        titleFrom: groups
+        type: repeater
+        form:
+          fields:
+            title:
+              label: Title
+              type: text
+            items:
+              prompt: "Add new item"
+              titleFrom: items
+              type: repeater
+              form:
+                fields:
+                  name:
+                    label: Name
+                    type: text
+                    span: left
+                  sessions:
+                    label: Sessions
+                    type: text
+                    span: left
+                  price:
+                    label: Price
+                    type: text
+                    span: left
+      faq_all_title:
+        tab: FAQ
+        label: "All title"
+        type: text
+        default: "Alle Fragen"
+        span: left
+      faq_general_title:
+        tab: FAQ
+        label: "General title"
+        type: text
+        default: "Allgemeine Fragen"
+        span: left
+      faq_fee_title:
+        tab: FAQ
+        label: "Fee title"
+        type: text
+        default: "Fragen zum Honorar"
+        span: left
+      faq_therapy_title:
+        tab: FAQ
+        label: "Therapy title"
+        type: text
+        default: "Fragen zu den Therapieformen"
+        span: left
+      faq_questions:
+        tab: FAQ
+        prompt: "Add new question"
+        titleFrom: questions
+        type: repeater
+        form:
+          fields:
+            answer:
+              label: Answer
+              type: richeditor
+              size: large
+              span: right
+            category:
+              label: Category
+              type: dropdown
+              span: left
+              options:
+                general: General
+                fee: Fee
+                therapy: Therapy
+            question:
+              label: Question
+              type: text
+              span: left
+      at_a_glance_slides:
+        tab: Slideshow - At a glance
+        prompt: "Add new slide"
+        titleFrom: slides
+        type: repeater
+        form:
+          fields:
+            image:
+              label: Image
+              type: mediafinder
+              mode: image
+              span: left
+            extern_image:
+              label: Image by Url
+              type: text
+              comment: "Enter here a external image url if you want to use this instead"
+              span: right
+            alt:
+              label: "Alt text"
+              comment: "Image alternative text attribute for SEO and Screenreaders"
+              type: text
+              span: right
+      # Contact Reasons
+      contact_reasons_section:
+        label: "Reasons"
+        type: section
+        tab: Contact
+      contact_reasons_title:
+        tab: Contact
+        label: "Reasons title"
+        type: text
+      contact_admin_mail:
+        tab: Contact
+        label: "Admin mail"
+        type: text
+      contact_admin_name:
+        tab: Contact
+        label: "Admin name"
+        type: text
+      contact_reasons_content:
+        tab: Contact
+        label: "Reasons content text"
+        type: richeditor
+      contact_reasons:
+        tab: Contact
+        prompt: "Add new contact reason"
+        titleFrom: reasons
+        type: repeater
+        form:
+          fields:
+            text:
+              label: "Reason text"
+              type: text
+      # Contact Concern
+      contact_concern_section:
+        label: "Concern"
+        type: section
+        tab: Contact
+      contact_concern_title:
+        tab: Contact
+        label: "Concern title"
+        type: text
+      contact_concern_content:
+        tab: Contact
+        label: "Concern content text"
+        type: richeditor
+      # Contact Recall
+      contact_recall_section:
+        label: "Recall"
+        type: section
+        tab: Contact
+      contact_recall_title:
+        tab: Contact
+        label: "Recall title"
+        type: text
+      contact_recall_content:
+        tab: Contact
+        label: "Recall content text"
+        type: richeditor
+      contact_recall_trimes:
+        tab: Contact
+        prompt: "Add new recall time"
+        titleFrom: reasons
+        type: repeater
+        form:
+          fields:
+            text:
+              label: "Recall time text"
+              type: text
+      # Contact Legal
+      contact_legal_data_protection_content:
+        tab: Contact
+        label: "Data protection text"
+        type: richeditor
+      contact_legal_agreement_content:
+        tab: Contact
+        label: "Agreement text"
+        type: richeditor
+      # Forms
+      forms:
+        tab: Forms
+        titleFrom: report
+        prompt: "Add new pdf form"
+        type: repeater
+        form:
+          fields:
+            active:
+              label: Active
+              type: checkbox
+              default: true
+            title:
+              label: Title
+              type: text
+            content:
+              label: "Introduction text"
+              type: richeditor
+            pdf:
+              label: Pdf file
+              type: mediafinder
+              mode: file

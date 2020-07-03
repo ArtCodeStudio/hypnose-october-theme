@@ -44,8 +44,10 @@ snippetProperties[ratioMd][options][embed-responsive-md-16by9] = "16by9"
 ==
 {% if seoTag.og_image and useOgImage %}
   {% set source = (seoTag.og_image | media) | app %}
-{% else %}
+{% elseif src starts with 'http' %}
   {% set source = src %}
+{% else %}
+  {% set source = src | media | app %}
 {% endif %}
 <div class="partial-image w-100">
   <div class="{% if container %}container{% else %}container-fluid{% endif %}">
