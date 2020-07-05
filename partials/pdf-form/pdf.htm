@@ -1,0 +1,29 @@
+[viewBag]
+==
+{% set choosedForm = 'Hypnose' %}
+
+{% for form in pdf_form %}
+{% if form.questionary_name == choosedForm %}
+<div class="container">
+    <div class="row">
+        <h1 class="col-12">{{ form.questionary_name}}</h1>
+    </div>
+    {% for question in form.questions %}
+    <div class="row type-{{ question.type_input }}">
+        {% set question_id = loop.index0 %}
+        {% if question.type_input == 'radiobox' %}
+            {% partial 'pdf-form/pdf-radioboxes' question=question data=data question_id=question_id %}
+        {% elseif question.type_input == 'checkbox' %}
+            {% partial 'pdf-form/pdf-checkboxes' question=question data=data question_id=question_id %}
+        {% elseif question.type_input == 'description' %}
+            {% partial 'pdf-form/pdf-description' question=question data=data question_id=question_id %}
+        {% elseif question.type_input == 'text_area' %}
+            {% partial 'pdf-form/pdf-text-area' question=question data=data question_id=question_id %}
+        {% elseif question.type_input == 'scale_input' %}
+            {% partial 'pdf-form/pdf-scale-input' question=question data=data question_id=question_id %}
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endfor %}

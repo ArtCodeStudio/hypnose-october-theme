@@ -528,10 +528,10 @@ form:
               label: Pdf file
               type: mediafinder
               mode: file
-      questionaries:
-        label: Fragebögen
+      pdf_form:
+        label: PDF Forms
         type: repeater
-        tab: Fragebögen
+        tab: PDF Forms
         # titleFrom: questionaries
         collapsed: true
         prompt: Fragebogen Hinzufügen

@@ -1,0 +1,67 @@
+description = "User formular to fill in the pdf form"
+
+[viewBag]
+snippetCode = "pdf-forms"
+snippetName = "PDF Forms"
+==
+<style>
+
+    textarea {
+        width: 100%;
+        min-height: 100px;
+        resize: vertical;
+    }
+
+</style>
+
+<div class="container pdf-forms">
+  <div class="row">
+    <div class="col-12">
+      {% for form in this.theme.forms  %}
+        {% if form.active %}
+          <bs4-accordion collapse-icon-src="{{ 'assets/iconset/arrow_carrot.svg' | theme }}" collapse-icon-size="38">
+            <template title="{{ form.title }}">
+              {{ form.content | raw}}
+              <pdf-form-fields src="{{ form.pdf | media }}" worker-src="{{ 'assets/js/vendors.pdfjsWorker.bundle.js' | theme }}"></pdf-form-fields>
+            </template>
+          </bs4-accordion>
+        {% endif %}
+      {% endfor %}
+
+      <form target="_blank" method="post" action="/pdf-form/print" {# action="/pdf-form/pdf" #}>
+          <div class="form-row">
+            {% set choosedForm = 'Hypnose' %}
+            {% for form in this.theme.pdf_form %}
+                {% if form.questionary_name == choosedForm %}
+                    <div class="col-12">
+                        <div class="row">
+                          <h2 class="col-12">{{ form.questionary_name}}</h2>
+                        </div>
+                        {% for question in form.questions %}
+                          <div class="row my-5 type-{{ question.type_input }}">
+                            {% set question_id = loop.index0 %}
+                            {% set loop_id = 0 %}
+                            {% if question.type_input == 'radiobox' %}
+                                {% partial 'pdf-form/user-radioboxes' question=question question_id=question_id %}
+                            {% elseif question.type_input == 'checkbox' %}
+                                {% partial 'pdf-form/user-checkboxes' question=question question_id=question_id %}
+                            {% elseif question.type_input == 'description' %}
+                                {% partial 'pdf-form/user-description' question=question question_id=question_id %}
+                            {% elseif question.type_input == 'text_area' %}
+                                {% partial 'pdf-form/user-text-area' question=question question_id=question_id %}
+                            {% elseif question.type_input == 'scale_input' %}
+                                {% partial 'pdf-form/user-scale-input' question=question question_id=question_id %}
+                            {% endif %}
+                          </div>
+                        {% endfor %}
+                        <button class="btn btn-primary" type="submit" formaction="/pdf-form/print" style="min-width:150px;">Print</button>
+                        <button class="btn btn-primary" type="submit" formaction="/pdf-form/pdf" style="min-width:150px;">PDF</button>
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

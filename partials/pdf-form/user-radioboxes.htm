@@ -1,0 +1,19 @@
+<div class="col-12">{{ question.radiobox_question_input }}</div>
+{% for answering_option in question.radiobox_answering_options %}
+    <div class="col-12">
+        <div class="row align-items-center">
+            <div class="col-6">
+                <input type="radio" id="question-{{question_id}}-option-{{loop.index0}}" name="question-{{question_id}}"
+                    value="{{loop.index0}}" />
+                <label for="question-{{question_id}}-option-{{loop.index0}}">{{answering_option.answer_input}}</label>
+                {% if answering_option.description_if_checked %}
+                    <input
+                        class="additional-text form-control"
+                        type="text"
+                        id="question-{{question_id}}-option-{{loop.index0}}-textinput"
+                        name="question-{{question_id}}-option-{{loop.index0}}-textinput" />
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endfor %}

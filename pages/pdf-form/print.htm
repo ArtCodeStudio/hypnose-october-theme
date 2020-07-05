@@ -1,0 +1,22 @@
+title = "PDF Formular Print"
+url = "/pdf-form/print"
+layout = "pdf-form"
+is_hidden = 0
+contentType = "html"
+force_show = 0
+==
+<?php
+use Cms\Classes\MediaViewHelper;
+use Cms\Classes\CmsException;
+
+function onStart() {
+    /**
+     * Set the global twig variables so that this page also works over a normal call
+     */
+    $values = post();
+    $this['data'] = $values;
+    $this['pdf_form'] = $this->theme->pdf_form;
+}
+?>
+==
+{% partial 'pdf-form/pdf' %}

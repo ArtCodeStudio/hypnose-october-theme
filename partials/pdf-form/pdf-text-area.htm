@@ -1,0 +1,5 @@
+<div class="col-12">
+    <p class="question-text">{{ question.text_area_input }}</p>
+    <textarea class="form-control" name="question-{{question_id}}"
+        rows="4">{{ data['question-'~ question_id] }}</textarea>
+</div>
