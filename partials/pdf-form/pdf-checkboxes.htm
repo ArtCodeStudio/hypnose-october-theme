@@ -6,14 +6,23 @@
     {% for answering_option in question.checkbox_answering_options %}
         <div class="row">
             <div class="col-6">
-                <input type="checkbox" class="" id="question-{{question_id}}-option-{{loop.index0}}"
-                    name="question-{{question_id}}-option-{{loop.index0}}" />
-                <label for="question-{{question_id}}-option-{{loop.index0}}">{{answering_option.answer_input}}</label>
+                <input
+                    type="checkbox"
+                    id="question-{{question_id}}-option-{{loop.index0}}"
+                    name="question-{{question_id}}-option-{{loop.index0}}"
+                />
+                <label for="question-{{question_id}}-option-{{loop.index0}}">
+                    {{ answering_option.answer_input }}
+                </label>
             </div>
             {% if answering_option.description_if_checked %}
             <div class="col-6">
-                <input class="form-control" type="text" id="question-{{question_id}}-option-{{loop.index0}}-textinput"
-                    name="question-{{question_id}}-option-{{loop.index0}}-textinput" />
+                <input
+                    class="form-control"
+                    type="text"
+                    id="question-{{question_id}}-option-{{loop.index0}}-textinput"
+                    name="question-{{question_id}}-option-{{loop.index0}}-textinput"
+                />
             </div>
             {% endif %}
         </div>

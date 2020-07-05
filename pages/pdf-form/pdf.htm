@@ -16,7 +16,7 @@ function onStart() {
      */
     $values = post();
     $this['data'] = $values;
-    $this['pdf_form'] = $this->theme->pdf_form;
+    $this['pdf_forms'] = $this->theme->pdf_forms;
 }
 
 function onEnd() {
@@ -35,7 +35,7 @@ function onEnd() {
      * And additional variables like the post data and the questionairies
      * @see https://github.com/octobercms/october/blob/master/modules/cms/classes/Controller.php#L307
      */
-    $renderVars = ['this' => $this, 'data' => $value, 'pdf_form' => $this->theme->pdf_form];
+    $renderVars = ['this' => $this, 'data' => $value, 'pdf_forms' => $this->theme->pdf_forms];
     
     /**
      * Render the page

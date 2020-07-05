@@ -528,7 +528,7 @@ form:
               label: Pdf file
               type: mediafinder
               mode: file
-      pdf_form:
+      pdf_forms:
         label: PDF Forms
         type: repeater
         tab: PDF Forms

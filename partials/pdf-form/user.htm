@@ -31,7 +31,7 @@ snippetName = "PDF Forms"
       <form target="_blank" method="post" action="/pdf-form/print" {# action="/pdf-form/pdf" #}>
           <div class="form-row">
             {% set choosedForm = 'Hypnose' %}
-            {% for form in this.theme.pdf_form %}
+            {% for form in this.theme.pdf_forms %}
                 {% if form.questionary_name == choosedForm %}
                     <div class="col-12">
                         <div class="row">

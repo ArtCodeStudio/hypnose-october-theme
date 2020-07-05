@@ -12,12 +12,13 @@
                 </div>
             </div>
             {% if answering_option.description_if_checked %}
-                <input
-                    class="col-6"
-                    type="text"
-                    id="question-{{question_id}}-option-{{loop.index0}}-textinput"
-                    value="{{ data['question-'~ question_id ~ '-option-' ~ loop.index0 ~ '-textinput'] }}"
-                />
+                <div class="col-6">
+                    <input
+                        type="text"
+                        id="question-{{question_id}}-option-{{loop.index0}}-textinput"
+                        value="{{ data['question-'~ question_id ~ '-option-' ~ loop.index0 ~ '-textinput'] }}"
+                    />
+                </div>
             {% endif %}
         </div>
     </div>
