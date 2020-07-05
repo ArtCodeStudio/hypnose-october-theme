@@ -548,9 +548,13 @@ form:
               prompt: Element Hinzufügen
               form:
                 fields:
+                  title:
+                    label: Title
+                    type: text
+                    comment: Collapse title
                   # CHECKBOXES (selector for desired input)
                   type_input:
-                    label:
+                    label: Type
                     type: dropdown
                     options:
                       description: Beschreibung # BESCHREIBUNG
