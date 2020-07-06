@@ -5,24 +5,21 @@
 
     {% for answering_option in question.checkbox_answering_options %}
         <div class="row">
+            {% set key = 'question-' ~ question_id ~ '-option-' ~ loop.index0 %}
             <div class="col-6">
-                <input
-                    type="checkbox"
-                    id="question-{{question_id}}-option-{{loop.index0}}"
-                    name="question-{{question_id}}-option-{{loop.index0}}"
-                />
-                <label for="question-{{question_id}}-option-{{loop.index0}}">
-                    {{ answering_option.answer_input }}
-                </label>
+                <div class="checkbox-container">
+                    <div class="checkbox"
+                            id="question-{{question_id}}-option-{{loop.index0}}"
+                            name="question-{{question_id}}-option-{{loop.index0}}"
+                            {% if data[key] == 'on' %}checked{%endif%}>            
+                    </div>
+
+                    <span>{{ answering_option.answer_input }}</span>                    
+                </div>
             </div>
             {% if answering_option.description_if_checked %}
             <div class="col-6">
-                <input
-                    class="form-control"
-                    type="text"
-                    id="question-{{question_id}}-option-{{loop.index0}}-textinput"
-                    name="question-{{question_id}}-option-{{loop.index0}}-textinput"
-                />
+                <p>{{ data['question-'~ question_id ~ '-option-' ~ loop.index0 ~ '-textinput'] }}</p>
             </div>
             {% endif %}
         </div>

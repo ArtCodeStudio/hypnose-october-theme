@@ -1,3 +1,33 @@
-textarea, input[type="text"] {
-    width: 100%;
+textarea,
+input[type="text"] {
+  width: 100%;
+}
+
+$size: 15px;
+$fontSize: 20px;
+
+.checkbox[checked] {
+  background-color: black;
+}
+
+.checkbox {
+  height: $size;
+  width: $size;
+  display: inline-block;
+  border: solid black 3px;
+  border-radius: 3px;
+}
+
+.checkbox-container,
+.radiobox-container {
+  font-size: $fontSize;
+  span {
+    vertical-align: text-bottom;
+    top: -6px;
+  }
+}
+
+.radiobox {
+  @extend .checkbox;
+  border-radius: 20px;
 }

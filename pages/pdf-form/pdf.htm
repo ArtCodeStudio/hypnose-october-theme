@@ -70,21 +70,24 @@ function onEnd() {
     $pageHtml = substr_replace($renderedLayout, $pageContents, $bodyPos - 1, 0);
 
 
+    $header = $this->controller->renderPartial("pdf-form/header.htm", ['this' => $this, 'data' => $value, 'pdf_forms' => $this->theme->pdf_forms, 'choosenForm'=> "Hypnose"]);
+    $footer = $this->controller->renderPartial("pdf-form/footer.htm", ['this' => $this, 'data' => $value, 'pdf_forms' => $this->theme->pdf_forms, 'choosenForm'=> "Hypnose"]);
+    
+
     /**
      * Generate the pdf
      */
     $pdf = SnappyPDF::loadHTML($pageHtml)
-    ->setOption('margin-top', 0)
-    ->setOption('margin-bottom', 0)
     ->setOption('margin-left', 0)
     ->setOption('margin-right', 0)
-    ->setPaper('a4')
-    ->output();
+    ->setOption('header-html', $header)
+    ->setOption('footer-html', $footer)
+    ->setPaper('a4');
     
     /**
      * Return the generated pdf as the page response
      */
-    return Response::make($pdf, 200, [
+    return Response::make($pdf->output(), 200, [
       'Content-Type'        => 'application/pdf',
       'Content-Disposition' => 'inline; filename="test.pdf"',
     ]);

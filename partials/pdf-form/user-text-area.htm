@@ -1,11 +1,14 @@
 <div class="col-12">
-    <label
+    <!-- <label
         for="question-{{question_id}}"
     >
         {{ question.text_area_input }}
-    </label>
+    </label> -->
+    <h6 class="ml-4">
+        {{ question.text_area_input }}
+    </h6>
     <textarea
-        class="form-control"
+        class="form-control form-control-lg"
         id="question-{{question_id}}"
         name="question-{{question_id}}"
         rows="4"

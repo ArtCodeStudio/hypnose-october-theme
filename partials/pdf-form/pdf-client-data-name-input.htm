@@ -1,0 +1,44 @@
+<div class="col-12">
+ 
+    {% if question.client_data_name_input %}
+        <div class="col-6">
+            <label>Name:</label>
+            <div> {{ data['question-'~ question_id~'-name'] }} </div>
+        </div>
+    {% endif %}
+
+    {% if question.client_data_firstname_input %}
+        <div class="col-6">
+            <label>Vorname:</label>
+            <div> {{ data['question-'~ question_id~'-firstname'] }} </div>
+        </div>
+    {% endif %}
+
+    {% if question.client_data_birthday_input %}
+    <div class="col-6">
+        <label>Geburtstag:</label>
+        <div> {{ data['question-'~ question_id~'-birthshday'] }} </div>
+    </div>
+    {% endif %}
+
+    {% if question.client_data_address_input %}
+    <div class="col-6">
+        <label>Anschrift:</label>
+        <div> {{ data['question-'~ question_id~'-address'] }} </div>
+    </div>
+    {% endif %}
+
+    {% if question.client_data_phone_input %}
+    <div class="col-6">
+        <label>Telefon / Mobil:</label>
+        <div> {{ data['question-'~ question_id~'-phone'] }} </div>
+    </div>
+    {% endif %}
+
+    {% if question.client_data_email_input %}
+    <div class="col-6">
+        <label>E-Mail:</label>
+        <div> {{ data['question-'~ question_id~'-email'] }} </div>
+    </div>
+    {% endif %}
+</div>  

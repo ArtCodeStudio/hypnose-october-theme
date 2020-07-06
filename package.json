@@ -13,8 +13,7 @@
     "build:dev": "npm run lint && npm run webpack:dev",
     "watch": "concurrently \"npm:watch:*\"",
     "watch:wp": "npm run webpack:dev -- --watch",
-    "packages:npm:link": "npm link @ribajs/core @ribajs/bs4 @ribajs/router @ribajs/iconset @ribajs/extras @ribajs/jquery @ribajs/pdf",
-    "watch:simple-grid": "concurrently \"npm:watch:*\"",
+    "packages:npm:link": "npm link @ribajs/core @ribajs/bs4 @ribajs/router @ribajs/iconset @ribajs/extras @ribajs/jquery @ribajs/pdf"
   },
   "repository": {
     "type": "git",
@@ -96,7 +95,8 @@
     "@ribajs/router": "^1.9.0-alpha.0",
     "@ribajs/utils": "^1.9.0-alpha.0",
     "bootstrap": "^4.5.0",
-    "leaflet": "^1.6.0"
+    "leaflet": "^1.6.0",
+    "print-js": "^1.0.63"
   },
   "resolutions": {
     "@ribajs/bs4": "portal:../../../riba/packages/bs4",

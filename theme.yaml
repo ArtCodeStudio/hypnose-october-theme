@@ -558,11 +558,14 @@ form:
                     type: dropdown
                     options:
                       description: Beschreibung # BESCHREIBUNG
-                      text: Text # TEXTINPUT
+                      client_data: Kunden Information #CLIENT DATA
+                      text: Text # TEXT INPUT
                       text_area: Textfeld # TEXTAREA INPUT
                       checkbox: Checkbox # CHECKBOX
                       scale_input: Skala 1-10 # SCALE INPUT
-                      radiobox: Radio Box
+                      radiobox: Radio Box # OPTION / Ja oder Nein auswahl
+                      header_with_margintop: Überschrift (mit Abstand oben) # HEADER with margin top
+                      devider: Trennlinie # Trennlinie
 
                   #--------------------------------------------
 
@@ -577,7 +580,70 @@ form:
                       field: type_input
                       condition: value[description]
 
-                  # TEXTINPUT
+                  #CLIENT DATA
+                  client_data_name_input:
+                    label: Name
+                    type: checkbox
+                    default: false
+                    span: storm
+                    cssClass: col-xs-4
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[client_data]
+                  client_data_firstname_input:
+                    label: Vorname
+                    type: checkbox
+                    default: false
+                    span: storm
+                    cssClass: col-xs-4
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[client_data]
+                  client_data_birthday_input:
+                    label: Geburtstag
+                    type: checkbox
+                    default: false
+                    span: storm
+                    cssClass: col-xs-4
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[client_data]
+                  client_data_address_input:
+                    label: Anschrift
+                    type: checkbox
+                    default: false
+                    span: storm
+                    cssClass: col-xs-4
+                    span: right
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[client_data]
+                  client_data_phone_input:
+                    label: Telefon / Mobil
+                    type: checkbox
+                    default: false
+                    span: storm
+                    cssClass: col-xs-4
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[client_data]
+                  client_data_email_input:
+                    label: E-Mail
+                    type: checkbox
+                    default: false
+                    span: storm
+                    cssClass: col-xs-4
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[client_data]                  
+
+                  # TEXT INPUT
                   text_input:
                     label: Text
                     type: text
@@ -655,3 +721,21 @@ form:
                       action: show
                       field: type_input
                       condition: value[radiobox]
+
+                  # HEADER with margin top
+                  header_with_margintop:
+                    label: Überschrift (mit Abstand oben)
+                    type: text
+                    trigger:
+                      action: show
+                      field: type_input
+                      condition: value[header_with_margintop]
+
+                  # Trennlinie
+                      type: text # hier direkt partial verwenden ?
+                      label: Trennlinie
+                      trigger:
+                        action: show
+                        field: type_input
+                        condition: value[devider]
+

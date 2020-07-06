@@ -1,11 +1,12 @@
 [viewBag]
 ==
-<div class="col-12">
-    <p>{{ question.checkbox_question_input }}</p>
+<div class="col-12 ml-4">
+    <!-- <p>{{ question.checkbox_question_input }}</p> -->
+    <h6>{{ question.checkbox_question_input }}</h6>
 
     {% for answering_option in question.checkbox_answering_options %}
         <div class="row align-items-center">
-            <div class="col-6">
+            <div class="col-5  mt-3">
                 <div class="custom-control custom-checkbox">
                     <input
                         type="checkbox"
@@ -25,7 +26,7 @@
             {% if answering_option.description_if_checked %}
             <div class="col-6">
                 <input
-                    class="form-control"
+                    class="form-control form-control"
                     type="text"
                     id="question-{{question_id}}-option-{{loop.index0}}-textinput"
                     name="question-{{question_id}}-option-{{loop.index0}}-textinput"
