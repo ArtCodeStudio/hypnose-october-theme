@@ -9,6 +9,10 @@
                 <span class="nav-link">
                     {{ item.title }}
                 </span>
+            {% elseif item.items %}
+                <span rv-on-click="onItemClick" class="nav-link">
+                    {{ item.title }}
+                </span>
             {% else %}
                 <a rv-on-click="onItemClick" class="nav-link" href="{{ item.url }}">
                     {{ item.title }}

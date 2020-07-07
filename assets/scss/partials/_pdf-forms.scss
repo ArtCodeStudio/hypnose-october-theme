@@ -1,5 +1,12 @@
 .pdf-forms {
   bs4-accordion .accordion .card .card-header {
     @extend h2;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  label {
+    &:not(.custom-control-label) {
+      margin-left: 12px;
+    }
   }
 }

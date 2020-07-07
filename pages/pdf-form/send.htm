@@ -1,10 +1,135 @@
 title = "PDF Formular Send"
-url = "/pdf-formular-send"
+url = "/pdf-form/send"
 layout = "pdf-form"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
 contentType = "html"
 force_show = 0
+==
+<?php
+use Cms\Classes\MediaViewHelper;
+use Cms\Classes\CmsException;
+
+function onStart() {
+    
+    /**
+     * Set the global twig variables so that this page also works over a normal call
+     */
+    $values = post();
+    $this['data'] = $values;
+    $this['pdf_forms'] = $this->theme->pdf_forms;
+}
+
+function onEnd() {
+    $value = post();
+    var_dump($value);
+    /**
+     * Get loader and twig from controller
+     * @see https://github.com/octobercms/october/blob/master/modules/cms/classes/Controller.php
+     */
+    $twig = $this->controller->getTwig();
+    $loader = $this->controller->getLoader();
+    
+    /**
+     * Twig variables
+     * Global twig variables as october would pass this to twig.
+     * And additional variables like the post data and the questionairies
+     * @see https://github.com/octobercms/october/blob/master/modules/cms/classes/Controller.php#L307
+     */
+    $renderVars = ['this' => $this, 'data' => $value, 'pdf_forms' => $this->theme->pdf_forms];
+    
+    /**
+     * Render the page
+     * @see https://github.com/octobercms/october/blob/master/modules/cms/classes/Controller.php#L417
+     */
+    CmsException::mask($this->page, 400);
+    $loader->setObject($this->page);
+    $template = $twig->loadTemplate($this->page->getFilePath());
+    $pageContents = $template->render($renderVars);
+    CmsException::unmask(); 
+    
+
+    /**
+     * Render the layout
+     * @see https://github.com/octobercms/october/blob/master/modules/cms/classes/Controller.php#L427
+     */
+    CmsException::mask($this->layout, 400);
+    $loader->setObject($this->layout);
+    $template = $twig->loadTemplate($this->layout->getFilePath());
+    $result = $template->render($renderVars);
+    CmsException::unmask();
+    
+     
+    /**
+     * WORKAROUND
+     * Normally october takes care of rendering the page with the layout, but I haven't figured out how to do this using the php code.
+     *
+     * Append the rendered page to the body of the rendered layout
+     */
+    $renderedLayout = $twig->render($template, $renderVars);
+    $bodyPos = strpos($renderedLayout, "</body>");
+    $pageHtml = substr_replace($renderedLayout, $pageContents, $bodyPos - 1, 0);
+
+
+    $header = $this->controller->renderPartial("pdf-form/header.htm", ['this' => $this, 'data' => $value, 'pdf_forms' => $this->theme->pdf_forms, 'choosenForm'=> "Hypnose"]);
+    $footer = $this->controller->renderPartial("pdf-form/footer.htm", ['this' => $this, 'data' => $value, 'pdf_forms' => $this->theme->pdf_forms, 'choosenForm'=> "Hypnose"]);
+    
+
+    /**
+     * Generate the pdf
+     */
+    $pdf = SnappyPDF::loadHTML($pageHtml)
+    ->setOption('margin-left', 0)
+    ->setOption('margin-right', 0)
+    ->setOption('header-html', $header)
+    ->setOption('footer-html', $footer)
+    ->setPaper('a4');
+    
+    $data = array(
+        'secret' => "0x81e3FC7577eD7aeff2a1842f267a5cc529487AAa",
+        'response' => $value['h-captcha-response']
+    );
+
+    $verify = curl_init();
+    curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
+    curl_setopt($verify, CURLOPT_POST, true);
+    curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($verify);
+    $responseData = json_decode($response);
+    
+    if(!$responseData->success) {
+        $this->page['result'] = "Fehler beim Captcha";
+        throw new AjaxException([
+            'error' => 'Fehler beim Captcha'
+        ]);
+    } 
+    
+    $buildOwnerMessage = function ($message) use ($values) {
+        $admin_mail = $this->theme->contact_admin_mail;
+        $admin_name = $this->theme->contact_admin_name;
+        $message->to($admin_mail, $admin_name);
+        $message->attach($pdf->output());
+
+        if(isset($from)) {
+            $message->subject("Neue Anfrage von " . $from);
+        } else {
+            $message->subject("Neue Anfrage ");
+        }
+    };
+    
+    
+    Mail::send('questionaire-owner', [], $buildOwnerMessage);
+
+    //for($value in $value
+
+    /**
+     * Return the generated pdf as the page response
+     */
+    return "erfolg";
+
+}
+?>
 ==
 {% partial 'pdf-form/pdf' %}

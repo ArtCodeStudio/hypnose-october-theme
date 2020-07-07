@@ -1,10 +1,11 @@
-<div class="col-12 ml-4">
-    <h6 class="question-text">{{ question.scale_input }}</h6>
+<div class="col-12">
+    <span class="question-text">{{ question.scale_input }}</span>
     <div class='scale-input-container'>
         <!-- <p class="question-text">{{ question.scale_input }}</p> -->
 
         <div class="input-frame">
-            <input class="form-control scale-input"  name="question-{{question_id}}" type="range" min="1" max="10" steps="1" value="1">
+            <input class="form-control scale-input" name="question-{{question_id}}" type="range" min="1" max="10"
+                steps="1" value="1">
         </div>
         <ul class="range-labels">
             <li>1</li>
@@ -17,7 +18,7 @@
             <li>8</li>
             <li>9</li>
             <li>10</li>
-          </ul>
+        </ul>
 
     </div>
 

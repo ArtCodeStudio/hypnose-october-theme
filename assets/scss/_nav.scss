@@ -3,19 +3,21 @@
     > .nav-link {
       color: $link-hover-color;
     }
-    
+  }
+  .nav-link {
+    cursor: pointer;
   }
 }
 
-.sidebar-container>.nav-item>.nav-link {
-    font-size: 1.5rem;  
+.sidebar-container > .nav-item > .nav-link {
+  font-size: 1.5rem;
 }
 
-.dropdown-toggle::after { 
+.dropdown-toggle::after {
   float: right;
 }
 
-.sidebar-container>.nav-item>.open::after {
+.sidebar-container > .nav-item > .open::after {
   transform: rotate(180deg);
 }
 .nav-link::after {

@@ -9,23 +9,23 @@
     <div class="row my-4 type-{{ question.type_input }}">
         {% set question_id = loop.index0 %}
         {% if question.type_input == 'client_data' %}
-            {% partial 'pdf-form/pdf-client-data-name-input' question=question data=data question_id=question_id %}
+        {% partial 'pdf-form/pdf-client-data-name-input' question=question data=data question_id=question_id %}
         {% elseif question.type_input == 'radiobox' %}
-            {% partial 'pdf-form/pdf-radioboxes' question=question data=data question_id=question_id %}
+        {% partial 'pdf-form/pdf-radioboxes' question=question data=data question_id=question_id %}
         {% elseif question.type_input == 'checkbox' %}
-            {% partial 'pdf-form/pdf-checkboxes' question=question data=data question_id=question_id %}
+        {% partial 'pdf-form/pdf-checkboxes' question=question data=data question_id=question_id %}
         {% elseif question.type_input == 'description' %}
-            {% partial 'pdf-form/pdf-description' question=question data=data question_id=question_id %}
+        {% partial 'pdf-form/pdf-description' question=question data=data question_id=question_id %}
         {% elseif question.type_input == 'text' %}
-            {% partial 'pdf-form/pdf-text' question=question data=data question_id=question_id %}
+        {% partial 'pdf-form/pdf-text' question=question data=data question_id=question_id %}
         {% elseif question.type_input == 'text_area' %}
-            {% partial 'pdf-form/pdf-text-area' question=question data=data question_id=question_id %}
+        {% partial 'pdf-form/pdf-text-area' question=question data=data question_id=question_id %}
         {% elseif question.type_input == 'scale_input' %}
-            {% partial 'pdf-form/pdf-scale-input' question=question data=data question_id=question_id %}
+        {% partial 'pdf-form/pdf-scale-input' question=question data=data question_id=question_id %}
         {% elseif question.type_input == 'header_with_margintop' %}
-            {% partial 'pdf-form/pdf-header-with-margintop' question=question data=data question_id=question_id %}
+        {% partial 'pdf-form/pdf-header-with-margintop' question=question data=data question_id=question_id %}
         {% elseif question.type_input == 'devider' %}
-            {% partial 'pdf-form/pdf-devider' question=question data=data question_id=question_id %}
+        {% partial 'pdf-form/pdf-devider' question=question data=data question_id=question_id %}
         {% endif %}
     </div>
     {% endfor %}

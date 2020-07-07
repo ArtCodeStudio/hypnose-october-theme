@@ -5,13 +5,11 @@ snippetCode = "pdf-forms"
 snippetName = "PDF Forms"
 ==
 <style>
-
-    textarea {
-        width: 100%;
-        min-height: 100px;
-        resize: vertical;
-    }
-
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+  }
 </style>
 
 <div class="container pdf-forms">
@@ -19,63 +17,61 @@ snippetName = "PDF Forms"
     <div class="col-12">
       <bs4-accordion collapse-icon-src="{{ 'assets/iconset/arrow_carrot.svg' | theme }}" collapse-icon-size="38">
         {% for form in this.theme.pdf_forms  %}
-            <template title="{{ form.questionary_name }}">
-              <hpn-form               
-              hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967"
-              hcaptcha-size="invisible"
-              rv-show-toast-on-submit-success="{'message': '{ toast.$event.detail.message }', 'delay': 20000, 'contextualClass': 'dark'}"
-              rv-show-toast-on-submit-error="{'message': 'Nachricht konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'delay': 20000}"
-              rv-show-toast-on-validation-error="{'message': 'Bitte überprüfen Sie ihre Eingaben', 'contextualClass': 'danger', 'delay': 10000}"
-              disable-submit-until-change="true" october-handler="onContactFormSubmit"
-              october-handler="onQuestionSubmit">
-                <form target="_blank" method="post" action="/pdf-form/print" {# action="/pdf-form/pdf" #}>
-                    <div class="form-row">
+        <template title="{{ form.questionary_name }}">
+          <hpn-form hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967" hcaptcha-size="invisible"
+            rv-show-toast-on-submit-success="{'message': '{ toast.$event.detail.message }', 'delay': 20000, 'contextualClass': 'dark'}"
+            rv-show-toast-on-submit-error="{'message': 'Nachricht konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'delay': 20000}"
+            rv-show-toast-on-validation-error="{'message': 'Bitte überprüfen Sie ihre Eingaben', 'contextualClass': 'danger', 'delay': 10000}"
+            disable-submit-until-change="true" october-handler="none">
+            <form target="_blank" method="post" action="/pdf-form/print">
+              <div class="form-row">
 
-                      <div class="col-12">
-                        {% for question in form.questions %}
-                          <div class="row  type-{{ question.type_input }}">
-                            {% set question_id = loop.index0 %}
-                            {% set loop_id = 0 %}
-
-                            {% if question.type_input == 'client_data' %}
-                                {% partial 'pdf-form/user-client-data-name-input' question=question question_id=question_id %}
-                            {% elseif question.type_input == 'radiobox' %}
-                                {% partial 'pdf-form/user-radioboxes' question=question question_id=question_id %}
-                            {% elseif question.type_input == 'checkbox' %}
-                                {% partial 'pdf-form/user-checkboxes' question=question question_id=question_id %}
-                            {% elseif question.type_input == 'description' %}
-                                {% partial 'pdf-form/user-description' question=question question_id=question_id %}
-                            {% elseif question.type_input == 'text' %}
-                                {% partial 'pdf-form/user-text' question=question question_id=question_id %}
-                            {% elseif question.type_input == 'text_area' %}
-                                {% partial 'pdf-form/user-text-area' question=question question_id=question_id %}
-                            {% elseif question.type_input == 'scale_input' %}
-                                {% partial 'pdf-form/user-scale-input' question=question question_id=question_id %}
-                            {% elseif question.type_input == 'header_with_margintop' %}
-                                {% partial 'pdf-form/user-header-with-margintop' question=question data=data question_id=question_id %}
-                            {% elseif question.type_input == 'devider' %}
-                                {% partial 'pdf-form/user-devider' question=question data=data question_id=question_id %}
-                            {% endif %}
-
-                          </div>
-                        {% endfor %}
-                        <div class="h-captcha-container">
-                          <p>
-                            <small>Diese Seite ist durch hCaptcha geschützt. hCaptcha's
-                              <a href="https://hcaptcha.com/privacy">Datenschutzerklärung</a> und
-                              <a href="https://hcaptcha.com/terms">allgemeinen Geschäftsbedingungen</a> sind anzuwenden.
-                            </small>
-                          </p>
-                        </div>
-                        <button class="btn btn-primary" rv-on-click="print" style="min-width:150px;">Ausdrucken</button>
-                        <button class="btn btn-primary" rv-on-click="send" style="min-width:150px;">An Hypnose senden</button>
-                        <button class="btn btn-primary" type="submit" formaction="/pdf-form/pdf" style="min-width:150px;">Als PDF öffnen</button>
-
-                      </div>
+                <div class="col-12">
+                  {% for question in form.questions %}
+                  <div class="type-{{ question.type_input }}">
+                    {% set question_id = loop.index0 %}
+                    {% set loop_id = 0 %}
+                    <div class="row mt-4">
+                      {% if question.type_input == 'client_data' %}
+                      {% partial 'pdf-form/user-client-data-name-input' question=question question_id=question_id %}
+                      {% elseif question.type_input == 'radiobox' %}
+                      {% partial 'pdf-form/user-radioboxes' question=question question_id=question_id %}
+                      {% elseif question.type_input == 'checkbox' %}
+                      {% partial 'pdf-form/user-checkboxes' question=question question_id=question_id %}
+                      {% elseif question.type_input == 'description' %}
+                      {% partial 'pdf-form/user-description' question=question question_id=question_id %}
+                      {% elseif question.type_input == 'text' %}
+                      {% partial 'pdf-form/user-text' question=question question_id=question_id %}
+                      {% elseif question.type_input == 'text_area' %}
+                      {% partial 'pdf-form/user-text-area' question=question question_id=question_id %}
+                      {% elseif question.type_input == 'scale_input' %}
+                      {% partial 'pdf-form/user-scale-input' question=question question_id=question_id %}
+                      {% elseif question.type_input == 'header_with_margintop' %}
+                      {% partial 'pdf-form/user-header-with-margintop' question=question data=data question_id=question_id %}
+                      {% elseif question.type_input == 'devider' %}
+                      {% partial 'pdf-form/user-devider' question=question data=data question_id=question_id %}
+                      {% endif %}
                     </div>
-                </form>
-              </hpn-form>
-            </template>
+                  </div>
+                  {% endfor %}
+                  <div class="h-captcha-container">
+                    <p>
+                      <small>Diese Seite ist durch hCaptcha geschützt. hCaptcha's
+                        <a href="https://hcaptcha.com/privacy">Datenschutzerklärung</a> und
+                        <a href="https://hcaptcha.com/terms">allgemeinen Geschäftsbedingungen</a> sind anzuwenden.
+                      </small>
+                    </p>
+                  </div>
+                  <button class="btn btn-primary" rv-on-click="print" style="min-width:150px;">Ausdrucken</button>
+                  <button class="btn btn-primary" rv-on-click="send" style="min-width:150px;">An Hypnose senden</button>
+                  <button class="btn btn-primary" type="submit" formaction="/pdf-form/pdf" style="min-width:150px;">Als
+                    PDF öffnen</button>
+
+                </div>
+              </div>
+            </form>
+          </hpn-form>
+        </template>
         {% endfor %}
       </bs4-accordion>
     </div>

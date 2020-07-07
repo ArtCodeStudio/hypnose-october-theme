@@ -5,26 +5,28 @@ snippetName = "All personal reports"
 <div class="container all-personal-reports personal-report">
   <div class="row">
     {% for report in this.theme.personal_reports  %}
-      <div class="personal-report-col col-12 my-5 p-4 rounded-lg bg-white">
-        <h3 class="title ml-3 mt-2 mb-4">{{ report.title }}</h3>
-        {% if report.quote | striptags | length > 500 %}
-          <div class="excerpt ml-3 mt-2 mb-4" rv-assign-show-full-quote-{{ loop.index0 }}="false">
-            <p>
-              „
-              <span rv-hide="showFullQuote{{ loop.index0 }}">{{ report.quote | striptags | slice(0, 500) }} ...</span>
-              <span rv-show="showFullQuote{{ loop.index0 }}">{{ report.quote | raw }}</span>
-              “
-            </p>
-            <bs4-icon rv-hide="showFullQuote{{ loop.index0 }}" src="{{ 'assets/iconset/icon_plus.svg' | theme }}" size="32" rv-toggle-on-click="'showFullQuote{{ loop.index0 }}'"></bs4-icon>
-            <bs4-icon rv-show="showFullQuote{{ loop.index0 }}" src="{{ 'assets/iconset/icon_minus.svg' | theme }}" size="32" rv-toggle-on-click="'showFullQuote{{ loop.index0 }}'"></bs4-icon>
-          </div>
-        {% else %}
-          <div class="quote ml-3 mt-2 mb-4">
-            <p>„{{ report.quote | raw }}“</p>
-          </div>
-        {% endif %}
+    {% set variableName = 'showFullQuote' ~ loop.index0 %}
+    <div class="personal-report-col col-12 my-5 p-4 rounded-lg bg-white">
+      <h3 class="title ml-3 mt-2 mb-4">{{ report.title }}</h3>
+      {% if report.quote | striptags | length > 500 %}
+      <div class="excerpt ml-3 mt-2 mb-4" rv-assign="{'{{ variableName }}': false}">
+        <p>
+          „
+          <span rv-hide="{{ variableName }}">{{ report.quote | striptags | slice(0, 500) }} ...</span>
+          <span rv-show="{{ variableName }}">{{ report.quote | raw }}</span>
+          “
+        </p>
+        <bs4-icon rv-hide="{{ variableName }}" src="{{ 'assets/iconset/icon_plus.svg' | theme }}" size="32"
+          rv-toggle-on-click="'{{ variableName }}'"></bs4-icon>
+        <bs4-icon rv-show="{{ variableName }}" src="{{ 'assets/iconset/icon_minus.svg' | theme }}" size="32"
+          rv-toggle-on-click="'{{ variableName }}'"></bs4-icon>
       </div>
+      {% else %}
+      <div class="quote ml-3 mt-2 mb-4">
+        <p>„{{ report.quote | raw }}“</p>
+      </div>
+      {% endif %}
+    </div>
     {% endfor %}
   </div>
 </div>
-  

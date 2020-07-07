@@ -305,8 +305,10 @@ items:
                 title: Geburtstrauma
                 nesting: '0'
                 type: static-page
+                url: ''
                 code: ''
                 reference: anwendungsgebiete-geburtstrauma
+                cmsPage: ''
                 replace: '0'
                 viewBag:
                     isHidden: '0'
@@ -617,13 +619,11 @@ items:
                 title: Fragebögen
                 nesting: '0'
                 type: static-page
-                url: ''
                 code: ''
                 reference: kontakt-fragebogen
-                cmsPage: ''
                 replace: '0'
                 viewBag:
-                    isHidden: '0'
+                    isHidden: '1'
                     cssClass: ''
                     isExternal: '0'
             -

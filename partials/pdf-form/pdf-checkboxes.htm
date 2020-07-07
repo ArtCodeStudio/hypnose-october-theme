@@ -4,7 +4,7 @@
     <p>{{ question.checkbox_question_input }}</p>
 
     {% for answering_option in question.checkbox_answering_options %}
-        <div class="row">
+        <div class="row align-items-center">
             {% set key = 'question-' ~ question_id ~ '-option-' ~ loop.index0 %}
             <div class="col-6">
                 <div class="checkbox-container">

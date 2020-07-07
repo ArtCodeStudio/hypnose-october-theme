@@ -1,38 +1,28 @@
 [viewBag]
 ==
-<div class="col-12 ml-4">
+<div class="col-12">
     <!-- <p>{{ question.checkbox_question_input }}</p> -->
-    <h6>{{ question.checkbox_question_input }}</h6>
+    <span>{{ question.checkbox_question_input }}</span>
 
     {% for answering_option in question.checkbox_answering_options %}
-        <div class="row align-items-center">
-            <div class="col-5  mt-3">
-                <div class="custom-control custom-checkbox">
-                    <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="question-{{question_id}}-option-{{loop.index0}}"
-                        name="question-{{question_id}}-option-{{loop.index0}}"
-                    />
-                    <label
-                        class="custom-control-label"
-                        for="question-{{question_id}}-option-{{loop.index0}}"
-                    >
-                        {{answering_option.answer_input}}
-                    </label>
-                </div>
+    <div class="row align-items-center my-2">
+        <div class="col-6">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="question-{{question_id}}-option-{{loop.index0}}"
+                    name="question-{{question_id}}-option-{{loop.index0}}" />
+                <label class="custom-control-label" for="question-{{question_id}}-option-{{loop.index0}}">
+                    {{answering_option.answer_input}}
+                </label>
             </div>
-
-            {% if answering_option.description_if_checked %}
-            <div class="col-6">
-                <input
-                    class="form-control form-control"
-                    type="text"
-                    id="question-{{question_id}}-option-{{loop.index0}}-textinput"
-                    name="question-{{question_id}}-option-{{loop.index0}}-textinput"
-                />
-            </div>
-            {% endif %}
         </div>
+
+        {% if answering_option.description_if_checked %}
+        <div class="col-6">
+            <input class="form-control" type="text"
+                id="question-{{question_id}}-option-{{loop.index0}}-textinput"
+                name="question-{{question_id}}-option-{{loop.index0}}-textinput" />
+        </div>
+        {% endif %}
+    </div>
     {% endfor %}
 </div>

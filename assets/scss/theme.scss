@@ -5,9 +5,6 @@
 
 @import "bootstrap";
 
-
-
-
 // Bootstrap style extensions from @ribajs/bs4
 @import "./vendors/@ribajs/core/index";
 @import "./vendors/@ribajs/bs4/index";
@@ -41,5 +38,3 @@
 
 // third party
 @import "./third-party/pdfjs";
-
-

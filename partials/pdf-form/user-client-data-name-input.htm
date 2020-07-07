@@ -1,80 +1,47 @@
-<div class="col-6">
- 
-    {% if question.client_data_name_input %}
-        <div class="mt-4">
-            <!-- <label class="ml-4">Name:</label> -->
-            <h6 class="ml-4">Name:</h6>
-            <input
-                class="form-control form-control"
-                type="text"
-                id="question-{{question_id}}-name"
-                name="question-{{question_id}}-name"
-            />
-        </div>
-    {% endif %}
+{% if question.client_data_name_input %}
+<div class="col-6 mt-4">
+    <label for="question-{{ question_id }}-foobar">Name:</label>
+    <input class="form-control" autocomplete="family-name" type="text" id="question-{{question_id}}-name"
+        name="question-{{question_id}}-name" />
+</div>
+{% endif %}
 
-    {% if question.client_data_firstname_input %}
-        <div class="mt-4">
-            <!-- <label class="ml-4">Vorname:</label> -->
-            <h6 class="ml-4">Vorname:</h6>
-            <input
-                class="form-control form-control"
-                type="text"
-                id="question-{{question_id}}-firstname"
-                name="question-{{question_id}}-firstname"
-            />
-        </div>
-    {% endif %}
+{% if question.client_data_firstname_input %}
+<div class="col-6 mt-4">
+    <label for="question-{{ question_id }}-foobar">Vorname:</label>
+    <input class="form-control" autocomplete="given-name" type="text"
+        id="question-{{question_id}}-firstname" name="question-{{question_id}}-firstname" />
+</div>
+{% endif %}
 
-    {% if question.client_data_birthday_input %}
-    <div class="mt-4">
-        <!-- <label class="ml-4">Geburtstag:</label> -->
-        <h6 class="ml-4">Geburtstag:</h6>
-        <input
-            class="form-control form-control"
-            type="text"
-            id="question-{{question_id}}-birthshday"
-            name="question-{{question_id}}-birthshday"
-        />
-    </div>
-    {% endif %}
+{% if question.client_data_birthday_input %}
+<div class="col-6 mt-4">
+    <label for="question-{{ question_id }}-foobar">Geburtstag:</label>
+    <input class="form-control" type="date" id="question-{{question_id}}-birthshday"
+        name="question-{{question_id}}-birthshday" />
+</div>
+{% endif %}
 
-    {% if question.client_data_address_input %}
-    <div class="mt-4">
-        <!-- <label class="ml-4">Anschrift:</label> -->
-        <h6 class="ml-4">Anschrift:</h6>
-        <input
-            class="form-control form-control"
-            type="text"
-            id="question-{{question_id}}-address"
-            name="question-{{question_id}}-address"
-        />
-    </div>
-    {% endif %}
+{% if question.client_data_address_input %}
+<div class="col-6 mt-4">
+    <label for="question-{{ question_id }}-foobar">Anschrift:</label>
+    <input class="form-control" type="text" id="question-{{question_id}}-address"
+        name="question-{{question_id}}-address" />
+</div>
+{% endif %}
 
-    {% if question.client_data_phone_input %}
-    <div class="mt-4">
-        <!-- <label class="ml-4">Telefon / Mobil:</label> -->
-        <h6 class="ml-4">Telefon / Mobil:</h6>
-        <input
-            class="form-control form-control"
-            type="text"
-            id="question-{{question_id}}-phone"
-            name="question-{{question_id}}-phone"
-        />
-    </div>
-    {% endif %}
+{% if question.client_data_phone_input %}
+<div class="col-6 mt-4">
+    <label for="question-{{ question_id }}-foobar">Telefon / Mobil:</label>
+    <input class="form-control" type="tel" id="question-{{question_id}}-phone"
+        name="question-{{question_id}}-phone" />
+</div>
+{% endif %}
 
-    {% if question.client_data_email_input %}
-    <div class="mt-4">
-        <!-- <label class="ml-4">E-Mail:</label> -->
-        <h6 class="ml-4">E-Mail:</h6>
-        <input
-            class="form-control form-control"
-            type="text"
-            id="question-{{question_id}}-email"
-            name="question-{{question_id}}-email"
-        />
-    </div>
-    {% endif %}
-</div>  
+{% if question.client_data_email_input %}
+<div class="col-6 mt-4">
+    <label for="question-{{ question_id }}-foobar">E-Mail:</label>
+    <input class="form-control" type="email" id="question-{{question_id}}-email"
+        name="question-{{question_id}}-email" />
+</div>
+{% endif %}

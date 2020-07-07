@@ -532,7 +532,7 @@ form:
         label: PDF Forms
         type: repeater
         tab: PDF Forms
-        # titleFrom: questionaries
+      # titleFrom: questionaries
         collapsed: true
         prompt: Fragebogen Hinzufügen
         form:
@@ -540,11 +540,11 @@ form:
             questionary_name:
               label: Fragebogen Name
               type: text
-            # REPEATABLE QUESTIONS
+          # REPEATABLE QUESTIONS
             questions:
               label: Fragebogen Elemente
               type: repeater
-              # titleFrom: title_when_collapsed
+            # titleFrom: title_when_collapsed
               prompt: Element Hinzufügen
               form:
                 fields:
@@ -552,7 +552,7 @@ form:
                     label: Title
                     type: text
                     comment: Collapse title
-                  # CHECKBOXES (selector for desired input)
+                # CHECKBOXES (selector for desired input)
                   type_input:
                     label: Type
                     type: dropdown
@@ -564,12 +564,12 @@ form:
                       checkbox: Checkbox # CHECKBOX
                       scale_input: Skala 1-10 # SCALE INPUT
                       radiobox: Radio Box # OPTION / Ja oder Nein auswahl
-                      header_with_margintop: Überschrift (mit Abstand oben) # HEADER with margin top
+                      header_with_margintop: Überschrift # HEADER with margin top
                       devider: Trennlinie # Trennlinie
 
-                  #--------------------------------------------
+                #--------------------------------------------
 
-                  # BESCHREIBUNG
+                # BESCHREIBUNG
                   description_input:
                     label: Beschreibung (Formatierter Text)
                     type: richeditor
@@ -580,7 +580,7 @@ form:
                       field: type_input
                       condition: value[description]
 
-                  #CLIENT DATA
+                #CLIENT DATA
                   client_data_name_input:
                     label: Name
                     type: checkbox
@@ -724,13 +724,21 @@ form:
 
                   # HEADER with margin top
                   header_with_margintop:
-                    label: Überschrift (mit Abstand oben)
+                    label: Überschrift
                     type: text
                     trigger:
                       action: show
                       field: type_input
                       condition: value[header_with_margintop]
-
+                    
+                    # margin_top_if_checked:
+                    #   label: Abstand nach Oben
+                    #   type: checkbox
+                    #   trigger:
+                    #     action: show
+                    #     field: type_input
+                    #     condition: value[header_with_margintop]
+                        
                   # Trennlinie
                       type: text # hier direkt partial verwenden ?
                       label: Trennlinie

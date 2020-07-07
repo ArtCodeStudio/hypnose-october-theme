@@ -25,6 +25,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     onItemClick: this.onItemClick,
     isCollapsed: true,
     collapseSelector: ".nav-item-level-2-wrapper",
+    parentSelector: ".open",
     showOnHoverClass: "show-on-hover",
     hideOnHoverClass: "hide-on-hover",
   };
@@ -43,14 +44,24 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
         return console.warn("Target not found!");
       }
       const parent = target.parentNode as HTMLElement;
-      if (target && this.pjax) {
+      if (this.pjax) {
         event.preventDefault();
+        event.stopImmediatePropagation();
+        event.stopPropagation();
 
         // If this element has childs toggle the menu
-        if (parent.classList.contains("nav-item-level-1-with-childs")) {
-          this.show();
-        } else {
-          this.hide();
+        if (
+          parent.classList.contains("nav-item-level-1-with-childs") ||
+          target.classList.contains("nav-item-level-1-with-childs")
+        ) {
+          if (parent.classList.contains("open")) {
+            this.hide();
+          } else {
+            this.hideAllActive();
+            parent.classList.add("open");
+            this.show();
+          }
+          return;
         }
 
         let url = target.href;
@@ -60,11 +71,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
             url = target.pathname + target.search;
           }
 
-          if (parent.classList.contains("active")) {
-            this.toggle();
-            return;
-          }
-
+          this.hide();
           this.pjax.goTo(url);
         }
       }
@@ -76,10 +83,12 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
   }
 
   public show(event?: Event) {
+    this.setMenuHeight();
     super.show(event);
   }
 
   public hide(event?: Event) {
+    this.hideAllActive();
     super.hide(event);
   }
 
@@ -107,6 +116,15 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     });
   }
 
+  protected hideAllActive() {
+    const collapseElements = this.el.querySelectorAll<HTMLElement>(
+      this.scope.parentSelector
+    );
+    collapseElements.forEach((collapseElement) => {
+      collapseElement.classList.remove("open");
+    });
+  }
+
   protected removeAllOnHoverClasses() {
     const collapseElements = this.el.querySelectorAll<HTMLElement>(
       this.scope.collapseSelector
@@ -119,7 +137,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
   protected getHighestCollapseElementHeight() {
     let highest = 0;
     const collapseElements = this.el.querySelectorAll<HTMLElement>(
-      this.scope.collapseSelector
+      this.scope.parentSelector + " " + this.scope.collapseSelector
     );
     if (collapseElements) {
       collapseElements.forEach((collapseElement) => {
@@ -177,7 +195,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     this.pjax = Pjax.getInstance("main");
     window.onscroll = (event: Event) => {
       if (!this.scope.isCollapsed) {
-        super.hide(event);
+        this.hide(event);
       }
     };
 
@@ -185,7 +203,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     window.onclick = (event: Event) => {
       if (!this.scope.isCollapsed && !this.el.contains(event.target as Node)) {
         console.log(event);
-        super.hide(event);
+        this.hide(event);
       }
     };
     return;

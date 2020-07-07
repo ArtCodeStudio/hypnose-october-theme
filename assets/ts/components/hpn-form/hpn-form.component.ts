@@ -3,7 +3,7 @@ import {
   HCaptchaFormComponent,
   Scope as OcFormScope,
 } from "@ribajs/octobercms/src/components/hcaptcha-oc-form/hcaptcha-oc-form.component";
-import { HttpService } from "../../../../../../../riba/packages/core/src";
+import { HttpService } from "@ribajs/core";
 
 interface Scope extends OcFormScope {
   print: HpnFormComponent["print"];
@@ -37,16 +37,19 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     super(element);
   }
 
-  public send() {
+  public send(event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    const data = new FormData(this.formEl);
+    console.log("hjsrhsehsaeh");
     if (this.scope.hcaptchaSize === "invisible") {
       this.scope.submitDisabled = true;
       (window as any).hcaptcha.execute(this.widgetID);
     }
-    return;
-    HttpService.post("/pdf-form/send", data);
+  }
+
+  protected hcaptchaComplete(): boolean {
+    const data = new FormData(this.formEl);
+    HttpService.post("/pdf-form/send", data, "form");
   }
 
   public print(event: Event) {
@@ -56,8 +59,11 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     event.stopPropagation();
 
     const data = new FormData(this.formEl);
+    for (const [key, value] of data.entries()) {
+      console.log(key, value);
+    }
 
-    HttpService.post("/pdf-form/print", data).then((res) => {
+    HttpService.post("/pdf-form/print", data, "form").then((res) => {
       console.log(res);
       const pdfFile = new Blob([res], {
         type: "text/html",
