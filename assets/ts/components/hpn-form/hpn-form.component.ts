@@ -12,7 +12,7 @@ interface Scope extends OcFormScope {
 
 export class HpnFormComponent extends HCaptchaFormComponent {
   public static tagName = "hpn-form";
-  public _debug = true;
+  public _debug = false;
   protected autobind = true;
 
   protected pjax?: Pjax;
@@ -20,8 +20,8 @@ export class HpnFormComponent extends HCaptchaFormComponent {
   static get observedAttributes() {
     return HCaptchaFormComponent.observedAttributes;
   }
-  static get requiredAttributes(): string[] {
-    return HCaptchaFormComponent.requiredAttributes;
+  protected requiredAttributes(): string[] {
+    return super.requiredAttributes();
   }
 
   protected getDefaultScope(): Scope {
@@ -49,13 +49,50 @@ export class HpnFormComponent extends HCaptchaFormComponent {
 
   protected hcaptchaComplete(): boolean {
     return true;
-    const data = new FormData(this.formEl);
-    HttpService.post("/pdf-form/send", data, "form");
-    return false;
+    // const data = new FormData(this.formEl);
+    // HttpService.post("/pdf-form/send", data, "form");
+    // return false;
   }
 
   protected onSuccessSubmit(status: string, message: string, response: any) {
     this.debug("onSuccessSubmit", status, message, response);
+  }
+
+  // TODO move to dom utils
+  // see https://code-examples.net/de/q/738440
+  protected getIframeWindow(
+    iframe_object: HTMLIFrameElement
+  ): HTMLIFrameElement["contentWindow"] | null {
+    let doc:
+      | HTMLIFrameElement["contentWindow"]
+      | HTMLIFrameElement["contentDocument"]
+      | null = null;
+
+    if (iframe_object.contentWindow) {
+      return iframe_object.contentWindow;
+    }
+
+    if ((iframe_object as any).window) {
+      return (iframe_object as any).window;
+    }
+
+    if (!doc && iframe_object.contentDocument) {
+      doc = iframe_object.contentDocument;
+    }
+
+    if (!doc && (iframe_object as any).document) {
+      doc = (iframe_object as any).document;
+    }
+
+    if (doc && (doc as any).defaultView) {
+      return (doc as any).defaultView as Window;
+    }
+
+    if (doc && (doc as any).parentWindow) {
+      return (doc as any).parentWindow as Window;
+    }
+
+    return doc as Window | null;
   }
 
   public print(event: Event) {
@@ -65,12 +102,12 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     event.stopPropagation();
 
     // TEST
-    this.debug();
-    super.ajaxSubmit();
-    return;
+    // this.debug();
+    // super.ajaxSubmit();
+    // return;
 
     const data = new FormData(this.formEl);
-    for (const [key, value] of data.entries()) {
+    for (const [key, value] of Object.entries(data)) {
       console.log(key, value);
     }
 
@@ -87,7 +124,8 @@ export class HpnFormComponent extends HCaptchaFormComponent {
       ifrm.style.height = "480px";
       ifrm.onload = () => {
         ifrm.focus();
-        ifrm.contentWindow.print();
+        const iframeWin = this.getIframeWindow(ifrm);
+        iframeWin?.print();
       };
       ifrm.setAttribute("src", pdfUrl);
       document.body.appendChild(ifrm);

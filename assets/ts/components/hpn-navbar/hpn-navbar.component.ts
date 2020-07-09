@@ -36,8 +36,6 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
   }
 
   public onItemClick(event?: Event) {
-    console.log("check");
-
     if (event) {
       const target = event.target as HTMLAnchorElement | null;
       if (!target) {
