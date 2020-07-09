@@ -12,7 +12,7 @@ interface Scope extends OcFormScope {
 
 export class HpnFormComponent extends HCaptchaFormComponent {
   public static tagName = "hpn-form";
-
+  public _debug = true;
   protected autobind = true;
 
   protected pjax?: Pjax;
@@ -48,8 +48,14 @@ export class HpnFormComponent extends HCaptchaFormComponent {
   }
 
   protected hcaptchaComplete(): boolean {
+    return true;
     const data = new FormData(this.formEl);
     HttpService.post("/pdf-form/send", data, "form");
+    return false;
+  }
+
+  protected onSuccessSubmit(status: string, message: string, response: any) {
+    this.debug("onSuccessSubmit", status, message, response);
   }
 
   public print(event: Event) {
@@ -57,6 +63,11 @@ export class HpnFormComponent extends HCaptchaFormComponent {
 
     event.preventDefault();
     event.stopPropagation();
+
+    // TEST
+    this.debug();
+    super.ajaxSubmit();
+    return;
 
     const data = new FormData(this.formEl);
     for (const [key, value] of data.entries()) {

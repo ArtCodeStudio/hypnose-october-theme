@@ -45,15 +45,14 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
       }
       const parent = target.parentNode as HTMLElement;
       if (this.pjax) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        event.stopPropagation();
-
         // If this element has childs toggle the menu
         if (
           parent.classList.contains("nav-item-level-1-with-childs") ||
           target.classList.contains("nav-item-level-1-with-childs")
         ) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          event.stopPropagation();
           if (parent.classList.contains("open")) {
             this.hide();
           } else {
@@ -66,12 +65,12 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
 
         let url = target.href;
 
+        this.hide();
         if (url) {
           if (isAbsoluteUrl(url) && isInternalUrl(url)) {
             url = target.pathname + target.search;
           }
 
-          this.hide();
           this.pjax.goTo(url);
         }
       }

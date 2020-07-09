@@ -2,22 +2,16 @@
   margin-top: 100px;
 
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fcf6f5+0,d5c1c3+100 */
-  background: linear-gradient(to bottom, $body-bg 0%,$primary 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: linear-gradient(to bottom, $body-bg 0%, $primary 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
   .division {
     border-right: solid 3px $warning;
     height: 100%;
   }
   .division-image {
-    bs4-icon, bs4-icon svg {
-      height: 100%;
-      max-height: 100%;
-      width: auto;
-    }
     .division-image-desktop {
-      bs4-icon, bs4-icon svg {
-        min-height: 300px;
-      }
+      width: auto;
+      height: 100%;
     }
     .division-image-mobile {
       max-width: 300px;
@@ -33,7 +27,7 @@
   }
   .nav-item {
     &.active {
-      a{
+      a {
         color: $title-color;
       }
     }
@@ -42,4 +36,3 @@
     }
   }
 }
-

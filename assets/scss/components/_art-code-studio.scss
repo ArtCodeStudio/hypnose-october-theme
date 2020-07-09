@@ -31,7 +31,7 @@
 
 art-code-credits {
   display: block;
-  height: 100px;
+  height: 160px;
 }
 
 .art-code-popup {
@@ -44,7 +44,7 @@ art-code-credits {
     }
     &.visible {
       svg {
-        fill: #ff0040;
+        fill: #b79563;
       }
     }
   }
@@ -52,7 +52,7 @@ art-code-credits {
   .popup {
     width: 284px; //400px;
     max-width: 100%;
-    background-color: #ff0040;
+    background-color: #b79563;
     border-color: transparent;
     border-radius: 0;
     color: black;
@@ -76,6 +76,7 @@ art-code-credits {
   .icon-container {
     transform: translateX(-50%);
     position: absolute;
+    width: max-content;
   }
 
   .show {

@@ -13,12 +13,38 @@ items:
             cssClass: ''
             isExternal: '0'
     -
-        title: FAQ
+        title: Anfahrt
+        nesting: '0'
+        type: static-page
+        url: ''
+        code: ''
+        reference: kontakt-anfahrt
+        cmsPage: ''
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'FAQ - Häufige Fragen'
         nesting: '0'
         type: static-page
         url: ''
         code: ''
         reference: hypnose-faq
+        cmsPage: ''
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Honorar
+        nesting: '0'
+        type: static-page
+        url: ''
+        code: ''
+        reference: zentrum-honorar
         cmsPage: ''
         replace: '0'
         viewBag:
@@ -51,4 +77,13 @@ items:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
+    -
+        title: facebook
+        type: url
+        url: 'https://www.facebook.com/psychosomatische.energetik.hypnose.entspannung/'
+        code: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '1'
 name: footer

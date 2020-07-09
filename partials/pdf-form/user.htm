@@ -22,8 +22,8 @@ snippetName = "PDF Forms"
             rv-show-toast-on-submit-success="{'message': '{ toast.$event.detail.message }', 'delay': 20000, 'contextualClass': 'dark'}"
             rv-show-toast-on-submit-error="{'message': 'Nachricht konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'delay': 20000}"
             rv-show-toast-on-validation-error="{'message': 'Bitte überprüfen Sie ihre Eingaben', 'contextualClass': 'danger', 'delay': 10000}"
-            disable-submit-until-change="true" october-handler="none">
-            <form target="_blank" method="post" action="/pdf-form/print">
+            disable-submit-until-change="true" october-handler="onTest">
+            <form target="_blank" method="post" action="/pdf-form/pdf">
               <div class="form-row">
 
                 <div class="col-12">
