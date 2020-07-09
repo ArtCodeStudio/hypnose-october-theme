@@ -7,12 +7,12 @@ import { HttpService } from "@ribajs/core";
 
 interface Scope extends OcFormScope {
   print: HpnFormComponent["print"];
-  send: HpnFormComponent["send"];
+  // send: HpnFormComponent["send"];
 }
 
 export class HpnFormComponent extends HCaptchaFormComponent {
   public static tagName = "hpn-form";
-  public _debug = false;
+  public _debug = true;
   protected autobind = true;
 
   protected pjax?: Pjax;
@@ -27,7 +27,7 @@ export class HpnFormComponent extends HCaptchaFormComponent {
   protected getDefaultScope(): Scope {
     const scope = super.getDefaultScope() as Partial<Scope>;
     scope.print = this.print;
-    scope.send = this.send;
+    // scope.send = this.send;
     return scope as Scope;
   }
 
@@ -37,26 +37,40 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     super(element);
   }
 
-  public send(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
-    console.log("hjsrhsehsaeh");
-    if (this.scope.hcaptchaSize === "invisible") {
-      this.scope.submitDisabled = true;
-      (window as any).hcaptcha.execute(this.widgetID);
-    }
-  }
+  // public send(event: Event) {
+  //   event.preventDefault();
+  //   event.stopPropagation();
 
-  protected hcaptchaComplete(): boolean {
-    return true;
-    // const data = new FormData(this.formEl);
-    // HttpService.post("/pdf-form/send", data, "form");
-    // return false;
-  }
+  //   if (!this.formEl) {
+  //     console.error("form element not found!");
+  //     return;
+  //   }
 
-  protected onSuccessSubmit(status: string, message: string, response: any) {
-    this.debug("onSuccessSubmit", status, message, response);
-  }
+  //   this.validate(this.formEl, this.scope.form);
+
+  //   if (!this.scope.form.valid) {
+  //     console.info("form not valid", this.scope);
+  //     return;
+  //   }
+
+  //   console.log("hjsrhsehsaeh");
+  //   if (this.scope.hcaptchaSize === "invisible") {
+  //     this.scope.submitDisabled = true;
+  //     (window as any).hcaptcha.execute(this.widgetID);
+  //   }
+  // }
+
+  // protected hcaptchaComplete(): boolean {
+  //   return true;
+  //   // const data = new FormData(this.formEl);
+  //   // HttpService.post("/pdf-form/send", data, "form");
+  //   // return false;
+  // }
+
+  // protected onSuccessSubmit(status: string, message: string, response: any) {
+  //   this.debug("onSuccessSubmit", status, message, response);
+  //   return super.onSuccessSubmit(status, message, response);
+  // }
 
   // TODO move to dom utils
   // see https://code-examples.net/de/q/738440
@@ -96,7 +110,10 @@ export class HpnFormComponent extends HCaptchaFormComponent {
   }
 
   public print(event: Event) {
-    if (!this.formEl) return;
+    if (!this.formEl) {
+      console.error("form element not found!");
+      return;
+    }
 
     event.preventDefault();
     event.stopPropagation();

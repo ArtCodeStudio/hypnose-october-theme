@@ -6,14 +6,12 @@ snippetName = "Contact form"
   <div class="row">
     <div class="col-12">
 
-      <hcaptcha-oc-form 
-        hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967"
-        hcaptcha-size="normal"
+      <hcaptcha-oc-form hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967" hcaptcha-size="normal"
         rv-show-toast-on-submit-success="{'message': '{ toast.$event.detail.message }', 'delay': 20000, 'contextualClass': 'dark'}"
         rv-show-toast-on-submit-error="{'message': 'Nachricht konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'delay': 20000}"
         rv-show-toast-on-validation-error="{'message': 'Bitte überprüfen Sie ihre Eingaben', 'contextualClass': 'danger', 'delay': 10000}"
         disable-submit-until-change="true" october-handler="onContactFormSubmit">
-        <form id="contact-form">
+        <form rv-on-submit="onSubmit" id="contact-form">
 
           {# Ich nehme Kontakt auf, weil #}
           <div class="form-group contact_reasons">
@@ -133,7 +131,7 @@ snippetName = "Contact form"
           </div>
 
           {# Button #}
-          <button rv-on-click="onSubmit" rv-disabled="submitDisabled"
+          <button rv-disabled="submitDisabled"
             class="btn btn-secondary btn-lg h-captcha">Absenden</button>
           <button type="submit" class="d-none"></button>
         </form>

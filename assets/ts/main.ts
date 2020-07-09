@@ -9,7 +9,10 @@ import { bs4Module } from "@ribajs/bs4";
 import { ready } from "@ribajs/utils/src/dom";
 
 // Extra binders
-import { dataScrollPositionYBinder } from "@ribajs/extras/src/binders/data-scroll-position-y.binder";
+import {
+  dataScrollPositionYBinder,
+  syncElementPropertyBinder,
+} from "@ribajs/extras/src/binders/index";
 
 // Custom formatters, binders and components
 import * as CustomFormatters from "./formatters";
@@ -30,7 +33,7 @@ export class Main {
 
     // selected elements from modules
     this.riba.module.regist({
-      binders: { dataScrollPositionYBinder },
+      binders: { dataScrollPositionYBinder, syncElementPropertyBinder },
     });
 
     // Regist custom components

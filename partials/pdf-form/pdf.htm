@@ -1,7 +1,7 @@
 [viewBag]
 ==
-{% set choosedForm = 'Hypnose' %}
-
+{% set key = "questionaireName" %}
+{% set choosedForm = data[key] %}
 {% for form in pdf_forms %}
 {% if form.questionary_name == choosedForm %}
 <div class="container">
@@ -32,6 +32,3 @@
 </div>
 {% endif %}
 {% endfor %}
-
-- verschicken
-- pdf-* schöner stylen

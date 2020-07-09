@@ -14,11 +14,13 @@ code = "footer"
     <div class="col-12 col-md pt-5">
       {{ this.theme.general_opening_hours | raw }}
     </div>
-    <div class="d-none d-lg-flex col-auto division-image">
-      <img class="division-image-desktop" src="{{ 'assets/images/hypnosezentrum-cuxhaven-footer-division.svg' | theme }}"></img>
+    <div rv-sync-element-height="'division-image-desktop'" class="d-none d-lg-flex col-auto division-image">
+      <img class="division-image-desktop" id="division-image-desktop"
+        src="{{ 'assets/images/hypnosezentrum-cuxhaven-footer-division.svg' | theme }}"></img>
     </div>
     <div class="d-flex d-lg-none col-12 division-image">
-      <img class="division-image-mobile" src="{{ 'assets/images/hypnosezentrum-cuxhaven-footer-division-90.svg' | theme }}"></img>
+      <img class="division-image-mobile"
+        src="{{ 'assets/images/hypnosezentrum-cuxhaven-footer-division-90.svg' | theme }}"></img>
     </div>
     {# Footer Menu Column #}
     <div class="col-12 col-lg pt-md-5 nav-footer-in-column">
@@ -26,10 +28,11 @@ code = "footer"
     </div>
   </div>
   <div class="row order-0 order-md-1 text-center footer-icons">
-     <div class="col-12 col-md-4 col-lg pt-5">
+    <div class="col-12 col-md-4 col-lg pt-5">
       <div class="row">
         <div class="col-12">
-          <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-supervision.svg' | theme }}" size="40"></bs4-icon>
+          <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-supervision.svg' | theme }}"
+            size="40"></bs4-icon>
         </div>
         <span class="col-12 py-3 text-warning">Supervision</span>
       </div>
@@ -38,46 +41,54 @@ code = "footer"
     <div class="col-12 col-md-4 col-lg pt-5">
       <div class="row">
         <div class="col-12">
-          <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-regelmäßge-fortbildungen.svg' | theme }}" size="40"></bs4-icon>
+          <bs4-icon class="mx-auto"
+            src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-regelmäßge-fortbildungen.svg' | theme }}" size="40">
+          </bs4-icon>
         </div>
         <span class="col-12 py-3 text-warning">Regelmäßige Fortbildungen</span>
       </div>
     </div>
-    
+
     <div class="col-12 col-md-4 col-lg pt-5">
       <div class="row">
         <div class="col-12">
-          <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-ursachenorientierte-therapie.svg' | theme }}" size="40"></bs4-icon>
+          <bs4-icon class="mx-auto"
+            src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-ursachenorientierte-therapie.svg' | theme }}"
+            size="40"></bs4-icon>
         </div>
         <span class="col-12 col-lg py-3 text-warning">Ursachenorientierte Therapie</span>
       </div>
     </div>
-    
+
     <div class="col-12 col-md col-lg pt-5">
       <div class="row">
         <div class="col-12">
-          <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-staendiger-austausch.svg' | theme }}" size="40"></bs4-icon>
+          <bs4-icon class="mx-auto"
+            src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-staendiger-austausch.svg' | theme }}" size="40">
+          </bs4-icon>
         </div>
         <span class="col-12 py-3 text-warning">Ständiger Austausch mit Kollegen</span>
       </div>
     </div>
-    
+
     <div class="col-12 col-md col-lg pt-5">
-          <div class="row">
-            <div class="col-12">
-              <bs4-icon class="mx-auto" src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-hoher-qualitaetsstandard.svg' | theme }}" size="40"></bs4-icon>
-            </div>
-            <span class="col-12 py-3 text-warning">Hoher Qualitätsstandard</span>
-          </div>
+      <div class="row">
+        <div class="col-12">
+          <bs4-icon class="mx-auto"
+            src="{{ '/assets/images/hypnosezentrum-cuxhaven-footer-hoher-qualitaetsstandard.svg' | theme }}" size="40">
+          </bs4-icon>
         </div>
+        <span class="col-12 py-3 text-warning">Hoher Qualitätsstandard</span>
+      </div>
     </div>
-    
-    <div class="row order-4 mb-5">
-        <div class="col-12 px-0">
-           {% partial 'art-and-code' %} 
-        </div>
+  </div>
+
+  <div class="row order-4 mb-5">
+    <div class="col-12 px-0">
+      {% partial 'art-and-code' %}
     </div>
-    
+  </div>
+
 </div>
 
 {% partial 'fixed-bottom-bar' %}

@@ -22,10 +22,10 @@ snippetName = "PDF Forms"
             rv-show-toast-on-submit-success="{'message': '{ toast.$event.detail.message }', 'delay': 20000, 'contextualClass': 'dark'}"
             rv-show-toast-on-submit-error="{'message': 'Nachricht konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'delay': 20000}"
             rv-show-toast-on-validation-error="{'message': 'Bitte überprüfen Sie ihre Eingaben', 'contextualClass': 'danger', 'delay': 10000}"
-            disable-submit-until-change="true" october-handler="onTest">
-            <form target="_blank" method="post" action="/pdf-form/pdf">
+            disable-submit-until-change="true" {# october-handler="onTest" #}>
+            <form rv-on-submit="onSubmit" method="post" action="/pdf-form/send">
+              <input type="text" value="{{ form.questionary_name }}" name="questionaireName" class="d-none">
               <div class="form-row">
-
                 <div class="col-12">
                   {% for question in form.questions %}
                   <div class="type-{{ question.type_input }}">
@@ -54,6 +54,18 @@ snippetName = "PDF Forms"
                     </div>
                   </div>
                   {% endfor %}
+                  <div class="form-group contact_legal_agreement">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" name="contactAgreement"
+                        id="contactAgreement{{ loop.index0 }}" required>
+                      <label class="custom-control-label"
+                        for="contactAgreement{{ loop.index0 }}">{{ this.theme.contact_legal_agreement_content | raw }}</label>
+                    </div>
+                  </div>
+
+                  {# Submit result container #}
+                  <div id="contactSubmitResult"></div>
+
                   <div class="h-captcha-container">
                     <p>
                       <small>Diese Seite ist durch hCaptcha geschützt. hCaptcha's
@@ -63,8 +75,8 @@ snippetName = "PDF Forms"
                     </p>
                   </div>
                   <button class="btn btn-primary" rv-on-click="print" style="min-width:150px;">Ausdrucken</button>
-                  <button class="btn btn-primary" rv-on-click="send" style="min-width:150px;">An Hypnose senden</button>
-                  <button class="btn btn-primary" type="submit" formaction="/pdf-form/pdf" style="min-width:150px;">Als
+                  <button class="btn btn-primary" type="submit" formaction="/pdf-form/send" style="min-width:150px;">An Hypnose senden</button>
+                  <button class="btn btn-primary" type="submit" formaction="/pdf-form/pdf" formtarget="_blank" style="min-width:150px;">Als
                     PDF öffnen</button>
 
                 </div>

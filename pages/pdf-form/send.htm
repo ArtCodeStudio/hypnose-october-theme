@@ -23,7 +23,7 @@ function onStart() {
 
 function onEnd() {
     $value = post();
-    var_dump($value);
+    
     /**
      * Get loader and twig from controller
      * @see https://github.com/octobercms/october/blob/master/modules/cms/classes/Controller.php
@@ -72,8 +72,8 @@ function onEnd() {
     $pageHtml = substr_replace($renderedLayout, $pageContents, $bodyPos - 1, 0);
 
 
-    $header = $this->controller->renderPartial("pdf-form/header.htm", ['this' => $this, 'data' => $value, 'pdf_forms' => $this->theme->pdf_forms, 'choosenForm'=> "Hypnose"]);
-    $footer = $this->controller->renderPartial("pdf-form/footer.htm", ['this' => $this, 'data' => $value, 'pdf_forms' => $this->theme->pdf_forms, 'choosenForm'=> "Hypnose"]);
+    $header = $this->controller->renderPartial("pdf-form/header.htm", $renderVars);
+    $footer = $this->controller->renderPartial("pdf-form/footer.htm", $renderVars);
     
 
     /**
@@ -106,16 +106,19 @@ function onEnd() {
         ]);
     } 
     
-    $buildOwnerMessage = function ($message) use ($values) {
+    $from = "Dies ist ein test";
+    
+    $buildOwnerMessage = function ($message) use ($from, $pdf) {
         $admin_mail = $this->theme->contact_admin_mail;
         $admin_name = $this->theme->contact_admin_name;
+        $pdfAttachment = new Swift_Attachment($pdf->output(), 'form.pdf', 'application/pdf');
         $message->to($admin_mail, $admin_name);
-        $message->attach($pdf->output());
+        $message->getSwiftMessage()->attach($pdfAttachment);
 
         if(isset($from)) {
             $message->subject("Neue Anfrage von " . $from);
         } else {
-            $message->subject("Neue Anfrage ");
+            $message->subject("Neue Anfrage");
         }
     };
     
@@ -127,7 +130,7 @@ function onEnd() {
     /**
      * Return the generated pdf as the page response
      */
-    return "erfolg";
+    return $renderedLayout;
 
 }
 ?>

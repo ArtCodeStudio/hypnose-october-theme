@@ -1,6 +1,6 @@
 {% if question.client_data_name_input %}
 <div class="col-6 mt-4">
-    <label for="question-{{ question_id }}-foobar">Name:</label>
+    <label class="h6" for="question-{{ question_id }}-foobar">Name:</label>
     <input class="form-control" autocomplete="family-name" type="text" id="question-{{question_id}}-name"
         name="question-{{question_id}}-name" />
 </div>
@@ -8,15 +8,15 @@
 
 {% if question.client_data_firstname_input %}
 <div class="col-6 mt-4">
-    <label for="question-{{ question_id }}-foobar">Vorname:</label>
-    <input class="form-control" autocomplete="given-name" type="text"
-        id="question-{{question_id}}-firstname" name="question-{{question_id}}-firstname" />
+    <label class="h6" for="question-{{ question_id }}-foobar">Vorname:</label>
+    <input class="form-control" autocomplete="given-name" type="text" id="question-{{question_id}}-firstname"
+        name="question-{{question_id}}-firstname" />
 </div>
 {% endif %}
 
 {% if question.client_data_birthday_input %}
 <div class="col-6 mt-4">
-    <label for="question-{{ question_id }}-foobar">Geburtstag:</label>
+    <label class="h6" for="question-{{ question_id }}-foobar">Geburtstag:</label>
     <input class="form-control" type="date" id="question-{{question_id}}-birthshday"
         name="question-{{question_id}}-birthshday" />
 </div>
@@ -24,7 +24,7 @@
 
 {% if question.client_data_address_input %}
 <div class="col-6 mt-4">
-    <label for="question-{{ question_id }}-foobar">Anschrift:</label>
+    <label class="h6" for="question-{{ question_id }}-foobar">Anschrift:</label>
     <input class="form-control" type="text" id="question-{{question_id}}-address"
         name="question-{{question_id}}-address" />
 </div>
@@ -32,16 +32,15 @@
 
 {% if question.client_data_phone_input %}
 <div class="col-6 mt-4">
-    <label for="question-{{ question_id }}-foobar">Telefon / Mobil:</label>
-    <input class="form-control" type="tel" id="question-{{question_id}}-phone"
-        name="question-{{question_id}}-phone" />
+    <label class="h6" for="question-{{ question_id }}-foobar">Telefon / Mobil:</label>
+    <input class="form-control" type="tel" id="question-{{question_id}}-phone" name="question-{{question_id}}-phone" />
 </div>
 {% endif %}
 
 {% if question.client_data_email_input %}
 <div class="col-6 mt-4">
-    <label for="question-{{ question_id }}-foobar">E-Mail:</label>
-    <input class="form-control" type="email" id="question-{{question_id}}-email"
+    <label class="h6" for="question-{{ question_id }}-foobar">E-Mail:</label>
+    <input class="form-control" type="email" required id="question-{{question_id}}-email"
         name="question-{{question_id}}-email" />
 </div>
 {% endif %}

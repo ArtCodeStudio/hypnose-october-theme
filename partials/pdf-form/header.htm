@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% set key = "questionaireName" %}
+{% set choosedForm = data[key] %}
 <html>
 <head>
     <style type="text/css">
@@ -10,6 +12,6 @@
     </style>
 </head>
 <body>
-<h1>Fragebogen {{ choosenForm }}<h1>
+<h1>Fragebogen {{ choosedForm }}<h1>
 </body>
 </html>

@@ -1,27 +1,25 @@
 [viewBag]
 ==
 <div class="col-12">
-    <p>{{ question.checkbox_question_input }}</p>
+    <span class="h6">{{ question.checkbox_question_input }}</span>
 
     {% for answering_option in question.checkbox_answering_options %}
-        <div class="row align-items-center">
-            {% set key = 'question-' ~ question_id ~ '-option-' ~ loop.index0 %}
-            <div class="col-6">
-                <div class="checkbox-container">
-                    <div class="checkbox"
-                            id="question-{{question_id}}-option-{{loop.index0}}"
-                            name="question-{{question_id}}-option-{{loop.index0}}"
-                            {% if data[key] == 'on' %}checked{%endif%}>            
-                    </div>
-
-                    <span>{{ answering_option.answer_input }}</span>                    
+    <div class="row align-items-center">
+        {% set key = 'question-' ~ question_id ~ '-option-' ~ loop.index0 %}
+        <div class="col-6">
+            <div class="checkbox-container">
+                <div class="checkbox" id="question-{{question_id}}-option-{{loop.index0}}"
+                    name="question-{{question_id}}-option-{{loop.index0}}" {% if data[key] == 'on' %}checked{%endif%}>
                 </div>
+
+                <span>{{ answering_option.answer_input }}</span>
             </div>
-            {% if answering_option.description_if_checked %}
-            <div class="col-6">
-                <p>{{ data['question-'~ question_id ~ '-option-' ~ loop.index0 ~ '-textinput'] }}</p>
-            </div>
-            {% endif %}
         </div>
+        {% if answering_option.description_if_checked %}
+        <div class="col-6">
+            <p>{{ data['question-'~ question_id ~ '-option-' ~ loop.index0 ~ '-textinput'] }}</p>
+        </div>
+        {% endif %}
+    </div>
     {% endfor %}
 </div>

@@ -89,6 +89,7 @@ function onContactFormSubmit()
         $admin_mail = $this->theme->contact_admin_mail;
         $admin_name = $this->theme->contact_admin_name;
         $message->to($admin_mail, $admin_name);
+        $message->replyTo($values['contactMail'], $name = null);
         if(isset($from)) {
             $message->subject("Neue Anfrage von " . $from . " (" . $values['contactMail'] . ")");
         } else {
@@ -171,7 +172,7 @@ function onContactFormSubmit()
     {% scripts %}
 
     {% partial 'provenexpert_widget_portrait' %}
-    </body>
+</body>
 </head>
 
 </html>
