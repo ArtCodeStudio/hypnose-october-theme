@@ -11,40 +11,52 @@
   border-radius: $input-border-radius-lg;
 }
 
-
 .form-control {
   &:not(:placeholder-shown) {
     background-color: $input-focus-bg;
   }
 }
 
-@mixin rangeThumb{
+//small hack to override valid styles
+body .was-validated .form-control:valid {
+  @extend .form-control;
+  background: none;
+}
+
+body .was-validated .custom-control-input:valid ~ .custom-control-label,
+body .custom-control-input.is-valid ~ .custom-control-label {
+  color: unset;
+}
+body .was-validated .custom-control-input:valid ~ .custom-control-label::before {
+  border-color: #5f6979;
+}
+
+@mixin rangeThumb {
   width: 18px;
   height: 18px;
-  margin: -8px 0  0;
+  margin: -8px 0 0;
   border-radius: 50%;
   background: $title-color;
   cursor: pointer;
   border: 0 !important;
 }
 
-.scale-input-container {
-
-  width:400px;
-  .input-frame{
+body .scale-input-container {
+  width: 400px;
+  .input-frame {
     //border: 1px solid;
     border: none;
     border-radius: 1.25rem;
-    color:lightgray;
-    .scale-input{
+    color: lightgray;
+    .scale-input {
       -webkit-appearance: none;
       border-radius: 1.25rem;
-      border:none;
-     
-      &::-webkit-slider-thumb{
-         -webkit-appearance: none;
-         //background-color: black;
-         @include rangeThumb;
+      border: none;
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        //background-color: black;
+        @include rangeThumb;
       }
 
       &::-moz-range-thumb {
@@ -54,40 +66,37 @@
         @include rangeThumb;
       }
 
-      &:focus{
+      &:focus {
         box-shadow: none;
       }
-  
     }
-
   }
 
-  .range-labels{
-    padding:0;
+  .range-labels {
+    padding: 0 !important;
     li {
-        position: relative;
-        float: left;
-        width: 40px;
-        text-align: center;
-        color: #b2b2b2;
-        font-size: 14px;
-        cursor: pointer;
-        list-style: none;
+      position: relative;
+      float: left;
+      width: 40px;
+      text-align: center;
+      color: #b2b2b2;
+      font-size: 14px;
+      cursor: pointer;
+      list-style: none;
 
-        &::before {
-          position: absolute;
-          top: -24px;
-          right: 0;
-          left: 0;
-          content: "";
-          margin: 0 auto;
-          width: 9px;
-          height: 9px;
-          background: #b2b2b2;
-          border-radius: 50%;
-          z-index: -1;
-        }
+      &::before {
+        position: absolute;
+        top: -24px;
+        right: 0;
+        left: 0;
+        content: "";
+        margin: 0 auto;
+        width: 9px;
+        height: 9px;
+        background: #b2b2b2;
+        border-radius: 50%;
+        z-index: -1;
+      }
     }
   }
-  
 }

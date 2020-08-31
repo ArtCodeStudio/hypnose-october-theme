@@ -1,28 +1,35 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i&display=swap");
 
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6,
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6,
 .display-1,
 .display-2,
 .display-3,
 .display-4 {
-  word-wrap: break-word;
+  //word-wrap: break-word;
   color: $title-color;
   margin-top: $headings-margin-bottom * 2;
 }
 
-h1, .h1 {
+h1,
+.h1 {
   margin-bottom: $headings-margin-bottom * 2;
   margin-top: $headings-margin-bottom * 2;
   small {
     font-size: 2rem;
     font-weight: $font-weight-bold;
   }
-  @include media-breakpoint-down(lg){
+  @include media-breakpoint-down(lg) {
     font-size: 2rem;
     small {
       font-size: 80%;
@@ -36,21 +43,24 @@ h1, .h1 {
   }
 }
 
-h2, .h2 {
-  @include media-breakpoint-down(lg){
+h2,
+.h2 {
+  @include media-breakpoint-down(lg) {
     font-size: 1.8rem;
   }
 }
 
-h3, .h3 {
+h3,
+.h3 {
   margin-bottom: $headings-margin-bottom * 0.5;
-  @include media-breakpoint-down(lg){
+  @include media-breakpoint-down(lg) {
     font-size: 1.5rem;
   }
 }
 
-h3, .h3 {
-  @include media-breakpoint-down(lg){
+h3,
+.h3 {
+  @include media-breakpoint-down(lg) {
     font-size: 1.25rem;
   }
 }

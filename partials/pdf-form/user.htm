@@ -17,9 +17,10 @@ snippetName = "PDF Forms"
     <div class="col-12">
       <bs4-accordion collapse-icon-src="{{ 'assets/iconset/arrow_carrot.svg' | theme }}" collapse-icon-size="38">
         {% for form in this.theme.pdf_forms  %}
+        {% set questionaire_prefix = loop.index0 %}
         <template title="{{ form.questionary_name }}">
           <hpn-form hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967" hcaptcha-size="invisible"
-            rv-show-toast-on-submit-success="{'message': '{ toast.$event.detail.message }', 'delay': 20000, 'contextualClass': 'dark'}"
+            rv-show-toast-on-submit-success="{'message': 'Nachricht wurde erfolgreich verschickt!<br>{ toast.$event.detail.message }', 'delay': 20000, 'contextualClass': 'dark'}"
             rv-show-toast-on-submit-error="{'message': 'Nachricht konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'delay': 20000}"
             rv-show-toast-on-validation-error="{'message': 'Bitte überprüfen Sie ihre Eingaben', 'contextualClass': 'danger', 'delay': 10000}"
             disable-submit-until-change="true" {# october-handler="onTest" #}>
@@ -35,9 +36,9 @@ snippetName = "PDF Forms"
                       {% if question.type_input == 'client_data' %}
                       {% partial 'pdf-form/user-client-data-name-input' question=question question_id=question_id %}
                       {% elseif question.type_input == 'radiobox' %}
-                      {% partial 'pdf-form/user-radioboxes' question=question question_id=question_id %}
+                      {% partial 'pdf-form/user-radioboxes' question=question question_id=question_id questionaire_prefix=questionaire_prefix %}
                       {% elseif question.type_input == 'checkbox' %}
-                      {% partial 'pdf-form/user-checkboxes' question=question question_id=question_id %}
+                      {% partial 'pdf-form/user-checkboxes' question=question question_id=question_id questionaire_prefix=questionaire_prefix %}
                       {% elseif question.type_input == 'description' %}
                       {% partial 'pdf-form/user-description' question=question question_id=question_id %}
                       {% elseif question.type_input == 'text' %}
@@ -58,8 +59,7 @@ snippetName = "PDF Forms"
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" name="contactAgreement"
                         id="contactAgreement{{ loop.index0 }}" required>
-                      <label class="custom-control-label"
-                        for="contactAgreement{{ loop.index0 }}">{{ this.theme.contact_legal_agreement_content | raw }}</label>
+                      <label for="contactAgreement{{ loop.index0 }}" class="custom-control-label">{{ this.theme.questionaire_legal_data_protection_content | raw }}</label>
                     </div>
                   </div>
 

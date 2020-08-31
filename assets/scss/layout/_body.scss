@@ -1,13 +1,18 @@
 body {
   min-height: 100vh;
-  word-break: break-word;
-  @include scrollbars(.6em, theme-color(primary), transparent);
+  word-break: normal;
+  overflow-wrap: normal;
+  @include scrollbars(0.6em, theme-color(primary), transparent);
   -ms-overflow-style: scrollbar;
 }
 
+:focus {
+  outline: none;
+}
+::-moz-focus-inner {
+  border: 0;
+}
 
-
-:focus {outline:none;}
-::-moz-focus-inner {border:0;}
-
-.grecaptcha-badge { visibility: hidden; }
+.grecaptcha-badge {
+  visibility: hidden;
+}

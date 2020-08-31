@@ -13,7 +13,15 @@ function onStart() {
     /**
      * Set the global twig variables so that this page also works over a normal call
      */
-    $values = post();
+    $old_values = post();
+    $values = array();
+    foreach($old_values as $k => $v) {
+        if (strpos($k, ":") !== false) {
+            $values[explode(":", $k)[1]] = $v;
+        } else {
+            $values[$k] = $v;
+        }
+    }
     $this['data'] = $values;
     $this['pdf_forms'] = $this->theme->pdf_forms;
 }

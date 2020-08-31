@@ -6,9 +6,9 @@
 	<div class="row align-items-center my-2">
 		<div class="col-6">
 			<div class="custom-control custom-radio">
-				<input type="radio" class="custom-control-input" id="question-{{question_id}}-option-{{loop.index0}}"
+				<input type="radio" class="custom-control-input" id="{{questionaire_prefix}}:question-{{question_id}}-option-{{loop.index0}}"
 					name="question-{{question_id}}" value="{{loop.index0}}" />
-				<label class="custom-control-label" for="question-{{question_id}}-option-{{loop.index0}}">
+				<label class="custom-control-label" for="{{questionaire_prefix}}:question-{{question_id}}-option-{{loop.index0}}">
 					{{answering_option.answer_input}}
 				</label>
 			</div>

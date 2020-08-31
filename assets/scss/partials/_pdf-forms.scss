@@ -12,4 +12,11 @@
   .h6 {
     margin-top: 0;
   }
+
+  @media screen and (max-width: 414px) {
+    .col-6 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
 }

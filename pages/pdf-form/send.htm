@@ -24,6 +24,18 @@ function onStart() {
 function onEnd() {
     $value = post();
     
+    //validate input
+    $rules = [
+        'question-1-email' => 'required|email|between:6,255',
+        'h-captcha-response' => 'required'
+    ];
+    
+    $validation = Validator::make($value, $rules);
+    if ($validation->fails()) {
+        $this->page['result'] = "Eingaben waren fehlerhaft.";
+        throw new ValidationException($validation);
+    }
+    
     /**
      * Get loader and twig from controller
      * @see https://github.com/octobercms/october/blob/master/modules/cms/classes/Controller.php
@@ -106,14 +118,19 @@ function onEnd() {
         ]);
     } 
     
-    $from = "Dies ist ein test";
+    if(isset($value["question-1-name"]) || isset($value["question-1-firstname"])) {
+        $from = $value["question-1-firstname"] . " " . $value["question-1-name"];
+    } 
     
-    $buildOwnerMessage = function ($message) use ($from, $pdf) {
-        $admin_mail = $this->theme->contact_admin_mail;
+    $attachment = new Swift_Attachment($pdf->output(), 'fragebogen.pdf', 'application/pdf');
+    
+    $buildOwnerMessage = function ($message) use ($from, $pdf, $attachment) {
+        //$admin_mail = $this->theme->contact_admin_mail;
+        $admin_mail = "dotonesimple@gmail.com";
         $admin_name = $this->theme->contact_admin_name;
-        $pdfAttachment = new Swift_Attachment($pdf->output(), 'form.pdf', 'application/pdf');
+        $pdfAttachment = $attachment;
         $message->to($admin_mail, $admin_name);
-        $message->getSwiftMessage()->attach($pdfAttachment);
+        $message->getSwiftMessage()->attach($attachment);
 
         if(isset($from)) {
             $message->subject("Neue Anfrage von " . $from);
@@ -124,6 +141,20 @@ function onEnd() {
     
     
     Mail::send('questionaire-owner', [], $buildOwnerMessage);
+    
+    $buildSenderMessage = function ($message) use ($from, $pdf, $value, $attachment) {
+        $sender_mail = $value["question-1-email"];
+        $sender_name = $from;
+        $message->to($sender_mail, $sender_name);
+        $message->getSwiftMessage()->attach($attachment);
+
+        $message->subject("Kopie ihrer Anfrage an Hypnose Zentrum Cuxhaven");
+        
+    };
+    
+    
+    Mail::send('questionaire-sender', [], $buildSenderMessage);
+    
 
     //for($value in $value
 

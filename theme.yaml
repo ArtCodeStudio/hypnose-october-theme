@@ -506,6 +506,10 @@ form:
         tab: Contact
         label: "Agreement text"
         type: richeditor
+      questionaire_legal_data_protection_content:
+        tab: Contact
+        label: "Questionaire protection text"
+        type: richeditor
       # Forms
       forms:
         tab: Forms

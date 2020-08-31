@@ -114,7 +114,12 @@ export class HpnFormComponent extends HCaptchaFormComponent {
       console.error("form element not found!");
       return;
     }
+    //this.validate(this.formEl, this.scope.form);
 
+    if (!this.scope.form.valid) {
+      console.info("form not valid", this.scope);
+      return;
+    }
     event.preventDefault();
     event.stopPropagation();
 
@@ -139,12 +144,17 @@ export class HpnFormComponent extends HCaptchaFormComponent {
       const ifrm = document.createElement("iframe");
       ifrm.style.width = "640px";
       ifrm.style.height = "480px";
-      ifrm.onload = () => {
-        ifrm.focus();
-        const iframeWin = this.getIframeWindow(ifrm);
-        iframeWin?.print();
-      };
+      ifrm.style.visibility = "hidden";
+      ifrm.style.position = "fixed";
+      ifrm.style.right = "0";
+      ifrm.style.bottom = "0";
+      ifrm.classList.add("print-iframe");
       ifrm.setAttribute("src", pdfUrl);
+      ifrm.onload = () => {
+        ifrm.contentWindow?.addEventListener("afterprint", () => {
+          document.body.removeChild(ifrm);
+        });
+      };
       document.body.appendChild(ifrm);
     });
   }
@@ -160,5 +170,16 @@ export class HpnFormComponent extends HCaptchaFormComponent {
   protected async afterBind() {
     super.afterBind();
     this.pjax = Pjax.getInstance("main");
+
+    //remove old iframes once printed
+    // window.addEventListener("afterprint", () => {
+    //   console.log("afterprint");
+    //   Array.from(document.getElementsByClassName("print-iframe")).forEach(
+    //     (el) => {
+    //       console.debug("removed ", el);
+    //       el.remove();
+    //     }
+    //   );
+    // });
   }
 }
