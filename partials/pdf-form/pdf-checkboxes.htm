@@ -1,7 +1,7 @@
 [viewBag]
 ==
 <div class="col-12">
-    <span class="h6">{{ question.checkbox_question_input }}</span>
+    <span class="question-text">{{ question.checkbox_question_input }}</span>
 
     {% for answering_option in question.checkbox_answering_options %}
     <div class="row align-items-center">
@@ -12,7 +12,7 @@
                     name="question-{{question_id}}-option-{{loop.index0}}" {% if data[key] == 'on' %}checked{%endif%}>
                 </div>
 
-                <span>{{ answering_option.answer_input }}</span>
+                {{ answering_option.answer_input }}
             </div>
         </div>
         {% if answering_option.description_if_checked %}

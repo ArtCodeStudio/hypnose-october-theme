@@ -1,3 +1,5 @@
+[viewBag]
+==
 <!DOCTYPE html>
 {% set key = "questionaireName" %}
 {% set choosedForm = data[key] %}
@@ -5,13 +7,25 @@
 <head>
     <style type="text/css">
     
+
+        img {
+            margin-left: 2.25rem;
+        }
         h1 {
             text-align: right;
             margin: 2.25rem;
+            //vertical-align: top;
+            margin-top: 10px;
+            color: #b79563;
+            
+        }
+        body {
+            padding-bottom: 5px;
         }
     </style>
 </head>
 <body>
-<h1>Fragebogen {{ choosedForm }}<h1>
+<img style="display: inline;" src="https://hypnosezentrum-cux.de/storage/app/media/test.png">
+<h1 style="display: inline;">Fragebogen {{ choosedForm | replace({'Ü': "&Uuml;", 'ü': "&uuml;", 'Ö': "&Ouml;", 'ö': "&ouml;", 'Ä': "&Auml;", 'ä': "&auml;", }) | raw }}<h1>
 </body>
 </html>

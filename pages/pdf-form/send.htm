@@ -125,8 +125,8 @@ function onEnd() {
     $attachment = new Swift_Attachment($pdf->output(), 'fragebogen.pdf', 'application/pdf');
     
     $buildOwnerMessage = function ($message) use ($from, $pdf, $attachment) {
-        //$admin_mail = $this->theme->contact_admin_mail;
-        $admin_mail = "dotonesimple@gmail.com";
+        //$admin_mail = "daniel@artandcode.studio";
+        $admin_mail = $this->theme->contact_admin_mail;
         $admin_name = $this->theme->contact_admin_name;
         $pdfAttachment = $attachment;
         $message->to($admin_mail, $admin_name);

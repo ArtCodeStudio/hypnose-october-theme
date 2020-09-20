@@ -21,27 +21,27 @@ body {
 
 // typography
 
-h1 {
+h1, .h1 {
   font-size: 2.5rem;
 }
 
-h2 {
+h2, .h2 {
   font-size: 2rem;
 }
 
-h3 {
+h3, .h3 {
   font-size: 1.375rem;
 }
 
-h4 {
+h4, .h4 {
   font-size: 1.125rem;
 }
 
-h5 {
+h5, .h5 {
   font-size: 1rem;
 }
 
-h6 {
+h6, .h6 {
   font-size: 0.875rem;
 }
 
@@ -49,6 +49,9 @@ p {
   font-size: 1.125rem;
   font-weight: 200;
   line-height: 1.8;
+}
+span {
+  display: block;
 }
 
 .font-light {

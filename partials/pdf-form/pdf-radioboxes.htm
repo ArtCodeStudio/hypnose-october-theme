@@ -1,20 +1,22 @@
-<div class="col-12">{{ question.radiobox_question_input }}</div>
-{% for answering_option in question.radiobox_answering_options %}
-    <div class="col-12">
-        <div class="row align-items-center">
-            <div class="col-6">
-                {% set key = 'question-' ~ question_id %}
-                <div class="radiobox-container">
-                    <div class="radiobox" {% if data[key] == loop.index0 %}checked{%endif%}>
-                    </div>
-                    {{answering_option.answer_input}}
-                </div>
-            </div>
-            {% if answering_option.description_if_checked %}
+<div class="col-12">
+    <span class="question-text">{{ question.radiobox_question_input }}</span>
+    {% for answering_option in question.radiobox_answering_options %}
+        <div class="col-12">
+            <div class="row align-items-center">
                 <div class="col-6">
-                    {{ data['question-'~ question_id ~ '-option-' ~ loop.index0 ~ '-textinput'] }}
+                    {% set key = 'question-' ~ question_id %}
+                    <div class="radiobox-container">
+                        <div class="radiobox" {% if data[key] != nil and data[key] == loop.index0 %}checked{%endif%}>
+                        </div>
+                        {{answering_option.answer_input}}
+                    </div>
                 </div>
-            {% endif %}
+                {% if answering_option.description_if_checked %}
+                    <div class="col-6">
+                        {{ data['question-'~ question_id ~ '-option-' ~ loop.index0 ~ '-textinput'] }}
+                    </div>
+                {% endif %}
+            </div>
         </div>
-    </div>
-{% endfor %}
+    {% endfor %}
+</div>

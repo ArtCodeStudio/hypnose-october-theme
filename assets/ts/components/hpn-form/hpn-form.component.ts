@@ -114,14 +114,15 @@ export class HpnFormComponent extends HCaptchaFormComponent {
       console.error("form element not found!");
       return;
     }
-    //this.validate(this.formEl, this.scope.form);
+    this.validate(this.formEl, this.scope.form);
+
+    event.preventDefault();
+    event.stopPropagation();
 
     if (!this.scope.form.valid) {
       console.info("form not valid", this.scope);
       return;
     }
-    event.preventDefault();
-    event.stopPropagation();
 
     // TEST
     // this.debug();

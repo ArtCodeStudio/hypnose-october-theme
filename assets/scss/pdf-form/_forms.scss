@@ -3,31 +3,51 @@ input[type="text"] {
   width: 100%;
 }
 
-$size: 15px;
+$size: 10px;
 $fontSize: 20px;
 
 .checkbox[checked] {
-  background-color: black;
+  background-color: #5f6979;
 }
 
 .checkbox {
   height: $size;
   width: $size;
   display: inline-block;
-  border: solid black 3px;
+  border: solid #5f6979 1px;
   border-radius: 3px;
+  margin-right: 3px;
 }
 
 .checkbox-container,
 .radiobox-container {
-  font-size: $fontSize;
   span {
+    font-size: 1.125rem;
     vertical-align: text-bottom;
-    top: -6px;
+    top: -3px;
   }
 }
 
 .radiobox {
   @extend .checkbox;
   border-radius: 20px;
+}
+
+.question-text {
+  font-size: 1.125rem;
+  font-weight: 200;
+  line-height: 1.8;
+  color: #b79563;
+}
+
+hr {
+  height: 1px;
+  border: none;
+  box-shadow: none;
+  background-color: #b79563;
+  margin: 0;
+}
+
+.h4 {
+  color: #b79563;
 }
