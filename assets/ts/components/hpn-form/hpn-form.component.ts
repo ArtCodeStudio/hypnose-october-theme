@@ -7,6 +7,8 @@ import { HttpService } from "@ribajs/core";
 
 interface Scope extends OcFormScope {
   print: HpnFormComponent["print"];
+  send: HpnFormComponent["send"];
+  openPdf: HpnFormComponent["openPdf"];
   // send: HpnFormComponent["send"];
 }
 
@@ -27,7 +29,8 @@ export class HpnFormComponent extends HCaptchaFormComponent {
   protected getDefaultScope(): Scope {
     const scope = super.getDefaultScope() as Partial<Scope>;
     scope.print = this.print;
-    // scope.send = this.send;
+    scope.send = this.send;
+    scope.openPdf = this.openPdf;
     return scope as Scope;
   }
 
@@ -36,6 +39,27 @@ export class HpnFormComponent extends HCaptchaFormComponent {
   constructor(element?: HTMLElement) {
     super(element);
   }
+
+  protected send(event: Event) {
+    this.setEmailRequired(true);
+  }
+  protected openPdf(event: Event) {
+    this.setEmailRequired(false);
+  }
+
+  public setEmailRequired(value: boolean) {
+    if (this.formEl === undefined || this.formEl === null) return;
+    var inputs = this.formEl.querySelectorAll("input"), i;
+
+    for (i = 0; i < inputs.length; ++i) {
+      var element = inputs[i];
+      if (element.id.match("question-[0-9]{0,}-email")) {
+        element.required = value;
+        return;
+      }
+    }
+  }
+
 
   // public send(event: Event) {
   //   event.preventDefault();
@@ -114,6 +138,8 @@ export class HpnFormComponent extends HCaptchaFormComponent {
       console.error("form element not found!");
       return;
     }
+    this.setEmailRequired(false);
+
     this.validate(this.formEl, this.scope.form);
 
     event.preventDefault();
@@ -124,10 +150,6 @@ export class HpnFormComponent extends HCaptchaFormComponent {
       return;
     }
 
-    // TEST
-    // this.debug();
-    // super.ajaxSubmit();
-    // return;
 
     const data = new FormData(this.formEl);
     for (const [key, value] of Object.entries(data)) {
@@ -171,16 +193,5 @@ export class HpnFormComponent extends HCaptchaFormComponent {
   protected async afterBind() {
     super.afterBind();
     this.pjax = Pjax.getInstance("main");
-
-    //remove old iframes once printed
-    // window.addEventListener("afterprint", () => {
-    //   console.log("afterprint");
-    //   Array.from(document.getElementsByClassName("print-iframe")).forEach(
-    //     (el) => {
-    //       console.debug("removed ", el);
-    //       el.remove();
-    //     }
-    //   );
-    // });
   }
 }

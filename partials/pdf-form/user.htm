@@ -74,9 +74,9 @@ snippetName = "PDF Forms"
                       </small>
                     </p>
                   </div>
-                  <button class="btn btn-primary" rv-on-click="print" style="min-width:150px;">Ausdrucken</button>
-                  <button class="btn btn-primary" type="submit" formaction="/pdf-form/send" style="min-width:150px;">An Hypnose senden</button>
-                  <button class="btn btn-primary" type="submit" formaction="/pdf-form/pdf" formtarget="_blank" style="min-width:150px;">Als
+                  <button class="btn btn-primary" form-validate="false" rv-on-click="print" style="min-width:150px;">Ausdrucken</button>
+                  <button class="btn btn-primary" type="submit" rv-on-click="send" style="min-width:150px;">An Hypnose senden</button>
+                  <button class="btn btn-primary" form-validate="false" rv-on-click="openPdf" type="submit" formaction="/pdf-form/pdf" formtarget="_blank" style="min-width:150px;">Als
                     PDF öffnen</button>
 
                 </div>
