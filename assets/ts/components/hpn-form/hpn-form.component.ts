@@ -40,26 +40,26 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     super(element);
   }
 
-  protected send(event: Event) {
+  protected send(/*event: Event*/) {
     this.setEmailRequired(true);
   }
-  protected openPdf(event: Event) {
+  protected openPdf(/*event: Event*/) {
     this.setEmailRequired(false);
   }
 
   public setEmailRequired(value: boolean) {
     if (this.formEl === undefined || this.formEl === null) return;
-    var inputs = this.formEl.querySelectorAll("input"), i;
+    const inputs = this.formEl.querySelectorAll("input");
+    let i = 0;
 
     for (i = 0; i < inputs.length; ++i) {
-      var element = inputs[i];
+      const element = inputs[i];
       if (element.id.match("question-[0-9]{0,}-email")) {
         element.required = value;
         return;
       }
     }
   }
-
 
   // public send(event: Event) {
   //   event.preventDefault();
@@ -149,7 +149,6 @@ export class HpnFormComponent extends HCaptchaFormComponent {
       console.info("form not valid", this.scope);
       return;
     }
-
 
     const data = new FormData(this.formEl);
     for (const [key, value] of Object.entries(data)) {
