@@ -1,24 +1,17 @@
-/*!
- * Bootstrap v4.3.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 The Bootstrap Authors
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-
 @import "./vendors/bootstrap/functions";
 @import "./vendors/bootstrap/variables";
 @import "./vendors/bootstrap/mixins";
 
-
 // Custom mixins and variables
-@import 'mixins/index';
+@import "mixins/index";
 
 @import "./vendors/bootstrap/root";
 @import "./vendors/bootstrap/reboot";
 @import "./vendors/bootstrap/type";
 @import "./vendors/bootstrap/images";
 @import "./vendors/bootstrap/code";
-@import "./vendors/bootstrap/grid";
+// @import "./vendors/bootstrap/grid";
+@import "grid"; // HOTFIX
 @import "./vendors/bootstrap/tables";
 @import "./vendors/bootstrap/forms";
 @import "./vendors/bootstrap/buttons";
