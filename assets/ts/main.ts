@@ -43,7 +43,7 @@ export class Main {
       // binders: CustomBinders,
     });
 
-    this.riba.bind(document.body, window.model);
+    this.riba.bind(document.body, window.model || {});
   }
 }
 
