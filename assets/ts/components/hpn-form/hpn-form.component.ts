@@ -47,7 +47,10 @@ export class HpnFormComponent extends HCaptchaFormComponent {
   }
 
   protected download() {
-    window.open(this.el.getAttribute("download"), "_blank")
+    const dl = this.el.getAttribute("download");
+    if (dl) {
+      window.open(dl, "_blank");
+    }
   }
 
   protected openPdf(/*event: Event*/) {
