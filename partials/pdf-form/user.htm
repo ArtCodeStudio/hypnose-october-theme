@@ -4,6 +4,18 @@ description = "User formular to fill in the pdf form"
 snippetCode = "pdf-forms"
 snippetName = "PDF Forms"
 ==
+<?php
+function onStart()
+{
+    $PDF_FORMS_JSON_PATH = './themes/hypnose-october-theme/assets/pdf_forms.json.js'; // Append .js to make it openable in october backend
+
+    // Load pdf forms from json to twig
+    $pdf_forms_json_str = file_get_contents($PDF_FORMS_JSON_PATH, true);
+    $pdf_forms = json_decode($pdf_forms_json_str);
+    $this['pdf_forms'] = $pdf_forms;
+}
+?>
+==
 <style>
   textarea {
     width: 100%;
@@ -16,7 +28,8 @@ snippetName = "PDF Forms"
   <div class="row">
     <div class="col-12">
       <bs4-accordion collapse-icon-src="{{ 'assets/iconset/arrow_carrot.svg' | theme }}" collapse-icon-size="38">
-        {% for form in this.theme.pdf_forms  %}
+        {#% for form in this.theme.pdf_forms %#}
+        {% for form in pdf_forms %}
         {% set questionaire_prefix = loop.index0 %}
         <template title="{{ form.questionary_name }}">
           <hpn-form download="{{ form.questionary_download }}" hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967" hcaptcha-size="invisible"

@@ -16,7 +16,16 @@ function onStart() {
      */
     $values = post();
     $this['data'] = $values;
-    $this['pdf_forms'] = $this->theme->pdf_forms;
+    
+    
+    // $this['pdf_forms'] = $this->theme->pdf_forms;
+
+    $PDF_FORMS_JSON_PATH = './themes/hypnose-october-theme/assets/pdf_forms.json.js'; // Append .js to make it openable in october backend
+
+    // Load pdf forms from json to twig
+    $pdf_forms_json_str = file_get_contents($PDF_FORMS_JSON_PATH, true);
+    $pdf_forms = json_decode($pdf_forms_json_str);
+    $this['pdf_forms'] = $pdf_forms;
 }
 
 function onEnd() {
@@ -35,7 +44,8 @@ function onEnd() {
      * And additional variables like the post data and the questionairies
      * @see https://github.com/octobercms/october/blob/master/modules/cms/classes/Controller.php#L307
      */
-    $renderVars = ['this' => $this, 'data' => $value, 'pdf_forms' => $this->theme->pdf_forms];
+    // $renderVars = ['this' => $this, 'data' => $value, 'pdf_forms' => $this->theme->pdf_forms];
+    $renderVars = ['this' => $this, 'data' => $value, 'pdf_forms' => $this['pdf_forms']];
     
     /**
      * Render the page

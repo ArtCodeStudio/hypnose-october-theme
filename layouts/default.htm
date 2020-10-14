@@ -7,7 +7,19 @@ default = 0
 [contenteditor]
 ==
 <?php
+function onStart()
+{
+    $PDF_FORMS_JSON_PATH = './themes/hypnose-october-theme/assets/pdf_forms.json.js'; // Append .js to make it openable in october backend
 
+    // Store pdf forms from theme settings as json
+    // $pdf_forms = $this->theme->pdf_forms;
+    // file_put_contents($PDF_FORMS_JSON_PATH, json_encode($pdf_forms));
+    
+    // Load pdf forms from json to twig
+    // $pdf_forms_json_str = file_get_contents($PDF_FORMS_JSON_PATH, true);
+    // $pdf_forms = json_decode($pdf_forms_json_str);
+    // $this['pdf_forms'] = $pdf_forms;
+}
 
 
 function onContactFormSubmit()
