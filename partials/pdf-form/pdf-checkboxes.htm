@@ -6,7 +6,7 @@
     {% for answering_option in question.checkbox_answering_options %}
     <div class="row align-items-center">
         {% set key = 'question-' ~ question_id ~ '-option-' ~ loop.index0 %}
-        <div class="col-6">
+        <div class="{% if answering_option.description_if_checked %}col-6{% else %}col-12{% endif%}">
             <div class="checkbox-container">
                 <div class="checkbox" id="question-{{question_id}}-option-{{loop.index0}}"
                     name="question-{{question_id}}-option-{{loop.index0}}" {% if data[key] == 'on' %}checked{%endif%}>

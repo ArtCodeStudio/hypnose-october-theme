@@ -6,7 +6,7 @@
 {% if form.questionary_name == choosedForm %}
 <div class="container">
     {% for question in form.questions %}
-    <div class="row my-4 type-{{ question.type_input }}">
+    <div style="page-break-inside: avoid;" class="row my-4 type-{{ question.type_input }}">
         {% set question_id = loop.index0 %}
         {% if question.type_input == 'client_data' %}
         {% partial 'pdf-form/pdf-client-data-name-input' question=question data=data question_id=question_id %}

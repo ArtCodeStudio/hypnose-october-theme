@@ -511,27 +511,27 @@ form:
         label: "Questionaire protection text"
         type: richeditor
       # Forms
-      forms:
-        tab: Forms
-        titleFrom: report
-        prompt: "Add new pdf form"
-        type: repeater
-        form:
-          fields:
-            active:
-              label: Active
-              type: checkbox
-              default: true
-            title:
-              label: Title
-              type: text
-            content:
-              label: "Introduction text"
-              type: richeditor
-            pdf:
-              label: Pdf file
-              type: mediafinder
-              mode: file
+#     forms:
+#       tab: Forms
+#       titleFrom: report
+#       prompt: "Add new pdf form"
+#       type: repeater
+#       form:
+#         fields:
+#           active:
+#             label: Active
+#             type: checkbox
+#             default: true
+#           title:
+#             label: Title
+#             type: text
+#           content:
+#             label: "Introduction text"
+#             type: richeditor
+#           pdf:
+#             label: Pdf file
+#             type: mediafinder
+#             mode: file
       pdf_forms:
         label: PDF Forms
         type: repeater
@@ -543,6 +543,9 @@ form:
           fields:
             questionary_name:
               label: Fragebogen Name
+              type: text
+            questionary_download:
+              label: Fragebogen Download Link
               type: text
           # REPEATABLE QUESTIONS
             questions:

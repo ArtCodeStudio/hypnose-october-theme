@@ -3,7 +3,7 @@
     {% for answering_option in question.radiobox_answering_options %}
         <div class="col-12">
             <div class="row align-items-center">
-                <div class="col-6">
+                <div class="{% if answering_option.description_if_checked %}col-6{% else %}col-12{% endif%}">
                     {% set key = 'question-' ~ question_id %}
                     <div class="radiobox-container">
                         <div class="radiobox" {% if data[key] != nil and data[key] == loop.index0 %}checked{%endif%}>

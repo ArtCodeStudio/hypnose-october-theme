@@ -9,6 +9,7 @@ interface Scope extends OcFormScope {
   print: HpnFormComponent["print"];
   send: HpnFormComponent["send"];
   openPdf: HpnFormComponent["openPdf"];
+  download: HpnFormComponent["download"];
   // send: HpnFormComponent["send"];
 }
 
@@ -31,6 +32,7 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     scope.print = this.print;
     scope.send = this.send;
     scope.openPdf = this.openPdf;
+    scope.download = this.download;
     return scope as Scope;
   }
 
@@ -43,6 +45,11 @@ export class HpnFormComponent extends HCaptchaFormComponent {
   protected send(/*event: Event*/) {
     this.setEmailRequired(true);
   }
+
+  protected download() {
+    window.open(this.el.getAttribute("download"), "_blank")
+  }
+
   protected openPdf(/*event: Event*/) {
     this.setEmailRequired(false);
   }

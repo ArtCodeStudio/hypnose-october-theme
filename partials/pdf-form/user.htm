@@ -19,7 +19,7 @@ snippetName = "PDF Forms"
         {% for form in this.theme.pdf_forms  %}
         {% set questionaire_prefix = loop.index0 %}
         <template title="{{ form.questionary_name }}">
-          <hpn-form hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967" hcaptcha-size="invisible"
+          <hpn-form download="{{ form.questionary_download }}" hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967" hcaptcha-size="invisible"
             rv-show-toast-on-submit-success="{'message': 'Nachricht wurde erfolgreich verschickt!<br>{ toast.$event.detail.message }', 'delay': 20000, 'contextualClass': 'dark'}"
             rv-show-toast-on-submit-error="{'message': 'Nachricht konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'delay': 20000}"
             rv-show-toast-on-validation-error="{'message': 'Bitte überprüfen Sie ihre Eingaben', 'contextualClass': 'danger', 'delay': 10000}"
@@ -74,10 +74,9 @@ snippetName = "PDF Forms"
                       </small>
                     </p>
                   </div>
-                  <button class="btn btn-primary" form-validate="false" rv-on-click="print" style="min-width:150px;">Ausdrucken</button>
-                  <button class="btn btn-primary" type="submit" rv-on-click="send" style="min-width:150px;">An Hypnose senden</button>
-                  <button class="btn btn-primary" form-validate="false" rv-on-click="openPdf" type="submit" formaction="/pdf-form/pdf" formtarget="_blank" style="min-width:150px;">Als
-                    PDF öffnen</button>
+                  <button class="btn btn-primary" type="submit" rv-on-click="send" style="min-width:150px;">An Fachzentrum senden</button>
+                  <button class="btn btn-primary" form-validate="false" rv-on-click="openPdf" type="submit" formaction="/pdf-form/pdf" formtarget="_blank" style="min-width:150px;">Ausgefülltes PDF öffnen</button>
+                  <button class="btn btn-primary" rv-on-click="download" style="min-width:150px;">PDF herunterladen</button>
 
                 </div>
               </div>
