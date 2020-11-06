@@ -617,13 +617,13 @@ items:
                     isExternal: '0'
             -
                 title: Fragebögen
-                nesting: '0'
+                nesting: 0
                 type: static-page
                 code: ''
                 reference: kontakt-fragebogen
-                replace: '0'
+                replace: 0
                 viewBag:
-                    isHidden: '1'
+                    isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -

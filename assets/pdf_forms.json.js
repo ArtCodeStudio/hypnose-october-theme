@@ -308,7 +308,7 @@
                   "description_if_checked":false
                },
                {
-                  "answer_input":"Ja",
+                  "answer_input":"Ja - Angabe Name und Alter",
                   "description_if_checked":true
                }
             ],
@@ -834,7 +834,7 @@
             ]
          },
          {
-            "title":"Sonstige schwere körperliche Erkrankungen: ",
+            "title":"Sonstige schwere körperliche Erkrankungen ",
             "type_input":"radiobox",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -847,7 +847,7 @@
             "text_area_input":"",
             "checkbox_question_input":"",
             "scale_input":"",
-            "radiobox_question_input":"Sonstige schwere körperliche Erkrankungen: ",
+            "radiobox_question_input":"Sonstige schwere körperliche Erkrankungen ",
             "radiobox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -864,7 +864,7 @@
             ]
          },
          {
-            "title":"Körperliche oder geistige Behinderung:",
+            "title":"Körperliche oder geistige Behinderung",
             "type_input":"radiobox",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -877,37 +877,7 @@
             "text_area_input":"",
             "checkbox_question_input":"",
             "scale_input":"",
-            "radiobox_question_input":"Körperliche oder geistige Behinderung:",
-            "radiobox_answering_options":[
-               {
-                  "answer_input":"Nein",
-                  "description_if_checked":false
-               },
-               {
-                  "answer_input":"Ja - Welche:",
-                  "description_if_checked":true
-               }
-            ],
-            "header_with_margintop":"",
-            "checkbox_answering_options":[
-               
-            ]
-         },
-         {
-            "title":"Schwere psychische Erkrankung (z.B. Psychose): ",
-            "type_input":"radiobox",
-            "description_input":"\r\n",
-            "client_data_name_input":false,
-            "client_data_firstname_input":false,
-            "client_data_birthday_input":false,
-            "client_data_address_input":false,
-            "client_data_phone_input":false,
-            "client_data_email_input":false,
-            "text_input":"",
-            "text_area_input":"",
-            "checkbox_question_input":"",
-            "scale_input":"",
-            "radiobox_question_input":"Schwere psychische Erkrankung (z.B. Psychose): ",
+            "radiobox_question_input":"Körperliche oder geistige Behinderung",
             "radiobox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -924,7 +894,7 @@
             ]
          },
          {
-            "title":"ADS, ADHS, HKS (Hyperkinetische Störung):",
+            "title":"Schwere psychische Erkrankung (z.B. Psychose) ",
             "type_input":"radiobox",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -937,7 +907,37 @@
             "text_area_input":"",
             "checkbox_question_input":"",
             "scale_input":"",
-            "radiobox_question_input":"ADS, ADHS, HKS (Hyperkinetische Störung):",
+            "radiobox_question_input":"Schwere psychische Erkrankung (z.B. Psychose) ",
+            "radiobox_answering_options":[
+               {
+                  "answer_input":"Nein",
+                  "description_if_checked":false
+               },
+               {
+                  "answer_input":"Ja - Welche?",
+                  "description_if_checked":true
+               }
+            ],
+            "header_with_margintop":"",
+            "checkbox_answering_options":[
+               
+            ]
+         },
+         {
+            "title":"ADS, ADHS, HKS (Hyperkinetische Störung)",
+            "type_input":"radiobox",
+            "description_input":"\r\n",
+            "client_data_name_input":false,
+            "client_data_firstname_input":false,
+            "client_data_birthday_input":false,
+            "client_data_address_input":false,
+            "client_data_phone_input":false,
+            "client_data_email_input":false,
+            "text_input":"",
+            "text_area_input":"",
+            "checkbox_question_input":"",
+            "scale_input":"",
+            "radiobox_question_input":"ADS, ADHS, HKS (Hyperkinetische Störung)",
             "radiobox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -1364,7 +1364,7 @@
             ]
          },
          {
-            "title":"Mit welchem Ergebnis:",
+            "title":"Mit welchem Ergebnis?",
             "type_input":"text_area",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -1374,7 +1374,7 @@
             "client_data_phone_input":false,
             "client_data_email_input":false,
             "text_input":"",
-            "text_area_input":"Mit welchem Ergebnis:",
+            "text_area_input":"Mit welchem Ergebnis?",
             "checkbox_question_input":"",
             "scale_input":"",
             "radiobox_question_input":"",
@@ -1586,7 +1586,7 @@
                   "description_if_checked":false
                },
                {
-                  "answer_input":"In Situationen oder Räumen, die man ggf. nicht schnell genug verlassen kann, wie Tunnel, große Menschenmassen, Stau...",
+                  "answer_input":"In Situationen oder Räumen, die man ggf. nicht schnell genug verlassen kann, wie Tunnel, große Menschenmassen, Stau ...",
                   "description_if_checked":false
                },
                {
@@ -1766,7 +1766,7 @@
             ]
          },
          {
-            "title":"Wie stark ist Ihr Problem? (1 = niedrig; 10= extrem stark)",
+            "title":"Wie stark ist Ihr Problem? (1 = niedrig; 10 = extrem stark)",
             "type_input":"scale_input",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -1778,7 +1778,7 @@
             "text_input":"",
             "text_area_input":"",
             "checkbox_question_input":"",
-            "scale_input":"Wie stark ist Ihr Problem? (1 = niedrig; 10= extrem stark)",
+            "scale_input":"Wie stark ist Ihr Problem? (1 = niedrig; 10 = extrem stark)",
             "radiobox_question_input":"",
             "header_with_margintop":"",
             "checkbox_answering_options":[
@@ -1789,7 +1789,7 @@
             ]
          },
          {
-            "title":"Wie sehr sind Sie bereit, Veränderungen in Ihrem Leben zuzulassen? (1= wenig, 10= viel)",
+            "title":"Wie sehr sind Sie bereit, Veränderungen in Ihrem Leben zuzulassen? (1 = wenig, 10 = viel)",
             "type_input":"scale_input",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -1801,7 +1801,7 @@
             "text_input":"",
             "text_area_input":"",
             "checkbox_question_input":"",
-            "scale_input":"Wie sehr sind Sie bereit, Veränderungen in Ihrem Leben zuzulassen? (1= wenig, 10= viel)",
+            "scale_input":"Wie sehr sind Sie bereit, Veränderungen in Ihrem Leben zuzulassen? (1 = wenig, 10 = viel)",
             "radiobox_question_input":"",
             "header_with_margintop":"",
             "checkbox_answering_options":[
@@ -1812,7 +1812,7 @@
             ]
          },
          {
-            "title":"Wie sehr sind Sie bereit, mit Ihrer Vergangenheit Frieden zu schließen? (1= wenig, 10= sehr stark)   ",
+            "title":"Wie sehr sind Sie bereit, mit Ihrer Vergangenheit Frieden zu schließen? (1 = wenig, 10 = sehr stark)   ",
             "type_input":"scale_input",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -1824,7 +1824,7 @@
             "text_input":"",
             "text_area_input":"",
             "checkbox_question_input":"",
-            "scale_input":"Wie sehr sind Sie bereit, mit Ihrer Vergangenheit Frieden zu schließen? (1= wenig, 10= sehr stark)   ",
+            "scale_input":"Wie sehr sind Sie bereit, mit Ihrer Vergangenheit Frieden zu schließen? (1 = wenig, 10 = sehr stark)   ",
             "radiobox_question_input":"",
             "header_with_margintop":"",
             "checkbox_answering_options":[
@@ -2168,7 +2168,7 @@
             ]
          },
          {
-            "title":"Daten  zur Person",
+            "title":"Daten zur Person",
             "type_input":"client_data",
             "description_input":"\r\n",
             "client_data_name_input":true,
@@ -3100,7 +3100,7 @@
             ]
          },
          {
-            "title":"Sonstige schwere körperliche Erkrankungen: ",
+            "title":"Sonstige schwere körperliche Erkrankungen ",
             "type_input":"radiobox",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -3113,7 +3113,7 @@
             "text_area_input":"",
             "checkbox_question_input":"",
             "scale_input":"",
-            "radiobox_question_input":"Sonstige schwere körperliche Erkrankungen: ",
+            "radiobox_question_input":"Sonstige schwere körperliche Erkrankungen ",
             "radiobox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -3130,7 +3130,7 @@
             ]
          },
          {
-            "title":"Körperliche oder geistige Behinderung:",
+            "title":"Körperliche oder geistige Behinderung",
             "type_input":"radiobox",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -3143,7 +3143,7 @@
             "text_area_input":"",
             "checkbox_question_input":"",
             "scale_input":"",
-            "radiobox_question_input":"Körperliche oder geistige Behinderung:",
+            "radiobox_question_input":"Körperliche oder geistige Behinderung",
             "radiobox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -3160,7 +3160,7 @@
             ]
          },
          {
-            "title":"Schwere psychische Erkrankung (z.B. Psychose):",
+            "title":"Schwere psychische Erkrankung (z.B. Psychose)",
             "type_input":"radiobox",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -3173,7 +3173,7 @@
             "text_area_input":"",
             "checkbox_question_input":"",
             "scale_input":"",
-            "radiobox_question_input":"Schwere psychische Erkrankung (z.B. Psychose):",
+            "radiobox_question_input":"Schwere psychische Erkrankung (z.B. Psychose)",
             "radiobox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -3190,7 +3190,7 @@
             ]
          },
          {
-            "title":"ADS, ADHS, HKS (Hyperkinetische Störung): ",
+            "title":"ADS, ADHS, HKS (Hyperkinetische Störung) ",
             "type_input":"radiobox",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -3203,7 +3203,7 @@
             "text_area_input":"",
             "checkbox_question_input":"",
             "scale_input":"",
-            "radiobox_question_input":"ADS, ADHS, HKS (Hyperkinetische Störung): ",
+            "radiobox_question_input":"ADS, ADHS, HKS (Hyperkinetische Störung) ",
             "radiobox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -4940,7 +4940,7 @@
             ]
          },
          {
-            "title":"Sonstige schwere körperliche Erkrankungen: ",
+            "title":"Sonstige schwere körperliche Erkrankungen ",
             "type_input":"radiobox",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -4953,7 +4953,7 @@
             "text_area_input":"",
             "checkbox_question_input":"",
             "scale_input":"",
-            "radiobox_question_input":"Sonstige schwere körperliche Erkrankungen: ",
+            "radiobox_question_input":"Sonstige schwere körperliche Erkrankungen ",
             "radiobox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -4970,7 +4970,7 @@
             ]
          },
          {
-            "title":"Körperliche oder geistige Behinderung:",
+            "title":"Körperliche oder geistige Behinderung",
             "type_input":"radiobox",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -4983,37 +4983,7 @@
             "text_area_input":"",
             "checkbox_question_input":"",
             "scale_input":"",
-            "radiobox_question_input":"Körperliche oder geistige Behinderung:",
-            "radiobox_answering_options":[
-               {
-                  "answer_input":"Nein",
-                  "description_if_checked":false
-               },
-               {
-                  "answer_input":"Ja - Welche:",
-                  "description_if_checked":true
-               }
-            ],
-            "header_with_margintop":"",
-            "checkbox_answering_options":[
-               
-            ]
-         },
-         {
-            "title":"Schwere psychische Erkrankung (z.B. Psychose): ",
-            "type_input":"radiobox",
-            "description_input":"\r\n",
-            "client_data_name_input":false,
-            "client_data_firstname_input":false,
-            "client_data_birthday_input":false,
-            "client_data_address_input":false,
-            "client_data_phone_input":false,
-            "client_data_email_input":false,
-            "text_input":"",
-            "text_area_input":"",
-            "checkbox_question_input":"",
-            "scale_input":"",
-            "radiobox_question_input":"Schwere psychische Erkrankung (z.B. Psychose): ",
+            "radiobox_question_input":"Körperliche oder geistige Behinderung",
             "radiobox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -5030,7 +5000,7 @@
             ]
          },
          {
-            "title":"ADS, ADHS, HKS (Hyperkinetische Störung):",
+            "title":"Schwere psychische Erkrankung (z.B. Psychose) ",
             "type_input":"radiobox",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -5043,7 +5013,7 @@
             "text_area_input":"",
             "checkbox_question_input":"",
             "scale_input":"",
-            "radiobox_question_input":"ADS, ADHS, HKS (Hyperkinetische Störung):",
+            "radiobox_question_input":"Schwere psychische Erkrankung (z.B. Psychose) ",
             "radiobox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -5060,7 +5030,37 @@
             ]
          },
          {
-            "title":"Andauernde starke Schmerzen ",
+            "title":"ADS, ADHS, HKS (Hyperkinetische Störung)",
+            "type_input":"radiobox",
+            "description_input":"\r\n",
+            "client_data_name_input":false,
+            "client_data_firstname_input":false,
+            "client_data_birthday_input":false,
+            "client_data_address_input":false,
+            "client_data_phone_input":false,
+            "client_data_email_input":false,
+            "text_input":"",
+            "text_area_input":"",
+            "checkbox_question_input":"",
+            "scale_input":"",
+            "radiobox_question_input":"ADS, ADHS, HKS (Hyperkinetische Störung)",
+            "radiobox_answering_options":[
+               {
+                  "answer_input":"Nein",
+                  "description_if_checked":false
+               },
+               {
+                  "answer_input":"Ja - Welche?",
+                  "description_if_checked":true
+               }
+            ],
+            "header_with_margintop":"",
+            "checkbox_answering_options":[
+               
+            ]
+         },
+         {
+            "title":"Andauernde starke Schmerzen",
             "type_input":"radiobox",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -5090,7 +5090,7 @@
             ]
          },
          {
-            "title":"Wie stark sind die Schmerzen? (1 = niedrig; 10= extrem stark) ",
+            "title":"Wie stark sind die Schmerzen? (1 = niedrig; 10 = extrem stark) ",
             "type_input":"scale_input",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -5102,7 +5102,7 @@
             "text_input":"",
             "text_area_input":"",
             "checkbox_question_input":"",
-            "scale_input":"Wie stark sind die Schmerzen? (1 = niedrig; 10= extrem stark)",
+            "scale_input":"Wie stark sind die Schmerzen? (1 = niedrig; 10 = extrem stark)",
             "radiobox_question_input":"",
             "header_with_margintop":"",
             "checkbox_answering_options":[
@@ -5113,7 +5113,7 @@
             ]
          },
          {
-            "title":"Bei welchem Wert würde sich Ihre Lebensqualität verbessern? (1 = wenig; 10= extrem stark) ",
+            "title":"Bei welchem Wert würde sich Ihre Lebensqualität verbessern? (1 = wenig; 10 = extrem stark) ",
             "type_input":"scale_input",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -5147,7 +5147,7 @@
             "client_data_email_input":false,
             "text_input":"",
             "text_area_input":"",
-            "checkbox_question_input":"Erhebliche Kreislaufprobleme:",
+            "checkbox_question_input":"Erhebliche Kreislaufprobleme",
             "checkbox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -5159,7 +5159,7 @@
                }
             ],
             "scale_input":"",
-            "radiobox_question_input":"Erhebliche Kreislaufprobleme:",
+            "radiobox_question_input":"Erhebliche Kreislaufprobleme",
             "radiobox_answering_options":[
                {
                   "answer_input":"Nein",
@@ -5357,7 +5357,7 @@
                   "description_if_checked":false
                },
                {
-                  "answer_input":"andere Tiere",
+                  "answer_input":"Andere Tiere:",
                   "description_if_checked":true
                }
             ],
@@ -5484,7 +5484,7 @@
             ]
          },
          {
-            "title":"Mit welchem Ergebnis:",
+            "title":"Mit welchem Ergebnis?",
             "type_input":"text_area",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -5494,7 +5494,7 @@
             "client_data_phone_input":false,
             "client_data_email_input":false,
             "text_input":"",
-            "text_area_input":"Mit welchem Ergebnis:",
+            "text_area_input":"Mit welchem Ergebnis?",
             "checkbox_question_input":"",
             "scale_input":"",
             "radiobox_question_input":"",
@@ -5509,7 +5509,7 @@
          {
             "title":"Was ist die wichtigste Veränderung, die Sie mit der Hypnose erreichen wollen? Bitte beschreiben Sie diese so präzise wie möglich:",
             "type_input":"text_area",
-            "description_input":"<p>Mit welchem Ergebnis:</p>\r\n",
+            "description_input":"<p>Mit welchem Ergebnis?</p>\r\n",
             "client_data_name_input":false,
             "client_data_firstname_input":false,
             "client_data_birthday_input":false,
@@ -5686,7 +5686,7 @@
                   "description_if_checked":false
                },
                {
-                  "answer_input":"fühle mich ungeliebt",
+                  "answer_input":"Fühle mich ungeliebt",
                   "description_if_checked":false
                },
                {
@@ -5698,7 +5698,7 @@
                   "description_if_checked":false
                },
                {
-                  "answer_input":"ich nicht gut so wie ich bin",
+                  "answer_input":"Ich bin nicht gut so wie ich bin",
                   "description_if_checked":false
                },
                {
@@ -5878,7 +5878,7 @@
                   "description_if_checked":true
                },
                {
-                  "answer_input":"sonstiges",
+                  "answer_input":"Sonstiges:",
                   "description_if_checked":true
                }
             ],
@@ -5890,7 +5890,7 @@
             ]
          },
          {
-            "title":"Wie stark ist Ihr Problem? (1 = niedrig; 10= extrem stark)",
+            "title":"Wie stark ist Ihr Problem? (1 = niedrig; 10 = extrem stark)",
             "type_input":"scale_input",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -5902,7 +5902,7 @@
             "text_input":"",
             "text_area_input":"",
             "checkbox_question_input":"",
-            "scale_input":"Auf einer Skala von 1 bis 10, wie stark ist Ihr Problem (1 = niedrig; 10= extrem stark)",
+            "scale_input":"Auf einer Skala von 1 bis 10, wie stark ist Ihr Problem (1 = niedrig; 10 = extrem stark)",
             "radiobox_question_input":"",
             "header_with_margintop":"",
             "checkbox_answering_options":[
@@ -5913,7 +5913,7 @@
             ]
          },
          {
-            "title":"Wie sehr sind Sie bereit, Veränderungen in Ihrem Leben zuzulassen? (1= wenig, 10= viel)",
+            "title":"Wie sehr sind Sie bereit, Veränderungen in Ihrem Leben zuzulassen? (1 = wenig, 10 = viel)",
             "type_input":"scale_input",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -5925,7 +5925,7 @@
             "text_input":"",
             "text_area_input":"",
             "checkbox_question_input":"",
-            "scale_input":"Wie sehr sind Sie bereit, Veränderungen in Ihrem Leben zuzulassen? (1= wenig, 10= viel)",
+            "scale_input":"Wie sehr sind Sie bereit, Veränderungen in Ihrem Leben zuzulassen? (1 = wenig, 10 = viel)",
             "radiobox_question_input":"",
             "header_with_margintop":"",
             "checkbox_answering_options":[
@@ -5936,7 +5936,7 @@
             ]
          },
          {
-            "title":"Wie sehr sind Sie bereit, mit Ihrer Vergangenheit Frieden zu schließen? (1= wenig, 10= sehr stark)   ",
+            "title":"Wie sehr sind Sie bereit, mit Ihrer Vergangenheit Frieden zu schließen? (1 = wenig, 10 = sehr stark)   ",
             "type_input":"scale_input",
             "description_input":"\r\n",
             "client_data_name_input":false,
@@ -5948,7 +5948,7 @@
             "text_input":"",
             "text_area_input":"",
             "checkbox_question_input":"",
-            "scale_input":"Wie sehr sind Sie bereit, mit Ihrer Vergangenheit Frieden zu schließen? (1= wenig, 10= sehr stark)   ",
+            "scale_input":"Wie sehr sind Sie bereit, mit Ihrer Vergangenheit Frieden zu schließen? (1 = wenig, 10 = sehr stark)   ",
             "radiobox_question_input":"",
             "header_with_margintop":"",
             "checkbox_answering_options":[
@@ -5960,7 +5960,7 @@
          },
          {
             "title":"Bei der folgenden Frage geht es NICHT um Ihre Konfession, sondern um Ihre ganz persönliche Philosophie. Was ist der Sinn Ihres Lebens?  ",
-            "type_input":"scale_input",
+            "type_input":"text_area",
             "description_input":"\r\n",
             "client_data_name_input":false,
             "client_data_firstname_input":false,
@@ -6007,7 +6007,7 @@
          {
             "title":"Welchen Wert/Gewinn hat es für Sie, wenn Sie Ihr Behandlungsziel erreichen?",
             "type_input":"text_area",
-            "description_input":"<p>Bei der folgenden Frage geht es NICHT um Ihre Konfession, sondern um Ihre ganz persönliche Philosophie. Was ist der Sinn Ihres Lebens? &nbsp;</p>\r\n",
+            "description_input":"\r\n",
             "client_data_name_input":false,
             "client_data_firstname_input":false,
             "client_data_birthday_input":false,
@@ -6015,7 +6015,7 @@
             "client_data_phone_input":false,
             "client_data_email_input":false,
             "text_input":"",
-            "text_area_input":"",
+            "text_area_input":"Welchen Wert/Gewinn hat es für Sie, wenn Sie Ihr Behandlungsziel erreichen?",
             "checkbox_question_input":"",
             "scale_input":"",
             "radiobox_question_input":"",

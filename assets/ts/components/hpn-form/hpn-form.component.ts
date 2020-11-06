@@ -71,41 +71,6 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     }
   }
 
-  // public send(event: Event) {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-
-  //   if (!this.formEl) {
-  //     console.error("form element not found!");
-  //     return;
-  //   }
-
-  //   this.validate(this.formEl, this.scope.form);
-
-  //   if (!this.scope.form.valid) {
-  //     console.info("form not valid", this.scope);
-  //     return;
-  //   }
-
-  //   console.log("hjsrhsehsaeh");
-  //   if (this.scope.hcaptchaSize === "invisible") {
-  //     this.scope.submitDisabled = true;
-  //     (window as any).hcaptcha.execute(this.widgetID);
-  //   }
-  // }
-
-  // protected hcaptchaComplete(): boolean {
-  //   return true;
-  //   // const data = new FormData(this.formEl);
-  //   // HttpService.post("/pdf-form/send", data, "form");
-  //   // return false;
-  // }
-
-  // protected onSuccessSubmit(status: string, message: string, response: any) {
-  //   this.debug("onSuccessSubmit", status, message, response);
-  //   return super.onSuccessSubmit(status, message, response);
-  // }
-
   // TODO move to dom utils
   // see https://code-examples.net/de/q/738440
   protected getIframeWindow(
@@ -156,23 +121,25 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     event.stopPropagation();
 
     if (!this.scope.form.valid) {
-      console.info("form not valid", this.scope);
+      console.warn("form not valid", this.scope);
       return;
     }
 
     const data = new FormData(this.formEl);
-    for (const [key, value] of Object.entries(data)) {
-      console.log(key, value);
+    if(this._debug) {
+      for (const [key, value] of Object.entries(data)) {
+        this.debug(key, value);
+      }
     }
 
     HttpService.post("/pdf-form/print", data, "form").then((res) => {
-      console.log(res);
+      this.debug("res", res);
       const pdfFile = new Blob([res], {
         type: "text/html",
       });
 
       const pdfUrl = URL.createObjectURL(pdfFile);
-      console.log(pdfUrl);
+      this.debug("pdfUrl", pdfUrl);
       const ifrm = document.createElement("iframe");
       ifrm.style.width = "640px";
       ifrm.style.height = "480px";
@@ -191,16 +158,9 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     });
   }
 
-  protected connectedCallback() {
-    super.connectedCallback();
-  }
-
   protected async beforeBind() {
-    return super.beforeBind();
-  }
-
-  protected async afterBind() {
-    super.afterBind();
+    await super.beforeBind();
     this.pjax = Pjax.getInstance("main");
   }
+
 }
