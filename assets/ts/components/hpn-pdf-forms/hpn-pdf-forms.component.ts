@@ -247,7 +247,7 @@ export class HpnPdfFormsComponent extends Component {
   public static tagName = "hpn-pdf-forms";
 
   protected autobind = true;
-  public _debug = true;
+  public _debug = false;
 
   static get observedAttributes() {
     return ["forms"];
@@ -260,6 +260,11 @@ export class HpnPdfFormsComponent extends Component {
 
   constructor(element?: HTMLElement) {
     super(element);
+  }
+
+  protected connectedCallback() {
+    this.debug("connectedCallback");
+    super.connectedCallback();
     this.init(HpnPdfFormsComponent.observedAttributes);
   }
 

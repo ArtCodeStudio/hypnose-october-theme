@@ -13,6 +13,10 @@ export class HpnFooterComponent extends Component {
 
   constructor(element?: HTMLElement) {
     super(element);
+  }
+
+  protected connectedCallback() {
+    super.connectedCallback();
     this.init(HpnFooterComponent.observedAttributes);
   }
 

@@ -15,7 +15,7 @@ interface Scope extends OcFormScope {
 
 export class HpnFormComponent extends HCaptchaFormComponent {
   public static tagName = "hpn-form";
-  public _debug = true;
+  public _debug = false;
   protected autobind = true;
 
   protected pjax?: Pjax;
@@ -126,7 +126,7 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     }
 
     const data = new FormData(this.formEl);
-    if(this._debug) {
+    if (this._debug) {
       for (const [key, value] of Object.entries(data)) {
         this.debug(key, value);
       }
@@ -162,5 +162,4 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     await super.beforeBind();
     this.pjax = Pjax.getInstance("main");
   }
-
 }
