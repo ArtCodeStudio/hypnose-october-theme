@@ -46,7 +46,23 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     this.setEmailRequired(true);
   }
 
-  protected download() {
+  protected download(event: Event) {
+    if (!this.formEl) {
+      console.error("form element not found!");
+      return;
+    }
+    this.setEmailRequired(false);
+
+    this.validate(this.formEl, this.scope.form);
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!this.scope.form.valid) {
+      console.warn("form not valid", this.scope);
+      return;
+    }
+
     const dl = this.el.getAttribute("download");
     if (dl) {
       window.open(dl, "_blank");
