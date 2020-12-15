@@ -53,7 +53,7 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     }
     this.setEmailRequired(false);
 
-    this.validate(this.formEl, this.scope.form);
+    this.validate(this.formEl, this.scope.form, "honorar-error");
 
     event.preventDefault();
     event.stopPropagation();
