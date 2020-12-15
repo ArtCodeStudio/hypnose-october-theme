@@ -8,8 +8,8 @@ snippetName = "Contact form"
 
       <hcaptcha-oc-form hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967" hcaptcha-size="normal"
         rv-show-toast-on-submit-success="{'message': 'Vielen Dank. Ihre Nachricht wurde erfolgreich versendet. Sie erhalten eine Kopie Ihrer Nachricht.', 'delay': 20000, 'contextualClass': 'success'}"
-        rv-show-toast-on-submit-error="{'message': 'Nachricht konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'contextualClass': 'danger', 'delay': 10000}"
-        rv-show-toast-on-validation-error="{'message': 'Ihre Nachricht konnte nicht abgeschickt werden. Bitte überprüfen Sie Ihre Eingaben und vervollständigen Sie diese ggf. vor dem Absenden.', 'contextualClass': 'danger', 'delay': 10000}"
+        rv-show-toast-on-submit-error="{'message': 'Nachricht konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'contextualClass': 'danger', 'delay': 20000}"
+        rv-show-toast-on-validation-error="{'message': 'Ihre Nachricht konnte nicht abgeschickt werden. Bitte überprüfen Sie Ihre Eingaben und vervollständigen Sie diese ggf. vor dem Absenden.', 'contextualClass': 'danger', 'delay': 20000}"
         disable-submit-until-change="true" october-handler="onContactFormSubmit">
         <form rv-on-submit="onSubmit" id="contact-form">
 

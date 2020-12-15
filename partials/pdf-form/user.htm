@@ -34,8 +34,8 @@ function onStart()
         <template title="{{ form.questionary_name }}">
           <hpn-form download="{{ form.questionary_download }}" hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967" hcaptcha-size="invisible"
             rv-show-toast-on-submit-success="{'message': 'Vielen Dank. Ihr Formular wurde erfolgreich versendet. Sie erhalten eine Kopie Ihrers Formulars per E-Mail.', 'delay': 20000, 'contextualClass': 'success'}"
-            rv-show-toast-on-submit-error="{'message': 'Das Formular konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'contextualClass': 'danger', 'delay': 10000}"
-            rv-show-toast-on-validation-error="{'message': 'Ihr Formular konnte nicht abgeschickt werden. Bitte überprüfen Sie Ihre Eingaben und vervollständigen Sie diese ggf. vor dem Absenden.', 'contextualClass': 'danger', 'delay': 10000}"
+            rv-show-toast-on-submit-error="{'message': 'Das Formular konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'contextualClass': 'danger', 'delay': 20000}"
+            rv-show-toast-on-validation-error="{'message': 'Ihr Formular konnte nicht abgeschickt werden. Bitte überprüfen Sie Ihre Eingaben und vervollständigen Sie diese ggf. vor dem Absenden.', 'contextualClass': 'danger', 'delay': 20000}"
             disable-submit-until-change="true" {# october-handler="onTest" #}>
             <form rv-on-submit="onSubmit" method="post" action="/pdf-form/send">
               <input type="text" value="{{ form.questionary_name }}" name="questionaireName" class="d-none">
