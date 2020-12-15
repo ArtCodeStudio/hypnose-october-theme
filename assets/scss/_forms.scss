@@ -31,6 +31,10 @@ body .was-validated .custom-control-input:valid ~ .custom-control-label::before 
   border-color: #5f6979;
 }
 
+body .was-validated a:not(:hover) {
+  color: #ff0012;
+}
+
 @mixin rangeThumb {
   width: 18px;
   height: 18px;
