@@ -19,6 +19,9 @@
                     {% endif %}
                     {{ item.title }}
                 </a>
+                {% if prefetch %}
+                    <link rel="router-preload" href="{{ item.url }}">
+                {% endif %}
             {% endif %}
             {% if item.items %}
                 <div class="nav-item-level-2-wrapper py-3 collapsed">
@@ -27,6 +30,9 @@
                         <div rv-route-class-active="'{{ item.url }}'" class="nav-item nav-item-level-2 {{ item.viewBag.cssClass }} {{titleClass}} {% if item.items %}nav-item-level-2-with-childs{% endif %}">
                             {% if not item.viewBag.isHidden %}
                                 <a rv-route="'{{ item.url }}'" class="nav-link px-0 px-md-3" href="{{ item.url }}">{{ item.title }}</a>
+                                {% if prefetch %}
+                                    <link rel="router-preload" href="{{ item.url }}">
+                                {% endif %}
                             {% endif %}
                         </div>
                     {% endfor %}

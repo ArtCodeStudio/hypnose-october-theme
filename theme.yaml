@@ -259,6 +259,12 @@ form:
         type: richeditor
         label: "Opening hours"
         tab: General
+      general_precache_navigation:
+        type: checkbox
+        label: Precache navigation
+        comment: "Preloads the HTML of the navigation pages to increase the loading speed when the user clicks on the link"
+        default: true
+        tab: General
       # Application Areas
       application_areas_nav_item:
         tab: "Application areas"

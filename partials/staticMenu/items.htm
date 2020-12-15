@@ -17,6 +17,9 @@
                 <a rv-on-click="onItemClick" class="nav-link" href="{{ item.url }}">
                     {{ item.title }}
                 </a>
+                {% if prefetch %}
+                    <link rel="router-preload" href="{{ item.url }}">
+                {% endif %}
             {% endif %}
             {% if item.items %}
                 {% if item.items | length > 10 %}
@@ -117,6 +120,9 @@
                                                 <div rv-route-class-active="'{{ item.url }}'" class="nav-item nav-item-level-2 {{ item.viewBag.cssClass }} {{titleClass}} {% if item.items %}nav-item-level-2-with-childs{% endif %}">
                                                     {% if not item.viewBag.isHidden %}
                                                         <a rv-on-click="onItemClick" class="nav-link " href="{{ item.url }}">{{ item.title }}</a>
+                                                        {% if prefetch %}
+                                                            <link rel="router-preload" href="{{ item.url }}">
+                                                        {% endif %}
                                                     {% endif %}
                                                 </div>
                                             {% endfor %}
@@ -133,6 +139,9 @@
                             <div rv-route-class-active="'{{ item.url }}'" class="nav-item nav-item-level-2 {{ item.viewBag.cssClass }} {{titleClass}} {% if item.items %}nav-item-level-2-with-childs{% endif %}">
                                 {% if not item.viewBag.isHidden %}
                                     <a rv-on-click="onItemClick" class="nav-link " href="{{ item.url }}">{{ item.title }}</a>
+                                    {% if prefetch %}
+                                        <link rel="router-preload" href="{{ item.url }}">
+                                    {% endif %}
                                 {% endif %}
                             </div>
                         {% endfor %}

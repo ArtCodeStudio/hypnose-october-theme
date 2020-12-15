@@ -12,7 +12,7 @@ code = "top-navigation"
     </a>
     <nav class="nav flex-row justify-content-end">
       <div class="d-flex flex-row">
-        {% partial 'staticMenu/items' items=topNavigation.menuItems %}
+        {% partial 'staticMenu/items' items=topNavigation.menuItems prefetch=this.theme.general_precache_navigation %}
       </div>
 
       <div class="nav-item flex-column navbar-toggler border-0" rv-on-click="toggle">
@@ -45,6 +45,6 @@ code = "top-navigation"
 <hpn-sidebar id="main-sidebar" position="right" auto-show-on-wider-than="-1" auto-hide-on-slimmer-than="992"
   width="100vw" watch-new-page-ready-event="false">
   <div class="d-flex flex-column sidebar-container">
-    {% partial 'staticMenu/sidebar' items=topNavigation.menuItems %}
+    {% partial 'staticMenu/sidebar' items=topNavigation.menuItems prefetch=this.theme.general_precache_navigation %}
   </div>
 </hpn-sidebar>

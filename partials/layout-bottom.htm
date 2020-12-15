@@ -24,7 +24,7 @@ code = "footer"
     </div>
     {# Footer Menu Column #}
     <div class="col-12 col-lg pt-md-5 nav-footer-in-column">
-      {% partial 'staticMenu/items-footer' items=footer.menuItems %}
+      {% partial 'staticMenu/items-footer' items=footer.menuItems prefetch=this.theme.general_precache_navigation %}
     </div>
   </div>
   <div class="row order-0 order-md-1 text-center footer-icons">
