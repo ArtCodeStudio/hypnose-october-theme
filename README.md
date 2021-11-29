@@ -2,6 +2,9 @@
 
 This is a OctoberCMS v1.x Theme build for [Fachzentrum für ursachenorientierte Hypnose](https://hypnozentrum.de/).
 
+![Screenshot](https://user-images.githubusercontent.com/1073989/143890025-8d28fce3-9f5e-42b8-beab-01e37fc068cc.png)
+
+
 ## Build
 
 Install Node.js with [NVM](https://github.com/nvm-sh/nvm).
