@@ -3,10 +3,11 @@
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "eslint.nodePath": ".yarn/sdks",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "search.exclude": {
     "**/.yarn": true,
     "**/.pnp.*": true
-  },
-  "eslint.enable": false
+  }
 }

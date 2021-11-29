@@ -35,6 +35,10 @@ body .was-validated a:not(:hover) {
   color: #ff0012;
 }
 
+.h-captcha-container {
+  margin-bottom: 30px;
+}
+
 @mixin rangeThumb {
   width: 18px;
   height: 18px;
