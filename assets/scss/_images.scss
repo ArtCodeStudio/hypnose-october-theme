@@ -2,7 +2,7 @@ img.rounded {
   border-radius: $thumbnail-border-radius !important;
 }
 
-&.embed-responsive {
+.embed-responsive {
   &.lazy {
     &:before {
       background-image: url(../images/loading.svg);

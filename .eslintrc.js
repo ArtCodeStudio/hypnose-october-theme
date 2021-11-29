@@ -1,6 +1,5 @@
 module.exports = {
   root: true,
-  extends: [
-    '@ribajs',
-  ]
+  extends: ["@ribajs"],
+  ignorePatterns: ["packages/**/*", "**/*.spec.ts", "node_modules/"],
 };

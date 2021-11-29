@@ -9,10 +9,10 @@ export class HpnFooterComponent extends Component {
     return [];
   }
 
-  protected scope: any = {};
+  public scope: any = {};
 
-  constructor(element?: HTMLElement) {
-    super(element);
+  constructor() {
+    super();
   }
 
   protected connectedCallback() {

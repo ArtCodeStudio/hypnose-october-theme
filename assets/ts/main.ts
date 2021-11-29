@@ -1,6 +1,5 @@
 import { Riba, coreModule } from "@ribajs/core";
 import { routerModule } from "@ribajs/router";
-// import { pdfModule } from "@ribajs/pdf";
 import { jqueryModule } from "@ribajs/jquery";
 import { leafletModule } from "@ribajs/leaflet-map";
 import { octobercmsModule } from "@ribajs/octobercms";
@@ -23,25 +22,18 @@ export class Main {
   private riba = new Riba();
 
   constructor() {
-    this.riba.module.regist(coreModule);
-    this.riba.module.regist(jqueryModule);
-    this.riba.module.regist(routerModule);
-    this.riba.module.regist(bs4Module);
-    this.riba.module.regist(octobercmsModule);
-    // this.riba.module.regist(pdfModule);
-    this.riba.module.regist(leafletModule);
+    this.riba.module.regist(coreModule.init());
+    this.riba.module.regist(jqueryModule.init());
+    this.riba.module.regist(routerModule.init());
+    this.riba.module.regist(bs4Module.init());
+    this.riba.module.regist(octobercmsModule.init());
+    this.riba.module.regist(leafletModule.init());
 
-    // selected elements from modules
-    this.riba.module.regist({
-      binders: { dataScrollPositionYBinder, syncElementPropertyBinder },
-    });
-
-    // Regist custom components
-    this.riba.module.regist({
-      formatters: CustomFormatters,
-      components: CustomComponents,
-      // binders: CustomBinders,
-    });
+    // selected parts from modules
+    this.riba.module.binder.regist(dataScrollPositionYBinder);
+    this.riba.module.binder.regist(syncElementPropertyBinder);
+    this.riba.module.component.regists(CustomComponents);
+    this.riba.module.formatter.regists(CustomFormatters);
 
     this.riba.bind(document.body, window.model || {});
   }

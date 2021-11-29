@@ -18,15 +18,15 @@ export class ArtCodeCreditsComponent extends Component {
     return ["align-bottom", "icon-src"];
   }
 
-  protected scope: Scope = {
+  public scope: Scope = {
     popupVisible: false,
     toggle: this.toggle,
     alignBottom: false,
     iconSrc: "",
   };
 
-  constructor(element?: HTMLElement) {
-    super(element);
+  constructor() {
+    super();
     this.debug("constructor", this);
   }
 
@@ -49,7 +49,7 @@ export class ArtCodeCreditsComponent extends Component {
     await super.afterBind();
     this.debug("Art+Code Credits after bind called");
     document.addEventListener("click", (e: MouseEvent) => {
-      if (e.target && !this.el.contains(e.target as Node)) {
+      if (e.target && !this.contains(e.target as Node)) {
         // console.log(this.el);
         this.scope.popupVisible = false;
       }
@@ -85,7 +85,7 @@ export class ArtCodeCreditsComponent extends Component {
 
   protected template() {
     // Only set the component template if there no childs already
-    if (this.el.hasChildNodes()) {
+    if (this.hasChildNodes()) {
       // this.debug('Do not use template, because element has child nodes');
       return null;
     } else {

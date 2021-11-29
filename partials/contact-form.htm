@@ -6,7 +6,8 @@ snippetName = "Contact form"
   <div class="row">
     <div class="col-12">
 
-      <hcaptcha-oc-form hcaptcha-hl="de" hcaptcha-sitekey="6Le8Sh4aAAAAACb3QtZ0VWjmohZBfAoPhZWbE7TZ" hcaptcha-size="normal"
+      {# <hcaptcha-oc-form hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967" hcaptcha-size="normal" #}
+      <recaptcha-oc-form recaptcha-hl="de" recaptcha-sitekey="6Le8Sh4aAAAAACb3QtZ0VWjmohZBfAoPhZWbE7TZ" recaptcha-size="normal"
         rv-show-toast-on-submit-success="{'message': 'Vielen Dank. Ihre Nachricht wurde erfolgreich versendet. Sie erhalten eine Kopie Ihrer Nachricht.', 'delay': 20000, 'contextualClass': 'success'}"
         rv-show-toast-on-submit-error="{'message': 'Nachricht konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'contextualClass': 'danger', 'delay': 20000}"
         rv-show-toast-on-validation-error="{'message': 'Ihre Nachricht konnte nicht abgeschickt werden. Bitte überprüfen Sie Ihre Eingaben und vervollständigen Sie diese ggf. vor dem Absenden.', 'contextualClass': 'danger', 'delay': 20000}"
@@ -129,7 +130,7 @@ snippetName = "Contact form"
             class="btn btn-secondary btn-lg h-captcha">Absenden</button>
           <button type="submit" class="d-none"></button>
         </form>
-      </hcaptcha-oc-form>
+      </recaptcha-oc-form>
     </div>
   </div>
 </div>

@@ -16,13 +16,13 @@ export class HpnCookiesComponent extends Component {
     return [];
   }
 
-  protected scope: Scope = {
+  public scope: Scope = {
     denyCookies: this.denyCookies,
     acceptCookies: this.acceptCookies,
   };
 
-  constructor(element?: HTMLElement) {
-    super(element);
+  constructor() {
+    super();
   }
 
   protected connectedCallback() {
@@ -64,7 +64,7 @@ export class HpnCookiesComponent extends Component {
 
   protected denyCookies() {
     console.log("denied cookies");
-    this.el.parentNode?.removeChild(this.el);
+    this.parentNode?.removeChild(this);
     (document as any).__defineGetter__("cookie", function () {
       return "";
     });
@@ -77,7 +77,7 @@ export class HpnCookiesComponent extends Component {
   protected acceptCookies() {
     document.cookie =
       "hpn-cookies=accept; expires=Thu, 13 Jul 2022 12:00:00 UTC";
-    this.el.parentNode?.removeChild(this.el);
+    this.parentNode?.removeChild(this);
   }
 
   //stackoverflow

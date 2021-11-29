@@ -253,13 +253,13 @@ export class HpnPdfFormsComponent extends Component {
     return ["forms"];
   }
 
-  protected scope: Scope = {
+  public scope: Scope = {
     forms: [],
     settings,
   };
 
-  constructor(element?: HTMLElement) {
-    super(element);
+  constructor() {
+    super();
   }
 
   protected connectedCallback() {

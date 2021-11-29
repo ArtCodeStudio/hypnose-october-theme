@@ -18,21 +18,29 @@
 }
 
 //small hack to override valid styles
-body .was-validated .form-control:valid {
-  @extend .form-control;
-  background: none;
-}
+body {
+  .was-validated .form-control:valid {
+    @extend .form-control;
+    background-image: none;
+    border-color: $body-color;
+  }
+  
+  .was-validated .custom-control-input:valid ~ .custom-control-label,
+  .custom-control-input.is-valid ~ .custom-control-label {
+    color: unset;
+  }
+  .was-validated .custom-control-input:valid ~ .custom-control-label::before {
+    border-color: $body-color;
+  }
 
-body .was-validated .custom-control-input:valid ~ .custom-control-label,
-body .custom-control-input.is-valid ~ .custom-control-label {
-  color: unset;
-}
-body .was-validated .custom-control-input:valid ~ .custom-control-label::before {
-  border-color: #5f6979;
-}
-
-body .was-validated a:not(:hover) {
-  color: #ff0012;
+  .was-validated .custom-control-input:valid:checked ~ .custom-control-label::before {
+    border-color: $body-color;
+    background-color: $body-color;
+  }
+  
+  .was-validated a:not(:hover) {
+    color: $red;
+  }
 }
 
 .h-captcha-container {

@@ -2,20 +2,17 @@ import { isAbsoluteUrl, isInternalUrl } from "@ribajs/utils/src/url";
 import { Pjax } from "@ribajs/router";
 import { Bs4SidebarComponent } from "@ribajs/bs4/src/components/bs4-sidebar/bs4-sidebar.component";
 import { CollapseService } from "@ribajs/bs4/src/services/collapse.service";
-
-type State =
-  | "overlay-left"
-  | "overlay-right"
-  | "side-left"
-  | "side-right"
-  | "hidden";
+import {
+  Bs4SidebarComponentScope,
+  Bs4SidebarComponentState as State,
+} from "@ribajs/bs4/src/interfaces";
 
 interface ToggleItem {
   collapseService: CollapseService;
   handle: string;
 }
 
-interface Scope {
+interface Scope extends Bs4SidebarComponentScope {
   /**
    * Selector string to get the container element from DOM
    */
@@ -106,10 +103,11 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
     ];
   }
 
-  protected scope: Scope = {
+  public scope: Scope = {
     // template properties
     containerSelector: undefined,
     state: "hidden",
+    oldState: "hidden",
     id: undefined,
     width: "100vw",
 
@@ -132,8 +130,8 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
     onItemClick: this.onItemClick,
   };
 
-  constructor(element?: HTMLElement) {
-    super(element);
+  constructor() {
+    super();
   }
 
   public toggleItem(handle: string, event: Event) {
@@ -193,7 +191,7 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
         toggleItem.collapseService._element;
       }
     }
-    const dropdownToggleElements = this.el.querySelectorAll(
+    const dropdownToggleElements = this.querySelectorAll(
       ".dropdown-toggle"
     ) as NodeListOf<HTMLButtonElement | HTMLAnchorElement>;
     dropdownToggleElements.forEach((toggleElement) => {
@@ -212,7 +210,7 @@ export class HpnSidebarComponent extends Bs4SidebarComponent {
 
   protected connectedCallback() {
     super.connectedCallback();
-    const dropdownToggleElements = this.el.querySelectorAll(
+    const dropdownToggleElements = this.querySelectorAll(
       ".collapse"
     ) as NodeListOf<HTMLButtonElement | HTMLAnchorElement>;
     dropdownToggleElements.forEach((toggleElement) => {

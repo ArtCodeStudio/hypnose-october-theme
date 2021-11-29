@@ -1,0 +1,40 @@
+// Body Colors
+$body-color: #5f6979;
+$title-color: #b79563;
+$body-bg: #fcfbfa;
+
+// Grayscale Colors
+$white: #ffffff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000000;
+
+// General Colors
+$red: #ff0012;
+$orange: #f0ad4e;
+$yellow: #e3d9cb;
+$green: #ffffff;
+$blue: #0275d8;
+$teal: #5bc0de;
+$pink: #b583cc;
+$purple: #613d7c;
+$cyan:    #17a2b8;
+
+// Brand Colors
+$primary: #a6d2df;
+$secondary: $body-color;
+$tertiary: #d9d3c9;
+$success: $green;
+$info: $cyan;
+$warning: $title-color;
+$danger: $red;
+$light: $gray-100;
+$dark: $gray-800;
+

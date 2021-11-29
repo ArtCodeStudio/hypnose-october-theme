@@ -32,7 +32,8 @@ function onStart()
         {% for form in pdf_forms %}
         {% set questionaire_prefix = loop.index0 %}
         <template title="{{ form.questionary_name }}">
-          <hpn-form download="{{ form.questionary_download }}" hcaptcha-hl="de" hcaptcha-sitekey="6Le8Sh4aAAAAACb3QtZ0VWjmohZBfAoPhZWbE7TZ" hcaptcha-size="normal"
+          {# <hpn-form download="{{ form.questionary_download }}" hcaptcha-hl="de" hcaptcha-sitekey="94940564-c876-4550-971a-87eccace5967" hcaptcha-size="normal" #}
+          <hpn-form download="{{ form.questionary_download }}" recaptcha-hl="de" recaptcha-sitekey="6Le8Sh4aAAAAACb3QtZ0VWjmohZBfAoPhZWbE7TZ" recaptcha-size="normal"
             rv-show-toast-on-submit-success="{'message': 'Vielen Dank. Ihr Formular wurde erfolgreich versendet. Sie erhalten eine Kopie Ihrers Formulars per E-Mail.', 'delay': 20000, 'contextualClass': 'success'}"
             rv-show-toast-on-submit-error="{'message': 'Das Formular konnte nicht abgeschickt werden, Fehler: { toast.$event.detail.message }', 'contextualClass': 'danger', 'delay': 20000}"
             rv-show-toast-on-validation-error="{'message': 'Ihr Formular konnte nicht abgeschickt werden. Bitte überprüfen Sie Ihre Eingaben und vervollständigen Sie diese ggf. vor dem Absenden.', 'contextualClass': 'danger', 'delay': 20000}"

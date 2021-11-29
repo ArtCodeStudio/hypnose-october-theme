@@ -1,14 +1,16 @@
 @import "charset";
+@import "theme-settings"; 
 @import "variables-bootstrap";
 @import "variables-custom";
 @import "variables-riba";
+@import "theme-settings"; 
 
+// vendors
 @import "bootstrap";
 
 // Bootstrap style extensions from @ribajs/bs4
 @import "./vendors/@ribajs/core/index";
 @import "./vendors/@ribajs/bs4/index";
-@import "./vendors/@ribajs/pdf/index";
 @import "./vendors/@ribajs/leaflet-map/index";
 
 // vendors

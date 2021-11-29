@@ -1,19 +1,18 @@
 import { Pjax } from "@ribajs/router";
 import {
-  HCaptchaFormComponent,
-  Scope as OcFormScope,
-} from "@ribajs/octobercms/src/components/hcaptcha-oc-form/hcaptcha-oc-form.component";
+  ReCaptchaFormComponent,
+  ReCaptchaFormComponentScope,
+} from "@ribajs/octobercms";
 import { HttpService } from "@ribajs/core";
 
-interface Scope extends OcFormScope {
+interface Scope extends ReCaptchaFormComponentScope {
   print: HpnFormComponent["print"];
   send: HpnFormComponent["send"];
   openPdf: HpnFormComponent["openPdf"];
   download: HpnFormComponent["download"];
-  // send: HpnFormComponent["send"];
 }
 
-export class HpnFormComponent extends HCaptchaFormComponent {
+export class HpnFormComponent extends ReCaptchaFormComponent {
   public static tagName = "hpn-form";
   public _debug = false;
   protected autobind = true;
@@ -21,7 +20,7 @@ export class HpnFormComponent extends HCaptchaFormComponent {
   protected pjax?: Pjax;
 
   static get observedAttributes() {
-    return HCaptchaFormComponent.observedAttributes;
+    return ReCaptchaFormComponent.observedAttributes;
   }
   protected requiredAttributes(): string[] {
     return super.requiredAttributes();
@@ -36,10 +35,10 @@ export class HpnFormComponent extends HCaptchaFormComponent {
     return scope as Scope;
   }
 
-  protected scope: Scope = this.getDefaultScope();
+  public scope: Scope = this.getDefaultScope();
 
-  constructor(element?: HTMLElement) {
-    super(element);
+  constructor() {
+    super();
   }
 
   protected send(/*event: Event*/) {
@@ -63,7 +62,7 @@ export class HpnFormComponent extends HCaptchaFormComponent {
       return;
     }
 
-    const dl = this.el.getAttribute("download");
+    const dl = this.getAttribute("download");
     if (dl) {
       window.open(dl, "_blank");
     }
@@ -150,7 +149,7 @@ export class HpnFormComponent extends HCaptchaFormComponent {
 
     HttpService.post("/pdf-form/print", data, "form").then((res) => {
       this.debug("res", res);
-      const pdfFile = new Blob([res], {
+      const pdfFile = new Blob([res.body], {
         type: "text/html",
       });
 

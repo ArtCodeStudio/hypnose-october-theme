@@ -17,7 +17,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     return ["collapse-selector"];
   }
 
-  protected scope = {
+  public scope = {
     toggle: this.toggle,
     show: this.show,
     hide: this.hide,
@@ -30,8 +30,8 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
     hideOnHoverClass: "hide-on-hover",
   };
 
-  constructor(element?: HTMLElement) {
-    super(element);
+  constructor() {
+    super();
     // console.debug('constructor', this);
   }
 
@@ -105,7 +105,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
   }
 
   protected hideAll() {
-    const collapseElements = this.el.querySelectorAll<HTMLElement>(
+    const collapseElements = this.querySelectorAll<HTMLElement>(
       this.scope.collapseSelector
     );
     collapseElements.forEach((collapseElement) => {
@@ -114,7 +114,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
   }
 
   protected hideAllActive() {
-    const collapseElements = this.el.querySelectorAll<HTMLElement>(
+    const collapseElements = this.querySelectorAll<HTMLElement>(
       this.scope.parentSelector
     );
     collapseElements.forEach((collapseElement) => {
@@ -123,7 +123,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
   }
 
   protected removeAllOnHoverClasses() {
-    const collapseElements = this.el.querySelectorAll<HTMLElement>(
+    const collapseElements = this.querySelectorAll<HTMLElement>(
       this.scope.collapseSelector
     );
     collapseElements.forEach((collapseElement) => {
@@ -133,7 +133,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
 
   protected getHighestCollapseElementHeight() {
     let highest = 0;
-    const collapseElements = this.el.querySelectorAll<HTMLElement>(
+    const collapseElements = this.querySelectorAll<HTMLElement>(
       this.scope.parentSelector + " " + this.scope.collapseSelector
     );
     if (collapseElements) {
@@ -143,7 +143,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
       });
     }
     // Special case for navbar brand
-    const navbarBrand = this.el.querySelector(".navbar-brand");
+    const navbarBrand = this.querySelector(".navbar-brand");
     if (navbarBrand) {
       const clientHeight =
         (navbarBrand as HTMLElement).clientHeight -
@@ -154,7 +154,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
   }
 
   protected setMenuHeight() {
-    const nav = this.el.querySelector(".nav");
+    const nav = this.querySelector(".nav");
     if (this.scope.isCollapsed) {
       (nav as HTMLElement).style.height =
         this.scope.navbarCollapsedHeight + "px"; // 'auto';
@@ -198,7 +198,7 @@ export class HpnNavbarComponent extends Bs4NavbarComponent {
 
     // hide menu on click outside elsewhere
     window.onclick = (event: Event) => {
-      if (!this.scope.isCollapsed && !this.el.contains(event.target as Node)) {
+      if (!this.scope.isCollapsed && !this.contains(event.target as Node)) {
         console.log(event);
         this.hide(event);
       }

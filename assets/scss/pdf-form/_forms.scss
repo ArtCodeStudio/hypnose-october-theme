@@ -7,14 +7,14 @@ $size: 10px;
 $fontSize: 20px;
 
 .checkbox[checked] {
-  background-color: #5f6979;
+  background-color: $body-color;
 }
 
 .checkbox {
   height: $size;
   width: $size;
   display: inline-block;
-  border: solid #5f6979 1px;
+  border: solid $body-color 1px;
   border-radius: 3px;
   margin-right: 3px;
 }
