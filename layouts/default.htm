@@ -153,7 +153,7 @@ function onContactFormSubmit()
         <div id="layout-top">
             {% partial 'layout-top' %}
         </div>
-        <div id="main" rv-view="{'listenAllLinks': true, 'datasetToModel': true}">
+        <router-view id="main" listen-all-links="true" dataset-to-model="true">
             <div {% partial 'router-dataset' %}>
                 {% if placeholder('headerTeaser') %}
                 <div class="page-header-teaser">
@@ -168,7 +168,7 @@ function onContactFormSubmit()
                 {% page %}
                 {#% component 'staticPage' %#}
             </div>
-        </div>
+        </router-view>
         <div id="layout-bottom">
             {% partial 'layout-bottom' %}
         </div>
