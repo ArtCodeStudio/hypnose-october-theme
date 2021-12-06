@@ -1,11 +1,8 @@
 @import "charset";
+@import "theme-settings"; 
 @import "variables-bootstrap";
 @import "variables-custom";
 @import "variables-riba";
-@import "./pdf-form/variables";
-@import "./pdf-form/normalize";
-@import "./pdf-form/grid";
-@import "./pdf-form/forms";
-@import "./pdf-form/header";
+@import "./pdf-form/index";
 // Utils like the my-5 classes
 @import "./vendors/bootstrap/utilities";
