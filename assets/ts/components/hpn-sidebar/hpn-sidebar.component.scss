@@ -9,9 +9,12 @@ hpn-sidebar {
     max-height: 100vh;
     @include scrollbars(.6em, theme-color(secondary), transparent);
     overflow-x: auto;
-  }
-  .nav-item-letter {
 
+    .dropdown-toggle {
+      &::after {
+        margin-top: 16px;
+      }
+    }
   }
 }
 
