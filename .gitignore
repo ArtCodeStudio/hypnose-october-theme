@@ -70,3 +70,6 @@ typings/
 
 # Builds
 assets/js/
+
+# Backups
+backups/*

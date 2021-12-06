@@ -1,0 +1,17 @@
+{
+  "name": "backup",
+  "packageManager": "yarn@3.1.0",
+  "scripts": {
+    "backup:create": "ts-node backup.ts"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
+    "@types/archiver": "^5.1.1",
+    "@types/node": "^16.11.11"
+  },
+  "dependencies": {
+    "archiver": "^5.3.0",
+    "mysqldump": "^3.2.0",
+    "ts-node": "^10.4.0"
+  }
+}
