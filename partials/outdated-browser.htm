@@ -143,7 +143,12 @@
      * Test if the current borwser is IE
      */
     function isIE() {
-        return (navigator.appName == 'Microsoft Internet Explorer' ||  !!(navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/rv:11/)) || (typeof $.browser !== "undefined" && $.browser.msie == 1));
+        var isIE = window.navigator.appName === 'Microsoft Internet Explorer';
+        isIE = isIE || !!(window.navigator.userAgent.match(/Trident/));
+        isIE = isIE || !!(window.navigator.userAgent.match(/rv:11/));
+        isIE = isIE || (typeof $.browser !== "undefined" && $.browser.msie === 1);
+
+        return isIE;
     }
     
     function addBrowserClassToHtml() {
@@ -163,7 +168,7 @@
 
 </script>
 
-<div id="outdated" class="modal outdated-modal">
+<div id="outdated" class="modal outdated-modal rv-block">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

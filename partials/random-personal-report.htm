@@ -4,6 +4,9 @@ snippetName = "Random personal report"
 ==
 {% set size = this.theme.personal_reports | length %}
 {% set size = size - 1 %}
+{% if size < 0 %}
+  {% set size = 0 %}
+{% endif %}
 {% set randomIndex = random(0, size) %}
 
 {#

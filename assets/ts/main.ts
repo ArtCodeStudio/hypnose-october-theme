@@ -9,8 +9,8 @@ import { ready } from "@ribajs/utils/src/dom";
 
 // Extra binders
 import {
-  dataScrollPositionYBinder,
-  syncElementPropertyBinder,
+  DataScrollPositionYBinder,
+  SyncElementPropertyBinder,
 } from "@ribajs/extras/src/binders/index";
 
 // Custom formatters, binders and components
@@ -30,8 +30,8 @@ export class Main {
     this.riba.module.regist(leafletModule.init());
 
     // selected parts from modules
-    this.riba.module.binder.regist(dataScrollPositionYBinder);
-    this.riba.module.binder.regist(syncElementPropertyBinder);
+    this.riba.module.binder.regist(DataScrollPositionYBinder);
+    this.riba.module.binder.regist(SyncElementPropertyBinder);
     this.riba.module.component.regists(CustomComponents);
     this.riba.module.formatter.regists(CustomFormatters);
 
