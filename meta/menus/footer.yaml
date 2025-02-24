@@ -52,19 +52,6 @@ items:
             cssClass: ''
             isExternal: '0'
     -
-        title: Impressum
-        nesting: '0'
-        type: static-page
-        url: ''
-        code: ''
-        reference: impressum
-        cmsPage: ''
-        replace: '0'
-        viewBag:
-            isHidden: '0'
-            cssClass: ''
-            isExternal: '0'
-    -
         title: Datenschutz
         nesting: '0'
         type: static-page
@@ -77,11 +64,42 @@ items:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
+        items:
+            -
+                title: Impressum
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: impressum
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+    -
+        title: AGB
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: agb
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
     -
         title: facebook
+        nesting: null
         type: url
-        url: 'https://www.facebook.com/psychosomatische.energetik.hypnose.entspannung/'
+        url: 'https://www.facebook.com/hypnosezentrum.norddeutschland'
         code: ''
+        reference: null
+        cmsPage: null
+        replace: null
         viewBag:
             isHidden: '0'
             cssClass: ''
