@@ -1,7 +1,7 @@
 [
    {
       "questionary_name":"Hypnose - Allgemein",
-      "questionary_download":"https://hypnose-cuxhaven.de/storage/app/media/frageb%C3%B6gen/Fragebogen_Hypnose-Allgemein.pdf",
+      "questionary_download":"https://hypnose-cuxhaven.de/storage/app/media/frageb%C3%B6gen/Fragebogen%20Hypnose%20allgemein_.pdf",
       "questions":[
          {
             "title":"Zur Person",
@@ -2142,7 +2142,7 @@
    },
    {
       "questionary_name":"Hypnose - Rauchentwöhnung",
-      "questionary_download":"https://hypnose-cuxhaven.de/storage/app/media/frageb%C3%B6gen/Fragebogen_Hypnose-Rauchentw%C3%B6hnung.pdf",
+      "questionary_download":"https://hypnose-cuxhaven.de/storage/app/media/frageb%C3%B6gen/Fragebogen%20Hypnose_%20Rauchentw%C3%B6hnung_.pdf",
       "questions":[
          {
             "title":"Zur Person",
@@ -4066,7 +4066,7 @@
    },
    {
       "questionary_name":"Hypnose - Gewicht",
-      "questionary_download":"https://hypnose-cuxhaven.de/storage/app/media/frageb%C3%B6gen/Fragebogen_Hypnose-Gewicht.pdf",
+      "questionary_download":"https://hypnose-cuxhaven.de/storage/app/media/frageb%C3%B6gen/Fragebogen%20Hypnose-Gewicht_.pdf",
       "questions":[
          {
             "title":"Zur Person",
