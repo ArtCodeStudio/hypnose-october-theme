@@ -7823,10 +7823,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@types/http-proxy", [
-        ["npm:1.17.7", {
-          "packageLocation": "./.yarn/cache/@types-http-proxy-npm-1.17.7-b5168c95b4-88f9c75ca6.zip/node_modules/@types/http-proxy/",
+        ["npm:1.17.16", {
+          "packageLocation": "./.yarn/cache/@types-http-proxy-npm-1.17.16-bbe07f6c22-f5ab4afe7e.zip/node_modules/@types/http-proxy/",
           "packageDependencies": [
-            ["@types/http-proxy", "npm:1.17.7"],
+            ["@types/http-proxy", "npm:1.17.16"],
             ["@types/node", "npm:14.0.1"]
           ],
           "linkType": "HARD",
@@ -19270,15 +19270,26 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["http-proxy-middleware", [
-        ["npm:2.0.1", {
-          "packageLocation": "./.yarn/cache/http-proxy-middleware-npm-2.0.1-d5d4a98393-0de65bc664.zip/node_modules/http-proxy-middleware/",
+        ["npm:2.0.9", {
+          "packageLocation": "./.yarn/cache/http-proxy-middleware-npm-2.0.9-c1f4ed8c4d-0ea88609b9.zip/node_modules/http-proxy-middleware/",
           "packageDependencies": [
-            ["http-proxy-middleware", "npm:2.0.1"],
-            ["@types/http-proxy", "npm:1.17.7"],
+            ["http-proxy-middleware", "npm:2.0.9"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:8aadd35a6edc4a3b949231603e2ef242471a81cfe4290ca8f3cf1ea3982556418b93894b35e1e5d6eeec818ee146ab399bf78450e8fdc8760f0b8c7203b284be#npm:2.0.9", {
+          "packageLocation": "./.yarn/__virtual__/http-proxy-middleware-virtual-e2d5812a86/0/cache/http-proxy-middleware-npm-2.0.9-c1f4ed8c4d-0ea88609b9.zip/node_modules/http-proxy-middleware/",
+          "packageDependencies": [
+            ["http-proxy-middleware", "virtual:8aadd35a6edc4a3b949231603e2ef242471a81cfe4290ca8f3cf1ea3982556418b93894b35e1e5d6eeec818ee146ab399bf78450e8fdc8760f0b8c7203b284be#npm:2.0.9"],
+            ["@types/express", null],
+            ["@types/http-proxy", "npm:1.17.16"],
             ["http-proxy", "npm:1.18.1"],
             ["is-glob", "npm:4.0.1"],
             ["is-plain-obj", "npm:3.0.0"],
             ["micromatch", "npm:4.0.2"]
+          ],
+          "packagePeers": [
+            "@types/express"
           ],
           "linkType": "HARD",
         }]
@@ -32877,7 +32888,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["express", "npm:4.17.1"],
             ["graceful-fs", "npm:4.2.8"],
             ["html-entities", "npm:2.3.2"],
-            ["http-proxy-middleware", "npm:2.0.1"],
+            ["http-proxy-middleware", "virtual:8aadd35a6edc4a3b949231603e2ef242471a81cfe4290ca8f3cf1ea3982556418b93894b35e1e5d6eeec818ee146ab399bf78450e8fdc8760f0b8c7203b284be#npm:2.0.9"],
             ["ipaddr.js", "npm:2.0.1"],
             ["open", "npm:8.4.0"],
             ["p-retry", "npm:4.6.1"],
@@ -32919,7 +32930,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["express", "npm:4.17.1"],
             ["graceful-fs", "npm:4.2.8"],
             ["html-entities", "npm:2.3.2"],
-            ["http-proxy-middleware", "npm:2.0.1"],
+            ["http-proxy-middleware", "virtual:8aadd35a6edc4a3b949231603e2ef242471a81cfe4290ca8f3cf1ea3982556418b93894b35e1e5d6eeec818ee146ab399bf78450e8fdc8760f0b8c7203b284be#npm:2.0.9"],
             ["ipaddr.js", "npm:2.0.1"],
             ["open", "npm:8.4.0"],
             ["p-retry", "npm:4.6.1"],
@@ -32961,7 +32972,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["express", "npm:4.17.1"],
             ["graceful-fs", "npm:4.2.8"],
             ["html-entities", "npm:2.3.2"],
-            ["http-proxy-middleware", "npm:2.0.1"],
+            ["http-proxy-middleware", "virtual:8aadd35a6edc4a3b949231603e2ef242471a81cfe4290ca8f3cf1ea3982556418b93894b35e1e5d6eeec818ee146ab399bf78450e8fdc8760f0b8c7203b284be#npm:2.0.9"],
             ["ipaddr.js", "npm:2.0.1"],
             ["open", "npm:8.4.0"],
             ["p-retry", "npm:4.6.1"],
