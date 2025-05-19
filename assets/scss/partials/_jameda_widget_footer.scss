@@ -1,0 +1,19 @@
+
+.partial-jameda-widget-footer {
+  z-index: 1030;
+  position: absolute;
+  background-color: $body-bg;
+  #pewl {
+    border: none !important;
+    background-color: transparent !important;
+  }
+  
+  #jameda_widgetbar_container {
+    > div {
+      position: inherit !important;
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+    }
+  }  
+}
