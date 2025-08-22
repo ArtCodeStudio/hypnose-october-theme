@@ -64,14 +64,24 @@ export class HpnCookiesComponent extends Component {
 
   protected denyCookies() {
     console.log("denied cookies");
-    this.parentNode?.removeChild(this);
-    (document as any).__defineGetter__("cookie", function () {
-      return "";
-    });
-    (document as any).__defineSetter__("cookie", function () {
-      /**/
-    });
+
+    // First delete existing cookies
     this.deleteCookies();
+
+    // Then block future cookie setting
+    Object.defineProperty(document, "cookie", {
+      get: () => "",
+      set: () => false, // Explicitly prevent setting
+      configurable: false, // Prevent reconfiguration
+    });
+
+    // Block other storage mechanisms
+    this.blockStorageMechanisms();
+
+    // Set consent cookie to remember user's choice
+    this.setConsentCookie("denied");
+
+    this.parentNode?.removeChild(this);
   }
 
   protected acceptCookies() {
@@ -108,5 +118,47 @@ export class HpnCookiesComponent extends Component {
       const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
       document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
+  }
+
+  private blockStorageMechanisms() {
+    try {
+      // Block localStorage
+      Object.defineProperty(window, "localStorage", {
+        value: null,
+        writable: false,
+      });
+    } catch (e) {
+      console.warn("Could not block localStorage:", e);
+    }
+
+    try {
+      // Block sessionStorage
+      Object.defineProperty(window, "sessionStorage", {
+        value: null,
+        writable: false,
+      });
+    } catch (e) {
+      console.warn("Could not block sessionStorage:", e);
+    }
+  }
+
+  private setConsentCookie(value: string) {
+    // Use a minimal, necessary cookie to remember consent
+    const expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+
+    // Create the consent cookie before blocking mechanism
+    const consentCookie = `hpn-cookies=${value}; expires=${expires.toUTCString()}; path=/; SameSite=Strict`;
+
+    // Temporarily restore cookie functionality to set consent cookie
+    const originalDescriptor = Object.getOwnPropertyDescriptor(
+      document,
+      "cookie"
+    );
+    if (originalDescriptor) {
+      Object.defineProperty(document, "cookie", originalDescriptor);
+    }
+
+    document.cookie = consentCookie;
   }
 }
