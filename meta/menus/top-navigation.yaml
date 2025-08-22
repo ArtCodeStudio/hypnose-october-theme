@@ -224,14 +224,12 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: 'Angst / Phobie'
-                nesting: '0'
+                title: Angst
+                nesting: 0
                 type: static-page
-                url: ''
                 code: ''
                 reference: anwendungsgebiete-angst
-                cmsPage: ''
-                replace: '0'
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -380,14 +378,12 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: 'Phobie / Angst'
-                nesting: '0'
+                title: Phobie
+                nesting: 0
                 type: static-page
-                url: ''
                 code: ''
                 reference: anwendungsgebiete-phobie
-                cmsPage: ''
-                replace: '0'
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -619,8 +615,10 @@ items:
                 title: Fragebögen
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: kontakt-fragebogen
+                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '0'
