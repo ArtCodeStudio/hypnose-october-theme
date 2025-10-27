@@ -40,19 +40,6 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Honorar
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: zentrum-honorar
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
                 title: Kontakt
                 nesting: '0'
                 type: static-page
@@ -72,6 +59,30 @@ items:
                 url: ''
                 code: ''
                 reference: zentrum-standort
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: Erfahrungsberichte
+                nesting: 0
+                type: static-page
+                code: ''
+                reference: erfahrungsberichte
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Häufige Fragen'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: hypnose-faq
                 cmsPage: ''
                 replace: '0'
                 viewBag:
@@ -144,45 +155,6 @@ items:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
-            -
-                title: Anwendungsgebiete
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: anwendungsgebiete
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: 'Häufige Fragen'
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: hypnose-faq
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-    -
-        title: 'Nonverbale Hypnose'
-        nesting: '0'
-        type: static-page
-        url: ''
-        code: ''
-        reference: nonverbale-hypnose
-        cmsPage: ''
-        replace: '0'
-        viewBag:
-            isHidden: '0'
-            cssClass: ''
-            isExternal: '0'
     -
         title: Yager-Therapie
         nesting: '0'
@@ -196,6 +168,59 @@ items:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
+    -
+        title: 'weitere Leistungen'
+        nesting: '0'
+        type: static-page
+        url: ''
+        code: ''
+        reference: weitere-leistungen
+        cmsPage: ''
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+        items:
+            -
+                title: Übersicht
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: weitere-leistungen
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Psychosomatische Energetik (PSE)'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: weitere-leistungen-psychosomatische-energetik
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Kinesiologischer Muskeltest'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: weitere-leistungen-kinesiologischer-muskeltest
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
     -
         title: Anwendungsgebiete
         nesting: '0'
@@ -227,8 +252,10 @@ items:
                 title: Angst
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: anwendungsgebiete-angst
+                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -381,8 +408,10 @@ items:
                 title: Phobie
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: anwendungsgebiete-phobie
+                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -532,58 +561,18 @@ items:
                     cssClass: ''
                     isExternal: '0'
     -
-        title: 'weitere Leistungen'
+        title: Honorar
         nesting: '0'
         type: static-page
         url: ''
         code: ''
-        reference: weitere-leistungen
+        reference: zentrum-honorar
         cmsPage: ''
         replace: '0'
         viewBag:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
-        items:
-            -
-                title: Übersicht
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: weitere-leistungen
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: 'Psychosomatische Energetik (PSE)'
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: weitere-leistungen-psychosomatische-energetik
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: 'Kinesiologischer Muskeltest'
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: weitere-leistungen-kinesiologischer-muskeltest
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
     -
         title: Kontakt
         nesting: '0'
