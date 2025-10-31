@@ -98,9 +98,106 @@ function onEnd() {
     $bodyPos = strpos($renderedLayout, "</body>");
     $pageHtml = substr_replace($renderedLayout, $pageContents, $bodyPos - 1, 0);
 
+    /**
+     * Convert URLs to local file paths for wkhtmltopdf
+     * Replace combine/ URLs and theme asset URLs with local file paths
+     * This is necessary because wkhtmltopdf runs inside the container and cannot
+     * access external URLs through the proxy
+     */
+    $theme = $this->theme;
+    $themePath = $theme->getPath();
+    $appUrl = \Config::get('app.url');
+    $basePath = base_path();
+    
+    // Function to replace URLs in HTML attributes (href, src, etc.)
+    $replaceUrlsInHtml = function($html, $attribute) use ($appUrl, $themePath, $basePath) {
+        // Helper function to replace combine URLs - map to localhost since file:// is blocked
+        $replaceCombineUrl = function($matches) use ($attribute) {
+            return $attribute . '="http://localhost/combine/' . $matches[2] . '"';
+        };
+        
+        // Helper function to replace theme asset URLs - map to localhost
+        $replaceThemeUrl = function($matches) use ($attribute) {
+            $themeName = $matches[2];
+            $assetPath = $matches[3];
+            return $attribute . '="http://localhost/themes/' . $themeName . '/' . $assetPath . '"';
+        };
+        
+        // Helper function to replace storage/media URLs - map to localhost
+        $replaceStorageUrl = function($matches) use ($attribute) {
+            $mediaPath = $matches[2];
+            return $attribute . '="http://localhost/storage/app/media/' . $mediaPath . '"';
+        };
+        
+        // Replace combine/ URLs with local file paths (match any domain or relative paths)
+        $html = preg_replace_callback(
+            '#' . $attribute . '=["\'](https?://[^/]+)?/combine/([^"\']+)#',
+            $replaceCombineUrl,
+            $html
+        );
+        
+        // Replace theme asset URLs with local file paths (match any domain or relative paths)
+        $html = preg_replace_callback(
+            '#' . $attribute . '=["\'](https?://[^/]+)?/themes/([^/]+)/(assets/[^"\']+)#',
+            $replaceThemeUrl,
+            $html
+        );
+        
+        // Replace storage/media URLs
+        $html = preg_replace_callback(
+            '#' . $attribute . '=["\'](https?://[^/]+)?/storage/app/media/([^"\']+)#',
+            $replaceStorageUrl,
+            $html
+        );
+        
+        // Replace absolute URLs with app.url to localhost
+        $html = preg_replace(
+            '#(' . $attribute . '=["\'])' . preg_quote($appUrl, '#') . '#',
+            '$1http://localhost',
+            $html
+        );
+        
+        // Replace any remaining external domains with localhost (for storage/media URLs from other domains)
+        $html = preg_replace(
+            '#(' . $attribute . '=["\'])(https?://[^/]+)#',
+            '$1http://localhost',
+            $html
+        );
+        
+        // Remove about:blank URLs
+        $html = preg_replace(
+            '#' . $attribute . '=["\']about:blank["\']#',
+            $attribute . '="#"',
+            $html
+        );
+        
+        return $html;
+    };
+    
+    // Helper function to replace combine URLs in CSS url() functions - map to localhost
+    $replaceCombineUrlInCss = function($matches) {
+        return 'url(http://localhost/combine/' . $matches[2] . ')';
+    };
+    
+    // Replace URLs in page HTML for href and src attributes
+    $pageHtml = $replaceUrlsInHtml($pageHtml, 'href');
+    $pageHtml = $replaceUrlsInHtml($pageHtml, 'src');
+    
+    // Replace URLs in CSS url() functions (match any domain or relative paths)
+    $pageHtml = preg_replace_callback(
+        '#url\(["\']?(https?://[^/]+)?/combine/([^"\')]+)["\']?\)#',
+        $replaceCombineUrlInCss,
+        $pageHtml
+    );
 
     $header = $this->controller->renderPartial("pdf-form/header.htm", $renderVars);
     $footer = $this->controller->renderPartial("pdf-form/footer.htm", $renderVars);
+    
+    // Also replace URLs in header and footer HTML
+    $header = $replaceUrlsInHtml($header, 'href');
+    $header = $replaceUrlsInHtml($header, 'src');
+    $footer = $replaceUrlsInHtml($footer, 'href');
+    $footer = $replaceUrlsInHtml($footer, 'src');
     
 
     /**
