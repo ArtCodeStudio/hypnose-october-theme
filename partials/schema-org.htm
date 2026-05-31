@@ -1,0 +1,58 @@
+==
+{#
+  Strukturierte Daten (schema.org / JSON-LD) fuer Local SEO.
+  Sitewide als MedicalBusiness/LocalBusiness der Praxis ausgegeben.
+  NAP-/Geodaten verifiziert aus Impressum + Theme-Einstellungen + Leaflet-Map (Stand 2026-05).
+  Bei Adress-/Telefon-/Oeffnungszeiten-Aenderung hier nachziehen.
+#}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "@id": "https://hypnosezentrum-cux.de/#praxis",
+    "name": "Fachzentrum für ursachenorientierte Hypnose",
+    "alternateName": "Hypnosezentrum Cuxhaven",
+    "description": "Hypnose und Hypnosetherapie in Cuxhaven – ursachenorientierte Begleitung u. a. bei Ängsten, Panikattacken, Stress, Burnout, Schlafstörungen und zur Rauchentwöhnung.",
+    "url": "https://hypnosezentrum-cux.de/",
+    "logo": "https://hypnosezentrum-cux.de/storage/app/media/hypnosezentrum-logo.png",
+    "image": "https://hypnosezentrum-cux.de/storage/app/media/hypnosezentrum-logo.png",
+    "telephone": "+49 4723 7964157",
+    "email": "kontakt@hypnosezentrum-cux.de",
+    "priceRange": "€€",
+    "founder": {
+        "@type": "Person",
+        "name": "Sabine Berndt-Bartel",
+        "jobTitle": "Heilpraktikerin für Psychotherapie"
+    },
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Im Heidfeld 44",
+        "postalCode": "27478",
+        "addressLocality": "Cuxhaven",
+        "addressRegion": "Niedersachsen",
+        "addressCountry": "DE"
+    },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 53.799749,
+        "longitude": 8.620539
+    },
+    "hasMap": "https://www.google.com/maps?q=53.799749,8.620539",
+    "areaServed": [
+        "Cuxhaven",
+        "Land Hadeln",
+        "Stade",
+        "Bremerhaven",
+        "Bremen",
+        "Hamburg"
+    ],
+    "openingHoursSpecification": [
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+        }
+    ]
+}
+</script>
