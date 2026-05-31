@@ -139,8 +139,8 @@ function onContactFormSubmit()
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="AVFwGF46zYNjLh7ZtzXBfV133CFNb-A4BTmWlpJQ4-8" />
-    <title>{{ this.page.title }}</title>
 
+    {# Title wird ausschliesslich von der seoTags-Komponente gerendert (vermeidet doppeltes <title>). #}
     {% component 'seoTags' %}
     {% partial 'favicons' %}
 
