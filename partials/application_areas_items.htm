@@ -2,18 +2,84 @@
 snippetCode = "application_areas_items"
 snippetName = "Application areas items"
 ==
+<?php
+use Cms\Classes\Theme;
+use RainLab\Pages\Classes\Page as StaticPage;
+
+function onStart()
+{
+    $this['areaItems'] = $this->resolveAreaItems('application_areas_nav_item');
+}
+
+/**
+ * Reichert die Kachel-Items eines Theme-Repeaters an:
+ *  - Fehlt das Bild, wird automatisch das Headerbild (og_image) der verlinkten
+ *    Seite verwendet, damit dasselbe Bild nicht doppelt gepflegt werden muss.
+ *  - Fehlt der Alt-Text, wird auf den Titel der verlinkten Seite bzw. den
+ *    Kachel-Titel zurueckgegriffen.
+ */
+function resolveAreaItems($field)
+{
+    $theme = Theme::getActiveTheme();
+    $items = (array) ($theme->{$field} ?? []);
+    $result = [];
+
+    foreach ($items as $item) {
+        $image = $item['image'] ?? null;
+        $alt   = trim((string) ($item['alt'] ?? ''));
+        $title = (string) ($item['title'] ?? '');
+        $page  = $item['page'] ?? null;
+
+        // Fallback auf das Headerbild / den Titel der verlinkten Seite
+        $linked = null;
+
+        // Bild-Fallback: Headerbild (og_image) der verlinkten Seite
+        if (empty($image) && $page) {
+            $linked = StaticPage::loadCached($theme, $page . '.htm');
+            if ($linked) {
+                $image = $linked->getViewBag()->property('og_image');
+            }
+        }
+
+        // Alt-Fallback: eigener Alt-Text -> Kachel-Titel -> Titel der Seite
+        if ($alt === '') {
+            $alt = $title;
+        }
+        if ($alt === '' && $page) {
+            $linked = $linked ?: StaticPage::loadCached($theme, $page . '.htm');
+            if ($linked) {
+                $viewBag = $linked->getViewBag();
+                $alt = (string) ($viewBag->property('meta_title')
+                    ?: $viewBag->property('title'));
+            }
+        }
+
+        $result[] = [
+            'image' => $image,
+            'alt'   => $alt,
+            'title' => $title,
+            'page'  => $page,
+        ];
+    }
+
+    return $result;
+}
+?>
+==
 <div class="container partial-application-areas-items">
   <div class="row">
-    {% for item in this.theme.application_areas_nav_item %}
+    {% for item in areaItems %}
       <a class="col-6 col-md-4" href="{{ item.page | staticPage }}">
-        <img
-          class="img-fluid rounded lazy"
-          loading="lazy"
-          src="{{ item.image | media }}"
-          alt="{{ item.title }}"
-          srcset="{{ item.image | media | resize(100, 100) }} 100w, {{ item.image | media | resize(200, 200) }} 200w, {{ item.image | media | resize(400, 400) }} 400w, {{ item.image | media | resize(800, 800) }} 800w, {{ item.image | media | resize(1200, 1200) }} 1200w, {{ item.image | media | resize(1600, 1600) }} 1600w"
-          sizes="(min-width: 768px) 30vw, 90vw"
-        >
+        {% if item.image %}
+          <img
+            class="img-fluid rounded lazy"
+            loading="lazy"
+            src="{{ item.image | media }}"
+            alt="{{ item.alt }}"
+            srcset="{{ item.image | media | resize(100, 100) }} 100w, {{ item.image | media | resize(200, 200) }} 200w, {{ item.image | media | resize(400, 400) }} 400w, {{ item.image | media | resize(800, 800) }} 800w, {{ item.image | media | resize(1200, 1200) }} 1200w, {{ item.image | media | resize(1600, 1600) }} 1600w"
+            sizes="(min-width: 768px) 30vw, 90vw"
+          >
+        {% endif %}
         <p class="ml-3 mt-2 mb-4">{{ item.title }}</p>
       </a>
     {% endfor %}

@@ -72,6 +72,7 @@ form:
           fields:
             image:
               label: Image
+              comment: "Optional. Bleibt das Feld leer, wird automatisch das Headerbild (OG-Image) der verlinkten Seite verwendet."
               type: mediafinder
               mode: image
               span: left
@@ -83,6 +84,11 @@ form:
               label: Page
               type: staticpagepicker
               span: right
+            alt:
+              label: "Alt-Text (Bildbeschreibung)"
+              comment: "Optional. Alternativtext des Bildes (SEO/Barrierefreiheit). Leer = Titel wird verwendet."
+              type: text
+              span: full
       # Additional Areas
       additional_areas_nav_item:
         tab: "Additional areas"
@@ -92,6 +98,7 @@ form:
           fields:
             image:
               label: Image
+              comment: "Optional. Bleibt das Feld leer, wird automatisch das Headerbild (OG-Image) der verlinkten Seite verwendet."
               type: mediafinder
               mode: image
               span: left
@@ -103,6 +110,11 @@ form:
               label: Page
               type: staticpagepicker
               span: right
+            alt:
+              label: "Alt-Text (Bildbeschreibung)"
+              comment: "Optional. Alternativtext des Bildes (SEO/Barrierefreiheit). Leer = Titel wird verwendet."
+              type: text
+              span: full
       personal_reports:
         tab: "Personal reports"
         titleFrom: report
