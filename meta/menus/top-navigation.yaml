@@ -69,8 +69,10 @@ items:
                 title: Erfahrungsberichte
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: erfahrungsberichte
+                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -131,15 +133,13 @@ items:
                     isExternal: '0'
             -
                 title: 'Hypnose mit Kindern'
-                nesting: '0'
+                nesting: 0
                 type: static-page
-                url: ''
                 code: ''
                 reference: hypnose-mit-kindern
-                cmsPage: ''
-                replace: '0'
+                replace: 0
                 viewBag:
-                    isHidden: '0'
+                    isHidden: '1'
                     cssClass: ''
                     isExternal: '0'
             -
