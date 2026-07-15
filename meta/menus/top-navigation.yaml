@@ -135,8 +135,10 @@ items:
                 title: 'Hypnose mit Kindern'
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: hypnose-mit-kindern
+                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '1'
@@ -457,14 +459,12 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: 'Sexuelle Funktionsstörung'
-                nesting: '0'
+                title: 'Sexuelle Funktionsstörungen'
+                nesting: 0
                 type: static-page
-                url: ''
                 code: ''
                 reference: anwendungsgebiete-sexuelle-funktionsstorung
-                cmsPage: ''
-                replace: '0'
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -509,14 +509,14 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Spannungkopfschmerz
-                nesting: '0'
+                title: Spannungskopfschmerzen
+                nesting: 0
                 type: static-page
-                url: ''
+                url: null
                 code: ''
                 reference: anwendungsgebiete-spannungkopfschmerz
-                cmsPage: ''
-                replace: '0'
+                cmsPage: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -535,14 +535,12 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: 'Verarbeitung belastender, traumatischer Erfahrungen'
-                nesting: '0'
+                title: Trauma
+                nesting: 0
                 type: static-page
-                url: ''
                 code: ''
                 reference: anwendungsgebiete-verarbeitung-belastender-traumatischer-erfahrungen
-                cmsPage: ''
-                replace: '0'
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
