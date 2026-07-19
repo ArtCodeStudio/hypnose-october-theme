@@ -316,14 +316,12 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Depression
-                nesting: '0'
+                title: Depressionen
+                nesting: 0
                 type: static-page
-                url: ''
                 code: ''
                 reference: anwendungsgebiete-depression
-                cmsPage: ''
-                replace: '0'
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -462,8 +460,10 @@ items:
                 title: 'Sexuelle Funktionsstörungen'
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: anwendungsgebiete-sexuelle-funktionsstorung
+                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -538,8 +538,10 @@ items:
                 title: Trauma
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: anwendungsgebiete-verarbeitung-belastender-traumatischer-erfahrungen
+                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '0'

@@ -64,3 +64,13 @@ h3,
     font-size: 1.25rem;
   }
 }
+
+// Aufzählungszeichen (Punkte/Nummern) in der Gold-Farbe der Überschriften ($title-color).
+// Scope: #main = Seiteninhalt. Navigation (#layout-top) und Footer (#layout-bottom) bleiben
+// unberührt. ::marker faerbt nur das Aufzählungszeichen, nicht den Text. Listen mit
+// list-style:none (Navigation, Formulare, Slideshow) zeigen keinen Marker und aendern sich daher nicht.
+#main {
+  li::marker {
+    color: $title-color;
+  }
+}
