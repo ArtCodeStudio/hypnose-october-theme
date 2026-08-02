@@ -319,8 +319,10 @@ items:
                 title: Depressionen
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: anwendungsgebiete-depression
+                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -366,6 +368,17 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
+                title: Hypnoinjection
+                nesting: 0
+                type: static-page
+                code: ''
+                reference: anwendungsgebiete-hypnoinjection
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
                 title: 'Hypnotisches Magenband'
                 nesting: '0'
                 type: static-page
@@ -405,6 +418,19 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
+                title: Migräne
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: migraene
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
                 title: Phobie
                 nesting: 0
                 type: static-page
@@ -418,14 +444,14 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: 'Persönliche Weiterentwicklung'
-                nesting: '0'
+                title: Persönlichkeitsentwicklung
+                nesting: 0
                 type: static-page
-                url: ''
+                url: null
                 code: ''
                 reference: anwendungsgebiete-personliche-weiterentwicklung
-                cmsPage: ''
-                replace: '0'
+                cmsPage: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -457,12 +483,77 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
+                title: Reizdarm
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: reizdarm
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: Schlafstörungen
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: anwendungsgebiete-schlafstorung
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: Selbstvertrauen
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: anwendungsgebiete-selbstvertrauenhtm
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: Selbstwertprobleme
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: anwendungsgebiete-selbstwertproblem
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
                 title: 'Sexuelle Funktionsstörungen'
                 nesting: 0
                 type: static-page
                 url: null
                 code: ''
                 reference: anwendungsgebiete-sexuelle-funktionsstorung
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: Spannungskopfschmerzen
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: anwendungsgebiete-spannungkopfschmerz
                 cmsPage: null
                 replace: 0
                 viewBag:
@@ -483,38 +574,12 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Schlafstörung
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: anwendungsgebiete-schlafstorung
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: Selbstwertprobleme
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: anwendungsgebiete-selbstwertproblem
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: Spannungskopfschmerzen
+                title: Trauma
                 nesting: 0
                 type: static-page
                 url: null
                 code: ''
-                reference: anwendungsgebiete-spannungkopfschmerz
+                reference: trauma
                 cmsPage: null
                 replace: 0
                 viewBag:
@@ -523,24 +588,11 @@ items:
                     isExternal: '0'
             -
                 title: 'Unerwünschte Verhaltensweisen'
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: anwendungsgebiete-unerwunschte-verhaltensweisen
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: Trauma
                 nesting: 0
                 type: static-page
                 url: null
                 code: ''
-                reference: anwendungsgebiete-verarbeitung-belastender-traumatischer-erfahrungen
+                reference: anwendungsgebiete-unerwunschte-verhaltensweisen
                 cmsPage: null
                 replace: 0
                 viewBag:
@@ -549,13 +601,13 @@ items:
                     isExternal: '0'
             -
                 title: Zwänge
-                nesting: '0'
+                nesting: 0
                 type: static-page
-                url: ''
+                url: null
                 code: ''
                 reference: anwendungsgebiete-zwange
-                cmsPage: ''
-                replace: '0'
+                cmsPage: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''

@@ -1,4 +1,5 @@
 static-pages:
+    404: {  }
     index: {  }
     zentrum:
         zentrum-honorar: {  }
@@ -8,8 +9,8 @@ static-pages:
         hypnose-mit-kindern: {  }
         hypnose-im-urlaub: {  }
     anwendungsgebiete:
-        anwendungsgebiete-angst: {  }
         anwendungsgebiete-allergie: {  }
+        anwendungsgebiete-angst: {  }
         anwendungsgebiete-asthma: {  }
         anwendungsgebiete-burn-out: {  }
         anwendungsgebiete-chronische-schmerzen: {  }
@@ -17,25 +18,29 @@ static-pages:
         anwendungsgebiete-geburtstrauma: {  }
         anwendungsgebiete-gewichtsreduktion: {  }
         yager-therapie-hautreaktionen: {  }
+        anwendungsgebiete-hypnoinjection: {  }
         anwendungsgebiete-hypnotisches-magenband: {  }
         anwendungsgebiete-innere-unruhe: {  }
         anwendungsgebiete-magen-darmbeschwerden: {  }
+        migraene: {  }
         anwendungsgebiete-phobie: {  }
         anwendungsgebiete-personliche-weiterentwicklung: {  }
         anwendungsgebiete-psychosomatische-beschwerden: {  }
         anwendungsgebiete-rauchentwohnung: {  }
-        anwendungsgebiete-sexuelle-funktionsstorung: {  }
-        anwendungsgebiete-stress: {  }
+        reizdarm: {  }
         anwendungsgebiete-schlafstorung: {  }
+        anwendungsgebiete-selbstvertrauenhtm: {  }
         anwendungsgebiete-selbstwertproblem: {  }
+        anwendungsgebiete-sexuelle-funktionsstorung: {  }
         anwendungsgebiete-spannungkopfschmerz: {  }
-        anwendungsgebiete-unerwunschte-verhaltensweisen: {  }
-        anwendungsgebiete-verarbeitung-belastender-traumatischer-erfahrungen: {  }
-        anwendungsgebiete-zwange: {  }
+        anwendungsgebiete-stress: {  }
+    trauma: {  }
+    anwendungsgebiete-unerwunschte-verhaltensweisen: {  }
+    anwendungsgebiete-zwange: {  }
+    hypnose-faq: {  }
     weitere-leistungen:
         weitere-leistungen-psychosomatische-energetik: {  }
         weitere-leistungen-kinesiologischer-muskeltest: {  }
-    hypnose-faq: {  }
     kontakt:
         kontakt-anfahrt: {  }
         kontakt-fragebogen: {  }
@@ -45,7 +50,6 @@ static-pages:
     erfahrungsberichte: {  }
     nonverbale-hypnose: {  }
     yager-terapie: {  }
-    404: {  }
     hypnose-land-hadelnstade: {  }
     hypnose-bremerhaven: {  }
     hypnose-bremen: {  }
