@@ -158,14 +158,19 @@ function onContactFormSubmit()
         </div>
         <router-view id="main" listen-all-links="true" dataset-to-model="true">
             <div {% partial 'router-dataset' %}>
-                {% if placeholder('headerTeaser') %}
-                <div class="page-header-teaser">
-                    {% placeholder headerTeaser title="Header Teaser" %}
-                </div>
-                {% endif %}
+                {# Header Title vor Header Teaser: die Ueberschrift gehoert ueber
+                   das Bild, nicht darunter. Aktuell nutzt keine Seite mehr den
+                   Teaser-Platzhalter (Titel und Bild liegen gemeinsam im
+                   header-Platzhalter) - die Reihenfolge hier ist die Absicherung,
+                   falls der Teaser-Tab im Backend doch wieder benutzt wird. #}
                 {% if placeholder('header') %}
                 <div class="page-header-container d-flex justify-content-end flex-column align-items-start">
                     {% placeholder header title="Header Title" %}
+                </div>
+                {% endif %}
+                {% if placeholder('headerTeaser') %}
+                <div class="page-header-teaser">
+                    {% placeholder headerTeaser title="Header Teaser" %}
                 </div>
                 {% endif %}
                 {% page %}
