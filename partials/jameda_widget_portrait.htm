@@ -8,21 +8,26 @@
   Es ist deshalb jetzt eingeklappt und faehrt erst auf Klick aus. Der Umschalter
   ist eine Checkbox + Label (kein JS), damit dafuer kein Webpack-Bundle noetig
   ist und die Bedienung auch per Tastatur funktioniert.
+
+  Die Checkbox steht bewusst NEBEN dem Container, nicht darin: nur so kann der
+  Container selbst per Geschwister-Selektor verschoben werden. Ein :has() am
+  Container waere die Alternative, wuerde aber in aelteren Browsern still
+  versagen - dort liesse sich das Widget dann gar nicht mehr ausfahren.
 #}
-{# d-sm-flex, nicht d-sm-block: die Bootstrap-Utility setzt display per
-   !important und wuerde das Flex-Layout des Containers sonst ueberschreiben. #}
-<div class="jameda_widget_container d-none d-sm-flex">
+<div class="jameda-widget d-none d-sm-block">
     <input type="checkbox" id="jameda-widget-toggle" class="jameda-widget-toggle">
-    <label for="jameda-widget-toggle" class="jameda-widget-tab">
-        <span class="jameda-widget-tab-stars" aria-hidden="true">★★★★★</span>
-        <span class="jameda-widget-tab-text">Bewertungen</span>
-    </label>
-    <div class="jameda-widget-body">
-        <a id="zl-url" class="zl-url"
-            href="https://www.jameda.de/sabine-berndt-bartel/heilpraktiker-fuer-psychotherapie/cuxhaven" rel="nofollow"
-            data-zlw-doctor="sabine-berndt-bartel" data-zlw-type="big_with_calendar" data-zlw-opinion="false"
-            data-zlw-hide-branding="true" data-zlw-saas-only="false" data-zlw-a11y-title="Widget zur Arztterminbuchung">Sabine
-            Berndt-Bartel - jameda.de</a>
-        <script>!function ($_x, _s, id) { var js, fjs = $_x.getElementsByTagName(_s)[0]; if (!$_x.getElementById(id)) { js = $_x.createElement(_s); js.id = id; js.src = "//platform.docplanner.com/js/widget.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "zl-widget-s"); </script>
+    <div class="jameda_widget_container">
+        <label for="jameda-widget-toggle" class="jameda-widget-tab">
+            <span class="jameda-widget-tab-stars" aria-hidden="true">★★★★★</span>
+            <span class="jameda-widget-tab-text">Bewertungen</span>
+        </label>
+        <div class="jameda-widget-body">
+            <a id="zl-url" class="zl-url"
+                href="https://www.jameda.de/sabine-berndt-bartel/heilpraktiker-fuer-psychotherapie/cuxhaven" rel="nofollow"
+                data-zlw-doctor="sabine-berndt-bartel" data-zlw-type="big_with_calendar" data-zlw-opinion="false"
+                data-zlw-hide-branding="true" data-zlw-saas-only="false" data-zlw-a11y-title="Widget zur Arztterminbuchung">Sabine
+                Berndt-Bartel - jameda.de</a>
+            <script>!function ($_x, _s, id) { var js, fjs = $_x.getElementsByTagName(_s)[0]; if (!$_x.getElementById(id)) { js = $_x.createElement(_s); js.id = id; js.src = "//platform.docplanner.com/js/widget.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "zl-widget-s"); </script>
+        </div>
     </div>
 </div>

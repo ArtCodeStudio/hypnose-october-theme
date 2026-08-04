@@ -1,30 +1,21 @@
-// Eingeklapptes Jameda-Widget: sichtbar bleibt nur ein schmaler Reiter am
-// rechten Rand, die Karte selbst faehrt erst auf Klick aus. Vorher stand die
+// Eingeklapptes Jameda-Widget: sichtbar bleibt nur ein schmaler Reiter buendig
+// am rechten Rand, Reiter und Karte fahren gemeinsam aus. Vorher stand die
 // Karte fest auf halber Hoehe und ueberdeckte den Text (sie ist breiter als der
 // Platz neben dem .container, konnte also nicht daneben passen).
 
 $jameda-tab-width: 34px;
-$jameda-card-width: 290px;
 // Ueber der fixierten Bottom-Bar bleiben, damit beides bedienbar ist.
 $jameda-offset-bottom: 90px;
+$jameda-slide: 0.3s ease;
+$jameda-radius: 12px;
 
-.jameda_widget_container {
-  position: fixed;
-  right: 0;
-  bottom: $jameda-offset-bottom;
-  z-index: 1030;
-  display: flex;
-  align-items: flex-end;
-  text-decoration: none;
-  line-height: 0;
-
-  img {
-    border: 0;
-  }
-
-  // Checkbox nur optisch entfernen, nicht aus dem Fokus-Fluss - sonst ist der
-  // Reiter per Tastatur nicht mehr erreichbar.
+.jameda-widget {
+  // Reiner Wrapper fuer Checkbox + Container; traegt die d-none/d-sm-block-
+  // Umschaltung. Kein transform/filter hier - das wuerde position: fixed im
+  // Container an diesen Wrapper statt an den Viewport binden.
   .jameda-widget-toggle {
+    // Nur optisch entfernen, nicht aus dem Fokus-Fluss - sonst ist der Reiter
+    // per Tastatur nicht mehr erreichbar.
     position: absolute;
     width: 1px;
     height: 1px;
@@ -35,61 +26,99 @@ $jameda-offset-bottom: 90px;
     white-space: nowrap;
     border: 0;
   }
+}
 
-  .jameda-widget-tab {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    width: $jameda-tab-width;
-    margin: 0;
-    padding: 14px 0;
-    cursor: pointer;
-    border-radius: 8px 0 0 8px;
-    background-color: $primary;
-    color: color-yiq($primary);
-    box-shadow: 0 2px 10px rgba($black, 0.18);
-    line-height: 1;
-    transition: $transition-base;
+.jameda_widget_container {
+  position: fixed;
+  right: 0;
+  bottom: $jameda-offset-bottom;
+  z-index: 1030;
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+  line-height: 0;
+  // Eingeklappt wird der GESAMTE Container nach rechts geschoben. Nur so steht
+  // der Reiter buendig am Rand - die Karte behaelt sonst als (unsichtbares)
+  // Flex-Item ihren Platz und der Reiter schwebt mitten auf der Seite.
+  //
+  // Das Prozent bezieht sich auf die EIGENE Breite des Containers, also
+  // Reiter + Karte. Abzueglich der Reiterbreite bleibt exakt dieser stehen -
+  // ohne dass wir die Kartenbreite kennen muessen. Wichtig, weil die Breite
+  // vom Jameda-Skript kommt: ein fester Wert hier quetscht dessen Layout.
+  transform: translateX(calc(100% - #{$jameda-tab-width}));
+  transition: transform $jameda-slide;
 
-    &:hover {
-      filter: brightness(1.08);
-    }
+  img {
+    border: 0;
   }
+}
 
-  .jameda-widget-tab-stars {
-    font-size: 0.7rem;
-    letter-spacing: -1px;
-  }
+.jameda-widget-toggle:checked ~ .jameda_widget_container {
+  transform: translateX(0);
+}
 
-  .jameda-widget-tab-text {
-    writing-mode: vertical-rl;
-    font-size: 0.75rem;
-    font-weight: 600;
-    white-space: nowrap;
-  }
+.jameda-widget-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: $jameda-tab-width;
+  margin: 0;
+  padding: 16px 0;
+  cursor: pointer;
+  border-radius: 8px 0 0 8px;
+  background-color: $primary;
+  color: color-yiq($primary);
+  box-shadow: 0 2px 10px rgba($black, 0.18);
+  line-height: 1;
+  transition: filter $jameda-slide;
 
-  .jameda-widget-toggle:focus-visible + .jameda-widget-tab {
-    outline: 2px solid $dark;
-    outline-offset: 2px;
+  &:hover {
+    filter: brightness(1.08);
   }
+}
 
-  // Eingeklappt: die Karte wird aus dem Sichtfeld geschoben und ist nicht
-  // anklickbar. visibility (statt display:none) laesst das Drittanbieter-Skript
-  // sein iframe normal aufbauen.
-  .jameda-widget-body {
-    width: $jameda-card-width;
-    max-width: calc(100vw - #{$jameda-tab-width});
-    transform: translateX(100%);
-    visibility: hidden;
-    opacity: 0;
-    transition: $transition-base;
-  }
+// Sterne wie die Beschriftung vertikal laufen lassen - horizontal ragen fuenf
+// Zeichen ueber die Reiterbreite hinaus.
+.jameda-widget-tab-stars,
+.jameda-widget-tab-text {
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+}
 
-  .jameda-widget-toggle:checked ~ .jameda-widget-body {
-    transform: translateX(0);
-    visibility: visible;
-    opacity: 1;
-  }
+.jameda-widget-tab-stars {
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+}
+
+.jameda-widget-tab-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.jameda-widget-toggle:focus-visible ~ .jameda_widget_container .jameda-widget-tab {
+  outline: 2px solid $dark;
+  outline-offset: 2px;
+}
+
+// Die Karte ist eingeklappt zwar ausserhalb des Viewports, aber weiterhin im
+// Baum - visibility nimmt sie zusaetzlich aus Fokus und Hit-Testing. Die
+// Verzoegerung laeuft nur beim Einklappen, damit sie nicht schon waehrend der
+// Fahrt verschwindet; beim Ausfahren greift sie sofort.
+.jameda-widget-body {
+  // Bewusst OHNE feste Breite: die Karte wird vom Jameda-Skript aufgebaut und
+  // bricht um (abgeschnittene Bewertungszahl, ueberstehender Button), wenn man
+  // ihr eine Breite aufzwingt. Nur nach oben begrenzt, damit sie auf schmalen
+  // Fenstern nicht aus dem Viewport laeuft.
+  max-width: calc(100vw - #{$jameda-tab-width});
+  border-radius: $jameda-radius;
+  box-shadow: 0 2px 10px rgba($black, 0.18);
+  visibility: hidden;
+  transition: visibility 0s $jameda-slide;
+}
+
+.jameda-widget-toggle:checked ~ .jameda_widget_container .jameda-widget-body {
+  visibility: visible;
+  transition: visibility 0s 0s;
 }
