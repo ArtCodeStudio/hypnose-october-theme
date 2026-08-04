@@ -16,10 +16,18 @@ $jameda-radius: 12px;
   .jameda-widget-toggle {
     // Nur optisch entfernen, nicht aus dem Fokus-Fluss - sonst ist der Reiter
     // per Tastatur nicht mehr erreichbar.
-    position: absolute;
+    //
+    // position: FIXED, nicht absolute: ein Klick aufs Label fokussiert die
+    // Checkbox, und der Browser scrollt sie dabei ins Bild. Absolut positioniert
+    // liegt sie an ihrer statischen Position - und das Partial steht ganz unten
+    // im Body, die Seite sprang also bei jedem Klick ans Seitenende. Fixiert
+    // liegt sie beim Reiter und damit ohnehin im sichtbaren Bereich.
+    position: fixed;
+    right: 0;
+    bottom: $jameda-offset-bottom;
     width: 1px;
     height: 1px;
-    margin: -1px;
+    margin: 0;
     padding: 0;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
