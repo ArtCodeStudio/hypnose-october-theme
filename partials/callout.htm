@@ -1,0 +1,43 @@
+description = "Hinweis-Kasten mit editierbarem Inhalt"
+
+[viewBag]
+snippetCode = "callout"
+snippetName = "Hinweis-Kasten"
+snippetProperties[filename][title] = "Content Filename"
+snippetProperties[filename][type] = "string"
+snippetProperties[filename][default] = ""
+snippetProperties[filename][options][] = ""
+snippetProperties[marginTop][title] = "Margin Top"
+snippetProperties[marginTop][type] = "dropdown"
+snippetProperties[marginTop][default] = 1
+snippetProperties[marginTop][options][] = 0
+snippetProperties[marginTop][options][] = 1
+snippetProperties[marginTop][options][] = 2
+snippetProperties[marginTop][options][] = 3
+snippetProperties[marginTop][options][] = 4
+snippetProperties[marginTop][options][] = 5
+snippetProperties[marginBottom][title] = "Margin Bottom"
+snippetProperties[marginBottom][type] = "dropdown"
+snippetProperties[marginBottom][default] = 1
+snippetProperties[marginBottom][options][] = 0
+snippetProperties[marginBottom][options][] = 1
+snippetProperties[marginBottom][options][] = 2
+snippetProperties[marginBottom][options][] = 3
+snippetProperties[marginBottom][options][] = 4
+snippetProperties[marginBottom][options][] = 5
+==
+{#
+  Hebt einen Querverweis oder Hinweis sichtbar vom Fliesstext ab. Bewusst ein
+  Snippet und keine Tabelle mit Klasse: Snippets ueberlebt der Rich-Text-Editor
+  unveraendert, eine von Hand gesetzte CSS-Klasse verliert er beim naechsten
+  Speichern. Der Text selbst wird wie gewohnt im Frontend editiert.
+#}
+<div class="container partial-callout mt-{{ marginTop }} mb-{{ marginBottom }}">
+  <div class="row">
+    <div class="col">
+      <aside class="callout-box">
+        {% component 'contenteditor' file=filename %}
+      </aside>
+    </div>
+  </div>
+</div>

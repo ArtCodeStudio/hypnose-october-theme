@@ -1,0 +1,20 @@
+// Hinweis-Kasten: hebt Querverweise sichtbar vom Fliesstext ab, ohne zu
+// schreien. Farben aus der Theme-Palette, damit es nicht wie ein Fremdkoerper
+// wirkt; der Balken links traegt die Betonung.
+.callout-box {
+  padding: 1.25rem 1.5rem;
+  border-left: 4px solid $primary;
+  border-radius: 0 8px 8px 0;
+  background-color: rgba($primary, 0.08);
+
+  // Der Inhalt kommt aus dem contenteditor und bringt eigene Absaetze mit -
+  // der letzte wuerde sonst unten Luft im Kasten lassen.
+  > *:last-child,
+  .partial-editable-content > *:last-child {
+    margin-bottom: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
