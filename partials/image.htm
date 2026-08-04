@@ -49,6 +49,10 @@ snippetProperties[ratioMd][options][original] = "Original"
 snippetProperties[ratioMd][options][embed-responsive-md-1by1] = "1by1"
 snippetProperties[ratioMd][options][embed-responsive-md-16by9] = "16by9"
 snippetProperties[ratioMd][options][embed-responsive-md-4by3] = "4by3"
+snippetProperties[caption][title] = "Bildunterschrift (optional)"
+snippetProperties[caption][type] = "string"
+snippetProperties[caption][default] = ""
+snippetProperties[caption][options][] = ""
 ==
 {% if seoTag.og_image and useOgImage %}
   {% set source = (seoTag.og_image | media) | app %}
@@ -69,9 +73,16 @@ snippetProperties[ratioMd][options][embed-responsive-md-4by3] = "4by3"
   <div class="{% if container %}container{% else %}container-fluid{% endif %}">
     <div class="row partial-image-{{ align | default('left') }}" style="max-width: {{ safeWidth }};">
       <div class="col-12 {% if not container %}px-0{% endif %}">
-        <div {% if ratio %}class="embed-responsive {{ ratioXs }} {{ ratioMd }} lazy"{% endif %}>
-          <img loading="lazy" class="img-fluid {% if rounded %}rounded-30{% endif %} {% if ratio %}embed-responsive-item{% else %} lazy {% endif %}" src="{{ source }}" alt="{{ alt }}">
-        </div>
+        {# figure/figcaption statt div/p: die Zuordnung Bild<->Unterschrift ist
+           damit auch fuer Screenreader und Suchmaschinen ausgezeichnet. #}
+        <figure class="partial-image-figure">
+          <div {% if ratio %}class="embed-responsive {{ ratioXs }} {{ ratioMd }} lazy"{% endif %}>
+            <img loading="lazy" class="img-fluid {% if rounded %}rounded-30{% endif %} {% if ratio %}embed-responsive-item{% else %} lazy {% endif %}" src="{{ source }}" alt="{{ alt }}">
+          </div>
+          {% if caption | default('') | trim %}
+          <figcaption class="image-caption">{{ caption }}</figcaption>
+          {% endif %}
+        </figure>
       </div>
     </div>
   </div>
