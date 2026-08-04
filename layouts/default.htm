@@ -143,6 +143,7 @@ function onContactFormSubmit()
     {# Title wird ausschliesslich von der seoTags-Komponente gerendert (vermeidet doppeltes <title>). #}
     {% component 'seoTags' %}
     {% partial 'schema-org' %}
+    {% partial 'schema-org-page' %}
     {% partial 'favicons' %}
 
     {% styles %}

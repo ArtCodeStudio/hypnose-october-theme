@@ -1,0 +1,136 @@
+==
+{#
+  Seitenbezogene strukturierte Daten: MedicalWebPage (bzw. WebPage), FAQPage und
+  BreadcrumbList. Ergaenzt das sitewide MedicalBusiness aus 'schema-org' - das
+  bleibt unveraendert bestehen und wird hier nur per @id referenziert.
+
+  Nur fuer Static Pages - andere Seitentypen liefern kein pageObject.
+#}
+{% set pageObject = staticPage.page %}
+{% if pageObject %}
+  {% set vb = pageObject.viewBag %}
+  {% set pageUrl = vb.url | default('/') %}
+
+  {# Breadcrumb-Kette aus der Static-Pages-Hierarchie aufsammeln (Kind -> Eltern). #}
+  {% set trail = [] %}
+  {% set node = pageObject %}
+  {% for i in 1..5 %}
+    {% if node %}
+      {% set trail = trail | merge([node]) %}
+      {% set node = node.parent %}
+    {% endif %}
+  {% endfor %}
+
+  {#
+    Welche FAQ-Bereiche stehen auf dieser Seite? Die Snippet-Figuren im
+    Seiten-Markup tragen die gewaehlte Kategorie als data-property-category.
+    Eine Seite darf nur EINE FAQPage haben - /faq bindet den FAQ-Block dreimal
+    ein, deshalb wird hier zentral gesammelt statt je Block im Partial 'faq'.
+  #}
+  {% set faqCategories = [] %}
+  {% for chunk in pageObject.markup | default('') | split('data-snippet="faq"') %}
+    {% if not loop.last and 'data-property-category="' in chunk %}
+      {% set cat = chunk | split('data-property-category="') | last | split('"') | first %}
+      {% if cat not in faqCategories %}
+        {% set faqCategories = faqCategories | merge([cat]) %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {#
+    Dieselbe Auswahl wie im Partial 'faq', damit ausgezeichnete und sichtbare
+    Fragen identisch sind - das verlangt Google. Unbeantwortete Fragen werden
+    ausgelassen: der Platzhaltertext waere keine gueltige acceptedAnswer.
+  #}
+  {% set faqItems = [] %}
+  {% set seenQuestions = [] %}
+  {% for cat in faqCategories %}
+    {% for item in this.theme.faq_questions %}
+      {% set question = item.question | trim %}
+      {% set answer = item.answer | trim %}
+      {% if (cat == item.category or cat == 'all') and answer is not empty and answer != '<p></p>' and question not in seenQuestions %}
+        {% set seenQuestions = seenQuestions | merge([question]) %}
+        {% set faqItems = faqItems | merge([{ question: question, answer: answer }]) %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+
+  {#
+    MedicalWebPage nur fuer die inhaltlich medizinischen Bereiche; fuer
+    Impressum, Datenschutz o. ae. waere der Typ sachlich falsch.
+  #}
+  {% set medicalPrefixes = ['/anwendungsgebiete', '/hypnose', '/yager-therapie', '/nonverbale-hypnose', '/weitere-leistungen'] %}
+  {% set pageType = 'WebPage' %}
+  {% for prefix in medicalPrefixes %}
+    {% if pageUrl starts with prefix %}{% set pageType = 'MedicalWebPage' %}{% endif %}
+  {% endfor %}
+  {% set pageTypes = faqItems | length ? [pageType, 'FAQPage'] : [pageType] %}
+
+  {% set canonical = vb.canonical_url | default(pageUrl | app) %}
+  {% set pageName = vb.meta_title | default(vb.title) %}
+  {% set pageDescription = vb.meta_description | default('') %}
+  {% set pageImage = vb.og_image | default('') %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            {# Alle Werte durch json_encode: Twigs HTML-Autoescaping wuerde
+               Anfuehrungszeichen und & sonst als Entities ausgeben und das JSON
+               zerstoeren. #}
+            "@type": {{ (pageTypes | length > 1 ? pageTypes : pageType) | json_encode | raw }},
+            "@id": {{ (canonical ~ '#webpage') | json_encode | raw }},
+            "url": {{ canonical | json_encode | raw }},
+            "name": {{ pageName | json_encode | raw }},
+            {% if pageDescription %}"description": {{ pageDescription | json_encode | raw }},{% endif %}
+            {% if pageImage %}"primaryImageOfPage": {
+                "@type": "ImageObject",
+                "url": {{ ((pageImage | media) | app) | json_encode | raw }}
+            },{% endif %}
+            {% if faqItems | length %}"mainEntity": [
+                {% for item in faqItems %}{
+                    "@type": "Question",
+                    "name": {{ item.question | json_encode | raw }},
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": {{ item.answer | json_encode | raw }}
+                    }
+                }{% if not loop.last %},{% endif %}{% endfor %}
+            ],{% endif %}
+            "inLanguage": "de-DE",
+            "isPartOf": { "@id": "https://hypnosezentrum-cux.de/#website" },
+            "about": { "@id": "https://hypnosezentrum-cux.de/#praxis" },
+            "breadcrumb": { "@id": {{ (canonical ~ '#breadcrumb') | json_encode | raw }} }
+        },
+        {
+            "@type": "WebSite",
+            "@id": "https://hypnosezentrum-cux.de/#website",
+            "url": "https://hypnosezentrum-cux.de/",
+            "name": "Hypnosezentrum Cuxhaven",
+            "inLanguage": "de-DE",
+            "publisher": { "@id": "https://hypnosezentrum-cux.de/#praxis" }
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": {{ (canonical ~ '#breadcrumb') | json_encode | raw }},
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Startseite",
+                    "item": "https://hypnosezentrum-cux.de/"
+                }{% for node in trail | reverse %}{% set nvb = node.viewBag %}{% if nvb.url != '/' %},
+                {
+                    "@type": "ListItem",
+                    "position": {{ loop.index + 1 }},
+                    {# Die Seitentitel tragen haeufig den Praxisnamen mit; in einer
+                       Brotkrume stoert der nur. #}
+                    "name": {{ nvb.title | replace({' - Hypnosezentrum Cuxhaven': '', ' | Hypnosezentrum Cuxhaven': ''}) | trim | json_encode | raw }},
+                    "item": {{ (nvb.url | app) | json_encode | raw }}
+                }{% endif %}{% endfor %}
+            ]
+        }
+    ]
+}
+</script>
+{% endif %}
