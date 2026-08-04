@@ -132,19 +132,6 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: 'Hypnose mit Kindern'
-                nesting: 0
-                type: static-page
-                url: null
-                code: ''
-                reference: hypnose-mit-kindern
-                cmsPage: null
-                replace: 0
-                viewBag:
-                    isHidden: '1'
-                    cssClass: ''
-                    isExternal: '0'
-            -
                 title: 'Hypnose im Urlaub'
                 nesting: '0'
                 type: static-page
