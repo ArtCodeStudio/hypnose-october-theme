@@ -17,10 +17,16 @@ snippetProperties[container][title] = "With container"
 snippetProperties[container][type] = "checkbox"
 snippetProperties[container][default] = 1
 snippetProperties[container][options][] = ""
-snippetProperties[maxWidth][title] = "Max width"
+snippetProperties[maxWidth][title] = "Max. Breite (z. B. 400px oder 50%)"
 snippetProperties[maxWidth][type] = "string"
 snippetProperties[maxWidth][default] = "100%"
 snippetProperties[maxWidth][options][] = ""
+snippetProperties[align][title] = "Ausrichtung"
+snippetProperties[align][type] = "dropdown"
+snippetProperties[align][default] = "left"
+snippetProperties[align][options][left] = "Linksbündig"
+snippetProperties[align][options][center] = "Zentriert"
+snippetProperties[align][options][right] = "Rechtsbündig"
 snippetProperties[rounded][title] = "Rounded"
 snippetProperties[rounded][type] = "checkbox"
 snippetProperties[rounded][default] = 1
@@ -51,9 +57,17 @@ snippetProperties[ratioMd][options][embed-responsive-md-4by3] = "4by3"
 {% else %}
   {% set source = src | media | app %}
 {% endif %}
+{#
+  Eine Zahl ohne Einheit ("400") ist ungueltiges CSS - der Browser verwirft die
+  ganze max-width-Regel und das Bild wird wieder volle Breite. Da das Feld im
+  Backend frei eingebbar ist, ergaenzen wir eine fehlende Einheit als px, statt
+  die Eingabe stillschweigend wirkungslos zu machen.
+#}
+{% set rawWidth = maxWidth | default('100%') | trim %}
+{% set safeWidth = rawWidth matches '/^\\d+(\\.\\d+)?$/' ? rawWidth ~ 'px' : rawWidth %}
 <div class="partial-image w-100">
   <div class="{% if container %}container{% else %}container-fluid{% endif %}">
-    <div class="row" style="max-width: {{ maxWidth }};">
+    <div class="row partial-image-{{ align | default('left') }}" style="max-width: {{ safeWidth }};">
       <div class="col-12 {% if not container %}px-0{% endif %}">
         <div {% if ratio %}class="embed-responsive {{ ratioXs }} {{ ratioMd }} lazy"{% endif %}>
           <img loading="lazy" class="img-fluid {% if rounded %}rounded-30{% endif %} {% if ratio %}embed-responsive-item{% else %} lazy {% endif %}" src="{{ source }}" alt="{{ alt }}">

@@ -1,6 +1,21 @@
+// Ausrichtung des "image"-Snippets. Die max-width steht auf der .row; ohne
+// auto-Margins bleibt sie links stehen - das ist das bisherige Verhalten und
+// daher der Default. Die -15px sind der Bootstrap-Gutter der .row, den wir auf
+// der jeweils buendigen Seite erhalten, damit das Bild mit dem Text abschliesst.
 .partial-image {
-  img {
-
+  .row {
+    // "left" bekommt bewusst KEINE Regel: das ist der Bootstrap-Default
+    // (margin-left/-right: -15px) und damit exakt das bisherige Verhalten -
+    // ein margin-right: auto wuerde bestehende Bilder um den Gutter (15px)
+    // schmaler machen.
+    &.partial-image-center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &.partial-image-right {
+      margin-left: auto;
+      margin-right: -15px;
+    }
   }
 }
 

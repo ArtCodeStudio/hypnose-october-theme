@@ -20,5 +20,16 @@ img.rounded {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 100px;
-  }  
+  }
+}
+
+// Hero-/Teaserbilder werden per object-fit: cover in ein 16:9-Fenster gerechnet.
+// Die Motive sind ueberwiegend quadratisch bzw. hochformatig, sodass bei
+// zentriertem Fokus oben und unten je ~22% wegfallen - und damit regelmaessig
+// der Kopf. Der Fokus liegt deshalb im oberen Drittel.
+.page-header-teaser,
+.page-header-container {
+  .embed-responsive-item {
+    object-position: $header-image-focus;
+  }
 }

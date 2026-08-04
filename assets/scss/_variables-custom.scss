@@ -5,3 +5,8 @@ $hpn-navbar-bg-opacity: 0.95;
 $hpn-navbar-bg-blur: 7px;
 $hpn-navbar-expanded-border-bottom-opacity: 1;
 $report-bg: $tertiary;
+
+// Bildausschnitt der Hero-/Teaserbilder (object-position). Die Motive sind meist
+// Portraits in quadratischen Dateien, die in ein 16:9-Fenster beschnitten werden;
+// bei "center" faellt der Kopf weg. Hier zentral justierbar.
+$header-image-focus: 50% 25%;
