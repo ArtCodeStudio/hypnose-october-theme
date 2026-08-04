@@ -34,9 +34,9 @@ static-pages:
         anwendungsgebiete-sexuelle-funktionsstorung: {  }
         anwendungsgebiete-spannungkopfschmerz: {  }
         anwendungsgebiete-stress: {  }
-    trauma: {  }
-    anwendungsgebiete-unerwunschte-verhaltensweisen: {  }
-    anwendungsgebiete-zwange: {  }
+        trauma: {  }
+        anwendungsgebiete-unerwunschte-verhaltensweisen: {  }
+        anwendungsgebiete-zwange: {  }
     hypnose-faq: {  }
     weitere-leistungen:
         weitere-leistungen-psychosomatische-energetik: {  }
