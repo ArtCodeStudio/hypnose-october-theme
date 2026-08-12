@@ -18,7 +18,11 @@ import * as CustomFormatters from "./formatters";
 // import * as CustomBinders from "./binders";
 import * as CustomComponents from "./components";
 
-import { ConsentService, GoogleTagService } from "./services";
+import {
+  ConsentService,
+  ConversionService,
+  GoogleTagService,
+} from "./services";
 
 /**
  * Die Google-IDs stehen im Layout, nicht hier: so lassen sie sich aendern,
@@ -41,7 +45,13 @@ export class Main {
     GoogleTagService.setInstance({
       measurementId: getMetaContent("hpn-ga-measurement-id"),
       adsConversionId: getMetaContent("hpn-ads-conversion-id"),
+      adsConversionLabels: {
+        contact: getMetaContent("hpn-ads-conversion-contact") || undefined,
+        phone: getMetaContent("hpn-ads-conversion-phone") || undefined,
+        email: getMetaContent("hpn-ads-conversion-email") || undefined,
+      },
     });
+    ConversionService.setInstance();
 
     this.riba.module.regist(coreModule.init());
     this.riba.module.regist(jqueryModule.init());

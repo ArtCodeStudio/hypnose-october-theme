@@ -18,11 +18,34 @@ interface RouteStatus {
 
 const SCRIPT_ID = "gtag-js";
 
+/** Handlungen, die als Erfolg zaehlen sollen */
+export type ConversionName = "contact" | "phone" | "email";
+
+/**
+ * GA4-Ereignisnamen. "generate_lead" ist Googles empfohlener Name fuer eine
+ * abgeschickte Anfrage und wird in Berichten gesondert ausgewiesen; fuer
+ * Telefon und E-Mail gibt es keinen empfohlenen Namen, dort eigene.
+ */
+const GA_EVENT_NAMES: Record<ConversionName, string> = {
+  contact: "generate_lead",
+  phone: "contact_phone",
+  email: "contact_email",
+};
+
 export interface GoogleTagIds {
   /** GA4 Measurement-ID, z. B. "G-XXXXXXXXXX" */
   measurementId: string | null;
   /** Google-Ads-Conversion-ID, z. B. "AW-XXXXXXXXX" */
   adsConversionId: string | null;
+  /**
+   * send_to-Werte je Conversion, Form "AW-XXXXXXXXX/AbCdEfGhIj".
+   *
+   * Das Label gehoert zur einzelnen Conversion-Aktion in Google Ads, nicht
+   * zum Konto — ohne Label laesst sich in Ads nichts zaehlen. Wer die
+   * Conversions stattdessen aus GA4 nach Ads importiert, laesst diese Werte
+   * leer: dann feuert nur das GA4-Ereignis und es wird nichts doppelt gezaehlt.
+   */
+  adsConversionLabels: Partial<Record<ConversionName, string>>;
 }
 
 /**
@@ -208,6 +231,31 @@ export class GoogleTagService {
     this.updateConsentState(consent);
     this.deleteGoogleCookies();
     window.location.reload();
+  }
+
+  /**
+   * Meldet eine Handlung, die als Erfolg zaehlt.
+   *
+   * Zwei Empfaenger mit je eigener Bedingung: das GA4-Ereignis haengt an der
+   * Statistik-Einwilligung, die Ads-Conversion an der Werbe-Einwilligung. Wer
+   * nur Statistik erlaubt hat, taucht in der Anzeigen-Messung also gar nicht
+   * auf — das ist beabsichtigt.
+   */
+  public trackConversion(name: ConversionName): void {
+    if (!this.scriptLoaded) {
+      return;
+    }
+
+    const consent = ConsentService.getInstance().get();
+
+    if (consent.statistics && this.ids.measurementId) {
+      this.gtag("event", GA_EVENT_NAMES[name]);
+    }
+
+    const sendTo = this.ids.adsConversionLabels[name];
+    if (consent.marketing && sendTo) {
+      this.gtag("event", "conversion", { send_to: sendTo });
+    }
   }
 
   /** Vom Riba-Router bei jedem Seitenwechsel gefeuert */

@@ -161,6 +161,14 @@ function onContactFormSubmit()
     <meta name="hpn-ga-measurement-id" content="G-GDDCTNSTQ1" />
     <meta name="hpn-ads-conversion-id" content="" />
 
+    {# Conversion-Labels aus Google Ads, Form "AW-XXXXXXXXX/AbCdEfGhIj".
+       Das Label gehoert zur einzelnen Conversion-Aktion, nicht zum Konto.
+       Leer lassen, wenn die Conversions stattdessen aus GA4 nach Ads
+       importiert werden — sonst wird doppelt gezaehlt. #}
+    <meta name="hpn-ads-conversion-contact" content="" />
+    <meta name="hpn-ads-conversion-phone" content="" />
+    <meta name="hpn-ads-conversion-email" content="" />
+
     {# Title wird ausschliesslich von der seoTags-Komponente gerendert (vermeidet doppeltes <title>). #}
     {% component 'seoTags' %}
     {% partial 'schema-org' %}
