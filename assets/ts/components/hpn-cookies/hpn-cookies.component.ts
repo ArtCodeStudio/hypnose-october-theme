@@ -6,8 +6,15 @@ import template from "./hpn-cookies.component.html";
 
 interface Scope {
   visible: boolean;
+  /** Detailansicht mit den einzelnen Kategorien */
+  showSettings: boolean;
+  /** Zustand der Schalter in der Detailansicht, per rv-checked zweiwegig */
+  statistics: boolean;
+  marketing: boolean;
   acceptAll: HpnCookiesComponent["acceptAll"];
   acceptNecessaryOnly: HpnCookiesComponent["acceptNecessaryOnly"];
+  openSettings: HpnCookiesComponent["openSettings"];
+  saveSelection: HpnCookiesComponent["saveSelection"];
 }
 
 /**
@@ -20,6 +27,11 @@ interface Scope {
  * Sie bleibt im DOM und blendet sich nur aus (frueher: removeChild). Sonst
  * liesse sie sich ueber den Fusszeilen-Link nicht wieder oeffnen, ohne die
  * Seite neu zu laden.
+ *
+ * Ablehnen und Zustimmen stehen als gleich grosse Schaltflaechen nebeneinander:
+ * eine versteckte oder wegformatierte Ablehnung macht die Einwilligung
+ * unwirksam. "Einstellungen" fuehrt zu den einzelnen Kategorien, damit sich
+ * Statistik und Werbung getrennt waehlen lassen.
  */
 export class HpnCookiesComponent extends Component {
   public static tagName = "hpn-cookies";
@@ -34,8 +46,13 @@ export class HpnCookiesComponent extends Component {
 
   public scope: Scope = {
     visible: !this.consent.hasDecision(),
+    showSettings: false,
+    statistics: this.consent.isAllowed("statistics"),
+    marketing: this.consent.isAllowed("marketing"),
     acceptAll: this.acceptAll,
     acceptNecessaryOnly: this.acceptNecessaryOnly,
+    openSettings: this.openSettings,
+    saveSelection: this.saveSelection,
   };
 
   constructor() {
@@ -60,12 +77,17 @@ export class HpnCookiesComponent extends Component {
     super.disconnectedCallback();
   }
 
+  protected template(): string | null {
+    return template;
+  }
+
   /**
    * Der Widerruf muss so einfach sein wie die Einwilligung (Art. 7 Abs. 3
    * DSGVO). Statt eine eigene Komponente fuer den Fusszeilen-Link zu bauen,
-   * hoert die Komponente global mit: jeder Link auf
-   * "#cookie-einstellungen" oeffnet den Banner erneut. So genuegt im Backend
-   * ein ganz normaler Menueeintrag, ohne Theme-Aenderung.
+   * hoert die Komponente global mit: jeder Link auf "#cookie-einstellungen"
+   * oeffnet den Banner erneut. So genuegt im Backend ein ganz normaler
+   * Menueeintrag, ohne Theme-Aenderung — und die Datenschutzerklaerung kann
+   * ihn ebenfalls verlinken.
    */
   protected onDocumentClick = (event: MouseEvent): void => {
     const target = event.target as HTMLElement | null;
@@ -79,21 +101,39 @@ export class HpnCookiesComponent extends Component {
     this.consent.revoke();
   };
 
-  protected template(): string | null {
-    return template;
+  protected onReopen(): void {
+    // Beim erneuten Oeffnen die Schalter auf den aktuellen Stand ziehen, sonst
+    // zeigt die Detailansicht die Auswahl von vorhin.
+    this.scope.statistics = this.consent.isAllowed("statistics");
+    this.scope.marketing = this.consent.isAllowed("marketing");
+    this.scope.showSettings = false;
+    this.scope.visible = true;
   }
 
-  protected onReopen(): void {
-    this.scope.visible = true;
+  protected openSettings(): void {
+    this.scope.showSettings = true;
   }
 
   protected acceptAll(): void {
     this.consent.acceptAll();
-    this.scope.visible = false;
+    this.close();
   }
 
   protected acceptNecessaryOnly(): void {
     this.consent.acceptNecessaryOnly();
+    this.close();
+  }
+
+  protected saveSelection(): void {
+    this.consent.set({
+      statistics: this.scope.statistics === true,
+      marketing: this.scope.marketing === true,
+    });
+    this.close();
+  }
+
+  protected close(): void {
+    this.scope.showSettings = false;
     this.scope.visible = false;
   }
 }

@@ -6,10 +6,23 @@ import { EventDispatcher } from "@ribajs/events";
  * "necessary" ist keine Kategorie im Speicher: technisch notwendige Cookies
  * brauchen nach TDDDG keine Einwilligung und lassen sich nicht abwaehlen.
  * Gespeichert wird nur, was einwilligungspflichtig ist.
+ *
+ * Statistik und Marketing sind bewusst GETRENNT. Eine Einwilligung, die fuer
+ * Reichweitenmessung erteilt wurde, deckt Werbung nicht mit ab — wer nur
+ * wissen will, welche Seiten gelesen werden, hat damit nicht zugestimmt,
+ * Zielgruppen fuer Anzeigen zu fuellen.
  */
 export interface Consent {
   statistics: boolean;
+  marketing: boolean;
 }
+
+export type ConsentCategory = keyof Consent;
+
+export const CONSENT_CATEGORIES: ConsentCategory[] = [
+  "statistics",
+  "marketing",
+];
 
 interface StoredConsent extends Consent {
   /** Schema-Version — erlaubt es, eine alte Einwilligung gezielt zu verwerfen */
@@ -19,7 +32,17 @@ interface StoredConsent extends Consent {
 }
 
 const COOKIE_NAME = "hpn-consent";
-const SCHEMA_VERSION = 1;
+
+/**
+ * Version 2 fuehrt die Kategorie "marketing" ein.
+ *
+ * Die Erhoehung verwirft absichtlich alle nach v1 erteilten Einwilligungen:
+ * damals wurde nur ueber Statistik aufgeklaert. Diese Zustimmung stillschweigend
+ * auf Werbung auszuweiten waere keine informierte Einwilligung. Wer vorher
+ * zugestimmt hat, wird also einmal erneut gefragt — das ist der Preis und
+ * zugleich der Sinn der Versionierung.
+ */
+const SCHEMA_VERSION = 2;
 
 /** Sechs Monate. Danach wird erneut gefragt. */
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 182;
@@ -28,14 +51,14 @@ const MAX_AGE_SECONDS = 60 * 60 * 24 * 182;
  * Haelt die Einwilligung des Besuchers und meldet Aenderungen.
  *
  * Bewusst ein eigener Service und keine Logik in der Banner-Komponente: den
- * Zustand fragen auch Dienste ab, die gar keine Oberflaeche haben (Analytics),
- * und der Banner ist nur eine von mehreren Stellen, die ihn setzen koennen
- * (Fusszeilen-Link "Cookie-Einstellungen").
+ * Zustand fragen auch Dienste ab, die gar keine Oberflaeche haben, und der
+ * Banner ist nur eine von mehreren Stellen, die ihn setzen koennen
+ * (Fusszeilen-Link, Verweis aus der Datenschutzerklaerung).
  *
  * Der Vorgaenger hat die Entscheidung NIE gespeichert — "Okay" setzte ein
  * Cookie mit Ablaufdatum in der Vergangenheit, "Nein, Danke" schrieb erst,
- * nachdem es document.cookie unbrauchbar gemacht hatte. Der Banner erschien
- * dadurch bei jedem Seitenaufruf neu. Beides ist hier bereinigt.
+ * nachdem es document.cookie mit einem Setter ueberschrieben hatte, der alles
+ * verwirft. Der Banner erschien dadurch bei jedem Seitenaufruf neu.
  */
 export class ConsentService {
   protected static instance: ConsentService | null = null;
@@ -49,14 +72,17 @@ export class ConsentService {
   /** Bittet den Banner, sich erneut zu zeigen */
   public static readonly EVENT_REOPEN = "hpn-consent:reopen";
 
-  protected consent: Consent = { statistics: false };
+  protected consent: Consent = { statistics: false, marketing: false };
 
   protected decided = false;
 
   protected constructor() {
     const stored = this.read();
     if (stored) {
-      this.consent = { statistics: stored.statistics };
+      this.consent = {
+        statistics: stored.statistics,
+        marketing: stored.marketing,
+      };
       this.decided = true;
     }
   }
@@ -77,18 +103,18 @@ export class ConsentService {
     return { ...this.consent };
   }
 
-  public isAllowed(category: keyof Consent): boolean {
+  public isAllowed(category: ConsentCategory): boolean {
     return this.consent[category] === true;
   }
 
   /** Alles annehmen */
   public acceptAll(): void {
-    this.set({ statistics: true });
+    this.set({ statistics: true, marketing: true });
   }
 
   /** Nur technisch Notwendiges — die gleichwertige Ablehnung */
   public acceptNecessaryOnly(): void {
-    this.set({ statistics: false });
+    this.set({ statistics: false, marketing: false });
   }
 
   /**
@@ -97,7 +123,7 @@ export class ConsentService {
    */
   public revoke(): void {
     const previous = this.get();
-    this.consent = { statistics: false };
+    this.consent = { statistics: false, marketing: false };
     this.decided = false;
     document.cookie = `${COOKIE_NAME}=; Max-Age=0; path=/; SameSite=Lax`;
     ConsentService.events.trigger(
@@ -114,9 +140,13 @@ export class ConsentService {
     this.decided = true;
     this.write();
 
-    if (previous.statistics === this.consent.statistics) {
+    const changed = CONSENT_CATEGORIES.some(
+      (category) => previous[category] !== this.consent[category]
+    );
+    if (!changed) {
       return;
     }
+
     ConsentService.events.trigger(
       ConsentService.EVENT_CHANGED,
       this.get(),
@@ -158,6 +188,7 @@ export class ConsentService {
       v: SCHEMA_VERSION,
       ts: typeof parsed.ts === "string" ? parsed.ts : "",
       statistics: parsed.statistics === true,
+      marketing: parsed.marketing === true,
     };
   }
 

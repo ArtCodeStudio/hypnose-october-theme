@@ -151,10 +151,15 @@ function onContactFormSubmit()
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="AVFwGF46zYNjLh7ZtzXBfV133CFNb-A4BTmWlpJQ4-8" />
 
-    {# Google Analytics 4. Hier steht NUR die ID — gtag.js laedt der
-       AnalyticsService und erst nach Einwilligung ueber den Cookie-Banner.
-       Nie das gtag-Snippet direkt einbauen: es wuerde sofort laden. #}
+    {# Google-Tag. Hier stehen NUR die IDs — gtag.js laedt der GoogleTagService
+       und erst nach Einwilligung ueber den Cookie-Banner. Nie das gtag-Snippet
+       direkt einbauen: es wuerde sofort laden.
+
+       Ein leeres oder fehlendes Meta-Tag schaltet das jeweilige Produkt ab.
+       Die Ads-ID (AW-...) traegt ein, wer Google Ads scharf schaltet — vorher
+       muss der Abschnitt "Google Ads" in der Datenschutzerklaerung stehen. #}
     <meta name="hpn-ga-measurement-id" content="G-GDDCTNSTQ1" />
+    <meta name="hpn-ads-conversion-id" content="" />
 
     {# Title wird ausschliesslich von der seoTags-Komponente gerendert (vermeidet doppeltes <title>). #}
     {% component 'seoTags' %}

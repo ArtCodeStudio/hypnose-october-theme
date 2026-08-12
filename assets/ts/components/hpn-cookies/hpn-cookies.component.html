@@ -1,13 +1,48 @@
 <div class="hpn-cookies" rv-show="visible" role="dialog" aria-live="polite"
-    aria-label="Hinweis zu Cookies und Statistik">
+    aria-label="Hinweis zu Cookies, Statistik und Werbung">
+
     <p class="mb-2">Diese Webseite verwendet Cookies. Technisch notwendige Cookies sind für den Betrieb der Seite
-        erforderlich. Zusätzlich möchten wir mit <strong>Google Analytics</strong> anonymisiert auswerten, wie die Seite
-        genutzt wird — das geschieht nur mit Ihrer Einwilligung.</p>
+        erforderlich. Zusätzlich möchten wir die Nutzung der Seite anonymisiert auswerten und Werbung ausspielen — beides
+        nur mit Ihrer Einwilligung.</p>
+
     <p class="mb-3"><a aria-label="Mehr zum Datenschutz erfahren" href="/datenschutz"
             rel="noopener noreferrer nofollow">Mehr dazu in der Datenschutzerklärung.</a></p>
-    <div class="cc-compliance cc-highlight d-flex justify-content-between">
+
+    <div class="hpn-cookies-settings mb-3" rv-show="showSettings">
+        <div class="hpn-cookies-option">
+            <input type="checkbox" id="hpn-consent-necessary" checked disabled>
+            <label for="hpn-consent-necessary">
+                <strong>Notwendig</strong>
+                <span>Für den Betrieb der Seite erforderlich, z.&nbsp;B. um diese Auswahl zu speichern. Nicht
+                    abwählbar.</span>
+            </label>
+        </div>
+        <div class="hpn-cookies-option">
+            <input type="checkbox" id="hpn-consent-statistics" rv-checked="statistics">
+            <label for="hpn-consent-statistics">
+                <strong>Statistik</strong>
+                <span>Google Analytics — hilft uns zu verstehen, welche Inhalte gefragt sind.</span>
+            </label>
+        </div>
+        <div class="hpn-cookies-option">
+            <input type="checkbox" id="hpn-consent-marketing" rv-checked="marketing">
+            <label for="hpn-consent-marketing">
+                <strong>Werbung</strong>
+                <span>Google Ads — misst den Erfolg unserer Anzeigen und ermöglicht Werbung.</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="cc-compliance d-flex flex-wrap justify-content-between">
         <button class="btn btn-outline-primary btn-sm" rv-on-click="acceptNecessaryOnly"
             aria-label="Nur technisch notwendige Cookies zulassen" type="button">Nur notwendige</button>
+
+        <button class="btn btn-link btn-sm" rv-on-click="openSettings" rv-hide="showSettings"
+            aria-label="Einzelne Kategorien auswählen" type="button">Einstellungen</button>
+
+        <button class="btn btn-outline-primary btn-sm" rv-on-click="saveSelection" rv-show="showSettings"
+            aria-label="Getroffene Auswahl speichern" type="button">Auswahl speichern</button>
+
         <button class="btn btn-primary btn-sm" rv-on-click="acceptAll" aria-label="Alle Cookies akzeptieren"
             type="button">Alle akzeptieren</button>
     </div>
