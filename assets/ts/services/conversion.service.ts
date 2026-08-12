@@ -33,10 +33,20 @@ export class ConversionService {
   protected reported = new Set<ConversionName>();
 
   protected constructor() {
-    document.addEventListener("click", this.onClick);
-    // submit-success steigt NICHT auf (bubbles: false). Die Capture-Phase
-    // laeuft aber auch bei nicht aufsteigenden Ereignissen von der Wurzel zum
-    // Ziel — deshalb der dritte Parameter.
+    // Beide in der CAPTURE-Phase:
+    //
+    // - submit-success steigt gar nicht auf (bubbles: false). Die Capture-Phase
+    //   laeuft aber auch bei nicht aufsteigenden Ereignissen von der Wurzel zum
+    //   Ziel.
+    // - Klicks: Telefon- und E-Mail-Links im Fusszeilenmenue tragen den
+    //   rv-route-Binder des Routers, der bei externen Zielen (tel:, mailto:)
+    //   stopPropagation() ruft und selbst navigiert. In der Bubble-Phase kaemen
+    //   genau diese Klicks hier nie an — ausgerechnet die aus dem Menue, das
+    //   auf jeder Seite steht.
+    //
+    // Hier wird nur mitgehoert, nicht eingegriffen: kein preventDefault, kein
+    // stopPropagation. Der Link soll ganz normal funktionieren.
+    document.addEventListener("click", this.onClick, true);
     document.addEventListener("submit-success", this.onSubmitSuccess, true);
     this.events.on("newPageReady", this.onPageChange, this);
   }

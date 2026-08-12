@@ -92,6 +92,19 @@ items:
             cssClass: ''
             isExternal: '0'
     -
+        title: 'Cookie-Einstellungen'
+        nesting: 0
+        type: url
+        url: '#cookie-einstellungen'
+        code: ''
+        reference: null
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
         title: facebook
         nesting: null
         type: url

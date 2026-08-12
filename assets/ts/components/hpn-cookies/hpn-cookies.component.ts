@@ -64,7 +64,8 @@ export class HpnCookiesComponent extends Component {
     super.connectedCallback();
     this.init(HpnCookiesComponent.observedAttributes);
     ConsentService.events.on(ConsentService.EVENT_REOPEN, this.onReopen, this);
-    document.addEventListener("click", this.onDocumentClick);
+    // Capture-Phase, siehe onDocumentClick
+    document.addEventListener("click", this.onDocumentClick, true);
   }
 
   protected requiredAttributes(): string[] {
@@ -73,7 +74,7 @@ export class HpnCookiesComponent extends Component {
 
   protected disconnectedCallback(): void {
     ConsentService.events.off(ConsentService.EVENT_REOPEN, this.onReopen, this);
-    document.removeEventListener("click", this.onDocumentClick);
+    document.removeEventListener("click", this.onDocumentClick, true);
     super.disconnectedCallback();
   }
 
@@ -88,6 +89,15 @@ export class HpnCookiesComponent extends Component {
    * oeffnet den Banner erneut. So genuegt im Backend ein ganz normaler
    * Menueeintrag, ohne Theme-Aenderung — und die Datenschutzerklaerung kann
    * ihn ebenfalls verlinken.
+   *
+   * CAPTURE-Phase, nicht Bubble: Menuelinks tragen den rv-route-Binder des
+   * Routers, und der ruft bei einer bereits aktiven Route stopPropagation()
+   * ("already on this site, do nothing"). Ein Link auf "#cookie-einstellungen"
+   * zaehlt fuer ihn als aktive Route — in der Bubble-Phase kaeme der Klick hier
+   * also nie an. Im Fusszeilenmenue genau so passiert.
+   *
+   * stopPropagation() dann auch von hier aus, damit der Router den Klick nicht
+   * zusaetzlich als Navigation behandelt.
    */
   protected onDocumentClick = (event: MouseEvent): void => {
     const target = event.target as HTMLElement | null;
@@ -98,6 +108,7 @@ export class HpnCookiesComponent extends Component {
       return;
     }
     event.preventDefault();
+    event.stopPropagation();
     this.consent.revoke();
   };
 
