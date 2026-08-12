@@ -9,6 +9,7 @@ static-pages:
         hypnose-mit-kindern: {  }
         hypnose-im-urlaub: {  }
     anwendungsgebiete:
+        anwendungsgebiete-gewichtsreduktion: {  }
         anwendungsgebiete-allergie: {  }
         anwendungsgebiete-angst: {  }
         anwendungsgebiete-asthma: {  }
@@ -16,13 +17,13 @@ static-pages:
         anwendungsgebiete-chronische-schmerzen: {  }
         anwendungsgebiete-depression: {  }
         anwendungsgebiete-geburtstrauma: {  }
-        anwendungsgebiete-gewichtsreduktion: {  }
         yager-therapie-hautreaktionen: {  }
         anwendungsgebiete-hypnoinjection: {  }
         anwendungsgebiete-hypnotisches-magenband: {  }
         anwendungsgebiete-innere-unruhe: {  }
         anwendungsgebiete-magen-darmbeschwerden: {  }
         migraene: {  }
+        panikattacken-therapie: {  }
         anwendungsgebiete-phobie: {  }
         anwendungsgebiete-personliche-weiterentwicklung: {  }
         anwendungsgebiete-psychosomatische-beschwerden: {  }

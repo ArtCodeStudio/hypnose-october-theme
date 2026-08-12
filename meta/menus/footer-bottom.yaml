@@ -14,23 +14,23 @@ items:
             cssClass: with-stars
             isExternal: '1'
     -
-        title: 'Tel: (04723) 79 64 157'
-        nesting: ''
+        title: '04723 7964157'
         type: url
         url: 'tel:047237964157'
         code: ''
-        reference: ''
-        cmsPage: ''
-        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
     -
         title: 'E-Mail: kontakt@hypnosezentrum-cux.de'
+        nesting: null
         type: url
         url: 'mailto:kontakt@hypnosezentrum-cux.de'
         code: ''
+        reference: null
+        cmsPage: null
+        replace: null
         viewBag:
             isHidden: '0'
             cssClass: ''

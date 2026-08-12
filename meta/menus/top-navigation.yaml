@@ -27,14 +27,14 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Therapeuten
-                nesting: '0'
+                title: 'Sabine Berndt-Bartel'
+                nesting: 0
                 type: static-page
-                url: ''
+                url: null
                 code: ''
                 reference: zentrum-sabine-berndt-bartel
-                cmsPage: ''
-                replace: '0'
+                cmsPage: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -225,25 +225,38 @@ items:
             isExternal: '0'
         items:
             -
-                title: 'Alle anzeigen'
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: anwendungsgebiete
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
                 title: Angst
                 nesting: 0
                 type: static-page
                 url: null
                 code: ''
                 reference: anwendungsgebiete-angst
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Alle anzeigen'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: anwendungsgebiete
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Abnehmen mit Hypnose'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: anwendungsgebiete-gewichtsreduktion
                 cmsPage: null
                 replace: 0
                 viewBag:
@@ -306,10 +319,8 @@ items:
                 title: Depressionen
                 nesting: 0
                 type: static-page
-                url: null
                 code: ''
                 reference: anwendungsgebiete-depression
-                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -322,19 +333,6 @@ items:
                 url: ''
                 code: ''
                 reference: anwendungsgebiete-geburtstrauma
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: Gewichtsreduktion
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: anwendungsgebiete-gewichtsreduktion
                 cmsPage: ''
                 replace: '0'
                 viewBag:
@@ -358,8 +356,10 @@ items:
                 title: Hypnoinjection
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: anwendungsgebiete-hypnoinjection
+                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -593,6 +593,19 @@ items:
                 url: null
                 code: ''
                 reference: anwendungsgebiete-zwange
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: Panikattacken
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: panikattacken-therapie
                 cmsPage: null
                 replace: 0
                 viewBag:
