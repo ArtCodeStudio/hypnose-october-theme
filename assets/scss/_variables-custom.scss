@@ -10,3 +10,10 @@ $report-bg: $tertiary;
 // Portraits in quadratischen Dateien, die in ein 16:9-Fenster beschnitten werden;
 // bei "center" faellt der Kopf weg. Hier zentral justierbar.
 $header-image-focus: 50% 25%;
+
+// Hoehe, die am unteren Rand fuer die fixierte Bottom-Bar frei bleiben muss.
+// Alles, was sich unten fixiert einblendet (Bewertungs-Reiter,
+// Einwilligungsbanner), haelt diesen Abstand ein — sonst liegt es ueber der
+// Leiste und beides ist nicht mehr sauber bedienbar. Eine Stelle, weil sonst
+// die naechste Einblendung die Zahl wieder neu raet.
+$fixed-bottom-bar-clearance: 90px;

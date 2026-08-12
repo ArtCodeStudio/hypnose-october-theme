@@ -13,12 +13,23 @@ $hpn-gold-readable: darken($title-color, 16%);
 
 .hpn-cookies {
     position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    // Ueber der fixierten Bottom-Bar bleiben — sonst liegt der Banner ueber
+    // Telefonnummer und E-Mail-Adresse, also genau ueber dem, wozu die Seite
+    // hinfuehren soll.
+    bottom: $fixed-bottom-bar-clearance;
+    // Am rechten Rand klebt der eingeklappte Bewertungs-Reiter (fix, buendig,
+    // $jameda-tab-width breit). Der Abstand haelt Platz dafuer frei, sonst
+    // verdeckt der Banner ihn. An die Variable gekoppelt statt fest gesetzt:
+    // aendert sich der Reiter, wandert der Banner mit.
+    //
+    // Nur hier noetig — unterhalb von sm ist der Reiter ausgeblendet
+    // (d-none d-sm-block) und der Banner ohnehin volle Breite.
+    // calc, weil $jameda-tab-width in px und der Abstand in rem angegeben ist
+    right: calc(#{$jameda-tab-width} + 1rem);
     z-index: 99999;
 
     width: 23rem;
-    max-width: calc(100vw - 3rem);
+    max-width: calc(100vw - #{$jameda-tab-width} - 2.5rem);
     padding: 1.5rem;
 
     background-color: $body-bg;

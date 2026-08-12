@@ -5,7 +5,9 @@
 
 $jameda-tab-width: 34px;
 // Ueber der fixierten Bottom-Bar bleiben, damit beides bedienbar ist.
-$jameda-offset-bottom: 90px;
+// Der Wert steht in _variables-custom.scss, weil ihn auch der
+// Einwilligungsbanner braucht.
+$jameda-offset-bottom: $fixed-bottom-bar-clearance;
 $jameda-slide: 0.3s ease;
 $jameda-radius: 12px;
 
