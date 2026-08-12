@@ -1,37 +1,74 @@
+// Einwilligungsbanner.
+//
+// Nimmt die Formensprache der Seite auf: warmes Off-White, grosszuegige
+// Rundung, Gold fuer die Ueberschrift, das gedaempfte Blaugrau des Fliesstexts.
+// Der harte schwarze 1px-Rahmen von frueher stand quer dazu.
+
+// Das Gold der Seite ($title-color) kommt auf dem hellen Grund nur auf 2.71:1,
+// WCAG AA verlangt 4.5:1. In einem Dialog, an dem eine Einwilligung haengt,
+// muss jede Zeile lesbar sein — hier deshalb abgedunkelt auf ueber 4.5:1, als
+// Markenfarbe weiterhin erkennbar. Dass Ueberschriften und Links der ganzen
+// Seite dasselbe Problem haben, ist ein eigenes Thema.
+$hpn-gold-readable: darken($title-color, 16%);
+
 .hpn-cookies {
     position: fixed;
-    bottom: 1em;
-    right: 1em;
-    padding: 2em;
-    background-color: white;
-    border: solid 1px black;
+    bottom: 1.5rem;
+    right: 1.5rem;
     z-index: 99999;
-    max-width: 25em;
-    font-size: 0.9rem;
-    font-weight: 400;
-    line-height: 1.8;
 
-    .cc-compliance {
-        gap: 0.5rem;
-    }
+    width: 23rem;
+    max-width: calc(100vw - 3rem);
+    padding: 1.5rem;
+
+    background-color: $body-bg;
+    border: 1px solid rgba($body-color, 0.15);
+    border-radius: $border-radius-lg;
+    // Zwei Ebenen: enger Kontaktschatten plus weiche Tiefe, damit der Kasten
+    // ueber dem Text schwebt statt aufgeklebt zu wirken.
+    box-shadow:
+        0 1px 2px rgba($body-color, 0.08),
+        0 1rem 2rem rgba($body-color, 0.18);
+
+    font-size: 0.875rem;
+    // Der Fliesstext der Seite laeuft mit 1.8 — im Dialog wird der Kasten
+    // damit unnoetig hoch.
+    line-height: 1.55;
+    color: $body-color;
 }
 
-.hpn-cookies-settings {
-    border-top: solid 1px rgba(0, 0, 0, 0.15);
-    padding-top: 0.75rem;
+.hpn-cookies-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: $hpn-gold-readable;
+}
+
+.hpn-cookies-intro {
+    margin-bottom: 1rem;
+}
+
+.hpn-cookies-options {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 1rem 0 0;
+    border-top: 1px solid rgba($body-color, 0.15);
 }
 
 .hpn-cookies-option {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
+    gap: 0.625rem;
+
+    + .hpn-cookies-option {
+        margin-top: 0.875rem;
+    }
 
     input {
-        // Auf Höhe der ersten Textzeile, nicht auf der Mitte des ganzen Blocks
-        margin-top: 0.3rem;
+        // Auf Hoehe der ersten Textzeile, nicht auf der Mitte des Blocks
+        margin-top: 0.2rem;
         flex: 0 0 auto;
+        accent-color: $title-color;
     }
 
     label {
@@ -39,25 +76,118 @@
         cursor: pointer;
     }
 
-    // Nicht abwählbare Kategorie erkennbar machen, ohne sie zu verstecken
-    input:disabled + label {
-        opacity: 0.7;
+    // Nicht abwaehlbar erkennbar machen, ohne es zu verstecken
+    input:disabled {
         cursor: default;
-    }
 
-    strong {
-        display: block;
-    }
-
-    span {
-        font-size: 0.85em;
+        + label {
+            opacity: 0.65;
+            cursor: default;
+        }
     }
 }
 
-@media screen and (max-width: 414px) and (orientation: portrait), screen and (max-width: 736px) and (orientation: landscape) {
+.hpn-cookies-option-name {
+    display: block;
+    font-weight: 700;
+}
+
+.hpn-cookies-option-hint {
+    display: block;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+// Steht direkt unter den Schaltern, weil es die Aktion zu genau diesen ist.
+.hpn-cookies-save {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.625rem;
+    padding: 0.5rem 1rem;
+
+    background-color: $tertiary;
+    color: $gray-700; // 5.49:1 auf dem Sandton
+    border: 1px solid transparent;
+    border-radius: $btn-border-radius;
+    font-size: inherit;
+
+    &:hover,
+    &:focus {
+        background-color: darken($tertiary, 6%);
+    }
+}
+
+.hpn-cookies-actions {
+    display: grid;
+    // Zwei gleiche Spalten statt flex-wrap: die Schaltflaechen bleiben exakt
+    // gleich breit und brechen nicht in unterschiedliche Zeilen um.
+    grid-template-columns: 1fr 1fr;
+    gap: 0.625rem;
+
+    .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: inherit;
+        // Lange Beschriftungen duerfen umbrechen, statt die Spalte zu sprengen
+        white-space: normal;
+    }
+
+    // Die Schrift der .btn-primary der Seite ist das Gold auf dem hellen Blau —
+    // gemessen 1.72:1, WCAG AA verlangt 4.5:1. Auf einer Schaltflaeche, an der
+    // eine Einwilligung haengt, ist das nicht hinnehmbar. $gray-700 kommt auf
+    // 5.02:1 und laesst die Markenfarbe unangetastet.
+    //
+    // Dieselbe Kombination steckt in den CTA-Buttons der ganzen Seite; das ist
+    // ein eigenes Thema und hier bewusst nur lokal geloest.
+    .btn-primary {
+        color: $gray-700;
+
+        &:hover,
+        &:focus {
+            color: $gray-700;
+        }
+    }
+}
+
+.hpn-cookies-links {
+    display: flex;
+    gap: 1rem;
+    margin: 0.875rem 0 0;
+    font-size: 0.8125rem;
+
+    a,
+    .hpn-cookies-toggle {
+        color: $hpn-gold-readable;
+
+        &:hover,
+        &:focus {
+            color: darken($hpn-gold-readable, 8%);
+        }
+    }
+
+    // Immer rechts, auch wenn der Einstellungen-Knopf daneben verschwindet:
+    // sonst springt der Link beim Oeffnen der Detailansicht nach links.
+    a {
+        margin-left: auto;
+    }
+}
+
+// Sieht aus wie ein Link, ist aber ein Button — es navigiert nirgendwohin.
+.hpn-cookies-toggle {
+    padding: 0;
+    background: none;
+    border: 0;
+    font-size: inherit;
+    text-decoration: underline;
+}
+
+@include media-breakpoint-down(xs) {
     .hpn-cookies {
-        max-width: none;
-        left: 0;
         right: 0;
+        bottom: 0;
+        left: 0;
+        width: auto;
+        max-width: none;
+        border-radius: $border-radius-lg $border-radius-lg 0 0;
+        border-bottom: 0;
     }
 }

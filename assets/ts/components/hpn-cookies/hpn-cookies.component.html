@@ -1,49 +1,51 @@
-<div class="hpn-cookies" rv-show="visible" role="dialog" aria-live="polite"
-    aria-label="Hinweis zu Cookies, Statistik und Werbung">
+<div class="hpn-cookies" rv-show="visible" role="dialog" aria-labelledby="hpn-cookies-title">
 
-    <p class="mb-2">Diese Webseite verwendet Cookies. Technisch notwendige Cookies sind für den Betrieb der Seite
-        erforderlich. Zusätzlich möchten wir die Nutzung der Seite anonymisiert auswerten und Werbung ausspielen — beides
-        nur mit Ihrer Einwilligung.</p>
+    <h2 class="hpn-cookies-title" id="hpn-cookies-title">Datenschutz-Einstellungen</h2>
 
-    <p class="mb-3"><a aria-label="Mehr zum Datenschutz erfahren" href="/datenschutz"
-            rel="noopener noreferrer nofollow">Mehr dazu in der Datenschutzerklärung.</a></p>
+    <p class="hpn-cookies-intro">Technisch notwendige Cookies sind für den Betrieb der Seite erforderlich. Zusätzlich
+        möchten wir die Nutzung anonymisiert auswerten und Werbung ausspielen — beides nur mit Ihrer Einwilligung.</p>
 
-    <div class="hpn-cookies-settings mb-3" rv-show="showSettings">
-        <div class="hpn-cookies-option">
+    <ul class="hpn-cookies-options" rv-show="showSettings">
+        <li class="hpn-cookies-option">
             <input type="checkbox" id="hpn-consent-necessary" checked disabled>
             <label for="hpn-consent-necessary">
-                <strong>Notwendig</strong>
-                <span>Für den Betrieb der Seite erforderlich, z.&nbsp;B. um diese Auswahl zu speichern. Nicht
-                    abwählbar.</span>
+                <span class="hpn-cookies-option-name">Notwendig</span>
+                <span class="hpn-cookies-option-hint">Für den Betrieb der Seite, z.&nbsp;B. um diese Auswahl zu
+                    speichern. Nicht abwählbar.</span>
             </label>
-        </div>
-        <div class="hpn-cookies-option">
+        </li>
+        <li class="hpn-cookies-option">
             <input type="checkbox" id="hpn-consent-statistics" rv-checked="statistics">
             <label for="hpn-consent-statistics">
-                <strong>Statistik</strong>
-                <span>Google Analytics — hilft uns zu verstehen, welche Inhalte gefragt sind.</span>
+                <span class="hpn-cookies-option-name">Statistik</span>
+                <span class="hpn-cookies-option-hint">Google Analytics — zeigt uns, welche Inhalte gefragt sind.</span>
             </label>
-        </div>
-        <div class="hpn-cookies-option">
+        </li>
+        <li class="hpn-cookies-option">
             <input type="checkbox" id="hpn-consent-marketing" rv-checked="marketing">
             <label for="hpn-consent-marketing">
-                <strong>Werbung</strong>
-                <span>Google Ads — misst den Erfolg unserer Anzeigen und ermöglicht Werbung.</span>
+                <span class="hpn-cookies-option-name">Werbung</span>
+                <span class="hpn-cookies-option-hint">Google Ads — misst den Erfolg unserer Anzeigen.</span>
             </label>
-        </div>
-    </div>
+        </li>
+    </ul>
 
-    <div class="cc-compliance d-flex flex-wrap justify-content-between">
-        <button class="btn btn-outline-primary btn-sm" rv-on-click="acceptNecessaryOnly"
+    <button class="hpn-cookies-save" rv-show="showSettings" rv-on-click="saveSelection"
+        aria-label="Getroffene Auswahl speichern" type="button">Auswahl speichern</button>
+
+    {# Ablehnen und Zustimmen bewusst gleich gross und nebeneinander: eine
+       kleiner gesetzte oder nachgeordnete Ablehnung macht die Einwilligung
+       unwirksam. #}
+    <div class="hpn-cookies-actions">
+        <button class="btn btn-outline-secondary" rv-on-click="acceptNecessaryOnly"
             aria-label="Nur technisch notwendige Cookies zulassen" type="button">Nur notwendige</button>
-
-        <button class="btn btn-link btn-sm" rv-on-click="openSettings" rv-hide="showSettings"
-            aria-label="Einzelne Kategorien auswählen" type="button">Einstellungen</button>
-
-        <button class="btn btn-outline-primary btn-sm" rv-on-click="saveSelection" rv-show="showSettings"
-            aria-label="Getroffene Auswahl speichern" type="button">Auswahl speichern</button>
-
-        <button class="btn btn-primary btn-sm" rv-on-click="acceptAll" aria-label="Alle Cookies akzeptieren"
+        <button class="btn btn-primary" rv-on-click="acceptAll" aria-label="Alle Cookies akzeptieren"
             type="button">Alle akzeptieren</button>
     </div>
+
+    <p class="hpn-cookies-links">
+        <button class="hpn-cookies-toggle" rv-hide="showSettings" rv-on-click="openSettings"
+            aria-label="Einzelne Kategorien auswählen" type="button">Einstellungen</button>
+        <a href="/datenschutz" rel="noopener noreferrer nofollow">Datenschutzerklärung</a>
+    </p>
 </div>
