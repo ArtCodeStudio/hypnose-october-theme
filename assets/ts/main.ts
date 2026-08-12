@@ -18,10 +18,29 @@ import * as CustomFormatters from "./formatters";
 // import * as CustomBinders from "./binders";
 import * as CustomComponents from "./components";
 
+import { AnalyticsService, ConsentService } from "./services";
+
+/**
+ * Die Measurement-ID steht im Layout, nicht hier: so laesst sie sich im
+ * Backend aendern, ohne dass das JS-Bundle neu gebaut werden muss.
+ */
+const getMeasurementId = (): string | null =>
+  document
+    .querySelector('meta[name="hpn-ga-measurement-id"]')
+    ?.getAttribute("content") || null;
+
 export class Main {
   private riba = new Riba();
 
   constructor() {
+    // Vor dem Binden: der Banner liest den Zustand beim Erzeugen seines Scopes,
+    // und Analytics muss die Einwilligung kennen, bevor die erste Seite zaehlt.
+    ConsentService.getInstance();
+    const measurementId = getMeasurementId();
+    if (measurementId) {
+      AnalyticsService.setInstance(measurementId);
+    }
+
     this.riba.module.regist(coreModule.init());
     this.riba.module.regist(jqueryModule.init());
     this.riba.module.regist(routerModule.init());

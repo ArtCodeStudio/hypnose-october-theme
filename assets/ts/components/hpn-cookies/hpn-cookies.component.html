@@ -1,12 +1,14 @@
-<div class="hpn-cookies">
-    <span>Diese Webseite verwendet Cookies, diese helfen uns dabei Ihr Nutzererlebnis zu verbessern. <a
-            aria-label="learn more about cookies" role="button" tabindex="0" href="/datenschutz"
-            rel="noopener noreferrer nofollow" target="_blank">Mehr dazu in der
-            Datenschutzerklärung.</a></span>
-    <div class="cc-compliance cc-highlight d-flex justify-content-between mt-3">
-        <button class="btn btn-link p-0" rv-on-click="denyCookies" aria-label="deny cookies" role="button"
-            tabindex="0">Nein, Danke</button>
-        <button class="btn btn-link p-0" rv-on-click="acceptCookies" aria-label="dismiss cookie message"
-            role="button" tabindex="0">Okay</button>
+<div class="hpn-cookies" rv-show="visible" role="dialog" aria-live="polite"
+    aria-label="Hinweis zu Cookies und Statistik">
+    <p class="mb-2">Diese Webseite verwendet Cookies. Technisch notwendige Cookies sind für den Betrieb der Seite
+        erforderlich. Zusätzlich möchten wir mit <strong>Google Analytics</strong> anonymisiert auswerten, wie die Seite
+        genutzt wird — das geschieht nur mit Ihrer Einwilligung.</p>
+    <p class="mb-3"><a aria-label="Mehr zum Datenschutz erfahren" href="/datenschutz"
+            rel="noopener noreferrer nofollow">Mehr dazu in der Datenschutzerklärung.</a></p>
+    <div class="cc-compliance cc-highlight d-flex justify-content-between">
+        <button class="btn btn-outline-primary btn-sm" rv-on-click="acceptNecessaryOnly"
+            aria-label="Nur technisch notwendige Cookies zulassen" type="button">Nur notwendige</button>
+        <button class="btn btn-primary btn-sm" rv-on-click="acceptAll" aria-label="Alle Cookies akzeptieren"
+            type="button">Alle akzeptieren</button>
     </div>
 </div>

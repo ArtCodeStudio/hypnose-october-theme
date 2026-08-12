@@ -19,6 +19,17 @@ function onStart()
     // $pdf_forms_json_str = file_get_contents($PDF_FORMS_JSON_PATH, true);
     // $pdf_forms = json_decode($pdf_forms_json_str);
     // $this['pdf_forms'] = $pdf_forms;
+
+    // Cache-Buster fuer die JS-Bundles.
+    //
+    // Der Webserver sendet fuer Theme-Assets KEIN Cache-Control. Browser
+    // schaetzen die Haltbarkeit dann selbst (grob 10 % des Dateialters) — bei
+    // einem ein Jahr alten Bundle sind das Wochen, in denen ein wiederkehrender
+    // Besucher weiter die alte Datei ausfuehrt und eine Aenderung schlicht
+    // nicht bekommt. filemtime ist billig genug fuer jeden Request und aendert
+    // sich automatisch beim Deploy; nichts von Hand hochzuzaehlen.
+    $bundlePath = themes_path('hypnose-october-theme/assets/js/main.bundle.js');
+    $this['assetVersion'] = file_exists($bundlePath) ? filemtime($bundlePath) : '';
 }
 
 
@@ -140,6 +151,11 @@ function onContactFormSubmit()
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="AVFwGF46zYNjLh7ZtzXBfV133CFNb-A4BTmWlpJQ4-8" />
 
+    {# Google Analytics 4. Hier steht NUR die ID — gtag.js laedt der
+       AnalyticsService und erst nach Einwilligung ueber den Cookie-Banner.
+       Nie das gtag-Snippet direkt einbauen: es wuerde sofort laden. #}
+    <meta name="hpn-ga-measurement-id" content="G-GDDCTNSTQ1" />
+
     {# Title wird ausschliesslich von der seoTags-Komponente gerendert (vermeidet doppeltes <title>). #}
     {% component 'seoTags' %}
     {% partial 'schema-org' %}
@@ -187,8 +203,8 @@ function onContactFormSubmit()
     </div>
     {% partial 'outdated-browser' %}
 
-    <script type="text/javascript" src="{{ 'assets/js/vendors.bundle.js' | theme }}"></script>
-    <script type="text/javascript" src="{{ 'assets/js/main.bundle.js' | theme }}"></script>
+    <script type="text/javascript" src="{{ 'assets/js/vendors.bundle.js' | theme }}?v={{ assetVersion }}"></script>
+    <script type="text/javascript" src="{{ 'assets/js/main.bundle.js' | theme }}?v={{ assetVersion }}"></script>
     {% framework %}
     {% scripts %}
 

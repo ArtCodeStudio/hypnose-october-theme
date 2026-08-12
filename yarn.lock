@@ -12792,6 +12792,7 @@ fsevents@~2.1.2:
     "@ribajs/bs4": "workspace:*"
     "@ribajs/core": "workspace:*"
     "@ribajs/eslint-config": "workspace:*"
+    "@ribajs/events": "workspace:*"
     "@ribajs/extras": "workspace:*"
     "@ribajs/iconset": "workspace:*"
     "@ribajs/jquery": "workspace:*"

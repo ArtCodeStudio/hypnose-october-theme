@@ -94,6 +94,7 @@
   "dependencies": {
     "@ribajs/bs4": "workspace:*",
     "@ribajs/core": "workspace:*",
+    "@ribajs/events": "workspace:*",
     "@ribajs/extras": "workspace:*",
     "@ribajs/iconset": "workspace:*",
     "@ribajs/jquery": "workspace:*",

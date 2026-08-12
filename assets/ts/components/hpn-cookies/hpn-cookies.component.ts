@@ -1,24 +1,41 @@
 import { Component } from "@ribajs/core";
 
+import { ConsentService } from "../../services/consent.service";
+
 import template from "./hpn-cookies.component.html";
 
 interface Scope {
-  denyCookies: HpnCookiesComponent["denyCookies"];
-  acceptCookies: HpnCookiesComponent["acceptCookies"];
+  visible: boolean;
+  acceptAll: HpnCookiesComponent["acceptAll"];
+  acceptNecessaryOnly: HpnCookiesComponent["acceptNecessaryOnly"];
 }
 
+/**
+ * Einwilligungsbanner.
+ *
+ * Die Komponente entscheidet nichts selbst, sie fragt und meldet — gehalten
+ * wird der Zustand im ConsentService, damit ihn auch Dienste ohne Oberflaeche
+ * lesen koennen.
+ *
+ * Sie bleibt im DOM und blendet sich nur aus (frueher: removeChild). Sonst
+ * liesse sie sich ueber den Fusszeilen-Link nicht wieder oeffnen, ohne die
+ * Seite neu zu laden.
+ */
 export class HpnCookiesComponent extends Component {
   public static tagName = "hpn-cookies";
 
   protected autobind = true;
+
+  protected consent = ConsentService.getInstance();
 
   static get observedAttributes(): string[] {
     return [];
   }
 
   public scope: Scope = {
-    denyCookies: this.denyCookies,
-    acceptCookies: this.acceptCookies,
+    visible: !this.consent.hasDecision(),
+    acceptAll: this.acceptAll,
+    acceptNecessaryOnly: this.acceptNecessaryOnly,
   };
 
   constructor() {
@@ -29,136 +46,54 @@ export class HpnCookiesComponent extends Component {
     this.debug("connectedCallback");
     super.connectedCallback();
     this.init(HpnCookiesComponent.observedAttributes);
+    ConsentService.events.on(ConsentService.EVENT_REOPEN, this.onReopen, this);
+    document.addEventListener("click", this.onDocumentClick);
   }
 
   protected requiredAttributes(): string[] {
     return [];
   }
 
-  protected parsedAttributeChangedCallback(
-    attributeName: string,
-    oldValue: unknown,
-    newValue: unknown,
-    namespace: string | null
-  ): void {
-    super.parsedAttributeChangedCallback(
-      attributeName,
-      oldValue,
-      newValue,
-      namespace
-    );
-  }
-
-  // deconstructor
   protected disconnectedCallback(): void {
+    ConsentService.events.off(ConsentService.EVENT_REOPEN, this.onReopen, this);
+    document.removeEventListener("click", this.onDocumentClick);
     super.disconnectedCallback();
   }
 
-  protected template(): string | null {
-    if (this.getCookie("hpn-cookies") == null) {
-      return template;
-    } else {
-      return null;
-    }
-  }
-
-  protected denyCookies() {
-    console.log("denied cookies");
-
-    // First delete existing cookies
-    this.deleteCookies();
-
-    // Then block future cookie setting
-    Object.defineProperty(document, "cookie", {
-      get: () => "",
-      set: () => false, // Explicitly prevent setting
-      configurable: false, // Prevent reconfiguration
-    });
-
-    // Block other storage mechanisms
-    this.blockStorageMechanisms();
-
-    // Set consent cookie to remember user's choice
-    this.setConsentCookie("denied");
-
-    this.parentNode?.removeChild(this);
-  }
-
-  protected acceptCookies() {
-    document.cookie =
-      "hpn-cookies=accept; expires=Thu, 13 Jul 2022 12:00:00 UTC";
-    this.parentNode?.removeChild(this);
-  }
-
-  //stackoverflow
-  protected getCookie(name: string): string | null {
-    const dc = document.cookie;
-    const prefix = name + "=";
-    let begin = dc.indexOf("; " + prefix);
-    let end = 0;
-    if (begin === -1) {
-      begin = dc.indexOf(prefix);
-      if (begin !== 0) return null;
-    } else {
-      begin += 2;
-      end = document.cookie.indexOf(";", begin);
-      if (end === -1) {
-        end = dc.length;
-      }
-    }
-    return decodeURI(dc.substring(begin + prefix.length, end));
-  }
-
-  protected deleteCookies() {
-    const cookies = document.cookie.split(";");
-
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i];
-      const eqPos = cookie.indexOf("=");
-      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
-  }
-
-  private blockStorageMechanisms() {
-    try {
-      // Block localStorage
-      Object.defineProperty(window, "localStorage", {
-        value: null,
-        writable: false,
-      });
-    } catch (e) {
-      console.warn("Could not block localStorage:", e);
-    }
-
-    try {
-      // Block sessionStorage
-      Object.defineProperty(window, "sessionStorage", {
-        value: null,
-        writable: false,
-      });
-    } catch (e) {
-      console.warn("Could not block sessionStorage:", e);
-    }
-  }
-
-  private setConsentCookie(value: string) {
-    // Use a minimal, necessary cookie to remember consent
-    const expires = new Date();
-    expires.setFullYear(expires.getFullYear() + 1);
-
-    // Create the consent cookie before blocking mechanism
-    const consentCookie = `hpn-cookies=${value}; expires=${expires.toUTCString()}; path=/; SameSite=Strict`;
-
-    // Temporarily restore cookie functionality to set consent cookie
-    const originalDescriptor = Object.getOwnPropertyDescriptor(
-      document,
-      "cookie"
+  /**
+   * Der Widerruf muss so einfach sein wie die Einwilligung (Art. 7 Abs. 3
+   * DSGVO). Statt eine eigene Komponente fuer den Fusszeilen-Link zu bauen,
+   * hoert die Komponente global mit: jeder Link auf
+   * "#cookie-einstellungen" oeffnet den Banner erneut. So genuegt im Backend
+   * ein ganz normaler Menueeintrag, ohne Theme-Aenderung.
+   */
+  protected onDocumentClick = (event: MouseEvent): void => {
+    const target = event.target as HTMLElement | null;
+    const trigger = target?.closest?.(
+      'a[href="#cookie-einstellungen"], [data-hpn-consent-settings]'
     );
-    if (originalDescriptor) {
-      Object.defineProperty(document, "cookie", originalDescriptor);
+    if (!trigger) {
+      return;
     }
+    event.preventDefault();
+    this.consent.revoke();
+  };
 
-    document.cookie = consentCookie;
+  protected template(): string | null {
+    return template;
+  }
+
+  protected onReopen(): void {
+    this.scope.visible = true;
+  }
+
+  protected acceptAll(): void {
+    this.consent.acceptAll();
+    this.scope.visible = false;
+  }
+
+  protected acceptNecessaryOnly(): void {
+    this.consent.acceptNecessaryOnly();
+    this.scope.visible = false;
   }
 }
