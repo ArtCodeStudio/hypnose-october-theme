@@ -3,7 +3,11 @@
 @import "variables-bootstrap";
 @import "variables-custom";
 @import "variables-riba";
-@import "theme-settings"; 
+@import "theme-settings";
+
+// Schriften zuerst: der Browser findet die @font-face-Regeln so frueh wie
+// moeglich beim Parsen und kann die Dateien anfordern, bevor der Rest steht.
+@import "fonts";
 
 // vendors
 @import "bootstrap";
