@@ -11,10 +11,17 @@ import { EventDispatcher } from "@ribajs/events";
  * Reichweitenmessung erteilt wurde, deckt Werbung nicht mit ab — wer nur
  * wissen will, welche Seiten gelesen werden, hat damit nicht zugestimmt,
  * Zielgruppen fuer Anzeigen zu fuellen.
+ *
+ * "external" ist aus demselben Grund eine dritte Kategorie und nicht Teil von
+ * Marketing: das Bewertungs-Widget ist Inhalt, den der Besucher sehen WILL,
+ * keine Werbung. Wer Anzeigenmessung ablehnt, lehnt damit nicht die
+ * Bewertungen ab — und umgekehrt.
  */
 export interface Consent {
   statistics: boolean;
   marketing: boolean;
+  /** Eingebettete Inhalte Dritter (jameda-Bewertungen) */
+  external: boolean;
 }
 
 export type ConsentCategory = keyof Consent;
@@ -22,7 +29,15 @@ export type ConsentCategory = keyof Consent;
 export const CONSENT_CATEGORIES: ConsentCategory[] = [
   "statistics",
   "marketing",
+  "external",
 ];
+
+/** Nichts erlaubt — der Ausgangszustand und zugleich die Ablehnung */
+const NOTHING: Consent = {
+  statistics: false,
+  marketing: false,
+  external: false,
+};
 
 interface StoredConsent extends Consent {
   /** Schema-Version — erlaubt es, eine alte Einwilligung gezielt zu verwerfen */
@@ -34,15 +49,20 @@ interface StoredConsent extends Consent {
 const COOKIE_NAME = "hpn-consent";
 
 /**
- * Version 2 fuehrt die Kategorie "marketing" ein.
+ * Version 2 fuehrt die Kategorie "marketing" ein, Version 3 die Kategorie
+ * "external" fuer eingebettete Inhalte Dritter.
  *
- * Die Erhoehung verwirft absichtlich alle nach v1 erteilten Einwilligungen:
- * damals wurde nur ueber Statistik aufgeklaert. Diese Zustimmung stillschweigend
- * auf Werbung auszuweiten waere keine informierte Einwilligung. Wer vorher
- * zugestimmt hat, wird also einmal erneut gefragt — das ist der Preis und
- * zugleich der Sinn der Versionierung.
+ * Die Erhoehung verwirft absichtlich alle vorher erteilten Einwilligungen: es
+ * wurde jeweils ueber weniger aufgeklaert, als kuenftig gilt. Eine alte
+ * Zustimmung stillschweigend auf einen neuen Zweck auszuweiten waere keine
+ * informierte Einwilligung. Wer vorher zugestimmt hat, wird also einmal erneut
+ * gefragt — das ist der Preis und zugleich der Sinn der Versionierung.
+ *
+ * Beim Sprung auf 3 gilt das doppelt: das jameda-Widget lud bis dahin voellig
+ * unabhaengig von der Einwilligung. Es gibt also gar keine Zustimmung, die
+ * uebernommen werden koennte.
  */
-const SCHEMA_VERSION = 2;
+const SCHEMA_VERSION = 3;
 
 /** Sechs Monate. Danach wird erneut gefragt. */
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 182;
@@ -72,7 +92,7 @@ export class ConsentService {
   /** Bittet den Banner, sich erneut zu zeigen */
   public static readonly EVENT_REOPEN = "hpn-consent:reopen";
 
-  protected consent: Consent = { statistics: false, marketing: false };
+  protected consent: Consent = { ...NOTHING };
 
   protected decided = false;
 
@@ -82,6 +102,7 @@ export class ConsentService {
       this.consent = {
         statistics: stored.statistics,
         marketing: stored.marketing,
+        external: stored.external,
       };
       this.decided = true;
     }
@@ -109,12 +130,12 @@ export class ConsentService {
 
   /** Alles annehmen */
   public acceptAll(): void {
-    this.set({ statistics: true, marketing: true });
+    this.set({ statistics: true, marketing: true, external: true });
   }
 
   /** Nur technisch Notwendiges — die gleichwertige Ablehnung */
   public acceptNecessaryOnly(): void {
-    this.set({ statistics: false, marketing: false });
+    this.set({ ...NOTHING });
   }
 
   /**
@@ -123,7 +144,7 @@ export class ConsentService {
    */
   public revoke(): void {
     const previous = this.get();
-    this.consent = { statistics: false, marketing: false };
+    this.consent = { ...NOTHING };
     this.decided = false;
     document.cookie = `${COOKIE_NAME}=; Max-Age=0; path=/; SameSite=Lax`;
     ConsentService.events.trigger(
@@ -189,6 +210,7 @@ export class ConsentService {
       ts: typeof parsed.ts === "string" ? parsed.ts : "",
       statistics: parsed.statistics === true,
       marketing: parsed.marketing === true,
+      external: parsed.external === true,
     };
   }
 

@@ -22,6 +22,7 @@ import {
   ConsentService,
   ConversionService,
   GoogleTagService,
+  ReviewWidgetService,
 } from "./services";
 
 /**
@@ -52,6 +53,9 @@ export class Main {
       },
     });
     ConversionService.setInstance();
+    // Setzt die Klasse auf <html>, bevor gebunden wird - sonst blitzt der
+    // Platzhalter kurz auf, obwohl die Einwilligung laengst vorliegt.
+    ReviewWidgetService.setInstance();
 
     this.riba.module.regist(coreModule.init());
     this.riba.module.regist(jqueryModule.init());

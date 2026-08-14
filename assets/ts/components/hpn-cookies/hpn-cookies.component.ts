@@ -11,6 +11,7 @@ interface Scope {
   /** Zustand der Schalter in der Detailansicht, per rv-checked zweiwegig */
   statistics: boolean;
   marketing: boolean;
+  external: boolean;
   acceptAll: HpnCookiesComponent["acceptAll"];
   acceptNecessaryOnly: HpnCookiesComponent["acceptNecessaryOnly"];
   openSettings: HpnCookiesComponent["openSettings"];
@@ -31,7 +32,7 @@ interface Scope {
  * Ablehnen und Zustimmen stehen als gleich grosse Schaltflaechen nebeneinander:
  * eine versteckte oder wegformatierte Ablehnung macht die Einwilligung
  * unwirksam. "Einstellungen" fuehrt zu den einzelnen Kategorien, damit sich
- * Statistik und Werbung getrennt waehlen lassen.
+ * Statistik, Werbung und eingebettete Inhalte getrennt waehlen lassen.
  */
 export class HpnCookiesComponent extends Component {
   public static tagName = "hpn-cookies";
@@ -49,6 +50,7 @@ export class HpnCookiesComponent extends Component {
     showSettings: false,
     statistics: this.consent.isAllowed("statistics"),
     marketing: this.consent.isAllowed("marketing"),
+    external: this.consent.isAllowed("external"),
     acceptAll: this.acceptAll,
     acceptNecessaryOnly: this.acceptNecessaryOnly,
     openSettings: this.openSettings,
@@ -117,6 +119,7 @@ export class HpnCookiesComponent extends Component {
     // zeigt die Detailansicht die Auswahl von vorhin.
     this.scope.statistics = this.consent.isAllowed("statistics");
     this.scope.marketing = this.consent.isAllowed("marketing");
+    this.scope.external = this.consent.isAllowed("external");
     this.scope.showSettings = false;
     this.scope.visible = true;
   }
@@ -139,6 +142,7 @@ export class HpnCookiesComponent extends Component {
     this.consent.set({
       statistics: this.scope.statistics === true,
       marketing: this.scope.marketing === true,
+      external: this.scope.external === true,
     });
     this.close();
   }

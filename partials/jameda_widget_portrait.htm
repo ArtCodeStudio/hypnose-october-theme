@@ -22,12 +22,17 @@
             <span class="jameda-widget-tab-text">Bewertungen</span>
         </label>
         <div class="jameda-widget-body">
-            <a id="zl-url" class="zl-url"
-                href="https://www.jameda.de/sabine-berndt-bartel/heilpraktiker-fuer-psychotherapie/cuxhaven" rel="nofollow"
-                data-zlw-doctor="sabine-berndt-bartel" data-zlw-type="big_with_calendar" data-zlw-opinion="false"
-                data-zlw-hide-branding="true" data-zlw-saas-only="false" data-zlw-a11y-title="Widget zur Arztterminbuchung">Sabine
-                Berndt-Bartel - jameda.de</a>
-            <script>!function ($_x, _s, id) { var js, fjs = $_x.getElementsByTagName(_s)[0]; if (!$_x.getElementById(id)) { js = $_x.createElement(_s); js.id = id; js.src = "//platform.docplanner.com/js/widget.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "zl-widget-s"); </script>
+            {# Das Skript laedt der ReviewWidgetService nach Einwilligung nach -
+               frueher stand hier ein Inline-<script>, das auf jeder Seite und
+               ungefragt von docplanner geladen hat. #}
+            <div class="jameda-embed">
+                <a id="zl-url" class="zl-url"
+                    href="https://www.jameda.de/sabine-berndt-bartel/heilpraktiker-fuer-psychotherapie/cuxhaven" rel="nofollow"
+                    data-zlw-doctor="sabine-berndt-bartel" data-zlw-type="big_with_calendar" data-zlw-opinion="false"
+                    data-zlw-hide-branding="true" data-zlw-saas-only="false" data-zlw-a11y-title="Widget zur Arztterminbuchung">Sabine
+                    Berndt-Bartel - jameda.de</a>
+            </div>
+            {% partial 'jameda_widget_consent' %}
         </div>
     </div>
 </div>

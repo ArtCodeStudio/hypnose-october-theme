@@ -1,0 +1,54 @@
+// Umschalter zwischen dem jameda-Widget und dem Einwilligungs-Platzhalter.
+//
+// Die Klasse hpn-consent-external setzt der ReviewWidgetService auf <html>,
+// sobald die Einwilligung fuer eingebettete Inhalte vorliegt. Der Ausgangs-
+// zustand ist bewusst "Platzhalter": ohne die Klasse - also auch ohne
+// JavaScript und in der Zeitspanne, bevor das Bundle laeuft - ist das Widget
+// aus. Andersherum blitzte es kurz auf, bevor es sich ausblendet, und genau
+// in dieser Spanne haette es schon geladen.
+.jameda-embed {
+  display: none;
+}
+
+.hpn-consent-external {
+  .jameda-embed {
+    display: block;
+  }
+
+  .jameda-consent {
+    display: none;
+  }
+}
+
+// Der Platzhalter steht an derselben Stelle wie die Karte: im ausklappbaren
+// Reiter am Bildschirmrand und in der Fusszeile schmaler Geraete. Eine feste
+// Breite braucht er - anders als die Karte, die sich das Skript selbst baut.
+.jameda-consent {
+  max-width: 22rem;
+  padding: 1.25rem;
+  border-radius: $jameda-radius;
+  background-color: $white;
+  text-align: left;
+}
+
+.jameda-consent-title {
+  margin-bottom: 0.5rem;
+  color: $title-color;
+  font-weight: 700;
+}
+
+.jameda-consent-text {
+  margin-bottom: 1rem;
+  font-size: 0.9em;
+  line-height: 1.45;
+}
+
+.jameda-consent-button {
+  width: 100%;
+}
+
+.jameda-consent-alt {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  font-size: 0.85em;
+}

@@ -1,0 +1,29 @@
+{#
+  Platzhalter, solange keine Einwilligung fuer eingebettete Inhalte vorliegt.
+
+  Er steht IMMER im Markup; sichtbar ist entweder er oder das Widget, das
+  entscheidet CSS anhand der Klasse hpn-consent-external auf <html>
+  (gesetzt vom ReviewWidgetService). Ohne JavaScript bleibt es beim
+  Platzhalter - der sichere Ausgangszustand, denn ohne JavaScript kann auch
+  niemand einwilligen.
+
+  Der Knopf erteilt die Einwilligung genau fuer diese eine Kategorie, nicht
+  fuer Statistik oder Werbung. Der Link daneben fuehrt ohne jede Einwilligung
+  ans Ziel: wer die Bewertungen lesen will, aber kein Widget auf dieser Seite
+  moechte, geht direkt zu jameda.
+#}
+<div class="jameda-consent">
+  <p class="jameda-consent-title">Bewertungen bei jameda</p>
+  <p class="jameda-consent-text">
+    Zum Anzeigen wird eine Verbindung zu jameda (DocPlanner) aufgebaut, dabei
+    wird Ihre IP-Adresse übertragen. Näheres in der
+    <a href="/datenschutz" rel="noopener noreferrer nofollow">Datenschutzerklärung</a>.
+  </p>
+  <button type="button" class="btn btn-primary jameda-consent-button" data-hpn-consent-allow="external">
+    Bewertungen anzeigen
+  </button>
+  <p class="jameda-consent-alt">
+    <a href="https://www.jameda.de/sabine-berndt-bartel/heilpraktiker-fuer-psychotherapie/cuxhaven"
+      target="_blank" rel="noopener noreferrer nofollow">Stattdessen direkt zum Profil bei jameda</a>
+  </p>
+</div>
