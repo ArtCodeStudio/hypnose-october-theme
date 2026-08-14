@@ -25,3 +25,57 @@
     }
   }
 }
+
+// Aufklappen der gekuerzten Erfahrungsberichte, rein CSS.
+//
+// Die Checkbox bleibt im Dokument und wird NICHT per display:none entfernt -
+// sonst nimmt sie der Browser aus der Tabulator-Reihenfolge und der Umschalter
+// ist per Tastatur nicht mehr erreichbar. Stattdessen unsichtbar und aus dem
+// Weg geschoben.
+.report-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.report-quote-full {
+  display: none;
+}
+
+.report-toggle:checked {
+  ~ p .report-quote-short {
+    display: none;
+  }
+
+  ~ p .report-quote-full {
+    display: inline;
+  }
+
+  ~ .report-toggle-label .report-toggle-more {
+    display: none;
+  }
+
+  ~ .report-toggle-label .report-toggle-less {
+    display: inline-flex;
+  }
+}
+
+.report-toggle-label {
+  display: block;
+  margin: 0;
+  cursor: pointer;
+  text-align: center;
+
+  // Sichtbarer Fokusrahmen, wenn die zugehoerige Checkbox den Fokus hat -
+  // ohne ihn waere die Tastaturbedienung zwar moeglich, aber unsichtbar.
+  .report-toggle:focus ~ & {
+    outline: 2px solid $primary;
+    outline-offset: 4px;
+  }
+}
+
+.report-toggle-less {
+  display: none;
+}

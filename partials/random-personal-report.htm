@@ -35,17 +35,25 @@ snippetName = "Random personal report"
     <div class="col-12 col-md-auto mx-auto quote-container">
 
       {% if report.quote | striptags | length > 500 %}
-      <p rv-assign-show-full-quote-{{ randomIndex }}="false" class="quote mb-4">
-        „
-        <span rv-hide="showFullQuote{{ loop.index0 }}">{{ report.quote | striptags | slice(0, 500) }} ...</span>
-        <span rv-show="showFullQuote{{ loop.index0 }}">{{ report.quote | raw }}</span>
-        “
-      </p>
-      <br>
-      <bs4-icon rv-hide="showFullQuote{{ loop.index0 }}" src="{{ 'assets/iconset/icon_plus.svg' | theme }}" size="32"
-        rv-toggle-on-click="'showFullQuote{{ loop.index0 }}'"></bs4-icon>
-      <bs4-icon rv-show="showFullQuote{{ loop.index0 }}" src="{{ 'assets/iconset/icon_minus.svg' | theme }}" size="32"
-        rv-toggle-on-click="'showFullQuote{{ loop.index0 }}'"></bs4-icon>
+      {# Umschalter als Checkbox + Label, rein CSS - Begruendung und der
+         dahinterliegende Riba-Defekt stehen in partials/all-personal-reports.htm.
+         Zusaetzlich war hier der Variablenname kaputt: zugewiesen wurde
+         showFullQuote<randomIndex>, gelesen showFullQuote<loop.index0> - und
+         eine loop-Variable gibt es in diesem Partial gar nicht. #}
+      <div class="excerpt">
+        <input type="checkbox" class="report-toggle" id="report-toggle-random">
+        <p class="quote mb-4">
+          „
+          <span class="report-quote-short">{{ report.quote | striptags | slice(0, 500) }} ...</span>
+          <span class="report-quote-full">{{ report.quote | raw }}</span>
+          “
+        </p>
+        <label class="report-toggle-label" for="report-toggle-random">
+          <bs4-icon class="report-toggle-more" src="{{ 'assets/iconset/icon_plus.svg' | theme }}" size="32"></bs4-icon>
+          <bs4-icon class="report-toggle-less" src="{{ 'assets/iconset/icon_minus.svg' | theme }}" size="32"></bs4-icon>
+          <span class="sr-only">Vollständigen Erfahrungsbericht anzeigen oder wieder einklappen</span>
+        </label>
+      </div>
       {% else %}
       <p class="quote mb-4">„{{ report.quote | raw }}“</p>
       {% endif %}
