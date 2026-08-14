@@ -1,0 +1,53 @@
+// Symbole an Telefon- und PDF-Links, im Goldton der Ueberschriften.
+//
+// Warum nicht die Emoji einfaerben, die im Text stehen: 📞 und 📄 stammen aus
+// einer FARB-Emoji-Schrift. Deren Glyphen bringen ihre Farben selbst mit,
+// CSS color greift daran nicht. "Das Emoji in Gold" ist technisch nicht
+// erfuellbar - erfuellbar ist nur, das Emoji durch ein Symbol zu ersetzen, das
+// eine Farbe annehmen kann. (Das Haekchen ✓ in den Aufzaehlungen ist etwas
+// anderes: ein einfarbiges Schriftzeichen, das color sehr wohl folgt.)
+//
+// Warum eine Maske und kein background-image: die SVGs im iconset tragen
+// fill="currentColor". In einem background-image hat currentColor keinen
+// Bezugspunkt und faellt auf Schwarz zurueck. Eine Maske nutzt nur die Form,
+// die Farbe kommt aus background-color - damit laesst sich dasselbe Symbol an
+// anderer Stelle jederzeit anders einfaerben.
+//
+// Warum ein Attribut-Selektor und keine CSS-Klasse: der Rich-Text-Editor
+// verwirft von Hand gesetzte Klassen beim naechsten Speichern (Begruendung in
+// partials/callout.htm). href^="tel:" ueberlebt jedes Speichern und greift von
+// selbst bei jedem kuenftigen Telefonlink, ohne dass jemand daran denken muss.
+
+@mixin link-icon($file) {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.4em;
+  // Optischer Ausgleich: die Grundlinie der Schrift liegt hoeher als die
+  // Unterkante des quadratischen Symbols.
+  vertical-align: -0.12em;
+  background-color: $title-color;
+  -webkit-mask: url("../iconset/#{$file}") no-repeat center / contain;
+  mask: url("../iconset/#{$file}") no-repeat center / contain;
+}
+
+// Telefonlinks im redaktionellen Inhalt - bewusst NICHT in der Navigation und
+// der Fusszeile: dort steht die Nummer als Menuepunkt und bekaeme sonst ein
+// Symbol, das die anderen Eintraege nicht haben.
+.partial-editable-content,
+.callout-box {
+  a[href^="tel:"]::before {
+    @include link-icon("icon_phone.svg");
+  }
+}
+
+.phone-link::before {
+  @include link-icon("icon_phone.svg");
+}
+
+// Schaltflaechen, die auf ein PDF zeigen. Die Klasse setzt partials/button.htm
+// anhand des Ziels - der Editor kann sie deshalb nicht verlieren.
+.btn-pdf::before {
+  @include link-icon("icon_document.svg");
+}

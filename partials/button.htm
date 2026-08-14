@@ -69,6 +69,11 @@ snippetProperties[paddingBottom][options][] = 5
     {% if page is not empty %}
       {% set target = page | staticPage %}
     {% endif %}
-    <bs4-button class="btn {{ style }}" {% if target %}rv-route="'{{ target }}'"{% endif %}>{{ label }}</bs4-button>
+    {# Zeigt die Schaltflaeche auf ein PDF, bekommt sie das Dokument-Symbol.
+       Hier gesetzt und nicht per CSS-Attributselektor, weil das Ziel als
+       rv-route ausgegeben wird (inklusive Anfuehrungszeichen) - ein Selektor
+       darauf waere von der Schreibweise des Binders abhaengig. #}
+    {% set isPdf = target | default('') | lower | split('?') | first ends with '.pdf' %}
+    <bs4-button class="btn {{ style }}{% if isPdf %} btn-pdf{% endif %}" {% if target %}rv-route="'{{ target }}'"{% endif %}>{{ label }}</bs4-button>
   </div>
 </div>
