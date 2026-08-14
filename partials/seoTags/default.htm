@@ -1,0 +1,70 @@
+{#
+  Ueberschreibt das Komponenten-Partial von Renatio.SeoManager
+  (plugins/renatio/seomanager/components/seotags/default.htm). October sucht
+  Komponenten-Partials zuerst im Theme unter partials/<alias>/<name>.htm - der
+  Alias steht in layouts/default.htm als [seoTags].
+
+  Grund: das Plugin gibt den Wert des og-Image-Feldes unveraendert aus. Im
+  Backend steht dort aber der Dateiname aus der Mediathek
+  ("hypnose-bei-angst-cuxhaven.jpg"), nicht der Web-Pfad. Ergebnis war ein
+  og:image auf https://hypnosezentrum-cux.de/hypnose-bei-angst-cuxhaven.jpg -
+  HTTP 404, auf JEDER Seite. Beim Teilen in WhatsApp, Facebook oder LinkedIn
+  blieb die Vorschau also leer, ohne dass die Seite selbst kaputt aussieht.
+  Ausgeliefert wird die Datei unter /storage/app/media/... - genau das macht
+  der media-Filter, |app ergaenzt Schema und Domain (Social-Crawler folgen
+  relativen Pfaden nicht zuverlaessig).
+
+  NACH JEDEM UPDATE VON renatio/seomanager gegen die Plugin-Datei diffen:
+  Verbesserungen des Herstellers erreichen diese Kopie sonst nie.
+  Pruefen ohne Backend-Zugang:
+    curl -s https://hypnosezentrum-cux.de/ | grep 'og:image"'
+    curl -s -o /dev/null -w '%{http_code}\n' <die URL aus dem Tag>
+#}
+{% set meta_title = [seoSettings.title_prefix, seoTag.meta_title, seoSettings.title_suffix]|join(' ')|trim %}
+
+{% if seoTag.og_image %}
+    {% if seoTag.og_image starts with 'http' %}
+        {% set og_image_url = seoTag.og_image %}
+    {% else %}
+        {% set og_image_url = seoTag.og_image | media | app %}
+    {% endif %}
+{% endif %}
+
+<title>{{ meta_title }}</title>
+<meta name="title" content="{{ meta_title }}">
+<meta name="description" content="{{ seoTag.meta_description }}">
+<meta name="keywords" content="{{ seoTag.meta_keywords }}">
+<link rel="canonical" href="{{ seoTag.canonical_url ?: currentUrl|app }}">
+<meta name="robots" content="{{ seoTag.robots }}">
+
+{{ seoSettings.common_tags|raw }}
+
+{% if seoSettings.og_enabled %}
+
+    <meta property="og:title" content="{{ seoTag.og_title|default(meta_title) }}">
+    <meta property="og:description" content="{{ seoTag.og_description|default(seoTag.meta_description) }}">
+    <meta property="og:site_name" content="{{ seoSettings.site_name }}">
+    <meta property="og:url" content="{{ currentUrl|app }}">
+
+    {% if seoTag.og_type %}<meta property="og:type" content="{{ seoTag.og_type }}">{% endif %}
+
+    {% if og_image_url %}
+        <meta property="og:image" content="{{ og_image_url }}">
+        {# Leere Breite/Hoehe sind kein Hinweis auf ein Bild, sondern Rauschen -
+           die Felder sind im Backend nirgends gefuellt. #}
+        {% if seoTag.og_image_width %}<meta property="og:image:width" content="{{ seoTag.og_image_width }}">{% endif %}
+        {% if seoTag.og_image_height %}<meta property="og:image:height" content="{{ seoTag.og_image_height }}">{% endif %}
+    {% endif %}
+
+    {% if seoSettings.fb_app_id %}<meta property="fb:app_id" content="{{ seoSettings.fb_app_id }}">{% endif %}
+
+    <meta name="twitter:description" content="{{ seoTag.og_description|default(seoTag.meta_description) }}">
+    <meta name="twitter:title" content="{{ seoTag.og_title|default(meta_title) }}">
+    {# Ohne twitter:card wertet X das Bild nicht aus - das Plugin liefert die
+       Zeile nicht mit, das twitter:image lief dort bisher ins Leere. #}
+    {% if og_image_url %}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="{{ og_image_url }}">
+    {% endif %}
+
+{% endif %}
