@@ -27,7 +27,12 @@
   // Optischer Ausgleich: die Grundlinie der Schrift liegt hoeher als die
   // Unterkante des quadratischen Symbols.
   vertical-align: -0.12em;
-  background-color: $title-color;
+  // currentColor statt fester Goldton: das Symbol nimmt die Schriftfarbe
+  // seiner Umgebung an. Im Fliesstext ist das der Goldton (die Linkfarbe
+  // des Themes ist $title-color), auf einer farbigen Schaltflaeche deren
+  // Schriftfarbe. Ein festgeschriebenes Gold waere dort so schlecht lesbar
+  // wie die goldene Schrift, die es auf dem Blau ersetzt hat.
+  background-color: currentColor;
   -webkit-mask: url("../iconset/#{$file}") no-repeat center / contain;
   mask: url("../iconset/#{$file}") no-repeat center / contain;
 }

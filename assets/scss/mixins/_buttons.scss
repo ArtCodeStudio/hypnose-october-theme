@@ -1,20 +1,31 @@
+// Diese Mixin ersetzt Bootstraps eigene. Der einzige Grund dafuer war einmal,
+// die Schriftfarbe fest auf den Goldton zu setzen - das kostete die
+// automatische Kontrastrechnung: Gold (#b79563) auf dem hellen Blau der
+// Schaltflaechen (#a6d2df) kommt auf ein Kontrastverhaeltnis von 1,72:1
+// und ist damit weit unter den 4,5:1, die die WCAG fuer Fliesstext fordern -
+// auf dem Bildschirm schlicht schlecht lesbar.
+//
+// color-yiq waehlt anhand der Helligkeit des Hintergrunds zwischen
+// $yiq-text-dark und $yiq-text-light. Das gilt dann fuer JEDE Variante und
+// bleibt richtig, wenn sich spaeter eine Farbe aendert - eine per Hand
+// gesetzte Ausnahme fuer die blaue Schaltflaeche waere beim naechsten
+// Farbwechsel wieder falsch.
 @mixin button-variant($background, $border, $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%)) {
-  // color: color-yiq($background);
-  color: $title-color;
+  color: color-yiq($background);
   // @include gradient-bg($background);
   @include gradient-bg($background);
   // border-color: $border;
   // @include box-shadow($btn-box-shadow);
 
   @include hover() {
-    color: $title-color; // color: color-yiq($hover-background);
+    color: color-yiq($hover-background);
     @include gradient-bg($hover-background);
     border-color: $hover-border;
   }
 
   &:focus,
   &.focus {
-    color: $title-color; // color-yiq($hover-background);
+    color: color-yiq($hover-background);
     @include gradient-bg($hover-background);
     border-color: $hover-border;
     // Avoid using mixin so we can pass custom focus shadow properly

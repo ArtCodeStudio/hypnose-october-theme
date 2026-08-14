@@ -16,6 +16,11 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black: #000000;
 
+// Schriftfarbe, die Bootstrap auf HELLEN Flaechen waehlt (color-yiq).
+// Voreinstellung waere $gray-900; auf dem hellen Blau der Schaltflaechen ist
+// echtes Schwarz die ruhigere und besser lesbare Wahl.
+$yiq-text-dark: $black;
+
 // General Colors
 $red: #ff0012;
 $orange: #f0ad4e;

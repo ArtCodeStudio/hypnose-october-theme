@@ -142,21 +142,11 @@ $hpn-gold-readable: darken($title-color, 16%);
         white-space: normal;
     }
 
-    // Die Schrift der .btn-primary der Seite ist das Gold auf dem hellen Blau —
-    // gemessen 1.72:1, WCAG AA verlangt 4.5:1. Auf einer Schaltflaeche, an der
-    // eine Einwilligung haengt, ist das nicht hinnehmbar. $gray-700 kommt auf
-    // 5.02:1 und laesst die Markenfarbe unangetastet.
-    //
-    // Dieselbe Kombination steckt in den CTA-Buttons der ganzen Seite; das ist
-    // ein eigenes Thema und hier bewusst nur lokal geloest.
-    .btn-primary {
-        color: $gray-700;
-
-        &:hover,
-        &:focus {
-            color: $gray-700;
-        }
-    }
+    // Frueher stand hier eine eigene Schriftfarbe fuer .btn-primary, weil das
+    // Gold auf dem hellen Blau nur 1.72:1 erreichte. Seit die Mixin
+    // button-variant wieder color-yiq benutzt (mixins/_buttons.scss), gilt das
+    // fuer die ganze Seite und liefert hier Schwarz auf Blau mit 12.91:1 — die
+    // Ausnahme waere jetzt der schlechtere Wert.
 }
 
 .hpn-cookies-links {
