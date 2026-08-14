@@ -1,0 +1,14 @@
+// Telefonlink (partials/phone-link.htm), gemeinsam genutzt vom Snippet
+// 'phone' und vom Hinweis-Kasten mit Foto.
+//
+// Bewusst sparsam: Farbe und Unterstreichung kommen aus der Link-Gestaltung des
+// Themes, damit die Nummer nicht wie ein Fremdkoerper wirkt. Einzige Zutat ist
+// der verhinderte Zeilenumbruch - eine ueber zwei Zeilen gebrochene
+// Telefonnummer ist schwer zu erfassen und sieht nach Fehler aus.
+.phone-link {
+  white-space: nowrap;
+}
+
+.partial-phone {
+  font-weight: 700;
+}

@@ -1,0 +1,26 @@
+{#
+  Klickbarer Telefonlink. Wird von den Snippets 'phone' und 'callout-portrait'
+  benutzt, damit es genau EINE Stelle gibt, die aus einer geschriebenen Nummer
+  ein waehlbares Ziel macht.
+
+  Warum getrennt: eine Nummer, wie ein Mensch sie schreibt ("04723 - 79 64 157"),
+  ist als tel:-URI ungueltig - RFC 3966 laesst darin keine Leerzeichen zu. Von
+  Hand im Rich-Text-Editor gesetzte Links tragen deshalb %20 im href; von den
+  vier Telefonlinks im Bestand war am 14.08.2026 genau einer korrekt. Die
+  meisten Smartphones waehlen trotzdem, verlassen kann man sich darauf nicht.
+  Hier wird angezeigt, was eingegeben wurde, und gewaehlt die bereinigte
+  Fassung.
+
+  Ein fuehrendes "+" bleibt erhalten (+49 4723 ... -> +494723...), das ist die
+  einzige international gueltige Schreibweise und fuer tel: zulaessig.
+
+  Nebenwirkung, die so gewollt ist: ConversionService in
+  assets/ts/services/conversion.service.ts erkennt jeden Klick auf ein
+  href^="tel:" und meldet ihn als Conversion "phone" an Analytics. Wer hier
+  eine andere Auszeichnung waehlt, verliert die Messung.
+
+  Parameter:
+    number - die Nummer, wie sie angezeigt werden soll (Pflicht)
+#}
+{% set dialable = number | trim | replace({' ': '', '-': '', '/': '', '(': '', ')': '', '.': ''}) %}
+<a class="phone-link" href="tel:{{ dialable }}">{{ number | trim }}</a>

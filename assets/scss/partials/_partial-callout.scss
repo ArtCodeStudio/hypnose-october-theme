@@ -18,3 +18,53 @@
     margin-bottom: 0;
   }
 }
+
+// Variante mit Portraitfoto (Snippet 'callout-portrait'): Text rund 68 %, Bild
+// rund 32 % - der von der Kundin gewuenschte Bereich 65-70 / 30-35.
+//
+// Ab md nebeneinander, darunter gestapelt. Die DOM-Reihenfolge ist bereits
+// Text -> Bild, deshalb landet das Bild auf dem Smartphone von selbst unter dem
+// Text: keine order-Umsortierung, die die Vorlesereihenfolge von der sichtbaren
+// trennen wuerde.
+//
+// Flexbox statt einer verschachtelten .row: eine Bootstrap-Row bringt
+// margin-left/-right: -15px mit und zieht ihren Inhalt damit aus dem Polster
+// des Kastens heraus.
+.callout-box-portrait {
+  @include media-breakpoint-up(md) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.callout-portrait-text {
+  // Ohne min-width: 0 verhindert ein langes Wort das Schrumpfen des
+  // Flex-Elements und der Kasten wird breiter als seine Spalte.
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.callout-portrait-media {
+  margin-top: 1.25rem;
+
+  @include media-breakpoint-up(md) {
+    flex: 0 0 32%;
+    max-width: 32%;
+    margin-top: 0;
+    margin-left: 1.5rem;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+// Die hervorgehobene Telefonnummer im Kasten. Der Umbruch mitten in der Nummer
+// waere auf schmalen Displays sonst der Normalfall.
+.callout-portrait-phone {
+  margin-top: 1rem;
+  font-size: 1.125em;
+  font-weight: 700;
+  white-space: nowrap;
+}
