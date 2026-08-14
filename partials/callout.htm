@@ -1,4 +1,4 @@
-description = "Hinweis-Kasten mit editierbarem Inhalt"
+description = "Hinweis-Kasten mit editierbarem Inhalt, optional mit Foto"
 
 [viewBag]
 snippetCode = "callout"
@@ -7,6 +7,18 @@ snippetProperties[filename][title] = "Content Filename"
 snippetProperties[filename][type] = "string"
 snippetProperties[filename][default] = ""
 snippetProperties[filename][options][] = ""
+snippetProperties[phone][title] = "Telefonnummer (optional, wird anklickbar)"
+snippetProperties[phone][type] = "string"
+snippetProperties[phone][default] = ""
+snippetProperties[phone][options][] = ""
+snippetProperties[image][title] = "Foto rechts (optional, Dateiname aus der Mediathek)"
+snippetProperties[image][type] = "string"
+snippetProperties[image][default] = ""
+snippetProperties[image][options][] = ""
+snippetProperties[imageAlt][title] = "Alternativtext des Fotos (für SEO)"
+snippetProperties[imageAlt][type] = "string"
+snippetProperties[imageAlt][default] = ""
+snippetProperties[imageAlt][options][] = ""
 snippetProperties[marginTop][title] = "Margin Top"
 snippetProperties[marginTop][type] = "dropdown"
 snippetProperties[marginTop][default] = 1
@@ -31,12 +43,48 @@ snippetProperties[marginBottom][options][] = 5
   Snippet und keine Tabelle mit Klasse: Snippets ueberlebt der Rich-Text-Editor
   unveraendert, eine von Hand gesetzte CSS-Klasse verliert er beim naechsten
   Speichern. Der Text selbst wird wie gewohnt im Frontend editiert.
+
+  EIN Baustein statt zweier: Foto und Telefonnummer sind optionale Felder.
+  Ohne Foto nimmt der Text die volle Breite ein und der Kasten sieht aus wie
+  eh und je - bestehende Seiten aendern sich also nicht. Mit Foto wird daraus
+  der Landingpage-Block: Text links (rund 68 %), Portrait rechts (rund 32 %),
+  auf dem Smartphone gestapelt. Eine zweite Variante als eigenes Snippet waere
+  dieselbe Vorlage ein zweites Mal - und damit die naechste Stelle, die man
+  beim Aendern vergisst.
+
+  Warum Telefonnummer und Foto eigene Felder sind und nicht im Fliesstext
+  stehen: der Editor macht aus einer getippten Nummer keinen waehlbaren Link
+  (er baut daraus sogar ein kaputtes http://tel...), und ein per Editor
+  eingefuegtes Bild traegt eine feste Groesse im Markup, die sich der Spalte
+  nicht anpasst.
+
+  Das Foto wird wie beim Snippet 'image' angegeben: der Dateiname aus der
+  Mediathek ("praxis-portrait.jpg"), nicht der vollstaendige Pfad. Eine
+  komplette Adresse (https://...) wird unveraendert uebernommen.
 #}
+{% set hasImage = image | default('') | trim %}
+{% if hasImage %}
+  {% if image starts with 'http' %}
+    {% set imageSource = image %}
+  {% else %}
+    {% set imageSource = image | media | app %}
+  {% endif %}
+{% endif %}
 <div class="container partial-callout mt-{{ marginTop }} mb-{{ marginBottom }}">
   <div class="row">
     <div class="col">
-      <aside class="callout-box">
-        {% component 'contenteditor' file=filename %}
+      <aside class="callout-box{% if imageSource %} callout-box-portrait{% endif %}">
+        <div class="callout-portrait-text">
+          {% component 'contenteditor' file=filename %}
+          {% if phone | default('') | trim %}
+            <p class="callout-portrait-phone">{% partial 'phone-link' number=phone %}</p>
+          {% endif %}
+        </div>
+        {% if imageSource %}
+          <div class="callout-portrait-media">
+            <img loading="lazy" class="img-fluid rounded-30" src="{{ imageSource }}" alt="{{ imageAlt }}">
+          </div>
+        {% endif %}
       </aside>
     </div>
   </div>

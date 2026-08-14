@@ -19,8 +19,10 @@
   }
 }
 
-// Variante mit Portraitfoto (Snippet 'callout-portrait'): Text rund 68 %, Bild
-// rund 32 % - der von der Kundin gewuenschte Bereich 65-70 / 30-35.
+// Variante mit Portraitfoto: derselbe Baustein, sobald das Feld "Foto rechts"
+// gefuellt ist. Text rund 68 %, Bild rund 32 % - der von der Kundin
+// gewuenschte Bereich 65-70 / 30-35. Ohne Foto greift nichts davon und der
+// Kasten bleibt, wie er war.
 //
 // Ab md nebeneinander, darunter gestapelt. Die DOM-Reihenfolge ist bereits
 // Text -> Bild, deshalb landet das Bild auf dem Smartphone von selbst unter dem
