@@ -157,8 +157,16 @@ function onContactFormSubmit()
 
        Ein leeres oder fehlendes Meta-Tag schaltet das jeweilige Produkt ab.
        Die Ads-ID (AW-...) traegt ein, wer Google Ads scharf schaltet — vorher
-       muss der Abschnitt "Google Ads" in der Datenschutzerklaerung stehen. #}
-    <meta name="hpn-ga-measurement-id" content="G-GDDCTNSTQ1" />
+       muss der Abschnitt "Google Ads" in der Datenschutzerklaerung stehen.
+
+       Die Mess-ID gegen das Konto pruefen, nicht abtippen: eine falsche ID
+       schlaegt NICHT fehl, gtag.js laedt mit HTTP 200 und die Treffer laufen
+       ins Leere — genau so lag hier vier Tage ein "G-GDDCTNSTQ1" statt
+       "G-GGDCTNSTQ1" und Analytics zeigte 0 Besuche. Pruefbar ohne Kontozugang:
+         curl -s "https://www.googletagmanager.com/gtag/js?id=<ID>" | wc -c
+       Eine unbekannte ID liefert immer denselben generischen Stub (~419 KB),
+       eine echte Property deutlich mehr (hier ~565 KB). #}
+    <meta name="hpn-ga-measurement-id" content="G-GGDCTNSTQ1" />
     <meta name="hpn-ads-conversion-id" content="" />
 
     {# Conversion-Labels aus Google Ads, Form "AW-XXXXXXXXX/AbCdEfGhIj".
