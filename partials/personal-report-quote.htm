@@ -1,0 +1,94 @@
+{#
+  Ein Erfahrungsbericht-Zitat, bei Bedarf gekuerzt und aufklappbar.
+
+  Aufrufer: partials/all-personal-reports.htm, partials/random-personal-report.htm.
+  Beide hatten diese Logik vorher je einmal selbst - zwei Kopien einer Regel,
+  von denen die eine still von der anderen abweicht.
+
+  Parameter
+    quote               Pflicht. Das Zitat, darf HTML enthalten.
+    pClass              Klassen fuer das <p> (random braucht "quote mb-4",
+                        all-personal-reports laesst es leer).
+    boxClass            Zusatzklassen fuer die .excerpt-Huelle im gekuerzten Fall.
+    plainWrapperClass   Huelle fuer den UNgekuerzten Fall. Leer = keine Huelle.
+    toggleId            Optional. Ohne Angabe wird eine gewuerfelt (s.u.).
+
+  ── Wann gekuerzt wird ────────────────────────────────────────────────────────
+  NICHT einfach "laenger als KURZ_AB". Genau das war der Fehler, den die Kundin
+  als "das Plus funktioniert nicht" gemeldet hat: bei einem Zitat von 514 Zeichen
+  zeigte der gekuerzte Stand 500 Zeichen, das Aufklappen brachte also 14 Zeichen -
+  zwei Woerter, kein Zeilenumbruch, gemessene Hoehenaenderung 0 Pixel. Der
+  Umschalter schaltete korrekt; nur SEHEN konnte man es nicht. Zwei von fuenf
+  Berichten waren betroffen.
+
+  Deshalb kuerzen wir erst, wenn das Aufklappen mindestens MINDESTGEWINN Zeichen
+  freilegt - ungefaehr zwei Textzeilen. Darunter steht das Zitat vollstaendig da
+  und bekommt gar kein Plus. Damit kann der Fall nicht wiederkehren, auch nicht
+  bei einem kuenftigen Bericht, den niemand nachmisst.
+#}
+{% set KURZ_AB = 500 %}
+{% set MINDESTGEWINN = 120 %}
+
+{% set volltext = quote | striptags | trim %}
+{% set kuerzen = volltext | length > (KURZ_AB + MINDESTGEWINN) %}
+
+{% if kuerzen %}
+  {#
+    An der Wortgrenze schneiden. Ein hartes slice() trennte mitten im Wort
+    ("... den Weg a ..."), was wie ein Tippfehler aussieht statt wie eine Kuerzung.
+    Das angeschnittene letzte Wort faellt weg; bleibt dabei nichts uebrig (Text
+    ohne Leerzeichen), greift der harte Schnitt als Rueckfallebene.
+  #}
+  {% set worte = volltext | slice(0, KURZ_AB) | split(' ') %}
+  {% set kurztext = worte | slice(0, worte | length - 1) | join(' ') | trim %}
+  {% if kurztext is empty %}
+    {% set kurztext = volltext | slice(0, KURZ_AB) %}
+  {% endif %}
+
+  {#
+    Ohne uebergebene Id eine wuerfeln: die Id muss nur INNERHALB der Seite
+    eindeutig sein und Checkbox mit Label verbinden. Eine feste Id (frueher
+    "report-toggle-random") kollidiert, sobald derselbe Baustein zweimal auf
+    einer Seite steht - dann steuern beide Labels die erste Checkbox und der
+    zweite Umschalter tut sichtbar nichts.
+  #}
+  {% set toggleId = toggleId | default('report-toggle-' ~ random(100000, 999999)) %}
+
+  <div class="excerpt{% if boxClass %} {{ boxClass }}{% endif %}">
+    {# Die Checkbox steht VOR allem, was sie steuert: der Geschwister-Selektor ~
+       erreicht nur Nachfolgendes. #}
+    <input type="checkbox" class="report-toggle" id="{{ toggleId }}">
+    <p{% if pClass %} class="{{ pClass }}"{% endif %}>
+      „
+      <span class="report-quote-short">{{ kurztext }} …</span>
+      <span class="report-quote-full">{{ quote | raw }}</span>
+      “
+    </p>
+    {#
+      Der Umschalter ist eine Checkbox mit Label und rein CSS. Vorher hing er am
+      Riba-Binder rv-toggle-on-click, und der tat nichts: ToggleOnEventBinder
+      haengt seine Methode UNGEBUNDEN als Listener ein
+      (packages/riba/.../toggle-on-event.binder.ts), beim Klick ist `this` also
+      das DOM-Element, this.propertyKey undefined - und der Waechter darin
+      schluckt es lautlos. Kein Fehler in der Konsole, nur ein Plus, das nichts tut.
+
+      Der Defekt sitzt in riba, aber packages/riba ist in den Kundenseiten bewusst
+      gepinnt und wird nicht gebumpt. Deshalb hier geloest, und zwar ohne
+      JavaScript: das Aufklappen funktioniert damit auch, bevor das Bundle geladen
+      ist, und ist per Tastatur bedienbar.
+    #}
+    <label class="report-toggle-label" for="{{ toggleId }}">
+      <bs4-icon class="report-toggle-more" src="{{ 'assets/iconset/icon_plus.svg' | theme }}" size="32"></bs4-icon>
+      <bs4-icon class="report-toggle-less" src="{{ 'assets/iconset/icon_minus.svg' | theme }}" size="32"></bs4-icon>
+      <span class="sr-only">Vollständigen Erfahrungsbericht anzeigen oder wieder einklappen</span>
+    </label>
+  </div>
+{% else %}
+  {% if plainWrapperClass %}
+    <div class="{{ plainWrapperClass }}">
+      <p{% if pClass %} class="{{ pClass }}"{% endif %}>„{{ quote | raw }}“</p>
+    </div>
+  {% else %}
+    <p{% if pClass %} class="{{ pClass }}"{% endif %}>„{{ quote | raw }}“</p>
+  {% endif %}
+{% endif %}

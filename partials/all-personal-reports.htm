@@ -3,48 +3,21 @@ snippetCode = "all-personal-reports"
 snippetName = "All personal reports"
 ==
 {#
-  Lange Berichte werden gekuerzt und lassen sich aufklappen.
+  Alle Erfahrungsberichte untereinander.
 
-  Der Umschalter ist eine Checkbox mit Label und rein CSS - so wie beim
-  Bewertungs-Reiter (partials/jameda_widget_portrait.htm). Vorher hing er am
-  Riba-Binder rv-toggle-on-click, und der tat nichts: ToggleOnEventBinder
-  haengt seine Methode UNGEBUNDEN als Listener ein
-  (packages/riba/.../toggle-on-event.binder.ts), beim Klick ist `this` also das
-  DOM-Element, this.propertyKey undefined - und der Waechter darin schluckt es
-  lautlos. Kein Fehler in der Konsole, nur ein Plus, das nichts tut.
-
-  Der Defekt sitzt in riba, aber packages/riba ist in den Kundenseiten bewusst
-  gepinnt und wird nicht gebumpt. Deshalb hier geloest, und zwar ohne JavaScript:
-  das Aufklappen funktioniert damit auch, bevor das Bundle geladen ist, und ist
-  per Tastatur bedienbar.
+  Kuerzen und Aufklappen macht partials/personal-report-quote.htm - dort steht
+  auch, warum erst ab einem spuerbaren Zugewinn gekuerzt wird und warum der
+  Umschalter ohne JavaScript auskommt.
 #}
 <div class="container all-personal-reports personal-report">
   <div class="row">
     {% for report in this.theme.personal_reports %}
     <div class="personal-report-col col-12 my-5 p-4 rounded-lg bg-white">
       <h3 class="title ml-3 mt-2 mb-4">{{ report.title }}</h3>
-      {% if report.quote | striptags | length > 500 %}
-      <div class="excerpt ml-3 mt-2 mb-4">
-        {# Die Checkbox steht VOR allem, was sie steuert: der Geschwister-
-           Selektor ~ erreicht nur Nachfolgendes. #}
-        <input type="checkbox" class="report-toggle" id="report-toggle-{{ loop.index0 }}">
-        <p>
-          „
-          <span class="report-quote-short">{{ report.quote | striptags | slice(0, 500) }} ...</span>
-          <span class="report-quote-full">{{ report.quote | raw }}</span>
-          “
-        </p>
-        <label class="report-toggle-label" for="report-toggle-{{ loop.index0 }}">
-          <bs4-icon class="report-toggle-more" src="{{ 'assets/iconset/icon_plus.svg' | theme }}" size="32"></bs4-icon>
-          <bs4-icon class="report-toggle-less" src="{{ 'assets/iconset/icon_minus.svg' | theme }}" size="32"></bs4-icon>
-          <span class="sr-only">Vollständigen Erfahrungsbericht anzeigen oder wieder einklappen</span>
-        </label>
-      </div>
-      {% else %}
-      <div class="quote ml-3 mt-2 mb-4">
-        <p>„{{ report.quote | raw }}“</p>
-      </div>
-      {% endif %}
+      {% partial 'personal-report-quote'
+        quote = report.quote
+        boxClass = 'ml-3 mt-2 mb-4'
+        plainWrapperClass = 'quote ml-3 mt-2 mb-4' %}
     </div>
     {% endfor %}
   </div>
