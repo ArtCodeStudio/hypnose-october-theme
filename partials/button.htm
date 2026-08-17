@@ -74,6 +74,32 @@ snippetProperties[paddingBottom][options][] = 5
        rv-route ausgegeben wird (inklusive Anfuehrungszeichen) - ein Selektor
        darauf waere von der Schreibweise des Binders abhaengig. #}
     {% set isPdf = target | default('') | lower | split('?') | first ends with '.pdf' %}
-    <bs4-button class="btn {{ style }}{% if isPdf %} btn-pdf{% endif %}" {% if target %}rv-route="'{{ target }}'"{% endif %}>{{ label }}</bs4-button>
+
+    {#
+      Telefon und E-Mail werden ein echter <a href>, alles andere bleibt die
+      bs4-Schaltflaeche mit rv-route.
+
+      Grund: der Router schreibt sein Ziel nur dann als href ins Element, wenn
+      es bereits ein <a> ist (isAnchorHTMLElement in route.binder.ts) - bei
+      einem <bs4-button> bleibt die Adresse allein in den Optionen des Binders,
+      und das rv-route-Attribut entfernt Riba nach dem Binden aus dem DOM.
+      Damit waere so eine Schaltflaeche fuer den ConversionService unsichtbar:
+      er sucht das naechste <a> und liest dessen href. Ein Telefon-Knopf wuerde
+      also klaglos funktionieren und einfach nie als Conversion gezaehlt.
+
+      Heute gibt es auf der Seite keinen solchen Knopf (am 17.08.2026 ueber
+      alle 65 Seiten geprueft: jedes tel:- und mailto:-Ziel haengt an einem
+      <a href>). Anlegen laesst er sich im Backend aber jederzeit in zehn
+      Sekunden - deshalb hier geschlossen und nicht im Kopf behalten.
+
+      Nebenbei richtig so: eine Telefonnummer ist ein Link, keine Schaltflaeche.
+      Das Aussehen ist identisch, es haengt an den .btn-Klassen.
+    #}
+    {% set ziel = target | default('') | lower %}
+    {% if ziel starts with 'tel:' or ziel starts with 'mailto:' %}
+      <a class="btn {{ style }}" href="{{ target }}">{{ label }}</a>
+    {% else %}
+      <bs4-button class="btn {{ style }}{% if isPdf %} btn-pdf{% endif %}" {% if target %}rv-route="'{{ target }}'"{% endif %}>{{ label }}</bs4-button>
+    {% endif %}
   </div>
 </div>
