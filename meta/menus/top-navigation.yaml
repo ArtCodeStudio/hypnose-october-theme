@@ -290,14 +290,14 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Burn-out
-                nesting: '0'
+                title: Burnout
+                nesting: 0
                 type: static-page
-                url: ''
+                url: null
                 code: ''
                 reference: anwendungsgebiete-burn-out
-                cmsPage: ''
-                replace: '0'
+                cmsPage: null
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
@@ -319,8 +319,10 @@ items:
                 title: Depressionen
                 nesting: 0
                 type: static-page
+                url: null
                 code: ''
                 reference: anwendungsgebiete-depression
+                cmsPage: null
                 replace: 0
                 viewBag:
                     isHidden: '0'
@@ -418,7 +420,7 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Phobie
+                title: Phobien
                 nesting: 0
                 type: static-page
                 url: null
@@ -457,14 +459,12 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: Rauchentwöhnung
-                nesting: '0'
+                title: Raucherentwöhnung
+                nesting: 0
                 type: static-page
-                url: ''
                 code: ''
                 reference: anwendungsgebiete-rauchentwohnung
-                cmsPage: ''
-                replace: '0'
+                replace: 0
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
